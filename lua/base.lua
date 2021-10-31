@@ -1,5 +1,7 @@
 local opt = vim.opt
 
+-- use terminal color
+opt.termguicolors = true
 opt.number = true
 opt.expandtab = true
 opt.shiftround = true
@@ -8,5 +10,3 @@ opt.tabstop = 4
 opt.wrap = false
 
 opt.list = true
--- opt.listchars:append("space:⋅")
--- opt.listchars:append("eol:↴")
