@@ -1,23 +1,17 @@
 local fn = vim.fn
-
--- require("utils")
-
--- load plugins
--- require("plugins/install")
-
--- load plugins settings
--- auto load configs
--- for i,j in pairs(fn.globpath(fn.stdpath('config')..'/lua/plugins/settings', '*.lua'):split('\n')) do
---     local s = j:split("/")
---     s = s[#s]:split(".")[1]
---     require("plugins/settings/"..s)
--- end
-
-local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
+
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost init.lua source <afile> | PackerInstall
+    autocmd BufWritePost init.lua source <afile> | PackerClean
+    autocmd BufWritePost init.lua source <afile> | PackerCompile
+  augroup end
+]])
 
 return require('packer').startup(function(use)
     -- add packer itself to packer manager, to avoid remove
@@ -26,7 +20,9 @@ return require('packer').startup(function(use)
     -- themes
     use {
         'RRethy/nvim-base16',
-        config = require('plugins.settings.base16')
+        config = function()
+            require('plugins.settings.base16')
+        end
     }
 
     -- lsp and cmp
@@ -42,7 +38,18 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-vsnip',
             'hrsh7th/vim-vsnip'
         },
-        config = require('plugins.settings.cmp')
+        config = function()
+            require('plugins.settings.cmp')
+        end
+    }
+
+    use "rafamadriz/friendly-snippets"
+
+    use {
+        'simrat39/symbols-outline.nvim',
+        config = function()
+            require('plugins.settings.symbols_outline')
+        end
     }
 
     -- nvim treesitter
@@ -54,64 +61,94 @@ return require('packer').startup(function(use)
     -- indent line
     use {
         'lukas-reineke/indent-blankline.nvim',
-        config = require('plugins.settings.indent_line')
+        config = function()
+            require('plugins.settings.indent_line')
+        end
     }
 
     -- status line and tabbar
     use {
         "NTBBloodbath/galaxyline.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
-        config = require('plugins.settings.statusline')
+        config = function()
+            require('plugins.settings.statusline')
+        end
     }
 
     use {
         'romgrk/barbar.nvim',
         requires = {'kyazdani42/nvim-web-devicons'},
-        config = require('plugins.settings.barbar')
+        config = function()
+            require('plugins.settings.barbar')
+        end
     }
 
     -- which-key
     use {
         "folke/which-key.nvim",
-        config = require('which-key').setup({})
+        config = function()
+            require('which-key').setup({})
+        end
     }
 
     -- terminal
     use {
         "akinsho/toggleterm.nvim",
-        config = require('plugins.settings.terminal')
+        config = function()
+            require('plugins.settings.terminal')
+        end
     }
 
     -- telescope
     use {
         'nvim-telescope/telescope.nvim',
         requires = 'nvim-lua/plenary.nvim',
-        config = require('plugins.settings.telescope')
+        config = function()
+            require('plugins.settings.telescope')
+        end
     }
 
     -- dashboard
     use {
         'glepnir/dashboard-nvim',
-        config = require('plugins.settings.dashboard')
+        config = function()
+            require('plugins.settings.dashboard')
+        end
     }
 
     -- nvim-tree
     use {
         'kyazdani42/nvim-tree.lua',
         requires = 'kyazdani42/nvim-web-devicons',
-        config = require('plugins.settings.nvim_tree')
+        config = function()
+            require('plugins.settings.nvim_tree')
+        end
     }
 
     -- project
     use {
         "ahmedkhalf/project.nvim",
-        config = require('plugins.settings.project')
+        config = function()
+            require('plugins.settings.project')
+        end
     }
 
     -- comments
     use {
         'numToStr/Comment.nvim',
-        config = require('plugins.settings.comments')
+        config = function()
+            require('plugins.settings.comments')
+        end
+    }
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        config = function()
+            require('gitsigns').setup()
+        end
     }
 
     -- Automatically set up your configuration after cloning packer.nvim
