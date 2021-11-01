@@ -11,7 +11,14 @@ require('telescope').setup{
             }
         }
     },
-    pickers = {},
+    pickers = {
+        find_files = {
+            theme = "dropdown"
+        },
+        lsp_code_actions = {
+            theme = "cursor"
+        }
+    },
     extensions = {}
 }
 
@@ -21,3 +28,5 @@ map('n', '<C-o>', '<cmd>Telescope lsp_document_symbols<cr>', {noremap = true, si
 map('i', '<C-o>', '<Esc><cmd>Telescope lsp_document_symbols<cr>', {noremap = true, silent = true})
 map('n', '<C-S-o>', '<cmd>Telescope lsp_workspace_symbols<cr>', {noremap = true, silent = true})
 map('i', '<C-S-o>', '<Esc><cmd>Telescope lsp_workspace_symbols<cr>', {noremap = true, silent = true})
+map('n', '<C-.>', '<cmd>Telescope lsp_code_actions<cr>', {noremap = true, silent = true})
+
