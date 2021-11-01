@@ -11,6 +11,7 @@ opt.tabstop = 4
 opt.wrap = false
 opt.mouse = opt.mouse + "a"
 opt.list = true
+opt.cursorline = true
 
 local mopt = {noremap = true, silent = true}
 map('n', '<C-s>', '<cmd>w<CR>', mopt)
