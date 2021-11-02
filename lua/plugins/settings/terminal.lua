@@ -47,4 +47,4 @@ function _lazygit_toggle()
   lazygit:toggle()
 end
 
-map("n", "<leader>git", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+map("n", "<C-k>git", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
