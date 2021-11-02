@@ -27,3 +27,18 @@ map('i', '<C-f>', '<right>', mopt)
 map('i', '<C-b>', '<left>', mopt)
 map('i', '<C-a>', '<home>', mopt)
 map('i', '<C-e>', '<end>', mopt)
+
+map('n', '<C-n>', '<down>', mopt)
+map('n', '<C-p>', '<up>', mopt)
+map('n', '<C-f>', '<right>', mopt)
+map('n', '<C-b>', '<left>', mopt)
+map('n', '<C-a>', '<home>', mopt)
+map('n', '<C-e>', '<end>', mopt)
+
+map('v', '<C-n>', '<down>', mopt)
+map('v', '<C-p>', '<up>', mopt)
+map('v', '<C-f>', '<right>', mopt)
+map('v', '<C-b>', '<left>', mopt)
+map('v', '<C-a>', '<home>', mopt)
+map('v', '<C-e>', '<end>', mopt)
+
