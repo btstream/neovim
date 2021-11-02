@@ -39,6 +39,9 @@ cmp.setup({
 cmp.setup.cmdline('/', {
     sources = {
     { name = 'buffer' }
+    },
+    completion = {
+        completeopt = 'menu,noselect'
     }
 })
 
@@ -48,7 +51,10 @@ cmp.setup.cmdline(':', {
     { name = 'path' }
     }, {
     { name = 'cmdline' }
-    })
+    }),
+    completion = {
+        completeopt = 'menu,noselect'
+    }
 })
 
 -- Setup lspconfig.
