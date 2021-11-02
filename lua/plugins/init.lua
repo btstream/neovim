@@ -41,14 +41,14 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
             'hrsh7th/cmp-vsnip',
-            'hrsh7th/vim-vsnip'
+            'hrsh7th/vim-vsnip',
+            'windwp/nvim-autopairs',
+            'rafamadriz/friendly-snippets'
         },
         config = function()
             require('plugins.settings.cmp')
         end
     }
-
-    use "rafamadriz/friendly-snippets"
 
     use {
         'simrat39/symbols-outline.nvim',

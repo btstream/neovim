@@ -1,1 +1,1 @@
-set guifont=mononoki\ Nerd\ Font\ Mono:h11
+set guifont=FiraCode\ Nerd\ Font\ Mono:h13

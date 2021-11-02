@@ -57,6 +57,15 @@ cmp.setup.cmdline(':', {
     }
 })
 
+require('nvim-autopairs').setup({
+    disable_filetype = { "TelescopePrompt" , "vim" },
+})
+
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+
+
 -- Setup lspconfig.
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -68,6 +77,7 @@ cmp.setup.cmdline(':', {
 --     capabilities = capabilities
 --   }
 -- end
+
 
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
