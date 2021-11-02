@@ -1,1 +1,1 @@
-require("galaxyline.themes.eviline")
+require("galaxyline.themes.neonline")
