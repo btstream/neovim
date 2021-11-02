@@ -12,8 +12,16 @@ require('transparent').setup({
         -- "BufferLineBackground",
         -- "BufferLineSeparator",
         -- "BufferLineIndicatorSelected",
+        'GitGutterAdd',
+        'GitGutterDelete',
+        'GitGutterChange',
+        'Terminal'
     },
-    exclude = {}, -- table: groups you don't want to clear
+    exclude = {
+    }, -- table: groups you don't want to clear
 })
 
+vim.cmd([[
+hi Visual ctermbg=DarkGrey guibg=DarkGrey
+]])
 
