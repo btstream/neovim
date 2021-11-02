@@ -20,8 +20,13 @@ return require('packer').startup(function(use)
     -- themes
     use {
         'RRethy/nvim-base16',
+        -- 'chriskempson/base16-vim',
+        requires = {
+            'xiyaowong/nvim-transparent',
+            'sunjon/shade.nvim'
+        },
         config = function()
-            require('plugins.settings.base16')
+            require('plugins.settings.themes')
         end
     }
 
