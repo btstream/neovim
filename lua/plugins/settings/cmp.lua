@@ -31,7 +31,7 @@ cmp.setup({
     { name = 'buffer' },
     }),
     completion = {
-        completeopt = 'menu,menuone,noinsert',
+        completeopt = 'menu,menuone,noinsert,preview',
     }
 })
 
