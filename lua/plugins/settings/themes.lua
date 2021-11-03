@@ -15,6 +15,7 @@ require('transparent').setup({
         'GitGutterAdd',
         'GitGutterDelete',
         'GitGutterChange',
+        'NormalNC',
         'Terminal'
     },
     exclude = {
