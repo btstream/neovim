@@ -1,5 +1,53 @@
 -- require("galaxyline.themes.neonline")
 
+
+-- lsp-staus functions message
+local lsp_process_config = {
+    show_filename = true,
+    component_separator = ' ',
+    spinner_frames = {'⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷'},
+}
+local messages = require('lsp-status').messages
+local function get_lsp_progress()
+    local buf_messages = messages()
+    local msgs = {}
+
+    for _, msg in ipairs(buf_messages) do
+        -- local name = msg.name
+        -- local client_name = '[' .. name .. ']'
+        local contents
+        if msg.progress then
+            contents = msg.title
+            if msg.message then contents = contents .. ' ' .. msg.message end
+
+            -- this percentage format string escapes a percent sign once to show a percentage and one more
+            -- time to prevent errors in vim statusline's because of it's treatment of % chars
+            if msg.percentage then contents = contents .. string.format(" (%.0f%%)", msg.percentage) end
+
+            if msg.spinner then
+                contents = lsp_process_config.spinner_frames[(msg.spinner % #lsp_process_config.spinner_frames) + 1] .. ' ' ..
+                    contents
+            end
+        elseif msg.status then
+            contents = msg.content
+            if lsp_process_config.show_filename and msg.uri then
+                local filename = vim.uri_to_fname(msg.uri)
+                filename = vim.fn.fnamemodify(filename, ':~:.')
+                local space = math.min(60, math.floor(0.6 * vim.fn.winwidth(0)))
+                if #filename > space then filename = vim.fn.pathshorten(filename) end
+
+                contents = '(' .. filename .. ') ' .. contents
+            end
+        else
+            contents = msg.content
+        end
+
+        table.insert(msgs, ' ' .. contents)
+    end
+    return table.concat(msgs, lsp_process_config.component_separator)
+end
+-- end of lsp-status messages
+
 local gl     = require('galaxyline')
 local gls    = gl.section
 local colors = {
@@ -159,21 +207,18 @@ gls.mid[0] = { Empty = {
 gls.right[0] = { LspClient = { -- {{{2
 	highlight = {colors.fg, colors.bg, 'bold'},
 
-	-- provider = function ()
-	-- 	local icon = ' '
-	-- 	local active_lsp = lsp.get_lsp_client()
-	--
-	-- 	if active_lsp == 'No Active Lsp' then
-	-- 		icon = ''
-	-- 		active_lsp  = ''
-	-- 	end
-	--
-	-- 	vim.api.nvim_command('hi GalaxyLspClient guifg='..mode_color[vim.fn.mode()])
-	-- 	return icon..active_lsp..' '
-	-- end,
-    provider = function ()
-        return require('lsp-status').status()
-    end
+	provider = function ()
+		local icon = ' '
+		local active_lsp = lsp.get_lsp_client()
+
+		if active_lsp == 'No Active Lsp' then
+			icon = ''
+			active_lsp  = ''
+		end
+
+		vim.api.nvim_command('hi GalaxyLspClient guifg='..mode_color[vim.fn.mode()])
+		return icon..active_lsp..' '..get_lsp_progress()
+	end,
 }}
 -- }}}2
 
