@@ -2,6 +2,10 @@ local map = vim.api.nvim_set_keymap
 local actions = require("telescope.actions")
 require('telescope').setup{
     defaults = {
+        sorting_strategy = "ascending",
+        layout_config = {
+            prompt_position = 'top'
+        },
         mappings = {
             i = {
                  ["<esc>"] = actions.close
@@ -12,9 +16,9 @@ require('telescope').setup{
         }
     },
     pickers = {
-        find_files = {
-            theme = "dropdown"
-        },
+        -- find_files = {
+        --     theme = "dropdown"
+        -- },
         lsp_code_actions = {
             theme = "cursor"
         }
@@ -43,4 +47,4 @@ map('n', '<C-k>.', '<cmd>Telescope lsp_code_actions<cr>', mopts)
 map('i', '<C-k>.', '<Esc><cmd>Telescope lsp_code_actions<cr>', mopts)
 
 -- registers
-map('i', '<C-k>p', '<Esc><cmd>Telescope registers<cr>', mopts)
+map('i', '<C-p>', '<Esc><cmd>Telescope registers<cr>', mopts)
