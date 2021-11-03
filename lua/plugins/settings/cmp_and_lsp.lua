@@ -73,28 +73,31 @@ cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex 
 
 
 -- Setup lspconfig.
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local lsp_status = require("lsp-status")
+lsp_status.register_progress()
 
 --setup lsp with lsp_installer
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
 
+    local opts = {
+        capabilities = lsp_status.capabilities,
+        on_attach = lsp_status.on_attach
+    }
 
     if server.name == 'rust_analyzer' then
-        local opt = server:get_default_options()
         -- print(vim.fn.json_encode(opt))
+        opts.cmd = server._default_options.cmd
         require('rust-tools').setup({
-            server = {
-                cmd = server._default_options.cmd
-            }
+            server = opts
         })
         server:attach_buffers()
     else
 
         local opts = {
-            capabilities = capabilities
+            capabilities = lsp_status.capabilities
         }
 
         -- (optional) Customize the options passed to the server
