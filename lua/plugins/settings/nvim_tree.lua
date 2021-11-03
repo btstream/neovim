@@ -46,6 +46,6 @@ require'nvim-tree'.setup {
         }
     }
 }
-map('n', '<C-k><C-b>', '<cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
-map('i', '<C-k><C-b>', '<Esc><cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
+map('n', '<C-k>b', '<cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
+map('i', '<C-k>b', '<Esc><cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
 
