@@ -20,6 +20,7 @@ local mopt = {noremap = true, silent = true}
 map('n', '<C-s>', '<cmd>w<CR>', mopt)
 map('i', '<C-s>', '<ESC><cmd>w<CR>', mopt)
 map('n', '<SPACEE>', '<Nop>', mopt)
+map('i', '<S-Tab>', '<C-d>', mopt)
 
 local modes = {'i', 'n', 'v'}
 for _, m in ipairs(modes) do
