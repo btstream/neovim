@@ -1,5 +1,6 @@
 local cmp = require'cmp'
 local lspkind = require('lspkind')
+local util = require 'lspconfig/util'
 
 ---@diagnostic disable-next-line: redundant-parameter
 cmp.setup({
@@ -75,30 +76,40 @@ cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
--- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
--- for _, lsp in ipairs(servers) do
---   require('lspconfig')[lsp].setup {
---     capabilities = capabilities
---   }
--- end
 
+--setup lsp with lsp_installer
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
-    local opts = {
-        capabilities = capabilities
-    }
 
-    -- (optional) Customize the options passed to the server
-    -- if server.name == "tsserver" then
-    --     opts.root_dir = function() ... end
-    -- end
 
-    -- This setup() function is exactly the same as lspconfig's setup function.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/ADVANCED_README.md
-    server:setup(opts)
+    if server.name == 'rust_analyzer' then
+        local opt = server:get_default_options()
+        -- print(vim.fn.json_encode(opt))
+        require('rust-tools').setup({
+            server = {
+                cmd = server._default_options.cmd
+            }
+        })
+        server:attach_buffers()
+    else
+
+        local opts = {
+            capabilities = capabilities
+        }
+
+        -- (optional) Customize the options passed to the server
+        -- if server.name == "tsserver" then
+        --     opts.root_dir = function() ... end
+        -- end
+
+        -- This setup() function is exactly the same as lspconfig's setup function.
+        -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/ADVANCED_README.md
+        server:setup(opts)
+    end
 end)
 
+
+--shortcut for snippet
 vim.api.nvim_exec(
 [[
 " Expand

@@ -43,7 +43,9 @@ return require('packer').startup(function(use)
             'hrsh7th/vim-vsnip',
             'windwp/nvim-autopairs',
             'rafamadriz/friendly-snippets',
-            'onsails/lspkind-nvim'
+            'onsails/lspkind-nvim',
+            'simrat39/rust-tools.nvim',
+            'nvim-lua/lsp-status.nvim'
         },
         config = function()
             require('plugins.settings.cmp_and_lsp')
