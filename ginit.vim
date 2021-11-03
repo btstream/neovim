@@ -4,3 +4,4 @@ else
     set guifont=FiraCode\ Nerd\ Font\ Mono:h10
 endif
 
+execute 'TransparentDisable'
