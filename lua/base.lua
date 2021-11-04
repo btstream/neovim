@@ -11,10 +11,13 @@ opt.shiftround = true
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.wrap = false
+-- mouse
 opt.mouse = opt.mouse + "a"
 opt.list = true
 opt.cursorline = true
+-- clipboard
 opt.clipboard = opt.clipboard + "unnamedplus"
+opt.fileformat = "unix"
 
 local mopt = {noremap = true, silent = true}
 map('n', '<C-s>', '<cmd>w<CR>', mopt)
