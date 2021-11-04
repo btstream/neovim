@@ -45,10 +45,12 @@ return require('packer').startup(function(use)
             'rafamadriz/friendly-snippets',
             'onsails/lspkind-nvim',
             'simrat39/rust-tools.nvim',
-            'nvim-lua/lsp-status.nvim'
+            'nvim-lua/lsp-status.nvim',
+            'mfussenegger/nvim-jdtls'
         },
         config = function()
-            require('plugins.settings.cmp_and_lsp')
+            require('plugins.settings.cmp')
+            require('plugins.settings.lsp')
         end
     }
 

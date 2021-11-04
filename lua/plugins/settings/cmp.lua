@@ -72,45 +72,6 @@ local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
 
--- Setup lspconfig.
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-local lsp_status = require("lsp-status")
-lsp_status.register_progress()
-
---setup lsp with lsp_installer
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-
-    local opts = {
-        capabilities = lsp_status.capabilities,
-        on_attach = lsp_status.on_attach
-    }
-
-    if server.name == 'rust_analyzer' then
-        -- print(vim.fn.json_encode(opt))
-        opts.cmd = server._default_options.cmd
-        require('rust-tools').setup({
-            server = opts
-        })
-        server:attach_buffers()
-    else
-
-        local opts = {
-            capabilities = lsp_status.capabilities
-        }
-
-        -- (optional) Customize the options passed to the server
-        -- if server.name == "tsserver" then
-        --     opts.root_dir = function() ... end
-        -- end
-
-        -- This setup() function is exactly the same as lspconfig's setup function.
-        -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/ADVANCED_README.md
-        server:setup(opts)
-    end
-end)
-
 
 --shortcut for snippet
 vim.api.nvim_exec(
@@ -136,5 +97,5 @@ xmap        s   <Plug>(vsnip-select-text)
 nmap        S   <Plug>(vsnip-cut-text)
 xmap        S   <Plug>(vsnip-cut-text)
 ]],
-true)
+false)
 
