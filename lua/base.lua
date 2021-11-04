@@ -11,6 +11,7 @@ opt.shiftround = true
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.wrap = false
+opt.autoread = true
 -- mouse
 opt.mouse = opt.mouse + "a"
 opt.list = true

@@ -1,7 +1,5 @@
 if has('gui_vimr')
     set guifont=FiraCode\ Nerd\ Font\ Mono:h13
-" else
-    " set guifont=FiraCode\ Nerd\ Font\ Mono:h10
 endif
 
 
@@ -24,9 +22,3 @@ endif
 if exists(':GuiScrollBar')
     GuiScrollBar 0
 endif
-
-augroup vimtrans
-    autocmd!
-    autocmd User PackerComplete ++once TransparentDisable
-augroup end
-

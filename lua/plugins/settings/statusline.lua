@@ -1,6 +1,5 @@
 -- require("galaxyline.themes.neonline")
 
-
 -- lsp-staus functions message
 local lsp_process_config = {
     show_filename = true,
@@ -98,7 +97,7 @@ local mode_icon = { --- {{{2
 }
 -- }}}2
 
-local num_icons = {"➊ ", "❷ ", "➌ ", "➍ ", "➎ ", "➏ ", "➐ ", "➑ ", "➒ ", " "}
+local num_icons = {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "}
 -- }}}1
 
 -- Left hand side modules {{{1
