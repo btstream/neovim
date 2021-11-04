@@ -1,6 +1,6 @@
 local cmp = require'cmp'
 local lspkind = require('lspkind')
-local util = require 'lspconfig/util'
+-- local util = require 'lspconfig/util'
 
 ---@diagnostic disable-next-line: redundant-parameter
 cmp.setup({
