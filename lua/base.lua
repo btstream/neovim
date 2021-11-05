@@ -35,3 +35,6 @@ for _, m in ipairs(modes) do
     map(m, '<C-a>', '<home>', mopt)
     map(m, '<C-e>', '<end>', mopt)
 end
+
+-- clean search hilight
+map('n', '<Esc><Esc>', '<cmd>nohl<cr>', mopt)

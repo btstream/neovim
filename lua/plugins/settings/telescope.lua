@@ -43,8 +43,5 @@ map('i', '<C-k>f', '<ESC><cmd>Telescope live_grep<cr>', mopts)
 map('n', '<C-k>f', '<ESC><cmd>Telescope live_grep<cr>', mopts)
 
 -- code actions
-map('n', '<C-k>.', '<cmd>Telescope lsp_code_actions<cr>', mopts)
-map('i', '<C-k>.', '<Esc><cmd>Telescope lsp_code_actions<cr>', mopts)
-
 -- registers
 map('i', '<C-p>', '<Esc><cmd>Telescope registers<cr>', mopts)
