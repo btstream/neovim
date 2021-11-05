@@ -8,6 +8,30 @@ capabilities = vim.tbl_deep_extend('keep', capabilities, require('lsp-status').c
 
 --setup lsp with lsp_installer
 local lsp_installer = require("nvim-lsp-installer")
+local servers = {
+	"bashls",
+    "pyright",
+	"jdtls",
+	"rust_analyzer",
+    "jsonls",
+    "cssls",
+    "html",
+    "vuels",
+    "vimls",
+    "sumneko_lua",
+    "fortls"
+}
+for _, name in pairs(servers) do
+	local ok, server = lsp_installer.get_server(name)
+	-- Check that the server is supported in nvim-lsp-installer
+	if ok then
+		if not server:is_installed() then
+			print("Installing " .. name)
+			server:install()
+		end
+	end
+end
+
 lsp_installer.on_server_ready(function(server)
 
     -- call back functions to set keyboard
