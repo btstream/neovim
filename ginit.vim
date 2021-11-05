@@ -5,7 +5,11 @@ endif
 
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
-    GuiFont FiraCode\ Nerd\ Font\ Mono:h10
+    if has('win32')
+        GuiFont CaskaydiaCove NF:h10
+    else
+        GuiFont FiraCode\ Nerd\ Font\ Mono:h10
+    end
 endif
 
 " Disable GUI Tabline
