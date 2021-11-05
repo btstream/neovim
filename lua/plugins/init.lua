@@ -54,6 +54,7 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- format
     use {
         'simrat39/symbols-outline.nvim',
         config = function()
@@ -150,6 +151,7 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- gitsigns
     use {
         'lewis6991/gitsigns.nvim',
         requires = {
@@ -164,6 +166,8 @@ return require('packer').startup(function(use)
             end
         end
     }
+
+    use 'h-hg/fcitx.nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

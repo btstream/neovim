@@ -44,8 +44,9 @@ M.setup = function (opt)
     -- register startup hook
     vim.cmd([[
         augroup user-jdtls
-        autocmd!
-        autocmd FileType java lua require('plugins.settings.lsp.jdtls').start()
+            autocmd!
+            autocmd FileType java lua require('plugins.settings.lsp.jdtls').start()
+            autocmd BufWritePre *.java lua require('jdtls').organize_imports()
         augroup end
     ]])
 end
