@@ -65,7 +65,10 @@ return require('packer').startup(function(use)
     -- nvim treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
+        run = ':TSUpdate',
+        config = function ()
+            require('plugins.settings.treesitter')
+        end
     }
 
     -- indent line
