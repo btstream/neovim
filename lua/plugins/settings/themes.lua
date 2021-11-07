@@ -1,4 +1,7 @@
-vim.cmd('colorscheme base16-material-darker')
+local M = {}
+
+-- base16_theme = 'material-darker'
+-- vim.cmd('colorscheme base16-'..base16_theme)
 
 function set_transparent()
     local enable = true
@@ -28,11 +31,15 @@ function set_transparent()
     })
 end
 
-vim.cmd([[
-hi Visual ctermbg=DarkGrey guibg=DarkGrey
-augroup set_transparent
-autocmd!
-autocmd VimEnter * lua set_transparent()
-augroup end
-]])
+M.setup = function (s)
+    vim.cmd('colorscheme base16-'..s)
+    vim.cmd([[
+    hi Visual ctermbg=DarkGrey guibg=DarkGrey
+        augroup set_transparent
+        autocmd!
+        autocmd VimEnter * lua set_transparent()
+    augroup end
+    ]])
+end
 
+return M

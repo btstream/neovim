@@ -13,7 +13,10 @@ vim.cmd([[
   augroup end
 ]])
 
+base16_theme = 'material-darker'
+
 return require('packer').startup(function(use)
+
     -- add packer itself to packer manager, to avoid remove
     use 'wbthomason/packer.nvim'
 
@@ -24,7 +27,7 @@ return require('packer').startup(function(use)
             'xiyaowong/nvim-transparent',
         },
         config = function()
-            require('plugins.settings.themes')
+            require('plugins.settings.themes').setup(base16_theme)
         end
     }
 
@@ -54,11 +57,17 @@ return require('packer').startup(function(use)
         end
     }
 
-    -- format
     use {
         'simrat39/symbols-outline.nvim',
         config = function()
             require('plugins.settings.symbols_outline')
+        end
+    }
+
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function ()
+            require('colorizer').setup()
         end
     }
 
@@ -82,9 +91,14 @@ return require('packer').startup(function(use)
     -- status line and tabbar
     use {
         "NTBBloodbath/galaxyline.nvim",
-        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+        requires = {
+            {"kyazdani42/nvim-web-devicons"},
+            {'RRethy/nvim-base16', opt = true}
+        },
         config = function()
-            require('plugins.settings.statusline')
+            require('plugins.settings.statusline').setup(
+                require('base16-colorscheme').colorschemes[base16_theme]
+            )
         end
     }
 

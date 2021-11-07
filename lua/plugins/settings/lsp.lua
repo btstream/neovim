@@ -55,9 +55,6 @@ lsp_installer.on_server_ready(function(server)
         })
         server:attach_buffers()
     elseif server.name == 'jdtls' then
-        -- _JdtCmd = server._default_options.cmd
-        -- _OnAttach = attach_keys
-        -- require('plugins.settings.lsp.jdtls')
         require("plugins.settings.lsp.jdtls").setup({
             cmd = server._default_options.cmd,
             on_attach = attach_keys
