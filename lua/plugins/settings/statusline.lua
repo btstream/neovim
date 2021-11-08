@@ -52,7 +52,7 @@ M.setup = function()
     local lsp       = require('galaxyline.providers.lsp')
     local vcs       = require('galaxyline.providers.vcs')
 
-    gl.short_line_list = {'NvimTree', 'help', 'tagbar', 'toggleterm'}
+    gl.short_line_list = {'NvimTree', 'help', 'tagbar', 'toggleterm', 'Outline'}
 
     -- Maps {{{1
     local mode_color = { -- {{{2

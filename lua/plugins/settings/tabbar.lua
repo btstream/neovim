@@ -59,6 +59,11 @@ require('bufferline').setup {
                 end,
                 highlight = "Directory",
                 text_align = "left"
+            },
+            {
+                filetype = 'Outline',
+                text = 'Outline',
+                text_align = 'left'
             }
         },
         show_buffer_icons = true, -- disable filetype icons for buffers
