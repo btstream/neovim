@@ -120,7 +120,8 @@ M.setup = function()
 
         provider = function ()
             vim.api.nvim_command("hi GalaxyBufSep guifg="..get_mode_color())
-            return " "
+            -- return " "
+            return ' '
         end,
     }}
     -- }}}2
@@ -145,7 +146,8 @@ M.setup = function()
 
         provider = function ()
             vim.api.nvim_command('hi GalaxyFileSep guifg='..get_mode_color())
-            return " "
+            -- return " "
+            return ''
         end,
     }}
     -- }}}2
@@ -169,7 +171,7 @@ M.setup = function()
 
         provider = function ()
             vim.api.nvim_command('hi GalaxyEFSep guifg='..get_mode_color())
-            return ""
+            return ""
         end,
     }}
     -- }}}2
@@ -283,7 +285,8 @@ M.setup = function()
 
         provider = function ()
             vim.api.nvim_command('hi GalaxyLineSep guibg='..get_mode_color())
-            return " "
+            -- return " "
+            return ' '
         end,
     }}
     -- }}}2
@@ -339,7 +342,8 @@ M.setup = function()
 
         provider = function ()
             vim.api.nvim_command("hi GalaxyBufSep guibg="..get_mode_color())
-            return ""
+            -- return ""
+            return ''
         end,
     }}
     -- }}}2
@@ -364,7 +368,8 @@ M.setup = function()
 
         provider = function ()
             vim.api.nvim_command('hi GalaxyLineSep guibg='..get_mode_color())
-            return ""
+            -- return ""
+            return ''
         end,
     }}
     -- }}}2
