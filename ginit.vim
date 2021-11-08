@@ -8,7 +8,7 @@ if exists(':GuiFont')
     if has('win32')
         GuiFont CaskaydiaCove\ NF:h10
     else
-        GuiFont BlexMono\ Nerd\ Font\ Mono:h11
+        GuiFont BlexMono\ Nerd\ Font:h11
         GuiLinespace -2
     end
 endif

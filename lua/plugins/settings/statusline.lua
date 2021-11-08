@@ -7,7 +7,7 @@ local gls    = gl.section
 
 M.setup = function(cls)
     local colors = {
-        bg      = cls.base00,
+        bg      = cls.base01,
         fg      = cls.base00,
         red     = cls.base08,
         orange  = cls.base09,
@@ -27,7 +27,7 @@ M.setup = function(cls)
     local lsp       = require('galaxyline.providers.lsp')
     local vcs       = require('galaxyline.providers.vcs')
 
-    gl.short_line_list = {'NvimTree', 'help', 'tagbar'}
+    gl.short_line_list = {'NvimTree', 'help', 'tagbar', 'toggleterm'}
 
     -- Maps {{{1
     local mode_color = { -- {{{2
