@@ -1,25 +1,50 @@
 -- local colors = require('base16-colorscheme').colorschemes['material-darker']
 local M = {}
 
-local utils = require('plugins.settings.lsp.utils')
+local utils  = require('plugins.settings.lsp.utils')
 local gl     = require('galaxyline')
 local gls    = gl.section
 
-M.setup = function(cls)
-    local colors = {
-        bg      = cls.base01,
-        fg      = cls.base00,
-        red     = cls.base08,
-        orange  = cls.base09,
-        yellow  = cls.base0A,
-        green   = cls.base0B,
-        blue    = cls.base0D,
-        cyan    = cls.base0C,
-        purple  = cls.base0E,
-        magenta = cls.base0E,
-        white   = cls.base05,
-    }
+local function get_colors(name)
 
+    local bm = {
+        bg      = 'base01',
+        fg      = 'base00',
+        red     = 'base08',
+        orange  = 'base09',
+        yellow  = 'base0A',
+        green   = 'base0B',
+        blue    = 'base0D',
+        cyan    = 'base0C',
+        purple  = 'base0E',
+        magenta = 'base0E',
+        white   = 'base05'
+    }
+    local _, b = vim.g.colors_name:find('base16')
+    if b then
+        return function ()
+            local colors = require('base16-colorscheme').colorschemes[vim.g.colors_name:sub(b+2)]
+            return colors[bm[name]]
+        end
+    else
+        return require('galaxyline.themes.colors').get_color(name)
+    end
+end
+
+M.setup = function()
+    local colors = {
+        bg      = get_colors('bg'),
+        fg      = get_colors('fg'),
+        red     = get_colors('red'),
+        orange  = get_colors('orange'),
+        yellow  = get_colors('yellow'),
+        green   = get_colors('green'),
+        blue    = get_colors('blue'),
+        cyan    = get_colors('cyan'),
+        purple  = get_colors('purple'),
+        magenta = get_colors('magenta'),
+        white   = get_colors('white')
+    }
 
     local buffer    = require('galaxyline.providers.buffer')
     local condition = require('galaxyline.condition')
@@ -43,6 +68,15 @@ M.setup = function(cls)
     }
     -- }}}2
 
+    local function get_mode_color()
+        local s = mode_color[vim.fn.mode()]
+        if type(s) == 'function' then
+            return s()
+        else
+            return s
+        end
+    end
+
     local mode_icon = { --- {{{2
         c = "🅒 ", ['!'] = "🅒 ",
         i = "🅘 ", ic    = "🅘 ", ix     = "🅘 ",
@@ -63,7 +97,7 @@ M.setup = function(cls)
         highlight = {colors.blue, colors.bg},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyLeft guifg='..mode_color[vim.fn.mode()]..' guibg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyLeft guifg='..get_mode_color()..' guibg='..get_mode_color())
             return "█"
         end,
     }}
@@ -73,7 +107,7 @@ M.setup = function(cls)
         highlight = {colors.fg, colors.bg, 'bold'},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyModeNum guibg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyModeNum guibg='..get_mode_color())
             return
                 mode_icon[vim.fn.mode()]..
                 num_icons[math.min(10, buffer.get_buffer_number())]..' '
@@ -85,7 +119,7 @@ M.setup = function(cls)
         highlight = {colors.bg, colors.bg},
 
         provider = function ()
-            vim.api.nvim_command("hi GalaxyBufSep guifg="..mode_color[vim.fn.mode()])
+            vim.api.nvim_command("hi GalaxyBufSep guifg="..get_mode_color())
             return " "
         end,
     }}
@@ -110,7 +144,7 @@ M.setup = function(cls)
         highlight = {colors.bg, colors.bg},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyFileSep guifg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyFileSep guifg='..get_mode_color())
             return " "
         end,
     }}
@@ -124,7 +158,7 @@ M.setup = function(cls)
             local encode      = fileinfo.get_file_encode()
             local format      = fileinfo.get_file_format()
 
-            vim.api.nvim_command('hi GalaxyFileEF guibg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyFileEF guibg='..get_mode_color())
             return ' '..encode..' '..format_icon[format]
         end,
     }}
@@ -134,7 +168,7 @@ M.setup = function(cls)
         highlight = {colors.bg, colors.bg},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyEFSep guifg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyEFSep guifg='..get_mode_color())
             return ""
         end,
     }}
@@ -145,7 +179,7 @@ M.setup = function(cls)
         highlight = {colors.blue, colors.bg, 'bold'},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyGit guifg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyGit guifg='..get_mode_color())
             local branch = vcs.get_git_branch()
             if (branch == nil) then branch = '???' end
             return '  '..' '..branch..' '
@@ -174,7 +208,7 @@ M.setup = function(cls)
                 active_lsp  = ''
             end
 
-            vim.api.nvim_command('hi GalaxyLspClient guifg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyLspClient guifg='..get_mode_color())
             return icon..active_lsp..' '..(utils.get_lsp_progress())
         end,
     }}
@@ -248,7 +282,7 @@ M.setup = function(cls)
         highlight = {colors.bg, colors.bg},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyLineSep guibg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyLineSep guibg='..get_mode_color())
             return " "
         end,
     }}
@@ -260,7 +294,7 @@ M.setup = function(cls)
         provider = function ()
             local cursor = vim.api.nvim_win_get_cursor(0)
 
-            vim.api.nvim_command('hi GalaxyLineInfo guibg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyLineInfo guibg='..get_mode_color())
             return '☰ '..cursor[1]..'/'..vim.api.nvim_buf_line_count(0)..':'..cursor[2]
         end,
     }}
@@ -270,7 +304,7 @@ M.setup = function(cls)
         highlight = {colors.blue, colors.bg},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyRight guibg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyRight guibg='..get_mode_color())
             return '  '
         end,
     }}
@@ -282,7 +316,7 @@ M.setup = function(cls)
         highlight = {colors.blue, colors.bg},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyLeft guifg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyLeft guifg='..get_mode_color())
             return ""
         end,
     }}
@@ -292,7 +326,7 @@ M.setup = function(cls)
         highlight = {colors.fg, colors.bg, 'bold'},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyModeNum guibg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyModeNum guibg='..get_mode_color())
             return
                 mode_icon[vim.fn.mode()]..
                 num_icons[math.min(10, buffer.get_buffer_number())]
@@ -304,7 +338,7 @@ M.setup = function(cls)
         highlight = {colors.bg, colors.bg},
 
         provider = function ()
-            vim.api.nvim_command("hi GalaxyBufSep guibg="..mode_color[vim.fn.mode()])
+            vim.api.nvim_command("hi GalaxyBufSep guibg="..get_mode_color())
             return ""
         end,
     }}
@@ -329,7 +363,7 @@ M.setup = function(cls)
         highlight = {colors.bg, colors.bg},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyLineSep guibg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyLineSep guibg='..get_mode_color())
             return ""
         end,
     }}
@@ -341,7 +375,7 @@ M.setup = function(cls)
         provider = function ()
             local cursor = vim.api.nvim_win_get_cursor(0)
 
-            vim.api.nvim_command('hi GalaxyLineInfo guibg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyLineInfo guibg='..get_mode_color())
             return '☰ '..cursor[1]..'/'..vim.api.nvim_buf_line_count(0)..':'..cursor[2]
         end,
     }}
@@ -351,7 +385,7 @@ M.setup = function(cls)
         highlight = {colors.blue, colors.bg},
 
         provider = function ()
-            vim.api.nvim_command('hi GalaxyRight guifg='..mode_color[vim.fn.mode()]..' guibg='..mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyRight guifg='..get_mode_color()..' guibg='..get_mode_color())
             return '█'
         end,
     }}

@@ -7,9 +7,7 @@ end
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerInstall
-    autocmd BufWritePost init.lua source <afile> | PackerClean
-    autocmd BufWritePost init.lua source <afile> | PackerCompile
+    autocmd BufWritePost init.lua source <afile> | PackerSync
   augroup end
 ]])
 
@@ -27,7 +25,7 @@ return require('packer').startup(function(use)
             'xiyaowong/nvim-transparent',
         },
         config = function()
-            require('plugins.settings.themes').setup(base16_theme)
+            require('plugins.settings.themes')
         end
     }
 
@@ -96,9 +94,7 @@ return require('packer').startup(function(use)
             {'RRethy/nvim-base16', opt = true}
         },
         config = function()
-            require('plugins.settings.statusline').setup(
-                require('base16-colorscheme').colorschemes[base16_theme]
-            )
+            require('plugins.settings.statusline').setup()
         end
     }
 
