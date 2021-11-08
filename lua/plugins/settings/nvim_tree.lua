@@ -8,6 +8,8 @@ vim.g.nvim_tree_icons = {
     }
 }
 
+
+
 require'nvim-tree'.setup {
     disable_netrw       = true,
     hijack_netrw        = true,
@@ -57,4 +59,8 @@ require'nvim-tree'.setup {
 }
 map('n', '<C-k>b', '<cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
 map('i', '<C-k>b', '<Esc><cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
+
+vim.cmd([[
+autocmd BufReadPost * lua require'nvim-tree'.refresh()
+]])
 
