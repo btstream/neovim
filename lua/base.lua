@@ -20,6 +20,17 @@ opt.cursorline = true
 opt.clipboard = opt.clipboard + "unnamedplus"
 opt.fileformat = "unix"
 
+--auto commands to reload buffer
+vim.cmd([[
+augroup reladbuffer
+    au!
+    au CursorHold,CursorHoldI * checktime
+    au FocusGained,BufEnter * :checktime
+augroup end
+]])
+-----------------------------------------------------------
+-- set keymaps
+-----------------------------------------------------------
 local mopt = {noremap = true, silent = true}
 map('n', '<C-s>', '<cmd>w<CR>', mopt)
 map('i', '<C-s>', '<ESC><cmd>w<CR>', mopt)
