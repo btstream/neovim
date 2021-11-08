@@ -2,13 +2,11 @@ local map = vim.api.nvim_set_keymap
 
 vim.g.nvim_tree_icons = {
     git = {
-        unstaged = 'ﮨ',
+        unstaged = '',
         staged = '',
         untracked = ''
     }
 }
-
-
 
 require'nvim-tree'.setup {
     disable_netrw       = true,
@@ -61,6 +59,10 @@ map('n', '<C-k>b', '<cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
 map('i', '<C-k>b', '<Esc><cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
 
 vim.cmd([[
-autocmd BufReadPost * lua require'nvim-tree'.refresh()
+augroup nvim-tree-refresh
+    au!
+    autocmd BufReadPost * lua require'nvim-tree'.refresh()
+    autocmd BufEnter NvimTree lua require 'nvim-tree'.refresh()
+augroup end
 ]])
 
