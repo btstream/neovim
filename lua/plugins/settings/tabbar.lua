@@ -106,7 +106,7 @@ map('n', '<A-8>', ':BufferLineGoToBuffer 8<CR>', opts)
 map('n', '<A-9>', ':BufferLineGoToBuffer 9<CR>', opts)
 -- map('n', '<A-0>', ':BufferLast<CR>', opts)
 -- Close buffer
-map('n', '<A-c>', ':BufferClose<CR>', opts)
+map('n', '<A-c>', ':bdelete<CR>', opts)
 -- Wipeout buffer
 --                 :BufferWipeout<CR>
 -- Close commands
