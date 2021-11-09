@@ -233,9 +233,8 @@ M.setup = function()
     --------------------
     gls.mid[0] = {
         Empty = {
-            hilight = {colors.bg, colors.bg},
+            hilight = {nil, nil},
             provider = function ()
-                vim.cmd([[hi! StatusLine guibg=]] .. colors.bg())
                 return ''
             end,
         }
@@ -271,7 +270,7 @@ M.setup = function()
         }
     }
 
-    gls.right[2] = { DiagnosticWarn = { -- {{{2
+    gls.right[2] = { DiagnosticWarn = {
         highlight = {colors.yellow, colors.bg, },
         provider = function ()
             local icon = ' '
@@ -283,7 +282,7 @@ M.setup = function()
         end,
     }}
 
-    gls.right[3] = { DiagnosticHint = { -- {{{2
+    gls.right[3] = { DiagnosticHint = {
         highlight = {colors.cyan, colors.bg, },
         provider = function ()
             local icon = ' '
@@ -294,7 +293,6 @@ M.setup = function()
             return icon..count..' '
         end,
     }}
-
 
     gls.right[4] = {
         RFileSepL = {
@@ -307,7 +305,7 @@ M.setup = function()
     }
 
     gls.right[5] = {
-        FileInfo = { -- {{{2
+        FileInfo = {
             highlight = {colors.fg, colors.bg, },
             provider = function ()
                 local format_icon = {['DOS'] = " ", ['MAC'] = " ", ['UNIX'] = " "}
@@ -330,7 +328,7 @@ M.setup = function()
     }
 
     gls.right[7] = {
-        LineInfo = { -- {{{2
+        LineInfo = {
             highlight = {colors.bg, mode_color.get(), },
             provider = function ()
                 set_mode_color('LineInfo')
@@ -339,7 +337,6 @@ M.setup = function()
             end,
         }
     }
-
 
     -----------------------------
     -- short lines
@@ -350,6 +347,8 @@ M.setup = function()
     gls.short_line_left[3] = gls.left[3]
     gls.short_line_right[0] = gls.right[6]
 
+    -- for mid background
+    vim.cmd([[hi! StatusLine guibg=]] .. colors.bg())
 end
 
 return M
