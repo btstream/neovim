@@ -1,8 +1,10 @@
 local M = {}
 
-local utils  = require('plugins.settings.lsp.utils')
 local gl     = require('galaxyline')
 local gls    = gl.section
+local ls     = require('lsp-status')
+
+ls.config({})
 
 -- functions to remap base16-themes to colors
 local function get_colors(name)
@@ -251,7 +253,7 @@ M.setup = function()
                 if active_lsp == 'No Active Lsp' then
                     return ''
                 end
-                return icon..active_lsp..' '..(utils.get_lsp_progress())
+                return icon..active_lsp..' '..(ls.status_progress())
             end,
         }
     }
