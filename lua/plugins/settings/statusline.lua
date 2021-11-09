@@ -351,6 +351,17 @@ M.setup = function()
 
     -- for mid background
     vim.cmd([[hi! StatusLine guibg=]] .. colors.bg())
+    vim.cmd([[
+    autocmd ColorScheme * lua require('plugins.settings.statusline').update_status_bg()
+    ]])
+end
+
+M.dyn_theme_color = function (name)
+    return get_colors(name)()
+end
+
+M.update_status_bg = function ()
+    vim.cmd([[hi! StatusLine guibg=]] .. get_colors('bg')())
 end
 
 return M

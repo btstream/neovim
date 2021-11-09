@@ -29,8 +29,8 @@ function set_transparent()
 end
 
 vim.cmd([[
-hi Visual ctermbg=DarkGrey guibg=DarkGrey
-    augroup set_transparent
+hi! link Visual CursorLine
+augroup set_transparent
     autocmd!
     autocmd VimEnter * lua set_transparent()
 augroup end
