@@ -110,7 +110,8 @@ M.setup = function()
             highlight = {colors.bg, mode_color.get()},
             provider = function ()
                 set_mode_color('ModeNum')
-                return '  ' .. mode_icon.get() .. num_icons.get() .. ' '
+                -- return '  ' .. mode_icon.get() .. num_icons.get() .. ' '
+                return '  ' .. mode_icon.get() .. ' '
             end
         }
     }
@@ -136,7 +137,7 @@ M.setup = function()
 
     gls.left[3] = {
         FileName = {
-            highlight = {colors.fg, colors.bg, 'bold'},
+            highlight = {colors.fg, colors.bg},
             provider = function ()
                 local file_name = fileinfo.get_current_file_name()
                 if file_name == nil or file_name:len() == 0 then
@@ -173,7 +174,7 @@ M.setup = function()
     gls.left[6] = {
         GitBranch = {
             condition = condition.check_git_workspace,
-            highlight = {colors.fg, colors.bg, 'bold'},
+            highlight = {colors.fg, colors.bg},
 
             provider = function ()
                 local branch = vcs.get_git_branch()
@@ -233,7 +234,10 @@ M.setup = function()
     gls.mid[0] = {
         Empty = {
             hilight = {colors.bg, colors.bg},
-            provider = function () end
+            provider = function ()
+                vim.cmd([[hi! StatusLine guibg=]] .. colors.bg())
+                return ''
+            end,
         }
     }
     --------------------
@@ -241,7 +245,7 @@ M.setup = function()
     --------------------
     gls.right[0] = {
         LspClient = { -- {{{2
-            highlight = {colors.fg, colors.bg, 'bold'},
+            highlight = {colors.fg, colors.bg},
             provider = function ()
                 local icon = '   '
                 local active_lsp = lsp.get_lsp_client()
@@ -255,7 +259,7 @@ M.setup = function()
 
     gls.right[1] = {
         DiagnosticError = {
-            highlight = {colors.red, colors.bg, 'bold'},
+            highlight = {colors.red, colors.bg, },
             provider = function ()
                 local icon = ' '
                 local count = vim.lsp.diagnostic.get_count(0, 'Error')
@@ -268,7 +272,7 @@ M.setup = function()
     }
 
     gls.right[2] = { DiagnosticWarn = { -- {{{2
-        highlight = {colors.yellow, colors.bg, 'bold'},
+        highlight = {colors.yellow, colors.bg, },
         provider = function ()
             local icon = ' '
             local count = vim.lsp.diagnostic.get_count(0, 'Warning')
@@ -280,7 +284,7 @@ M.setup = function()
     }}
 
     gls.right[3] = { DiagnosticHint = { -- {{{2
-        highlight = {colors.cyan, colors.bg, 'bold'},
+        highlight = {colors.cyan, colors.bg, },
         provider = function ()
             local icon = ' '
             local count = vim.lsp.diagnostic.get_count(0, 'Hint')
@@ -304,7 +308,7 @@ M.setup = function()
 
     gls.right[5] = {
         FileInfo = { -- {{{2
-            highlight = {colors.fg, colors.bg, 'bold'},
+            highlight = {colors.fg, colors.bg, },
             provider = function ()
                 local format_icon = {['DOS'] = " ", ['MAC'] = " ", ['UNIX'] = " "}
                 local encode      = fileinfo.get_file_encode()
@@ -327,7 +331,7 @@ M.setup = function()
 
     gls.right[7] = {
         LineInfo = { -- {{{2
-            highlight = {colors.bg, mode_color.get(), 'bold'},
+            highlight = {colors.bg, mode_color.get(), },
             provider = function ()
                 set_mode_color('LineInfo')
                 local cursor = vim.api.nvim_win_get_cursor(0)
