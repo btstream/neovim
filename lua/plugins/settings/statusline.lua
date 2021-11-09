@@ -113,7 +113,7 @@ M.setup = function()
             provider = function ()
                 set_mode_color('ModeNum')
                 -- return '  ' .. mode_icon.get() .. num_icons.get() .. ' '
-                return '  ' .. mode_icon.get() .. ' '
+                return '   ' .. mode_icon.get() .. ' '
             end
         }
     }
@@ -335,7 +335,7 @@ M.setup = function()
             provider = function ()
                 set_mode_color('LineInfo')
                 local cursor = vim.api.nvim_win_get_cursor(0)
-                return '   '..cursor[1]..'/'..vim.api.nvim_buf_line_count(0)..':'..cursor[2]
+                return '   '..cursor[1]..'/'..vim.api.nvim_buf_line_count(0)..':'..cursor[2] .. ' '
             end,
         }
     }
