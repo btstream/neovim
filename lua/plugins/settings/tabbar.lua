@@ -63,6 +63,7 @@ require('bufferline').setup {
             {
                 filetype = 'Outline',
                 text = 'Outline',
+                highlight = 'Directory',
                 text_align = 'left'
             }
         },

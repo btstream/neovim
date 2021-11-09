@@ -8,7 +8,7 @@ local gls    = gl.section
 local function get_colors(name)
     local bm = {
         bg      = 'base01',
-        fg      = 'base05',
+        fg      = 'base04',
         red     = 'base08',
         orange  = 'base09',
         yellow  = 'base0A',
@@ -94,7 +94,7 @@ M.setup = function()
         return num_icons[math.min(10, buffer.get_buffer_number())]
     end
 
-    local function set_color(group, fg)
+    local function set_mode_color(group, fg)
         local x = 'guibg'
         local g = 'Galaxy' .. group
         if fg then
@@ -109,42 +109,68 @@ M.setup = function()
         ModeNum = {
             highlight = {colors.bg, mode_color.get()},
             provider = function ()
-                set_color('ModeNum')
-                return '  ' .. mode_icon.get() .. num_icons.get() .. ''
+                set_mode_color('ModeNum')
+                return '  ' .. mode_icon.get() .. num_icons.get() .. ' '
             end
         }
     }
 
-    -- gls.left[1] = {
-    --     FileIcon = {
-    --         highlight = {fileinfo.get_file_icon_color, colors.bg},
-    --         provider  = function ()
-    --             return '  ' .. fileinfo.get_file_icon()
-    --         end
-    --     }
-    -- }
-    --
-    -- gls.left[2] = {
-    --     FileName = {
-    --         highlight = {colors.fg, colors.bg},
-    --         provider = function ()
-    --             return fileinfo.get_current_file_name()
-    --         end
-    --     }
-    -- }
-
     gls.left[1] = {
+        LFileSepL = {
+            highlight = {mode_color.get(), colors.bg},
+            provider = function ()
+                set_mode_color('LFileSepL',true)
+                return ''
+            end
+        }
+    }
+
+    gls.left[2] = {
+        FileIcon = {
+            highlight = {fileinfo.get_file_icon_color(), colors.bg},
+            provider = function ()
+                return '  ' .. fileinfo.get_file_icon()
+            end
+        }
+    }
+
+    gls.left[3] = {
+        FileName = {
+            highlight = {colors.fg, colors.bg, 'bold'},
+            provider = function ()
+                local file_name = fileinfo.get_current_file_name()
+                if file_name == nil or file_name:len() == 0 then
+                    return 'EMPTY '
+                end
+                -- set_mode_color('FileInfo', true)
+                return file_name
+            end,
+        }
+    }
+
+    gls.left[4] = {
+        LFileSepR = {
+            highlight = {mode_color.get(), colors.bg},
+            provider = function ()
+                set_mode_color('LFileSepR', true)
+                -- return ''
+                return ''
+            end
+        }
+    }
+
+    gls.left[5] = {
         GitIcon = {
             condition = condition.check_git_workspace,
             highlight = {colors.orange, colors.bg},
             provider = function()
-                return '  '
+                return '  '
             end
         }
     }
 
     -- git branch
-    gls.left[2] = {
+    gls.left[6] = {
         GitBranch = {
             condition = condition.check_git_workspace,
             highlight = {colors.fg, colors.bg, 'bold'},
@@ -160,11 +186,8 @@ M.setup = function()
     }
 
     -- git add
-    gls.left[3] = {
+    gls.left[7] = {
         DiffAdd = {
-            condition = function ()
-                return vcs.diff_add() ~= nil
-            end,
             highlight = {colors.green, colors.bg},
             provider = function ()
                 local r = vcs.diff_add()
@@ -176,7 +199,7 @@ M.setup = function()
     }
 
     -- git remove
-    gls.left[4] = {
+    gls.left[8] = {
         DiffModified = {
             condition = function () 
                 return vcs.diff_modified() ~= nil
@@ -192,11 +215,8 @@ M.setup = function()
     }
 
     -- git remove
-    gls.left[5] = {
+    gls.left[9] = {
         DiffRemoved = {
-            condition = function ()
-                return vcs.diff_remove() ~= nil
-            end,
             highlight = {colors.red, colors.bg},
             provider = function ()
                 local r = vcs.diff_remove()
@@ -207,53 +227,6 @@ M.setup = function()
         }
     }
 
-    gls.left[6] = {
-        DiagnosticError = {
-            highlight = {colors.red, colors.bg, 'bold'},
-            condition = function ()
-                return vim.lsp.diagnostic.get_count(0, 'Error') ~= 0
-            end,
-            provider = function ()
-                local icon = ' '
-                local count = vim.lsp.diagnostic.get_count(0, 'Error')
-                return icon..count..' '
-            end,
-        }
-    }
-
-    gls.left[7] = { DiagnosticWarn = { -- {{{2
-        highlight = {colors.yellow, colors.bg, 'bold'},
-        condition = function ()
-            return vim.lsp.diagnostic.get_count(0, 'Warning') ~= 0
-        end,
-        provider = function ()
-            local icon = ' '
-            local count = vim.lsp.diagnostic.get_count(0, 'Warning')
-            return icon..count..' '
-        end,
-    }}
-
-    gls.left[8] = { DiagnosticHint = { -- {{{2
-        highlight = {colors.cyan, colors.bg, 'bold'},
-        condition = function ()
-            return vim.lsp.diagnostic.get_count(0, 'Hint') ~= 0
-        end,
-        provider = function ()
-            local icon = ' '
-            local count = vim.lsp.diagnostic.get_count(0, 'Hint')
-            return icon..count..' '
-        end,
-    }}
-
-    -- gls.left[9] = {
-    --     RightSep = {
-    --         highlight = {mode_color.get(), colors.bg},
-    --         provider = function ()
-    --             set_color('RightSep', true)
-    --             return ''
-    --         end
-    --     }
-    -- }
     --------------------
     --mid
     --------------------
@@ -273,8 +246,7 @@ M.setup = function()
                 local icon = '   '
                 local active_lsp = lsp.get_lsp_client()
                 if active_lsp == 'No Active Lsp' then
-                    icon = ''
-                    active_lsp  = ''
+                    return ''
                 end
                 return icon..active_lsp..' '..(utils.get_lsp_progress())
             end,
@@ -282,29 +254,98 @@ M.setup = function()
     }
 
     gls.right[1] = {
-        FileEF = { -- {{{2
-            highlight = {colors.bg, colors.cyan, 'bold'},
+        DiagnosticError = {
+            highlight = {colors.red, colors.bg, 'bold'},
             provider = function ()
-                local format_icon = {['DOS'] = " ", ['MAC'] = " ", ['UNIX'] = " "}
-                local encode      = fileinfo.get_file_encode()
-                local format      = fileinfo.get_file_format()
-
-                -- set_color('FileEF')
-                return ' '..encode..' '..format_icon[format]
+                local icon = ' '
+                local count = vim.lsp.diagnostic.get_count(0, 'Error')
+                if count == 0 then
+                    return ''
+                end
+                return icon..count..' '
             end,
         }
     }
 
-    gls.right[2] = {
+    gls.right[2] = { DiagnosticWarn = { -- {{{2
+        highlight = {colors.yellow, colors.bg, 'bold'},
+        provider = function ()
+            local icon = ' '
+            local count = vim.lsp.diagnostic.get_count(0, 'Warning')
+            if count == 0 then
+                return ''
+            end
+            return icon..count..' '
+        end,
+    }}
+
+    gls.right[3] = { DiagnosticHint = { -- {{{2
+        highlight = {colors.cyan, colors.bg, 'bold'},
+        provider = function ()
+            local icon = ' '
+            local count = vim.lsp.diagnostic.get_count(0, 'Hint')
+            if count == 0 then
+                return ''
+            end
+            return icon..count..' '
+        end,
+    }}
+
+
+    gls.right[4] = {
+        RFileSepL = {
+            highlight = {mode_color.get(), colors.bg},
+            provider = function ()
+                set_mode_color('RFileSepL', true)
+                return '  '
+            end
+        }
+    }
+
+    gls.right[5] = {
+        FileInfo = { -- {{{2
+            highlight = {colors.fg, colors.bg, 'bold'},
+            provider = function ()
+                local format_icon = {['DOS'] = " ", ['MAC'] = " ", ['UNIX'] = " "}
+                local encode      = fileinfo.get_file_encode()
+                local format      = fileinfo.get_file_format()
+                set_mode_color('FileInfo', true)
+                return ' ' .. encode..' '..format_icon[format]
+            end,
+        }
+    }
+
+    gls.right[6] = {
+        RFileSepR = {
+            highlight = {mode_color.get(), colors.bg},
+            provider = function ()
+                set_mode_color('RFileSepR', true)
+                return ''
+            end
+        }
+    }
+
+    gls.right[7] = {
         LineInfo = { -- {{{2
             highlight = {colors.bg, mode_color.get(), 'bold'},
             provider = function ()
-                set_color('LineInfo')
+                set_mode_color('LineInfo')
                 local cursor = vim.api.nvim_win_get_cursor(0)
                 return '   '..cursor[1]..'/'..vim.api.nvim_buf_line_count(0)..':'..cursor[2]
             end,
         }
     }
+
+
+    -----------------------------
+    -- short lines
+    -----------------------------
+    gls.short_line_left[0] = gls.left[0]
+    gls.short_line_left[1] = gls.left[1]
+    gls.short_line_left[2] = gls.left[2]
+    gls.short_line_left[3] = gls.left[3]
+    gls.short_line_right[0] = gls.right[6]
+
 end
 
 return M
