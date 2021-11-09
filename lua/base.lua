@@ -18,7 +18,12 @@ opt.list = true
 opt.cursorline = true
 -- clipboard
 opt.clipboard = opt.clipboard + "unnamedplus"
-opt.fileformat = "unix"
+-- fileformats
+opt.fileformats = "unix,dos"
+opt.showmatch = true
+opt.spell = true
+opt.autoindent = true
+opt.autochdir = true
 
 --auto commands to reload buffer
 vim.cmd([[

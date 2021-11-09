@@ -6,7 +6,7 @@ endif
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
     if has('win32')
-        GuiFont CaskaydiaCove\ NF:h10
+        GuiFont! BlexMono\ NF:h10
     else
         GuiFont! FiraMono\ Nerd\ Font\ Mono:h10
         " GuiLinespace 1
