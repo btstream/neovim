@@ -6,7 +6,9 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities = vim.tbl_deep_extend('keep', capabilities, require('lsp-status').capabilities)
 
+-----------------------------------
 --setup lsp with lsp_installer
+-----------------------------------
 local lsp_installer = require("nvim-lsp-installer")
 local servers = {
 	"bashls",
@@ -64,8 +66,18 @@ lsp_installer.on_server_ready(function(server)
     end
 end)
 
+----------------------------------------
+-- disable inline diagnostic info
+----------------------------------------
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = false
     }
 )
+
+----------------------------------------
+-- lspsaga
+----------------------------------------
+local saga = require 'lspsaga'
+saga.init_lsp_saga()
+

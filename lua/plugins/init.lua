@@ -47,7 +47,8 @@ return require('packer').startup(function(use)
             'onsails/lspkind-nvim',
             'simrat39/rust-tools.nvim',
             'nvim-lua/lsp-status.nvim',
-            'mfussenegger/nvim-jdtls'
+            'mfussenegger/nvim-jdtls',
+            'glepnir/lspsaga.nvim'
         },
         config = function()
             require('plugins.settings.cmp')
@@ -93,6 +94,7 @@ return require('packer').startup(function(use)
             {"kyazdani42/nvim-web-devicons"},
             {'RRethy/nvim-base16', opt = true}
         },
+        after = 'nvim-base16',
         config = function()
             require('plugins.settings.statusline').setup()
         end
