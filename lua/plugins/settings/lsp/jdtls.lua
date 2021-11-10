@@ -71,6 +71,7 @@ M.start = function()
         -- },
         capabilities = capabilities,
         ['flags.server_side_fuzzy_completion'] = true,
+        root_dir = require('jdtls.setup').find_root({'pom.xml', 'mnvw', '.git', 'gradlew'}),
         -- settings
         settings = {
             java = {
