@@ -8,8 +8,13 @@ if exists(':GuiFont')
     if has('win32')
         GuiFont! BlexMono\ NF:h10
     else
-        GuiFont! FiraMono\ Nerd\ Font\ Mono:h10
-        " GuiLinespace 1
+
+        if hostname() == 'btstream-oldmac'
+            GuiFont! BlexMono\ Nerd\ Font\ Mono:h8
+        else
+            GuiFont! BlexMono\ Nerd\ Font\ Mono:h10
+            " GuiLinespace 1
+        endif
     end
 endif
 
