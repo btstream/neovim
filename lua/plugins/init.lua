@@ -18,7 +18,7 @@ vim.cmd([[
   augroup end
 ]])
 
-base16_theme = 'material-darker'
+-- base16_theme = 'material-darker'
 
 return require('packer').startup(function(use)
 
