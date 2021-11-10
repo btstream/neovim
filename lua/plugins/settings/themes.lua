@@ -2,7 +2,8 @@ vim.cmd('colorscheme base16-material-darker')
 
 function set_transparent()
     local enable = true
-    if vim.g.GuiLoaded or vim.fn.has('gui_vimr') then
+    if vim.g.GuiLoaded then
+        print("GuiLoaded")
         enable = false
     end
     require('transparent').setup({
