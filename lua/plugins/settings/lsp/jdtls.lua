@@ -13,7 +13,7 @@ M.setup = function(opt)
 
     -- set pickers to use telescope
     require('jdtls.ui').pick_one_async = function(items, prompt, label_fn, cb)
-        local opts = {}
+        local opts = require('telescope.themes').get_cursor()
         pickers.new(opts, {
             prompt_title = prompt,
             finder = finders.new_table {

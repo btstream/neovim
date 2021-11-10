@@ -1,7 +1,14 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    packer_bootstrap = fn.system({
+        'git',
+        'clone',
+        '--depth',
+        '1',
+        'https://github.com/wbthomason/packer.nvim',
+        install_path
+    })
 end
 
 vim.cmd([[
@@ -21,9 +28,7 @@ return require('packer').startup(function(use)
     -- themes
     use {
         'RRethy/nvim-base16',
-        requires = {
-            'xiyaowong/nvim-transparent',
-        },
+        requires = { 'xiyaowong/nvim-transparent' },
         config = function()
             require('plugins.settings.themes')
         end
@@ -32,7 +37,7 @@ return require('packer').startup(function(use)
     -- lsp and cmp
     use {
         'hrsh7th/nvim-cmp',
-        requires =  {
+        requires = {
             'neovim/nvim-lspconfig',
             'williamboman/nvim-lsp-installer',
             'hrsh7th/cmp-nvim-lsp',
@@ -48,7 +53,8 @@ return require('packer').startup(function(use)
             'simrat39/rust-tools.nvim',
             'nvim-lua/lsp-status.nvim',
             'mfussenegger/nvim-jdtls',
-            'glepnir/lspsaga.nvim'
+            -- 'glepnir/lspsaga.nvim'
+            { 'tami5/lspsaga.nvim', branch = 'nvim51' }
         },
         config = function()
             require('plugins.settings.cmp')
@@ -65,7 +71,7 @@ return require('packer').startup(function(use)
 
     use {
         'norcalli/nvim-colorizer.lua',
-        config = function ()
+        config = function()
             require('colorizer').setup()
         end
     }
@@ -74,7 +80,7 @@ return require('packer').startup(function(use)
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        config = function ()
+        config = function()
             require('plugins.settings.treesitter')
         end
     }
@@ -90,10 +96,7 @@ return require('packer').startup(function(use)
     -- status line and tabbar
     use {
         "NTBBloodbath/galaxyline.nvim",
-        requires = {
-            {"kyazdani42/nvim-web-devicons"},
-            {'RRethy/nvim-base16', opt = true}
-        },
+        requires = { { "kyazdani42/nvim-web-devicons" }, { 'RRethy/nvim-base16', opt = true } },
         after = 'nvim-base16',
         config = function()
             require('plugins.settings.statusline').setup()
@@ -102,7 +105,7 @@ return require('packer').startup(function(use)
 
     use {
         'akinsho/bufferline.nvim',
-        requires = {'kyazdani42/nvim-web-devicons'},
+        requires = { 'kyazdani42/nvim-web-devicons' },
         config = function()
             require('plugins.settings.tabbar')
         end
@@ -169,9 +172,7 @@ return require('packer').startup(function(use)
     -- gitsigns
     use {
         'lewis6991/gitsigns.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim'
-        },
+        requires = { 'nvim-lua/plenary.nvim' },
         config = function()
             require('gitsigns').setup()
             local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
@@ -186,7 +187,5 @@ return require('packer').startup(function(use)
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
-    if packer_bootstrap then
-        require('packer').sync()
-    end
+    if packer_bootstrap then require('packer').sync() end
 end)
