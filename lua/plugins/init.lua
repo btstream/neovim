@@ -185,6 +185,14 @@ return require('packer').startup(function(use)
 
     use 'h-hg/fcitx.nvim'
 
+
+    use {
+        'iamcco/markdown-preview.nvim',
+        run = function ()
+            vim.cmd("call mkdp#util#install()")
+        end
+    }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then require('packer').sync() end
