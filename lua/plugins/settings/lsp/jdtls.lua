@@ -88,6 +88,9 @@ M.start = function()
                         "org.mockito.Mockito.*"
                     }
                 },
+                saveActions = {
+                    organizeImports = true
+                },
                 sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
                 codeGeneration = {
                     toString = { template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}" }
