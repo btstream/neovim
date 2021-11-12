@@ -185,11 +185,20 @@ return require('packer').startup(function(use)
 
     use 'h-hg/fcitx.nvim'
 
-
+    -- markdown preview
     use {
         'iamcco/markdown-preview.nvim',
-        run = function ()
+        run = function()
             vim.cmd("call mkdp#util#install()")
+        end
+    }
+
+    -- SnipR
+    use {
+        'michaelb/sniprun',
+        run = 'bash ./install.sh',
+        cond = function()
+            return not vim.fn.has('win32')
         end
     }
 
