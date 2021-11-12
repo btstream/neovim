@@ -153,6 +153,17 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- ranger
+    use {
+        'kevinhwang91/rnvimr',
+        cond = function()
+            return vim.fn.has('win32') == 0
+        end,
+        config = function()
+            require('plugins.settings.ranger')
+        end
+    }
+
     -- project
     use {
         "ahmedkhalf/project.nvim",
@@ -199,10 +210,10 @@ return require('packer').startup(function(use)
         'michaelb/sniprun',
         run = 'bash ./install.sh',
         cond = function()
-        -- only load on macos and linux
+            -- only load on macos and linux
             return vim.fn.has('win32') == 0
         end,
-        config = function ()
+        config = function()
             require("plugins.settings.sniprun")
         end
     }
