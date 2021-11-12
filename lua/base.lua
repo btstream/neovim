@@ -53,6 +53,10 @@ end
 
 -- clean search hilight
 map('n', '<Esc><Esc>', '<cmd>nohl<cr>', mopt)
+map('n', '<C-.>', ':vertical resize +1<cr>', mopt)
+map('n', '<C-,>', ':vertical resize -1<cr>', mopt)
+map('n', '<C-=>', ':resize +1<cr>', mopt)
+map('n', '<c-->', ':resize -1<cr>', mopt)
 
 vim.cmd([[
 nnoremap <A-j> :m .+1<CR>==
