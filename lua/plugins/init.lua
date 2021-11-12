@@ -156,6 +156,7 @@ return require('packer').startup(function(use)
     -- project
     use {
         "ahmedkhalf/project.nvim",
+        after = 'telescope.nvim',
         config = function()
             require('plugins.settings.project')
         end

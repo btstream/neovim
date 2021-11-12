@@ -53,3 +53,20 @@ end
 
 -- clean search hilight
 map('n', '<Esc><Esc>', '<cmd>nohl<cr>', mopt)
+
+vim.cmd([[
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+nnoremap <C-down> :m .+1<CR>==
+nnoremap <C-up> :m .-2<CR>==
+inoremap <C-down> <Esc>:m .+1<CR>==gi
+inoremap <C-up> <Esc>:m .-2<CR>==gi
+vnoremap <C-down> :m '>+1<CR>gv=gv
+vnoremap <C-up> :m '<-2<CR>gv=gv
+]])
+
