@@ -198,7 +198,11 @@ return require('packer').startup(function(use)
         'michaelb/sniprun',
         run = 'bash ./install.sh',
         cond = function()
-            return not vim.fn.has('win32')
+        -- only load on macos and linux
+            return vim.fn.has('win32') == 0
+        end,
+        config = function ()
+            require("plugins.settings.sniprun")
         end
     }
 
