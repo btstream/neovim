@@ -59,6 +59,17 @@ lsp_installer.on_server_ready(function(server)
     elseif server.name == 'jdtls' then
         require("plugins.settings.lsp.jdtls").setup({ cmd = server._default_options.cmd, on_attach = attach_keys })
         return
+    elseif server.name == 'sumneko_lua' then
+        opts.settings = {
+            Lua = {
+                diagnostics = {
+                    globals = {'vim'}
+                },
+                workspace = {
+                    library = vim.api.nvim_get_runtime_file('', true)
+                }
+            }
+        }
     elseif server.name == 'efm' then
         opts = require("plugins.settings.lsp.efm")
         opts.cmd = server._default_options.cmd
