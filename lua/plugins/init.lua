@@ -220,11 +220,12 @@ return require('packer').startup(function(use)
 
     use {
         'lambdalisue/suda.vim',
-        config = function ()
+        config = function()
             vim.g.suda_smart_edit = 1
         end
     }
 
+    use { "editorconfig/editorconfig-vim" }
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then require('packer').sync() end
