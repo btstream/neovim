@@ -60,16 +60,18 @@ lsp_installer.on_server_ready(function(server)
         require("plugins.settings.lsp.jdtls").setup({ cmd = server._default_options.cmd, on_attach = attach_keys })
         return
     elseif server.name == 'sumneko_lua' then
-        opts.settings = {
-            Lua = {
-                diagnostics = {
-                    globals = {'vim'}
-                },
-                workspace = {
-                    library = vim.api.nvim_get_runtime_file('', true)
+        -- add vim config to workspace library when on config dir
+        opts.on_init = function(client)
+            if vim.fn.getcwd() == vim.fn.stdpath('config') then
+                client.config.settings = {
+                    Lua = {
+                        diagnostics = { globals = { 'vim' } },
+                        workspace = { library = vim.api.nvim_get_runtime_file('', true) }
+                    }
                 }
-            }
-        }
+                vim.lsp.rpc.notify('workspace/didChangeConfiguration')
+            end
+        end
     elseif server.name == 'efm' then
         opts = require("plugins.settings.lsp.efm")
         opts.cmd = server._default_options.cmd
@@ -87,9 +89,5 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 -- lspsaga
 ----------------------------------------
 local saga = require 'lspsaga'
-saga.init_lsp_saga({
-    code_action_prompt = {
-        enable = false
-    }
-})
+saga.init_lsp_saga({ code_action_prompt = { enable = false } })
 

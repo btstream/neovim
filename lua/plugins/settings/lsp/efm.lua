@@ -1,3 +1,4 @@
+local util = require('lspconfig.util')
 local config = {
     init_options = {documentFormatting = true, codeAction = false, document_formatting = true},
     filetypes = {'lua'},
@@ -13,6 +14,9 @@ local config = {
                 }
             }
         }
-    }
+    },
+    root_dir = function (fname)
+        return util.root_pattern('.git')(fname) or vim.fn.getcwd()
+    end
 }
 return config
