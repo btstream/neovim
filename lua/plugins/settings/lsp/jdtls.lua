@@ -70,7 +70,7 @@ M.start = function()
         -- },
         capabilities = capabilities,
         ['flags.server_side_fuzzy_completion'] = true,
-        root_dir = require('jdtls.setup').find_root({'pom.xml', 'mnvw', '.git', 'gradlew'}),
+        root_dir = require('jdtls.setup').find_root({ 'pom.xml', 'mnvw', '.git', 'gradlew' }),
         -- settings
         settings = {
             java = {
@@ -87,9 +87,7 @@ M.start = function()
                         "org.mockito.Mockito.*"
                     }
                 },
-                saveActions = {
-                    organizeImports = true
-                },
+                saveActions = { organizeImports = true },
                 sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
                 codeGeneration = {
                     toString = { template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}" }
@@ -103,7 +101,6 @@ M.start = function()
             end
         end,
         on_attach = function(client, bufnr)
-            require('lsp-status').register_progress()
             jdtls.setup.add_commands()
             _OnAttach(client, bufnr)
         end
