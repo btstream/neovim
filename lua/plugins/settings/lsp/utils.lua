@@ -2,15 +2,18 @@ local M = {}
 
 M.attach_keys = function(client, bufnr)
     -- set keyboar for buffer
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+    local function buf_set_option(...)
+        vim.api.nvim_buf_set_option(bufnr, ...)
+    end
 
     -- Enable completion triggered by <c-x><c-o>
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
-    local opts = { noremap=true, silent=true }
-
+    local opts = { noremap = true, silent = true }
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -31,13 +34,13 @@ M.attach_keys = function(client, bufnr)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<C-k><C-f>', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     buf_set_keymap('n', '<C-k>d', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
+    -- setup code actions, for jdtls use jdtsls' codeaction
     if client.name == 'jdtls' then
         buf_set_keymap('n', '<C-k>.', '<cmd>lua require("jdtls").code_action()<cr>', opts)
     else
         buf_set_keymap('n', '<C-k>.', '<cmd>:Lspsaga code_action<cr>', opts)
         buf_set_keymap('i', '<C-k>.', '<Esc><cmd>:Lspsaga code_action<cr>', opts)
     end
-
 end
 
 return M

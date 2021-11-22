@@ -40,7 +40,6 @@ M.setup = function(opt)
         augroup user-jdtls
             autocmd!
             autocmd FileType java lua require('plugins.settings.lsp.jdtls').start()
-            autocmd BufWritePre *.java lua vim.lsp.buf.formatting_sync(nil, 1000)
         augroup end
     ]])
 end

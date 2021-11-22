@@ -35,29 +35,36 @@ for _, name in pairs(servers) do
     end
 end
 
+local function on_attach_callback(client, bufnr)
+    local lsp_status = require("lsp-status")
+    lsp_status.register_progress()
+    lsp_status.on_attach(client, bufnr)
+    attach_keys(client, bufnr)
+
+    -- save on formatting
+    if client.resolved_capabilities.document_formatting then
+        vim.cmd([[
+        augroup LspFormat
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+        augroup end
+        ]])
+    end
+end
+
 lsp_installer.on_server_ready(function(server)
 
     -- call back functions to set keyboard
 
-    local opts = {
-        cmd = server._default_options.cmd,
-        capabilities = capabilities,
-        on_attach = function(client, bufnr)
-            local lsp_status = require("lsp-status")
-            lsp_status.register_progress()
-            -- require('jdtls')
-            lsp_status.on_attach(client, bufnr)
-            attach_keys(client, bufnr)
-        end
-    }
+    local opts = { cmd = server._default_options.cmd, capabilities = capabilities, on_attach = on_attach_callback }
 
     -- set up rust_analyzer
     if server.name == 'rust_analyzer' then
         require('rust-tools').setup({ server = opts })
-        -- server:attach_buffers()
         -- return
     elseif server.name == 'jdtls' then
-        require("plugins.settings.lsp.jdtls").setup({ cmd = server._default_options.cmd, on_attach = attach_keys })
+        require("plugins.settings.lsp.jdtls").setup(
+            { cmd = server._default_options.cmd, on_attach = on_attach_callback })
         return
     elseif server.name == 'sumneko_lua' then
         -- add vim config to workspace library when on config dir
@@ -75,6 +82,7 @@ lsp_installer.on_server_ready(function(server)
     elseif server.name == 'efm' then
         opts = require("plugins.settings.lsp.efm")
         opts.cmd = server._default_options.cmd
+        opts.on_attach = on_attach_callback
     end
     server:setup(opts)
 end)
@@ -83,7 +91,7 @@ end)
 -- disable inline diagnostic info
 ----------------------------------------
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                                                                   { virtual_text = false })
+                                                                   { virtual_text = false, update_in_insert = true })
 
 ----------------------------------------
 -- lspsaga
