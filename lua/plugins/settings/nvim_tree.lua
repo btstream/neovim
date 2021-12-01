@@ -31,8 +31,8 @@ map('i', '<C-k>b', '<Esc><cmd>NvimTreeToggle<CR>', { noremap = true, silent = tr
 vim.cmd([[
 augroup nvim-tree-refresh
     au!
-    autocmd BufReadPost * lua require'nvim-tree'.refresh()
-    autocmd BufEnter NvimTree lua require 'nvim-tree'.refresh()
+    autocmd BufReadPost * NvimTreeRefresh 
+    autocmd BufEnter NvimTree NvimTreeRefresh 
 augroup end
 ]])
 
