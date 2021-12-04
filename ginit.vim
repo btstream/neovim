@@ -10,9 +10,9 @@ if exists(':GuiFont')
     else
 
         if hostname() == 'btstream-oldmac'
-            GuiFont! Fira Mono:h8
+            GuiFont! Fira Code:h8
         else
-            GuiFont! Fira Mono:h10
+            GuiFont! Fira Code:h9
         endif
         GuiLinespace 1
     end
