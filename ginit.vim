@@ -6,7 +6,7 @@ endif
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
     if has('win32')
-        GuiFont! Fira Code NF:h10
+        GuiFont! FiraCode NF:h10
     else
 
         if hostname() == 'btstream-oldmac'
