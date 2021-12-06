@@ -70,12 +70,13 @@ lsp_installer.on_server_ready(function(server)
         -- add vim config to workspace library when on config dir
         opts.on_init = function(client)
             if vim.fn.getcwd() == vim.fn.stdpath('config') then
-                client.config.settings = {
+                local s = {
                     Lua = {
                         diagnostics = { globals = { 'vim' } },
                         workspace = { library = vim.api.nvim_get_runtime_file('', true) }
                     }
                 }
+                client.config.settings = vim.tbl_deep_extend('force', client.config.settings, s)
                 vim.lsp.rpc.notify('workspace/didChangeConfiguration')
             end
         end
