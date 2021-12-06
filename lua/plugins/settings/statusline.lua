@@ -87,25 +87,45 @@ M.setup = function()
         end
     end
 
+    -- local mode_icon = { --- {{{2
+    --     c = "🅒 ",
+    --     ['!'] = "🅒 ",
+    --     i = "🅘 ",
+    --     ic = "🅘 ",
+    --     ix = "🅘 ",
+    --     n = "🅝 ",
+    --     R = "🅡 ",
+    --     Rv = "🅡 ",
+    --     r = "🅡 ",
+    --     rm = "🅡 ",
+    --     ['r?'] = "🅡 ",
+    --     s = "🅢 ",
+    --     S = "🅢 ",
+    --     [''] = "🅢 ",
+    --     t = "🅣 ",
+    --     v = "🅥 ",
+    --     V = "🅥 ",
+    --     [''] = "🅥 "
+    -- }
     local mode_icon = { --- {{{2
-        c = "🅒 ",
-        ['!'] = "🅒 ",
-        i = "🅘 ",
-        ic = "🅘 ",
-        ix = "🅘 ",
-        n = "🅝 ",
-        R = "🅡 ",
-        Rv = "🅡 ",
-        r = "🅡 ",
-        rm = "🅡 ",
-        ['r?'] = "🅡 ",
-        s = "🅢 ",
-        S = "🅢 ",
-        [''] = "🅢 ",
-        t = "🅣 ",
-        v = "🅥 ",
-        V = "🅥 ",
-        [''] = "🅥 "
+        c = "גּ COMMAND",
+        ['!'] = "גּ COMMAND",
+        i = " INSERT",
+        ic = " INSERT",
+        ix = " INSERT",
+        n = "賂NORMAL",
+        R = "﯒ REPLACE",
+        Rv = "﯒ REPLACE",
+        r = "﯒ REPLACE",
+        rm = "﯒ REPLACE",
+        ['r?'] = "﯒ REPLACE",
+        s = "礪SELECT",
+        S = "礪SELECT",
+        [''] = "礪SELECT",
+        t = " TERMINAL",
+        v = "礪VISUAL",
+        V = "礪VISUAL",
+        [''] = "礪VISUAL"
     }
 
     mode_icon.get = function()
@@ -132,7 +152,7 @@ M.setup = function()
             provider = function()
                 set_mode_color('ModeNum')
                 -- return '  ' .. mode_icon.get() .. num_icons.get() .. ' '
-                return '   ' .. mode_icon.get() .. ' '
+                return '  ' .. mode_icon.get() .. ' '
             end
         }
     }
