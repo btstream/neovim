@@ -368,7 +368,39 @@ M.setup = function()
     -----------------------------
     -- short lines
     -----------------------------
-    gls.short_line_left[0] = gls.left[0]
+    local mode_icon_short = { --- {{{2
+        c = "גּ ",
+        ['!'] = "גּ ",
+        i = " ",
+        ic = " ",
+        ix = " ",
+        n = "賂",
+        R = "﯒ ",
+        Rv = "﯒ ",
+        r = "﯒ ",
+        rm = "﯒ ",
+        ['r?'] = "﯒ ",
+        s = "礪",
+        S = "礪",
+        [''] = "礪",
+        t = " ",
+        v = "礪",
+        V = "礪",
+        [''] = "礪"
+    }
+    mode_icon_short.get = function()
+        return mode_icon_short[vim.fn.mode()]
+    end
+
+    gls.short_line_left[0] = {
+        ModeNumShort = {
+            highlight = { colors.bg, mode_color.get() },
+            provider = function()
+                set_mode_color('ModeNumShort')
+                return '  ' .. mode_icon_short.get()
+            end
+        }
+    }
     gls.short_line_left[1] = gls.left[1]
     gls.short_line_left[2] = gls.left[2]
     gls.short_line_left[3] = gls.left[3]
