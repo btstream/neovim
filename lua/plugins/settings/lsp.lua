@@ -56,7 +56,12 @@ lsp_installer.on_server_ready(function(server)
 
     -- call back functions to set keyboard
 
-    local opts = { cmd = server._default_options.cmd, capabilities = capabilities, on_attach = on_attach_callback }
+    local opts = {
+        cmd = server._default_options.cmd,
+        capabilities = capabilities,
+        on_attach = on_attach_callback,
+        on_init = require('plugins.settings.lsp.utils').on_init
+    }
 
     -- set up rust_analyzer
     if server.name == 'rust_analyzer' then
@@ -78,6 +83,8 @@ lsp_installer.on_server_ready(function(server)
                 }
                 client.config.settings = vim.tbl_deep_extend('force', client.config.settings, s)
                 vim.lsp.rpc.notify('workspace/didChangeConfiguration')
+            else
+                require("plugins.settings.lsp.utils").on_init(client)
             end
         end
     elseif server.name == 'efm' then
