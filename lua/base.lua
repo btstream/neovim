@@ -24,6 +24,7 @@ opt.showmatch = true
 opt.spell = false
 opt.autoindent = true
 opt.signcolumn = "yes"
+opt.exrc = true
 
 -- auto commands to reload buffer
 vim.cmd([[
