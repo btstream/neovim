@@ -1,10 +1,9 @@
-vim.cmd('colorscheme base16-material-darker')
+local colorscheme = 'material-darker'
+vim.cmd('colorscheme base16-' .. colorscheme)
 
 function set_transparent()
     local enable = true
-    if vim.g.GuiLoaded or vim.g.GUI == 1 then
-        enable = false
-    end
+    if vim.g.GuiLoaded or vim.g.GUI == 1 then enable = false end
     require('transparent').setup({
         enable = enable, -- boolean: enable transparent
         extra_groups = { -- table/string: additional groups that should be clear
@@ -21,12 +20,16 @@ function set_transparent()
             'GitGutterDelete',
             'GitGutterChange',
             'NormalNC',
-            'Terminal'
+            'Terminal',
+            'VertSplit'
         },
-        exclude = {
-        }, -- table: groups you don't want to clear
+        exclude = {} -- table: groups you don't want to clear
     })
 end
+
+local colors = require('base16-colorscheme').colorschemes[colorscheme]
+vim.cmd('hi VertSplit guifg=' .. colors.base04)
+vim.cmd('hi TelescopeBorder guifg=' .. colors.base04)
 
 vim.cmd([[
 hi! link Visual CursorLine
