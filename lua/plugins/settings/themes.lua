@@ -1,5 +1,4 @@
-local colorscheme = 'material-darker'
-vim.cmd('colorscheme base16-' .. colorscheme)
+vim.cmd('colorscheme base16-material-darker')
 
 function set_transparent()
     local enable = true
@@ -26,10 +25,6 @@ function set_transparent()
         exclude = {} -- table: groups you don't want to clear
     })
 end
-
-local colors = require('base16-colorscheme').colorschemes[colorscheme]
-vim.cmd('hi VertSplit guifg=' .. colors.base04)
-vim.cmd('hi TelescopeBorder guifg=' .. colors.base04)
 
 vim.cmd([[
 hi! link Visual CursorLine
