@@ -28,11 +28,11 @@ require'nvim-tree'.setup {
 map('n', '<C-k>b', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
 map('i', '<C-k>b', '<Esc><cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
 
--- vim.cmd([[
--- augroup nvim-tree-refresh
---     au!
---     autocmd BufReadPost * NvimTreeRefresh
---     autocmd BufEnter * NvimTreeRefresh
--- augroup end
--- ]])
---
+vim.cmd([[
+augroup nvim-tree-refresh
+    au!
+    autocmd BufReadPost * NvimTreeRefresh
+    autocmd BufEnter * NvimTreeRefresh
+augroup end
+]])
+
