@@ -124,8 +124,7 @@ M.setup = function()
         [''] = "礪SELECT",
         t = " TERMINAL",
         v = "礪VISUAL",
-        V = "礪VISUAL",
-        [''] = "礪VISUAL"
+        V = "礪VISUAL"
     }
 
     mode_icon.get = function()
@@ -388,8 +387,7 @@ M.setup = function()
         [''] = "礪",
         t = " ",
         v = "礪",
-        V = "礪",
-        [''] = "礪"
+        V = "礪"
     }
     mode_icon_short.get = function()
         return mode_icon_short[vim.fn.mode()]
