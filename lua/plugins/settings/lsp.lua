@@ -60,7 +60,7 @@ lsp_installer.on_server_ready(function(server)
         cmd = server._default_options.cmd,
         capabilities = capabilities,
         on_attach = on_attach_callback,
-        on_init = require('plugins.settings.lsp.utils').on_init
+        on_init = require('plugins.settings.lsp.utils').on_init(server)
     }
 
     -- set up rust_analyzer
@@ -84,7 +84,7 @@ lsp_installer.on_server_ready(function(server)
                 client.config.settings = vim.tbl_deep_extend('force', client.config.settings, s)
                 vim.lsp.rpc.notify('workspace/didChangeConfiguration')
             else
-                require("plugins.settings.lsp.utils").on_init(client)
+                require("plugins.settings.lsp.utils").on_init(server)(client)
             end
         end
     elseif server.name == 'efm' then

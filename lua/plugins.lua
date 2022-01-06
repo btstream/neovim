@@ -54,7 +54,8 @@ return require('packer').startup(function(use)
             'nvim-lua/lsp-status.nvim',
             'mfussenegger/nvim-jdtls',
             -- 'glepnir/lspsaga.nvim'
-            'tami5/lspsaga.nvim'
+            'tami5/lspsaga.nvim',
+            'btstream/nvim-dotnvim'
         },
         config = function()
             require('plugins.settings.cmp')

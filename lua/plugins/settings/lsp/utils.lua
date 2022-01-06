@@ -1,15 +1,6 @@
-local Path = require("plenary.path")
+local local_config = require('nvim-dotnvim')
 
 local M = {}
-
-local function load_config(path)
-    local config = dofile(path)
-    if config and type(config) == 'table' then
-        return config
-    else
-        return {}
-    end
-end
 
 M.attach_keys = function(client, bufnr)
     -- set keyboar for buffer
@@ -54,15 +45,17 @@ M.attach_keys = function(client, bufnr)
     end
 end
 
-M.on_init = function(client)
-    local root_dir = Path:new(client.config.root_dir, '.nvim')
-    if root_dir:exist() then
-        local lsp_config = root_dir:joinpath(client.name .. '.lua')
-        if lsp_config:exist() then
-            local local_settings = vim.tbl_deep_extend('keep', {}, load_config(lsp_config.filename))
-            client.config.settings = vim.tbl_deep_extend('keep', client.config.settings, local_settings)
-            vim.lsp.rpc.notify('workspace/didChangeConfiguration')
-        end
+-- return a funtion to help lsp server load local config on server init
+M.on_init = function(server)
+    return function(client)
+        local local_settings = local_config.local_lsp_config(server.name)
+
+        print(vim.json.encode(local_settings))
+
+        -- local config has hightest priority
+        client.config.settings = vim.tbl_deep_extend('force', client.config.settings, local_settings)
+
+        vim.lsp.rpc.notify('workspace/didChangeConfiguration')
     end
 end
 
