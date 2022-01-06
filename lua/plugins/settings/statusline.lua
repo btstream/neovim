@@ -290,7 +290,6 @@ M.setup = function()
             highlight = { colors.red, colors.bg },
             provider = function()
                 local icon = ' '
-                -- local count = vim.lsp.diagnostic.get_count(0, 'Error')
                 local errors = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
                 local count = #errors
                 if count == 0 then return '' end
@@ -304,7 +303,6 @@ M.setup = function()
             highlight = { colors.yellow, colors.bg },
             provider = function()
                 local icon = ' '
-                -- local count = vim.lsp.diagnostic.get_count(0, 'Warning')
                 local warnings = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
                 local count = #warnings
                 if count == 0 then return '' end
@@ -318,7 +316,6 @@ M.setup = function()
             highlight = { colors.cyan, colors.bg },
             provider = function()
                 local icon = ' '
-                -- local count = vim.lsp.diagnostic.get_count(0, 'Hint')
                 local hints = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
                 local count = #hints
                 if count == 0 then return '' end
