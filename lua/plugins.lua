@@ -183,6 +183,14 @@ return require('packer').startup(function(use)
         end
     }
 
+    use {
+        "danymat/neogen",
+        config = function()
+            require('neogen').setup { enabled = true }
+        end,
+        requires = "nvim-treesitter/nvim-treesitter"
+    }
+
     -- gitsigns
     use {
         'lewis6991/gitsigns.nvim',
