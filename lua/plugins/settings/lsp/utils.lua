@@ -50,7 +50,7 @@ M.on_init = function(server)
     return function(client)
         local local_settings = local_config.local_lsp_config(server.name)
 
-        print(vim.json.encode(local_settings))
+        -- print(vim.json.encode(local_settings))
 
         -- local config has hightest priority
         client.config.settings = vim.tbl_deep_extend('force', client.config.settings, local_settings)
