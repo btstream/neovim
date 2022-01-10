@@ -76,3 +76,11 @@ vnoremap <C-down> :m '>+1<CR>gv=gv
 vnoremap <C-up> :m '<-2<CR>gv=gv
 ]])
 
+vim.cmd([[
+if system('uname -r') =~ "microsoft"
+  augroup Yank
+    autocmd!
+    autocmd TextYankPost * :call system('/mnt/c/Windows/system32/clip.exe ',@")
+  augroup END
+endif
+]])
