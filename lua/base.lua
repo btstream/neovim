@@ -76,11 +76,17 @@ vnoremap <C-down> :m '>+1<CR>gv=gv
 vnoremap <C-up> :m '<-2<CR>gv=gv
 ]])
 
-vim.cmd([[
-if system('uname -r') =~ "microsoft"
-  augroup Yank
-    autocmd!
-    autocmd TextYankPost * :call system('/mnt/c/Windows/system32/clip.exe ',@")
-  augroup END
-endif
-]])
+if vim.fn.has('wsl') then
+    vim.g.clipboard = {
+        name = "win32yank-wsl",
+        copy = {
+            ["+"] = "/mnt/d/Applications/Scoop/shims/win32yank.exe -i --crlf",
+            ["*"] = "/mnt/d/Applications/Scoop/shims/win32yank.exe -i --crlf"
+        },
+        paste = {
+            ["+"] = "/mnt/d/Applications/Scoop/shims/win32yank.exe -o --lf",
+            ["*"] = "/mnt/d/Applications/Scoop/shims/win32yank.exe -o --lf"
+        },
+        cache_enable = 0,
+    }
+end
