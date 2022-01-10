@@ -87,6 +87,6 @@ if vim.fn.has('wsl') then
             ["+"] = "/mnt/d/Applications/Scoop/shims/win32yank.exe -o --lf",
             ["*"] = "/mnt/d/Applications/Scoop/shims/win32yank.exe -o --lf"
         },
-        cache_enable = 0,
+        cache_enable = 0
     }
 end
