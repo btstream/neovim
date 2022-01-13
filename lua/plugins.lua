@@ -53,7 +53,6 @@ return require('packer').startup(function(use)
             'simrat39/rust-tools.nvim',
             'nvim-lua/lsp-status.nvim',
             'mfussenegger/nvim-jdtls',
-            -- 'glepnir/lspsaga.nvim'
             'tami5/lspsaga.nvim',
             'btstream/nvim-dotnvim'
         },
@@ -67,6 +66,15 @@ return require('packer').startup(function(use)
         'simrat39/symbols-outline.nvim',
         config = function()
             require('plugins.settings.symbols_outline')
+        end
+    }
+
+    -- dap
+    use {
+        'mfussenegger/nvim-dap',
+        requires = { 'theHamsta/nvim-dap-virtual-text', 'rcarriga/nvim-dap-ui', 'Pocco81/DAPInstall.nvim' },
+        config = function()
+            require('plugins.settings.dap')
         end
     }
 
