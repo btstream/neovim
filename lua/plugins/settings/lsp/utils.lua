@@ -1,8 +1,9 @@
 local local_config = require('nvim-dotnvim')
+local lsp_status = require("lsp-status")
 
 local M = {}
 
-M.attach_keys = function(client, bufnr)
+local attach_keys = function(client, bufnr)
     -- set keyboar for buffer
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -45,7 +46,9 @@ M.attach_keys = function(client, bufnr)
     end
 end
 
--- return a funtion to help lsp server load local config on server init
+--- tools to return an function for on_init call back
+--- @param server Server object of lsp config
+--- @return function
 M.on_init = function(server)
     return function(client)
         local local_settings = local_config.local_lsp_config(server.name)
@@ -56,6 +59,25 @@ M.on_init = function(server)
         client.config.settings = vim.tbl_deep_extend('force', client.config.settings, local_settings)
 
         vim.lsp.rpc.notify('workspace/didChangeConfiguration')
+    end
+end
+
+--- helper function for lsp server's on_attach callback
+--- @param client LspClient
+--- @param bufnr number buffer handler
+M.on_attach = function(client, bufnr)
+    lsp_status.register_progress()
+    lsp_status.on_attach(client, bufnr)
+    attach_keys(client, bufnr)
+
+    -- save on formatting
+    if client.resolved_capabilities.document_formatting then
+        vim.cmd([[
+        augroup LspFormat
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+        augroup end
+        ]])
     end
 end
 

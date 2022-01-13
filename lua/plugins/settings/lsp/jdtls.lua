@@ -3,6 +3,7 @@ local M = {}
 M.setup = function(opt)
     _JdtCmd = opt.cmd
     _OnAttach = opt.on_attach
+    _OnInit = opt.on_init
 
     -- pickers
     local finders = require 'telescope.finders'
@@ -95,11 +96,7 @@ M.start = function()
             }
         },
         init_options = { extendedClientCapabilities = extendedClientCapabilities },
-        on_init = function(client)
-            if client.config.settings then
-                client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
-            end
-        end,
+        on_init = _OnInit,
         on_attach = function(client, bufnr)
             jdtls.setup.add_commands()
             _OnAttach(client, bufnr)
