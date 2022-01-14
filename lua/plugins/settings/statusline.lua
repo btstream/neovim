@@ -3,6 +3,11 @@ local M = {}
 local gl = require('galaxyline')
 local gls = gl.section
 local lsp_status = require('lsp-status')
+local buffer = require('galaxyline.providers.buffer')
+local condition = require('galaxyline.condition')
+local fileinfo = require('galaxyline.providers.fileinfo')
+local lsp = require('galaxyline.providers.lsp')
+local vcs = require('galaxyline.providers.vcs')
 
 lsp_status.config({})
 
@@ -47,11 +52,6 @@ M.setup = function()
         white = get_colors('white')
     }
 
-    local buffer = require('galaxyline.providers.buffer')
-    local condition = require('galaxyline.condition')
-    local fileinfo = require('galaxyline.providers.fileinfo')
-    local lsp = require('galaxyline.providers.lsp')
-    local vcs = require('galaxyline.providers.vcs')
     gl.short_line_list = {
         'NvimTree',
         'help',
@@ -99,26 +99,6 @@ M.setup = function()
         end
     end
 
-    -- local mode_icon = { --- {{{2
-    --     c = "🅒 ",
-    --     ['!'] = "🅒 ",
-    --     i = "🅘 ",
-    --     ic = "🅘 ",
-    --     ix = "🅘 ",
-    --     n = "🅝 ",
-    --     R = "🅡 ",
-    --     Rv = "🅡 ",
-    --     r = "🅡 ",
-    --     rm = "🅡 ",
-    --     ['r?'] = "🅡 ",
-    --     s = "🅢 ",
-    --     S = "🅢 ",
-    --     [''] = "🅢 ",
-    --     t = "🅣 ",
-    --     v = "🅥 ",
-    --     V = "🅥 ",
-    --     [''] = "🅥 "
-    -- }
     local mode_icon = { --- {{{2
         c = "גּ COMMAND",
         ['!'] = "גּ COMMAND",
@@ -173,7 +153,8 @@ M.setup = function()
             highlight = { mode_color.get(), colors.bg },
             provider = function()
                 set_mode_color('LFileSepL', true)
-                return ''
+                return ' '
+                -- return ''
             end
         }
     }
@@ -363,7 +344,8 @@ M.setup = function()
             highlight = { mode_color.get(), colors.bg },
             provider = function()
                 set_mode_color('RFileSepR', true)
-                return ''
+                -- return ''
+                return ' '
             end
         }
     }
@@ -382,39 +364,111 @@ M.setup = function()
     -----------------------------
     -- short lines
     -----------------------------
-    local mode_icon_short = { --- {{{2
-        c = "גּ ",
-        ['!'] = "גּ ",
-        i = " ",
-        ic = " ",
-        ix = " ",
-        n = " ",
-        R = "﯒ ",
-        Rv = "﯒ ",
-        r = "﯒ ",
-        rm = "﯒ ",
-        ['r?'] = "﯒ ",
-        s = "ﱐ ",
-        S = "ﱐ ",
-        [''] = "ﱐ ",
-        t = " ",
-        v = "ﱐ ",
-        V = "ﱐ "
+    -- local mode_icon_short = { --- {{{2
+    --     c = "גּ ",
+    --     ['!'] = "גּ ",
+    --     i = " ",
+    --     ic = " ",
+    --     ix = " ",
+    --     n = " ",
+    --     R = "﯒ ",
+    --     Rv = "﯒ ",
+    --     r = "﯒ ",
+    --     rm = "﯒ ",
+    --     ['r?'] = "﯒ ",
+    --     s = "ﱐ ",
+    --     S = "ﱐ ",
+    --     [''] = "ﱐ ",
+    --     t = " ",
+    --     v = "ﱐ ",
+    --     V = "ﱐ "
+    -- }
+    -- mode_icon_short.get = function()
+    --     return mode_icon_short[vim.fn.mode()]
+    -- end
+
+    local filetype_icons = {
+        NVIMTREE = 'פּ ',
+        HELP = 'ﲉ ',
+        TOGGLETERM = ' ',
+        OUTLINE = ' ',
+        DAPUI_WATCHES = ' ',
+        DAPUI_CONFIG = ' ',
+        DAPUI_SCOPES = ' ',
+        DAPUI_BREAKPOINTS = ' ',
+        ['DAP-REPL'] = ' ',
+        DAPUI_STACKS = ' '
     }
-    mode_icon_short.get = function()
-        return mode_icon_short[vim.fn.mode()]
+    filetype_icons.get = function()
+        local buftype = buffer.get_buffer_filetype()
+        -- print(buftype)
+        local icon = filetype_icons[buftype]
+        if icon then
+            return icon
+        else
+            return ' '
+        end
     end
 
+    local filetype_colors = {
+        NVIMTREE = colors.blue,
+        HELP = colors.blue,
+        TOGGLETERM = colors.blue,
+        OUTLINE = colors.blue,
+        DAPUI_WATCHES = colors.magenta,
+        DAPUI_CONFIG = colors.magenta,
+        DAPUI_SCOPES = colors.magenta,
+        DAPUI_BREAKPOINTS = colors.magenta,
+        ['DAP-REPL'] = colors.magenta,
+        DAPUI_STACKS = colors.magenta
+    }
+
+    local function set_filetype_color(group, fg)
+        local x = 'guibg'
+        local g = 'Galaxy' .. group
+        if fg then x = 'guifg' end
+
+        local buftype = buffer.get_buffer_filetype()
+        local color = filetype_colors[buftype]
+        if color then
+            if type(color) == 'function' then color = color() end
+        else
+            color = mode_color.get()
+        end
+
+        vim.cmd('hi! ' .. g .. ' ' .. x .. '=' .. color)
+    end
+
+    -- gls.short_line_left[0] = {
+    --     ModeNumShort = {
+    --         highlight = { colors.bg, mode_color.get() },
+    --         provider = function()
+    --             set_mode_color('ModeNumShort')
+    --             return '  ' .. mode_icon_short.get()
+    --         end
+    --     }
+    -- }
     gls.short_line_left[0] = {
-        ModeNumShort = {
+        FiletypeIcon = {
             highlight = { colors.bg, mode_color.get() },
             provider = function()
-                set_mode_color('ModeNumShort')
-                return '  ' .. mode_icon_short.get()
+                -- set_mode_color('FiletypeIcon')
+                set_filetype_color('FiletypeIcon')
+                return '  ' .. filetype_icons.get()
             end
         }
     }
-    gls.short_line_left[1] = gls.left[1]
+    gls.short_line_left[1] = {
+        LFileSepLShort = {
+            highlight = { mode_color.get(), colors.bg },
+            provider = function()
+                set_filetype_color('LFileSepLShort', false)
+                -- return ''
+                return ''
+            end
+        }
+    }
+
     -- gls.short_line_left[2] = gls.left[2]
     gls.short_line_left[2] = {
         Space = {
@@ -425,7 +479,17 @@ M.setup = function()
         }
     }
     gls.short_line_left[3] = gls.left[3]
-    gls.short_line_right[0] = gls.right[6]
+    -- gls.short_line_right[0] = gls.right[6]
+    gls.short_line_right[0] = {
+        RFileSepRShort = {
+            highlight = { mode_color.get(), colors.bg },
+            provider = function()
+                set_filetype_color('RFileSepRShort', false)
+                -- return ''
+                return ''
+            end
+        }
+    }
 
     -- for mid background
     vim.cmd([[hi! StatusLine guibg=]] .. colors.bg())
