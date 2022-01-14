@@ -1,6 +1,5 @@
 -- Setup lspconfig.
-vim.lsp.set_log_level('debug')
-
+-- vim.lsp.set_log_level('info')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities = vim.tbl_deep_extend('keep', capabilities, require('lsp-status').capabilities)
