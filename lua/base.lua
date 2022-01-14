@@ -62,19 +62,19 @@ map('n', '<C-S-up>', ':resize +1<cr>', mopt)
 map('n', '<C-S-down>', ':resize -1<cr>', mopt)
 
 vim.cmd([[
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <silent> <A-j> :m .+1<CR>==
+nnoremap <silent> <A-k> :m .-2<CR>==
+inoremap <silent> <A-j> <Esc>:m .+1<CR>==gi
+inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <A-j> :m '>+1<CR>gv=gv
+vnoremap <silent> <A-k> :m '<-2<CR>gv=gv
 
-nnoremap <C-down> :m .+1<CR>==
-nnoremap <C-up> :m .-2<CR>==
-inoremap <C-down> <Esc>:m .+1<CR>==gi
-inoremap <C-up> <Esc>:m .-2<CR>==gi
-vnoremap <C-down> :m '>+1<CR>gv=gv
-vnoremap <C-up> :m '<-2<CR>gv=gv
+nnoremap <silent> <C-down> :m .+1<CR>==
+nnoremap <silent> <C-up> :m .-2<CR>==
+inoremap <silent> <C-down> <Esc>:m .+1<CR>==gi
+inoremap <silent> <C-up> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <C-down> :m '>+1<CR>gv=gv
+vnoremap <silent> <C-up> :m '<-2<CR>gv=gv
 ]])
 
 -- if vim.fn.has('wsl') then
