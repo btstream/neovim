@@ -74,8 +74,8 @@ M.setup = function()
         [''] = colors.orange,
         t = colors.purple,
         v = colors.red,
-        V = colors.red,
-        [''] = colors.red
+        V = colors.red
+        -- [''] = colors.red
     }
 
     mode_color.get = function()

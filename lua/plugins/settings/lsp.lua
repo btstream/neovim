@@ -1,6 +1,5 @@
 -- Setup lspconfig.
 vim.lsp.set_log_level('debug')
--- local attach_keys = require('plugins.settings.lsp.utils').attach_keys
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -35,23 +34,6 @@ for _, name in pairs(servers) do
     end
 end
 
--- local function on_attach_callback(client, bufnr)
---     local lsp_status = require("lsp-status")
---     lsp_status.register_progress()
---     lsp_status.on_attach(client, bufnr)
---     attach_keys(client, bufnr)
---
---     -- save on formatting
---     if client.resolved_capabilities.document_formatting then
---         vim.cmd([[
---         augroup LspFormat
---             autocmd! * <buffer>
---             autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
---         augroup end
---         ]])
---     end
--- end
---
 lsp_installer.on_server_ready(function(server)
 
     local on_init_callback = require('plugins.settings.lsp.utils').on_init(server)
