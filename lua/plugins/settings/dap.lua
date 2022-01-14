@@ -42,12 +42,15 @@ M.setup = function()
     -- config dapui
     dapui.setup()
     dap.listeners.after.event_initialized["dapui_config"] = function()
+        vim.g.dap_loaded = true
         dapui.open()
     end
     dap.listeners.before.event_terminated["dapui_config"] = function()
+        vim.g.dap_loaded = false
         dapui.close()
     end
     dap.listeners.before.event_exited["dapui_config"] = function()
+        vim.g.dap_loaded = false
         dapui.close()
     end
 end

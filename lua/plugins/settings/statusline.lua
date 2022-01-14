@@ -92,6 +92,7 @@ M.setup = function()
 
     mode_color.get = function()
         local s = mode_color[vim.fn.mode()]
+        if vim.g.dap_loaded then s = colors.magenta end
         if type(s) == 'function' then
             return s()
         else
@@ -411,10 +412,10 @@ M.setup = function()
     end
 
     local filetype_colors = {
-        NVIMTREE = colors.blue,
-        HELP = colors.blue,
-        TOGGLETERM = colors.blue,
-        OUTLINE = colors.blue,
+        -- NVIMTREE = colors.blue,
+        -- HELP = colors.blue,
+        -- TOGGLETERM = colors.blue,
+        -- OUTLINE = colors.blue,
         DAPUI_WATCHES = colors.magenta,
         DAPUI_CONFIG = colors.magenta,
         DAPUI_SCOPES = colors.magenta,
