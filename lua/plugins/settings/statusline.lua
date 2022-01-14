@@ -21,14 +21,14 @@ local function get_colors(name)
         magenta = 'base0E',
         white = 'base05'
     }
-    local _, b = vim.g.colors_name:find('base16')
-    if b then
-        return function()
+    return function()
+        local _, b = vim.g.colors_name:find('base16')
+        if b then
             local colors = require('base16-colorscheme').colorschemes[vim.g.colors_name:sub(b + 2)]
             return colors[bm[name]]
+        else
+            return require('galaxyline.themes.colors').get_color(name)()
         end
-    else
-        return require('galaxyline.themes.colors').get_color(name)
     end
 end
 
