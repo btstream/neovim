@@ -36,8 +36,11 @@ M.setup = function()
         end
     end
 
-    vim.fn.sign_define('DapBreakpoint', { text = '●', texthl = 'DiagnosticError', numhl = '' })
-    vim.fn.sign_define('DapStopped', { text = '➡', texthl = 'DiagnosticHint', numhl = '' })
+    vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DiagnosticError', numhl = '' })
+    vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DiagnosticError', numhl = '' })
+    vim.fn.sign_define('DpaLogPoint', { text = '', texthl = 'DiagnosticError', numhl = '' })
+    vim.fn.sign_define('DapStopped', { text = '', texthl = 'DiagnosticHint', numhl = '' })
+    vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DiagnosticWarn', numhl = '' })
 
     -- config dapui
     dapui.setup()
