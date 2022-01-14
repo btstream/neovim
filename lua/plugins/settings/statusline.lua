@@ -52,7 +52,19 @@ M.setup = function()
     local fileinfo = require('galaxyline.providers.fileinfo')
     local lsp = require('galaxyline.providers.lsp')
     local vcs = require('galaxyline.providers.vcs')
-    gl.short_line_list = { 'NvimTree', 'help', 'tagbar', 'toggleterm', 'Outline' }
+    gl.short_line_list = {
+        'NvimTree',
+        'help',
+        'tagbar',
+        'toggleterm',
+        'Outline',
+        'dapui_watches',
+        'dapui_stacks',
+        'dapui_config',
+        'dapui_breakpoints',
+        'dapui_scopes',
+        'dapui_repl'
+    }
 
     local mode_color = { -- {{{2
         c = colors.magenta,
@@ -119,12 +131,12 @@ M.setup = function()
         r = "﯒ REPLACE",
         rm = "﯒ REPLACE",
         ['r?'] = "﯒ REPLACE",
-        s = "礪SELECT",
-        S = "礪SELECT",
-        [''] = "礪SELECT",
+        s = "ﱐ SELECT",
+        S = "ﱐ SELECT",
+        [''] = "ﱐ SELECT",
         t = " TERMINAL",
-        v = "礪VISUAL",
-        V = "礪VISUAL"
+        v = "ﱐ VISUAL",
+        V = "ﱐ VISUAL"
     }
 
     mode_icon.get = function()
@@ -382,12 +394,12 @@ M.setup = function()
         r = "﯒ ",
         rm = "﯒ ",
         ['r?'] = "﯒ ",
-        s = "礪",
-        S = "礪",
-        [''] = "礪",
+        s = "ﱐ ",
+        S = "ﱐ ",
+        [''] = "ﱐ ",
         t = " ",
-        v = "礪",
-        V = "礪"
+        v = "ﱐ ",
+        V = "ﱐ "
     }
     mode_icon_short.get = function()
         return mode_icon_short[vim.fn.mode()]
@@ -403,7 +415,15 @@ M.setup = function()
         }
     }
     gls.short_line_left[1] = gls.left[1]
-    gls.short_line_left[2] = gls.left[2]
+    -- gls.short_line_left[2] = gls.left[2]
+    gls.short_line_left[2] = {
+        Space = {
+            highlight = { colors.bg, colors.bg },
+            provider = function()
+                return ' '
+            end
+        }
+    }
     gls.short_line_left[3] = gls.left[3]
     gls.short_line_right[0] = gls.right[6]
 
