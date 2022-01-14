@@ -77,17 +77,3 @@ vnoremap <silent> <C-down> :m '>+1<CR>gv=gv
 vnoremap <silent> <C-up> :m '<-2<CR>gv=gv
 ]])
 
--- if vim.fn.has('wsl') then
---     vim.g.clipboard = {
---         name = "win32yank-wsl",
---         copy = {
---             ["+"] = "/mnt/d/Applications/Scoop/shims/win32yank.exe -i --crlf",
---             ["*"] = "/mnt/d/Applications/Scoop/shims/win32yank.exe -i --crlf"
---         },
---         paste = {
---             ["+"] = "/mnt/d/Applications/Scoop/shims/win32yank.exe -o --lf",
---             ["*"] = "/mnt/d/Applications/Scoop/shims/win32yank.exe -o --lf"
---         },
---         cache_enable = 0
---     }
--- end
