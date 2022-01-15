@@ -140,6 +140,7 @@ return require('packer').startup(function(use)
     -- telescope
     use {
         'nvim-telescope/telescope.nvim',
+        'nvim-telescope/telescope-ui-select.nvim',
         requires = 'nvim-lua/plenary.nvim',
         config = function()
             require('plugins.settings.telescope')

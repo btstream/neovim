@@ -12,8 +12,10 @@ require('telescope').setup {
         -- },
         lsp_code_actions = { theme = "cursor" }
     },
-    extensions = {}
+    extensions = { ['ui-select'] = { require('telescope.themes').get_dropdown() } }
 }
+
+require('telescope').load_extension('ui-select')
 
 local mopts = { noremap = true, silent = true }
 
