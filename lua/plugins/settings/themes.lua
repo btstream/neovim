@@ -1,6 +1,14 @@
 vim.cmd('colorscheme base16-material-darker')
+vim.cmd([[
+hi! link Visual CursorLine
+augroup set_transparent
+    autocmd!
+    autocmd VimEnter * lua require('plugins.settings.themes').set_transparent()
+augroup end
+]])
 
-function set_transparent()
+local M = {}
+M.set_transparent = function()
     local enable = false
     if vim.g.GuiLoaded or vim.g.GUI == 1 then enable = false end
     require('transparent').setup({
@@ -26,11 +34,5 @@ function set_transparent()
     })
 end
 
-vim.cmd([[
-hi! link Visual CursorLine
-augroup set_transparent
-    autocmd!
-    autocmd VimEnter * lua set_transparent()
-augroup end
-]])
+return M
 
