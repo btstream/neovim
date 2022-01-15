@@ -58,12 +58,13 @@ M.setup = function()
         'tagbar',
         'toggleterm',
         'Outline',
+        'packer',
         'dapui_watches',
         'dapui_stacks',
         'dapui_config',
         'dapui_breakpoints',
         'dapui_scopes',
-        'dapui_repl'
+        'dap-repl'
     }
 
     local mode_color = { -- {{{2
@@ -393,6 +394,7 @@ M.setup = function()
         HELP = 'ﲉ ',
         TOGGLETERM = ' ',
         OUTLINE = ' ',
+        PACKER = ' ',
         DAPUI_WATCHES = ' ',
         DAPUI_CONFIG = ' ',
         DAPUI_SCOPES = ' ',
