@@ -39,12 +39,8 @@ lsp_installer.on_server_ready(function(server)
     local on_attach_callback = require('plugins.settings.lsp.utils').on_attach
 
     -- call back functions to set keyboard
-    local opts = {
-        cmd = server._default_options.cmd,
-        capabilities = capabilities,
-        on_attach = on_attach_callback,
-        on_init = on_init_callback
-    }
+    local opts = { on_attach = on_attach_callback, on_init = on_init_callback }
+    opts = vim.tbl_deep_extend('keep', opts, server:get_default_options())
 
     -- set up rust_analyzer
     if server.name == 'rust_analyzer' then
@@ -53,6 +49,7 @@ lsp_installer.on_server_ready(function(server)
             dap = require('plugins.settings.dap.rust'),
             tools = { autoSetHints = true }
         })
+        return
     elseif server.name == 'jdtls' then
         require("plugins.settings.lsp.jdtls").setup(opts)
         return
