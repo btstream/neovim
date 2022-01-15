@@ -28,13 +28,7 @@ local M = {}
 M.setup = function()
     -- auto install
     require('plugins.settings.dap.install')
-    for _, d in pairs(di_api.get_installed_debuggers()) do
-        if d == 'codelldb' then
-            require('plugins.settings.dap.rust')
-        else
-            dap_install.config(d)
-        end
-    end
+    for _, d in pairs(di_api.get_installed_debuggers()) do if d ~= 'codelldb' then dap_install.config(d) end end
 
     vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DiagnosticError', numhl = '' })
     vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DiagnosticError', numhl = '' })

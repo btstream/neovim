@@ -53,7 +53,6 @@ return require('packer').startup(function(use)
             'simrat39/rust-tools.nvim',
             'nvim-lua/lsp-status.nvim',
             'mfussenegger/nvim-jdtls',
-            'simrat39/rust-tools.nvim',
             'tami5/lspsaga.nvim',
             'btstream/nvim-dotnvim'
         },

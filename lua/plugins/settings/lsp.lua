@@ -48,7 +48,11 @@ lsp_installer.on_server_ready(function(server)
 
     -- set up rust_analyzer
     if server.name == 'rust_analyzer' then
-        require('rust-tools').setup({ server = opts })
+        require('rust-tools').setup({
+            server = opts,
+            dap = require('plugins.settings.dap.rust'),
+            tools = { autoSetHints = true }
+        })
     elseif server.name == 'jdtls' then
         require("plugins.settings.lsp.jdtls").setup(opts)
         return
