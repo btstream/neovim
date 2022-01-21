@@ -279,7 +279,7 @@ M.setup = function()
                 if string.len(progress) > 1 then
                     return icon .. '' .. progress
                 else
-                    return icon .. active_lsp .. ' ' .. progress .. ' '
+                    return icon .. active_lsp
                 end
             end
         }
