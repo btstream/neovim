@@ -274,7 +274,14 @@ M.setup = function()
                 local icon = '   '
                 local active_lsp = lsp.get_lsp_client()
                 if active_lsp == 'No Active Lsp' then return '' end
-                return icon .. active_lsp .. ' ' .. (lsp_status.status_progress())
+
+                local progress = lsp_status.status_progress() .. ' '
+                print(string.len(progress))
+                if string.len(progress) > 1 then
+                    return icon .. '' .. progress
+                else
+                    return icon .. active_lsp .. ' ' .. (lsp_status.status_progress())
+                end
             end
         }
     }
