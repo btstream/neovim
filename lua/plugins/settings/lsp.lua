@@ -86,6 +86,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 ----------------------------------------
 -- lspsaga
 ----------------------------------------
-local saga = require 'lspsaga'
-saga.init_lsp_saga({ code_action_prompt = { enable = false } })
+local saga = require('lspsaga')
+saga.setup({ error_sign = "", warn_sign = "", hint_sign = "", infor_sign = "" })
 

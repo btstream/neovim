@@ -12,7 +12,7 @@ require'nvim-tree'.setup {
     hijack_cursor = false,
     update_cwd = true,
     update_to_buf_dir = { enable = true, auto_open = true },
-    diagnostics = { enable = false, icons = { hint = "", info = "", warning = "", error = "" } },
+    diagnostics = { enable = false, icons = { hint = "", info = "", warning = "", error = "" } },
     update_focused_file = { enable = true, update_cwd = true, ignore_list = {} },
     system_open = { cmd = nil, args = {} },
     filters = { dotfiles = false, custom = {} },

@@ -309,7 +309,7 @@ M.setup = function()
         DiagnosticHint = {
             highlight = { colors.cyan, colors.bg },
             provider = function()
-                local icon = ' '
+                local icon = ' '
                 local hints = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
                 local count = #hints
                 if count == 0 then return '' end
