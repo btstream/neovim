@@ -276,11 +276,10 @@ M.setup = function()
                 if active_lsp == 'No Active Lsp' then return '' end
 
                 local progress = lsp_status.status_progress() .. ' '
-                print(string.len(progress))
                 if string.len(progress) > 1 then
                     return icon .. '' .. progress
                 else
-                    return icon .. active_lsp .. ' ' .. (lsp_status.status_progress())
+                    return icon .. active_lsp .. ' ' .. progress .. ' '
                 end
             end
         }
