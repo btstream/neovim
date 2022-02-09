@@ -32,7 +32,7 @@ vim.cmd([[
 augroup nvim-tree-refresh
     au!
     autocmd BufReadPost * NvimTreeRefresh
-    autocmd BufEnter * NvimTreeRefresh
+    " autocmd BufEnter * NvimTreeRefresh
 augroup end
 ]])
 
