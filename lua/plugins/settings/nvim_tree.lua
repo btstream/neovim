@@ -22,7 +22,7 @@ require'nvim-tree'.setup {
         hide_root_folder = false,
         side = 'left',
         auto_resize = true,
-        mappings = { custom_only = false, list = {} }
+        mappings = { custom_only = false, list = { { key = "<C-k>", action = "" } } }
     }
 }
 map('n', '<C-k>b', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
@@ -32,7 +32,7 @@ vim.cmd([[
 augroup nvim-tree-refresh
     au!
     autocmd BufReadPost * NvimTreeRefresh
-    " autocmd BufEnter * NvimTreeRefresh
+    autocmd BufEnter * NvimTreeRefresh
 augroup end
 ]])
 
