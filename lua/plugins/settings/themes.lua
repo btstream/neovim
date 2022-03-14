@@ -1,9 +1,12 @@
 vim.cmd('colorscheme base16-material-darker')
 vim.cmd([[
 hi! link Visual CursorLine
-augroup set_transparent
+hi! link VertSplit CursorLine
+set fillchars+=vert:\ 
+augroup themes
     autocmd!
     autocmd VimEnter * lua require('plugins.settings.themes').set_transparent()
+    autocmd colorscheme * hi! link VertSplit CursorLine
 augroup end
 ]])
 
@@ -27,8 +30,8 @@ M.set_transparent = function()
             'GitGutterDelete',
             'GitGutterChange',
             'NormalNC',
-            'Terminal',
-            'VertSplit'
+            'Terminal'
+            -- 'VertSplit'
         },
         exclude = {} -- table: groups you don't want to clear
     })
