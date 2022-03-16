@@ -27,7 +27,7 @@ local lazygit = Terminal:new({
     cmd = "lazygit",
     dir = "git_dir",
     direction = "float",
-    float_opts = { border = "double" },
+    float_opts = { border = "double", highlights = { background = 'TelescopeNormal' } },
     -- function to run on opening the terminal
     on_open = function(term)
         vim.cmd("startinsert!")
@@ -38,6 +38,5 @@ local lazygit = Terminal:new({
 function _lazygit_toggle()
     lazygit:toggle()
 end
-
 
 map("n", "<C-k>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
