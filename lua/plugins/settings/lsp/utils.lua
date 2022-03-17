@@ -38,12 +38,14 @@ local attach_keys = function(client, bufnr)
     buf_set_keymap('n', '<C-k><C-f>', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     buf_set_keymap('n', '<C-k>d', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
     -- setup code actions, for jdtls use jdtsls' codeaction
-    if client.name == 'jdtls' then
-        buf_set_keymap('n', '<C-k>.', '<cmd>lua require("jdtls").code_action()<cr>', opts)
-    else
-        buf_set_keymap('n', '<C-k>.', '<cmd>:Lspsaga code_action<cr>', opts)
-        buf_set_keymap('i', '<C-k>.', '<Esc><cmd>:Lspsaga code_action<cr>', opts)
-    end
+    -- if client.name == 'jdtls' then
+    --     buf_set_keymap('n', '<C-k>.', '<cmd>lua require("jdtls").code_action()<cr>', opts)
+    -- else
+    -- buf_set_keymap('n', '<C-k>.', '<cmd>:Lspsaga code_action<cr>', opts)
+    -- buf_set_keymap('i', '<C-k>.', '<Esc><cmd>:Lspsaga code_action<cr>', opts)
+    buf_set_keymap('n', '<C-k>.', '<cmd>:Telescope lsp_code_actions<cr>', opts)
+    buf_set_keymap('i', '<C-k>.', '<Esc><cmd>:Lspsaga lsp_code_actions<cr>', opts)
+    -- end
 end
 
 --- tools to return an function for on_init call back
