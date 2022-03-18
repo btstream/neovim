@@ -1,5 +1,7 @@
 local M = {}
 
+vim.g.galaxyline_colorscheme = "base16-material-darker"
+
 local gl = require('galaxyline')
 local gls = gl.section
 local lsp_status = require('lsp-status')
@@ -8,7 +10,6 @@ local condition = require('galaxyline.condition')
 local fileinfo = require('galaxyline.providers.fileinfo')
 local lsp = require('galaxyline.providers.lsp')
 local vcs = require('galaxyline.providers.vcs')
-
 lsp_status.config({})
 
 -- functions to remap base16-themes to colors
@@ -27,9 +28,9 @@ local function get_colors(name)
         white = 'base05'
     }
     return function()
-        local _, b = vim.g.colors_name:find('base16')
+        local _, b = vim.g.galaxyline_colorscheme:find('base16')
         if b then
-            local colors = require('base16-colorscheme').colorschemes[vim.g.colors_name:sub(b + 2)]
+            local colors = require('base16-colorscheme').colorschemes[vim.g.galaxyline_colorscheme:sub(b + 2)]
             return colors[bm[name]]
         else
             return require('galaxyline.themes.colors').get_color(name)()
