@@ -25,12 +25,19 @@ local function get_colors(name)
         cyan = 'base0C',
         purple = 'base0E',
         magenta = 'base0E',
-        white = 'base05'
+        white = 'base05',
+        bg_alt = 'base01',
+        bg_cur = 'base01'
     }
     return function()
         local _, b = vim.g.galaxyline_colorscheme:find('base16')
         if b then
             local colors = require('base16-colorscheme').colorschemes[vim.g.galaxyline_colorscheme:sub(b + 2)]
+            local ma_colors = require('material.colors')
+            if vim.g.colors_name == 'material' then
+                local s = ma_colors[name]
+                if s ~= nil then return s end
+            end
             return colors[bm[name]]
         else
             return require('galaxyline.themes.colors').get_color(name)()
@@ -40,7 +47,7 @@ end
 
 M.setup = function()
     local colors = {
-        bg = get_colors('bg'),
+        bg = get_colors('bg_cur'),
         fg = get_colors('fg'),
         red = get_colors('red'),
         orange = get_colors('orange'),
