@@ -53,10 +53,11 @@ require('bufferline').setup {
             {
                 filetype = "NvimTree",
                 text = function()
-                    return vim.fn.getcwd()
+                    -- return vim.fn.getcwd()
+                    return "File Explorer"
                 end,
                 highlight = "Directory",
-                text_align = "left"
+                text_align = "center"
             },
             { filetype = 'Outline', text = 'Outline', highlight = 'Directory', text_align = 'left' }
         },
