@@ -1,6 +1,13 @@
 local local_config = require('nvim-dotnvim')
 local lsp_status = require("lsp-status")
 
+-- vim.cmd([[
+-- augroup lspsaga_filetypes
+--   autocmd!
+--   autocmd FileType Lspsaga* nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
+-- augroup END
+-- ]])
+--
 local M = {}
 
 local attach_keys = function(client, bufnr)

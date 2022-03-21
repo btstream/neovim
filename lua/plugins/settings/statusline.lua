@@ -35,7 +35,9 @@ local function get_colors(name)
             local colors = require('base16-colorscheme').colorschemes[vim.g.galaxyline_colorscheme:sub(b + 2)]
             local ma_colors = require('material.colors')
             if vim.g.colors_name == 'material' then
+                local ds = ma_colors["dark" .. name]
                 local s = ma_colors[name]
+                if ds ~= nil then return ds end
                 if s ~= nil then return s end
             end
             return colors[bm[name]]
@@ -59,6 +61,8 @@ M.setup = function()
         magenta = get_colors('magenta'),
         white = get_colors('white')
     }
+
+    if vim.g.colors_name == 'material' then colors.blue = get_colors('accent') end
 
     gl.short_line_list = {
         'NvimTree',
