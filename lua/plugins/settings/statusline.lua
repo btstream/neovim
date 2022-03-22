@@ -187,7 +187,13 @@ M.setup = function()
             highlight = { colors.fg, colors.bg },
             provider = function()
                 local file_name = fileinfo.get_current_file_name()
-                if file_name == nil or file_name:len() == 0 then return 'EMPTY ' end
+                local buffer_type = vim.bo.filetype
+                if file_name == nil or file_name:len() == 0 then
+                    if buffer_type ~= nil or buffer_type:len() ~= 0 then
+                        return buffer_type:upper() .. ' '
+                    end
+                    return 'EMPTY '
+                end
                 -- set_mode_color('FileInfo', true)
                 return file_name
             end
