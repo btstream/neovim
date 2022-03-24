@@ -3,11 +3,17 @@ local lsp_status = require("lsp-status")
 
 -- vim.cmd([[
 -- augroup lspsaga_filetypes
---   autocmd!
---   autocmd FileType Lspsaga* nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
+--     autocmd!
+--     autocmd FileType LspsagaCodeAction nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
+--     autocmd FileType LspsagaDiagnostic nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
+--     autocmd FileType LspsagaFinder nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
+--     autocmd FileType LspsagaFloatterm nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
+--     autocmd FileType LspsagaHover nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
+--     autocmd FileType LspsagaRename nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
+--     autocmd FileType LspsagaSignatureHelp nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
 -- augroup END
 -- ]])
---
+
 local M = {}
 
 local attach_keys = function(client, bufnr)
