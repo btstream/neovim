@@ -208,6 +208,9 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- git-blame
+    use { 'f-person/git-blame.nvim' }
+
     use 'h-hg/fcitx.nvim'
 
     -- markdown preview
