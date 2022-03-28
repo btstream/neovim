@@ -209,7 +209,12 @@ return require('packer').startup(function(use)
     }
 
     -- git-blame
-    use { 'f-person/git-blame.nvim' }
+    use {
+        'f-person/git-blame.nvim',
+        config = function()
+            require('plugins.settings.gitblame').setup()
+        end
+    }
 
     use 'h-hg/fcitx.nvim'
 
