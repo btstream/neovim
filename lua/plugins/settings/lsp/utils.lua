@@ -54,7 +54,7 @@ local attach_keys = function(client, bufnr)
     -- buf_set_keymap('n', '<C-k>.', '<cmd>:Lspsaga code_action<cr>', opts)
     -- buf_set_keymap('i', '<C-k>.', '<Esc><cmd>:Lspsaga code_action<cr>', opts)
     buf_set_keymap('n', '<C-k>.', '<cmd>:Telescope lsp_code_actions<cr>', opts)
-    buf_set_keymap('i', '<C-k>.', '<Esc><cmd>:Lspsaga lsp_code_actions<cr>', opts)
+    buf_set_keymap('i', '<C-k>.', '<Esc><cmd>:Telescope lsp_code_actions<cr>', opts)
 end
 
 --- tools to return an function for on_init call back
