@@ -36,10 +36,6 @@ augroup reladbuffer
 augroup end
 ]])
 
--- git-blame
-vim.g.gitblame_ignored_filetypes = { 'NvimTree', 'Outline', 'packer' }
--- vim.g.gitblame_highlight_group = 'GitBlameLine'
-
 -----------------------------------------------------------
 -- set keymaps
 -----------------------------------------------------------

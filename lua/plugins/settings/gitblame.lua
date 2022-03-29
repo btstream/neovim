@@ -1,5 +1,6 @@
 local M = {}
 
+vim.g.gitblame_ignored_filetypes = { 'NvimTree', 'Outline', 'packer' }
 vim.cmd([[
 augroup setgitblame
     au!

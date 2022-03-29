@@ -212,7 +212,7 @@ return require('packer').startup(function(use)
     use {
         'f-person/git-blame.nvim',
         config = function()
-            require('plugins.settings.gitblame').setup()
+            require('plugins.settings.gitblame')
         end
     }
 
