@@ -1,6 +1,9 @@
 local M = {}
 
 vim.g.gitblame_ignored_filetypes = { 'NvimTree', 'Outline', 'packer' }
+
+-- set gitblame's color scheme after vim fully loaded, in order to
+-- get correct color scheme.
 vim.cmd([[
 augroup setgitblame
     au!
