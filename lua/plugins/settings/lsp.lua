@@ -20,7 +20,8 @@ local servers = {
     "vimls",
     "sumneko_lua",
     "fortls",
-    "efm"
+    "efm",
+    "lemminx"
 }
 for _, name in pairs(servers) do
     local ok, server = lsp_installer.get_server(name)
