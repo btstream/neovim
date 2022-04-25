@@ -72,10 +72,15 @@ return require('packer').startup(function(use)
     -- dap
     use {
         'mfussenegger/nvim-dap',
-        requires = { 'theHamsta/nvim-dap-virtual-text', 'rcarriga/nvim-dap-ui', 'Pocco81/DAPInstall.nvim' },
+        requires = { 'theHamsta/nvim-dap-virtual-text', 'rcarriga/nvim-dap-ui', },
         config = function()
             require('plugins.settings.dap')
         end
+    }
+
+    use {
+        'Pocco81/DAPInstall.nvim',
+        branch = "dev"
     }
 
     use {
