@@ -15,7 +15,7 @@ augroup end
 
 local M = {}
 M.set_transparent = function()
-    local enable = false
+    local enable = true
     if vim.g.GuiLoaded or vim.g.GUI == 1 then
         enable = false
     end
@@ -25,8 +25,8 @@ M.set_transparent = function()
             -- In particular, when you set it to 'all', that means all avaliable groups
 
             -- example of akinsho/nvim-bufferline.lua
-            -- "BufferLineTabClose",
-            -- "BufferlineBufferSelected",
+            "BufferLineTabClose",
+            "BufferlineBufferSelected",
             -- "BufferLineFill",
             -- "BufferLineBackground",
             -- "BufferLineSeparator",
@@ -36,6 +36,14 @@ M.set_transparent = function()
             "GitGutterChange",
             "NormalNC",
             "Terminal",
+            "TelescopeNormal",
+            "TelescopeBorder",
+            "TelescopePreviewNormal",
+            "TelescopePreviewBorder",
+            "TelescopePromptNormal",
+            "TelescopePromptBorder",
+            "TelescopeResultsNormal",
+            "TelescopeResultsBorder",
             -- 'VertSplit'
         },
         exclude = {}, -- table: groups you don't want to clear
