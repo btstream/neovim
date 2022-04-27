@@ -20,7 +20,11 @@ cmp.setup({
         ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
         ['<Esc>'] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
         ['<C-c>'] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-        ['<CR>'] = cmp.mapping.confirm({ select = true })
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+        ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+        ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
     },
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -71,4 +75,3 @@ xmap        s   <Plug>(vsnip-select-text)
 nmap        S   <Plug>(vsnip-cut-text)
 xmap        S   <Plug>(vsnip-cut-text)
 ]])
-
