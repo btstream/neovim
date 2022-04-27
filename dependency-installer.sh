@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-PACKAGES=(unzip wget nodejs npm python-pip python-neovim rustup go ripgrep fd ranger lazygit)
+PACKAGES=(unzip wget nodejs npm python-pip python-neovim rustup ripgrep fd lazygit stylua)
 
 if [[ "$(uname)" == 'Linux' ]]; then
     if [[ "$(type -P pacman)" ]]; then

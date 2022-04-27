@@ -20,7 +20,7 @@ local servers = {
     "vimls",
     "sumneko_lua",
     "fortls",
-    "efm",
+    -- "efm",
     "lemminx"
 }
 for _, name in pairs(servers) do
@@ -70,10 +70,10 @@ lsp_installer.on_server_ready(function(server)
                 on_init_callback(client)
             end
         end
-    elseif server.name == 'efm' then
-        opts = require("plugins.settings.lsp.efm")
-        opts.cmd = server._default_options.cmd
-        opts.on_attach = on_attach_callback
+        -- elseif server.name == 'efm' then
+        --     opts = require("plugins.settings.lsp.efm")
+        --     opts.cmd = server._default_options.cmd
+        --     opts.on_attach = on_attach_callback
     end
     server:setup(opts)
 end)
@@ -82,11 +82,10 @@ end)
 -- disable inline diagnostic info
 ----------------------------------------
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                                                                   { virtual_text = false, update_in_insert = true })
+    { virtual_text = false, update_in_insert = true })
 
 ----------------------------------------
 -- lspsaga
 ----------------------------------------
 local saga = require('lspsaga')
 saga.setup({ error_sign = "", warn_sign = "", hint_sign = "", infor_sign = "" })
-
