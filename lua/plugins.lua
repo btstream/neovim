@@ -33,6 +33,43 @@ return require("packer").startup(function(use)
         end,
     })
 
+    use({
+        "CosmicNvim/cosmic-ui",
+        requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+        config = function()
+            require("cosmic-ui").setup({
+                -- default border to use
+                -- 'single', 'double', 'rounded', 'solid', 'shadow'
+                border_style = "single",
+
+                -- rename popup settings
+                rename = {
+                    border = {
+                        highlight = "FloatBorder",
+                        style = "single",
+                        title = " Rename ",
+                        title_align = "left",
+                        title_hl = "Normal",
+                    },
+                    prompt = "> ",
+                    prompt_hl = "Normal",
+                },
+
+                code_actions = {
+                    min_width = nil,
+                    border = {
+                        bottom_hl = "FloatBorder",
+                        highlight = "FloatBorder",
+                        style = "single",
+                        title = "Code Actions",
+                        title_align = "center",
+                        title_hl = "Normal",
+                    },
+                },
+            })
+        end,
+    })
+
     -- lsp and cmp
     use({
         "hrsh7th/nvim-cmp",
@@ -52,8 +89,9 @@ return require("packer").startup(function(use)
             "simrat39/rust-tools.nvim",
             "nvim-lua/lsp-status.nvim",
             "mfussenegger/nvim-jdtls",
-            "tami5/lspsaga.nvim",
+            -- "tami5/lspsaga.nvim",
             "btstream/nvim-dotnvim",
+            "ray-x/lsp_signature.nvim",
         },
         config = function()
             require("plugins.settings.cmp")
@@ -73,7 +111,7 @@ return require("packer").startup(function(use)
         "jose-elias-alvarez/null-ls.nvim",
         requires = { "nvim-lua/plenary.nvim" },
         config = function()
-            require("plugins.settings.lsp.null_ls")
+            require("plugins.settings.lsp.providers.null_ls")
         end,
     })
 
