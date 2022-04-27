@@ -47,12 +47,12 @@ map("i", "<S-Tab>", "<C-d>", mopt)
 
 local modes = { "i", "n", "v" }
 for _, m in ipairs(modes) do
-	map(m, "<C-n>", "<down>", mopt)
-	map(m, "<C-p>", "<up>", mopt)
-	map(m, "<C-f>", "<right>", mopt)
-	map(m, "<C-b>", "<left>", mopt)
-	map(m, "<C-a>", "<home>", mopt)
-	map(m, "<C-e>", "<end>", mopt)
+    map(m, "<C-n>", "<down>", mopt)
+    map(m, "<C-p>", "<up>", mopt)
+    map(m, "<C-f>", "<right>", mopt)
+    map(m, "<C-b>", "<left>", mopt)
+    map(m, "<C-a>", "<home>", mopt)
+    map(m, "<C-e>", "<end>", mopt)
 end
 
 -- clean search hilight

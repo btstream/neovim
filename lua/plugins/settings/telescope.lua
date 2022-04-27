@@ -1,18 +1,18 @@
 local map = vim.api.nvim_set_keymap
 local actions = require("telescope.actions")
 require("telescope").setup({
-	defaults = {
-		sorting_strategy = "ascending",
-		layout_config = { prompt_position = "top" },
-		mappings = { i = { ["<esc>"] = actions.close }, n = { ["<esc>"] = actions.close } },
-	},
-	pickers = {
-		-- find_files = {
-		--     theme = "dropdown"
-		-- },
-		lsp_code_actions = { theme = "cursor" },
-	},
-	extensions = { ["ui-select"] = { require("telescope.themes").get_dropdown() } },
+    defaults = {
+        sorting_strategy = "ascending",
+        layout_config = { prompt_position = "top" },
+        mappings = { i = { ["<esc>"] = actions.close }, n = { ["<esc>"] = actions.close } },
+    },
+    pickers = {
+        -- find_files = {
+        --     theme = "dropdown"
+        -- },
+        lsp_code_actions = { theme = "cursor" },
+    },
+    extensions = { ["ui-select"] = { require("telescope.themes").get_dropdown() } },
 })
 
 require("telescope").load_extension("ui-select")
