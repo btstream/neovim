@@ -151,6 +151,14 @@ return require('packer').startup(function(use)
         end
     }
 
+    use { "nvim-telescope/telescope-file-browser.nvim",
+        after = 'telescope.nvim',
+        config = function()
+            require('plugins.settings.file_explorer')
+            -- require('telescope').load_extension('file_browser')
+        end
+    }
+
     -- dashboard
     use {
         'glepnir/dashboard-nvim',
@@ -169,15 +177,15 @@ return require('packer').startup(function(use)
     }
 
     -- ranger
-    use {
-        'kevinhwang91/rnvimr',
-        cond = function()
-            return vim.fn.has('win32') == 0
-        end,
-        config = function()
-            require('plugins.settings.ranger')
-        end
-    }
+    -- use {
+    --     'kevinhwang91/rnvimr',
+    --     cond = function()
+    --         return vim.fn.has('win32') == 0
+    --     end,
+    --     config = function()
+    --         require('plugins.settings.ranger')
+    --     end
+    -- }
 
     -- project
     use {
