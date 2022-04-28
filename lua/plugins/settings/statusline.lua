@@ -12,65 +12,10 @@ local lsp = require("galaxyline.providers.lsp")
 local vcs = require("galaxyline.providers.vcs")
 lsp_status.config({})
 
--- functions to remap base16-themes to colors
-local function get_colors(name)
-    local bm = {
-        bg = "base01",
-        fg = "base04",
-        red = "base08",
-        orange = "base09",
-        yellow = "base0A",
-        green = "base0B",
-        blue = "base0D",
-        cyan = "base0C",
-        purple = "base0E",
-        magenta = "base0E",
-        white = "base05",
-        bg_alt = "base01",
-        bg_cur = "base01",
-    }
-    return function()
-        local _, b = vim.g.galaxyline_colorscheme:find("base16")
-        if b then
-            local colors = require("base16-colorscheme").colorschemes[vim.g.galaxyline_colorscheme:sub(b + 2)]
-            local ma_colors = require("material.colors")
-            if vim.g.colors_name == "material" then
-                local ds = ma_colors["dark" .. name]
-                local s = ma_colors[name]
-                if ds ~= nil then
-                    return ds
-                end
-                if s ~= nil then
-                    return s
-                end
-            end
-            return colors[bm[name]]
-        else
-            return require("galaxyline.themes.colors").get_color(name)()
-        end
-    end
-end
-
 M.setup = function()
-    require("plugins.settings.statusline.themes.colors").init_or_update()
-
-    local colors = {
-        bg = get_colors("bg_cur"),
-        fg = get_colors("fg"),
-        red = get_colors("red"),
-        orange = get_colors("orange"),
-        yellow = get_colors("yellow"),
-        green = get_colors("green"),
-        blue = get_colors("blue"),
-        cyan = get_colors("cyan"),
-        purple = get_colors("purple"),
-        magenta = get_colors("magenta"),
-        white = get_colors("white"),
-    }
-
-    if vim.g.colors_name == "material" then
-        colors.blue = get_colors("accent")
-    end
+    -- require("plugins.settings.statusline.themes.colors").init_or_update()
+    local colors = require("plugins.settings.statusline.themes.colors")
+    colors.init_or_update(nil)
 
     gl.short_line_list = {
         "NvimTree",
@@ -87,92 +32,22 @@ M.setup = function()
         "dap-repl",
     }
 
-    local mode_color = { -- {{{2
-        c = colors.magenta,
-        ["!"] = colors.red,
-        i = colors.green,
-        ic = colors.yellow,
-        ix = colors.yellow,
-        n = colors.blue,
-        no = colors.blue,
-        nov = colors.blue,
-        noV = colors.blue,
-        r = colors.cyan,
-        rm = colors.cyan,
-        ["r?"] = colors.cyan,
-        R = colors.purple,
-        Rv = colors.purple,
-        s = colors.orange,
-        S = colors.orange,
-        [""] = colors.orange,
-        t = colors.cyan,
-        v = colors.red,
-        V = colors.red,
-        -- [''] = colors.red
-    }
+    -- local mode_color = {}
+    -- mode_color.get = require("plugins.settings.statusline.themes.colors").get_mode_color
 
-    mode_color.get = function()
-        local s = mode_color[vim.fn.mode()]
-        if vim.g.dap_loaded then
-            s = colors.magenta
-        end
-        if type(s) == "function" then
-            return s()
-        else
-            return s
-        end
-    end
-
-    mode_color.get = require("plugins.settings.statusline.themes.colors").get_mode_color
-
-    local mode_icon = { --- {{{2
-        c = "גּ COMMAND",
-        ["!"] = "גּ COMMAND",
-        i = " INSERT",
-        ic = " INSERT",
-        ix = " INSERT",
-        n = " NORMAL",
-        R = "﯒ REPLACE",
-        Rv = "﯒ REPLACE",
-        r = "﯒ REPLACE",
-        rm = "﯒ REPLACE",
-        ["r?"] = "﯒ REPLACE",
-        s = "ﱐ SELECT",
-        S = "ﱐ SELECT",
-        [""] = "ﱐ SELECT",
-        t = " TERMINAL",
-        v = "ﱐ VISUAL",
-        V = "ﱐ VISUAL",
-    }
-
-    mode_icon.get = function()
-        return mode_icon[vim.fn.mode()]
-    end
-
+    local mode_icon = {}
     mode_icon.get = require("plugins.settings.statusline.themes.icons").get_mode_icon
 
-    local num_icons = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " }
-    num_icons.get = function()
-        return num_icons[math.min(10, buffer.get_buffer_number())]
-    end
-
-    local function set_mode_color(group, fg)
-        local x = "guibg"
-        local g = "Galaxy" .. group
-        if fg then
-            x = "guifg"
-        end
-        vim.cmd("hi! " .. g .. " " .. x .. "=" .. mode_color.get())
-    end
+    -- local colors.set_indicator_color = colors.set_indicator_color
 
     --------------------
     -- left
     --------------------
     gls.left[0] = {
         ModeNum = {
-            highlight = { colors.bg, mode_color.get() },
+            highlight = { colors.bg, colors.get_mode_color() },
             provider = function()
-                set_mode_color("ModeNum")
+                colors.set_indicator_color("ModeNum")
                 -- return '  ' .. mode_icon.get() .. num_icons.get() .. ' '
                 return "  " .. mode_icon.get() .. " "
             end,
@@ -181,9 +56,9 @@ M.setup = function()
 
     gls.left[1] = {
         LFileSepL = {
-            highlight = { mode_color.get(), colors.bg },
+            highlight = { colors.get_mode_color(), colors.bg },
             provider = function()
-                set_mode_color("LFileSepL", true)
+                colors.set_indicator_color("LFileSepL", true)
                 return " "
                 -- return ''
             end,
@@ -211,7 +86,7 @@ M.setup = function()
                     -- return 'EMPTY '
                     return buffer.get_buffer_filetype()
                 end
-                -- set_mode_color('FileInfo', true)
+                -- colors.set_indicator_color('FileInfo', true)
                 return file_name
             end,
         },
@@ -219,9 +94,9 @@ M.setup = function()
 
     gls.left[4] = {
         LFileSepR = {
-            highlight = { mode_color.get(), colors.bg },
+            highlight = { colors.get_mode_color(), colors.bg },
             provider = function()
-                set_mode_color("LFileSepR", true)
+                colors.set_indicator_color("LFileSepR", true)
                 -- return ''
                 return ""
             end,
@@ -377,9 +252,9 @@ M.setup = function()
 
     gls.right[4] = {
         RFileSepL = {
-            highlight = { mode_color.get(), colors.bg },
+            highlight = { colors.get_mode_color(), colors.bg },
             provider = function()
-                set_mode_color("RFileSepL", true)
+                colors.set_indicator_color("RFileSepL", true)
                 return "  "
             end,
         },
@@ -392,7 +267,7 @@ M.setup = function()
                 local format_icon = { ["DOS"] = " ", ["MAC"] = " ", ["UNIX"] = " " }
                 local encode = fileinfo.get_file_encode()
                 local format = fileinfo.get_file_format()
-                set_mode_color("FileInfo", true)
+                colors.set_indicator_color("FileInfo", true)
                 return " " .. encode .. " " .. format_icon[format]
             end,
         },
@@ -400,9 +275,9 @@ M.setup = function()
 
     gls.right[6] = {
         RFileSepR = {
-            highlight = { mode_color.get(), colors.bg },
+            highlight = { colors.get_mode_color(), colors.bg },
             provider = function()
-                set_mode_color("RFileSepR", true)
+                colors.set_indicator_color("RFileSepR", true)
                 -- return ''
                 return " "
             end,
@@ -411,116 +286,33 @@ M.setup = function()
 
     gls.right[7] = {
         LineInfo = {
-            highlight = { colors.bg, mode_color.get() },
+            highlight = { colors.bg, colors.get_mode_color() },
             provider = function()
-                set_mode_color("LineInfo")
+                colors.set_indicator_color("LineInfo")
                 local cursor = vim.api.nvim_win_get_cursor(0)
                 return "   " .. cursor[1] .. "/" .. vim.api.nvim_buf_line_count(0) .. ":" .. cursor[2] .. " "
             end,
         },
     }
 
-    -----------------------------
-    -- short lines
-    -----------------------------
-    -- local mode_icon_short = { --- {{{2
-    --     c = "גּ ",
-    --     ['!'] = "גּ ",
-    --     i = " ",
-    --     ic = " ",
-    --     ix = " ",
-    --     n = " ",
-    --     R = "﯒ ",
-    --     Rv = "﯒ ",
-    --     r = "﯒ ",
-    --     rm = "﯒ ",
-    --     ['r?'] = "﯒ ",
-    --     s = "ﱐ ",
-    --     S = "ﱐ ",
-    --     [''] = "ﱐ ",
-    --     t = " ",
-    --     v = "ﱐ ",
-    --     V = "ﱐ "
-    -- }
-    -- mode_icon_short.get = function()
-    --     return mode_icon_short[vim.fn.mode()]
-    -- end
-
-    -- local filetype_icons = {
-    --     NVIMTREE = "פּ ",
-    --     HELP = "ﲉ ",
-    --     TOGGLETERM = " ",
-    --     OUTLINE = " ",
-    --     PACKER = " ",
-    --     DAPUI_WATCHES = " ",
-    --     DAPUI_CONFIG = " ",
-    --     DAPUI_SCOPES = " ",
-    --     DAPUI_BREAKPOINTS = " ",
-    --     ["DAP-REPL"] = " ",
-    --     DAPUI_STACKS = " ",
-    -- }
-    -- filetype_icons.get = function()
-    --     local buftype = buffer.get_buffer_filetype()
-    --     -- print(buftype)
-    --     local icon = filetype_icons[buftype]
-    --     if icon then
-    --         return icon
-    --     else
-    --         return " "
-    --     end
-    -- end
     local filetype_icons = {}
-
     filetype_icons.get = require("plugins.settings.statusline.themes.icons").get_filetype_icon
-
-    -- local filetype_colors = {
-    --     -- NVIMTREE = colors.blue,
-    --     -- HELP = colors.blue,
-    --     -- TOGGLETERM = colors.blue,
-    --     -- OUTLINE = colors.blue,
-    --     DAPUI_WATCHES = colors.magenta,
-    --     DAPUI_CONFIG = colors.magenta,
-    --     DAPUI_SCOPES = colors.magenta,
-    --     DAPUI_BREAKPOINTS = colors.magenta,
-    --     ["DAP-REPL"] = colors.magenta,
-    --     DAPUI_STACKS = colors.magenta,
-    -- }
-
-    -- local function set_filetype_color(group, fg)
-    --     local x = "guibg"
-    --     local g = "Galaxy" .. group
-    --     if fg then
-    --         x = "guifg"
-    --     end
-    --
-    --     local buftype = buffer.get_buffer_filetype()
-    --     local color = filetype_colors[buftype]
-    --     if color then
-    --         if type(color) == "function" then
-    --             color = color()
-    --         end
-    --     else
-    --         color = mode_color.get()
-    --     end
-    --
-    --     vim.cmd("hi! " .. g .. " " .. x .. "=" .. color)
-    -- end
 
     local set_filetype_color = require("plugins.settings.statusline.themes.colors").set_filetype_color
     -- gls.short_line_left[0] = {
     --     ModeNumShort = {
-    --         highlight = { colors.bg, mode_color.get() },
+    --         highlight = { colors.bg, colors.get_mode_color() },
     --         provider = function()
-    --             set_mode_color('ModeNumShort')
+    --             colors.set_indicator_color('ModeNumShort')
     --             return '  ' .. mode_icon_short.get()
     --         end
     --     }
     -- }
     gls.short_line_left[0] = {
         FiletypeIcon = {
-            highlight = { colors.bg, mode_color.get() },
+            highlight = { colors.bg, colors.get_mode_color() },
             provider = function()
-                -- set_mode_color('FiletypeIcon')
+                -- colors.set_indicator_color('FiletypeIcon')
                 set_filetype_color("FiletypeIcon")
                 return "  " .. filetype_icons.get()
             end,
@@ -528,7 +320,7 @@ M.setup = function()
     }
     gls.short_line_left[1] = {
         LFileSepLShort = {
-            highlight = { mode_color.get(), colors.bg },
+            highlight = { colors.get_mode_color(), colors.bg },
             provider = function()
                 set_filetype_color("LFileSepLShort", false)
                 -- return ''
@@ -550,7 +342,7 @@ M.setup = function()
     -- gls.short_line_right[0] = gls.right[6]
     gls.short_line_right[0] = {
         RFileSepRShort = {
-            highlight = { mode_color.get(), colors.bg },
+            highlight = { colors.get_mode_color(), colors.bg },
             provider = function()
                 set_filetype_color("RFileSepRShort", false)
                 -- return ''
@@ -560,18 +352,14 @@ M.setup = function()
     }
 
     -- for mid background
-    vim.cmd([[hi! StatusLine guibg=]] .. colors.bg())
+    vim.cmd([[hi! StatusLine guibg=]] .. colors.bg)
     vim.cmd([[
     autocmd ColorScheme * lua require('plugins.settings.statusline').update_status_bg()
     ]])
 end
 
-M.dyn_theme_color = function(name)
-    return get_colors(name)()
-end
-
 M.update_status_bg = function()
-    vim.cmd([[hi! StatusLine guibg=]] .. get_colors("bg")())
+    vim.cmd([[hi! StatusLine guibg=]] .. require("plugins.settings.statusline.themes.colors").bg)
 end
 
 return M

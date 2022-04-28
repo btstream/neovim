@@ -48,6 +48,8 @@ M.init_or_update = function(colors)
             )
             local mcolors = require("material.colors")
             colors = vim.tbl_extend("force", colors, mcolors)
+            -- set background to a lighter colors for material themes
+            colors.bg = colors.bg_cur
         elseif vim.g.colors_name:find("base16") then -- if base16 colors
             colors = require("plugins.settings.statusline.themes.colors.base16").get(nil)
         end
@@ -101,4 +103,13 @@ M.set_filetype_color = function(group, fg)
     vim.cmd("hi! " .. g .. " " .. x .. "=" .. color)
 end
 
+setmetatable(M, {
+    __index = function(self, key)
+        if vim.g.statusline_colors[key] ~= nil then
+            return vim.g.statusline_colors[key]
+        else
+            return self[key]
+        end
+    end,
+})
 return M
