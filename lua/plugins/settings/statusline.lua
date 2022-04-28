@@ -1,7 +1,5 @@
 local M = {}
 
-vim.g.galaxyline_colorscheme = "base16-material-darker"
-
 local gl = require("galaxyline")
 local gls = gl.section
 local lsp_status = require("lsp-status")
@@ -15,6 +13,7 @@ lsp_status.config({})
 M.setup = function()
     -- require("plugins.settings.statusline.themes.colors").init_or_update()
     local colors = require("plugins.settings.statusline.themes.colors")
+    local icons = require("plugins.settings.statusline.themes.icons")
     colors.init_or_update(nil)
 
     gl.short_line_list = {
@@ -32,14 +31,6 @@ M.setup = function()
         "dap-repl",
     }
 
-    -- local mode_color = {}
-    -- mode_color.get = require("plugins.settings.statusline.themes.colors").get_mode_color
-
-    local mode_icon = {}
-    mode_icon.get = require("plugins.settings.statusline.themes.icons").get_mode_icon
-
-    -- local colors.set_indicator_color = colors.set_indicator_color
-
     --------------------
     -- left
     --------------------
@@ -48,8 +39,8 @@ M.setup = function()
             highlight = { colors.bg, colors.get_mode_color() },
             provider = function()
                 colors.set_indicator_color("ModeNum")
-                -- return '  ' .. mode_icon.get() .. num_icons.get() .. ' '
-                return "  " .. mode_icon.get() .. " "
+                -- return '  ' .. icons.get_mode_icon() .. num_icons.get() .. ' '
+                return "  " .. icons.get_mode_icon() .. " "
             end,
         },
     }
@@ -295,7 +286,7 @@ M.setup = function()
         },
     }
 
-    local icons = require("plugins.settings.statusline.themes.icons")
+    -- local icons = require("plugins.settings.statusline.themes.icons")
     gls.short_line_left[0] = {
         FiletypeIcon = {
             highlight = { colors.bg, colors.get_mode_color() },
@@ -347,6 +338,7 @@ M.setup = function()
 end
 
 M.update_status_bg = function()
+    require("plugins.settings.statusline.themes.colors").init_or_update(nil)
     vim.cmd([[hi! StatusLine guibg=]] .. require("plugins.settings.statusline.themes.colors").bg)
 end
 
