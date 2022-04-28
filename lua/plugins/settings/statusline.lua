@@ -295,26 +295,14 @@ M.setup = function()
         },
     }
 
-    local filetype_icons = {}
-    filetype_icons.get = require("plugins.settings.statusline.themes.icons").get_filetype_icon
-
-    local set_filetype_color = require("plugins.settings.statusline.themes.colors").set_filetype_color
-    -- gls.short_line_left[0] = {
-    --     ModeNumShort = {
-    --         highlight = { colors.bg, colors.get_mode_color() },
-    --         provider = function()
-    --             colors.set_indicator_color('ModeNumShort')
-    --             return '  ' .. mode_icon_short.get()
-    --         end
-    --     }
-    -- }
+    local icons = require("plugins.settings.statusline.themes.icons")
     gls.short_line_left[0] = {
         FiletypeIcon = {
             highlight = { colors.bg, colors.get_mode_color() },
             provider = function()
                 -- colors.set_indicator_color('FiletypeIcon')
-                set_filetype_color("FiletypeIcon")
-                return "  " .. filetype_icons.get()
+                colors.set_filetype_color("FiletypeIcon")
+                return "  " .. icons.get_filetype_icon()
             end,
         },
     }
@@ -322,7 +310,7 @@ M.setup = function()
         LFileSepLShort = {
             highlight = { colors.get_mode_color(), colors.bg },
             provider = function()
-                set_filetype_color("LFileSepLShort", false)
+                colors.set_filetype_color("LFileSepLShort", false)
                 -- return ''
                 return ""
             end,
@@ -344,7 +332,7 @@ M.setup = function()
         RFileSepRShort = {
             highlight = { colors.get_mode_color(), colors.bg },
             provider = function()
-                set_filetype_color("RFileSepRShort", false)
+                colors.set_filetype_color("RFileSepRShort", false)
                 -- return ''
                 return ""
             end,
