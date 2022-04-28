@@ -1,14 +1,16 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({
+    vim.g.packer_bootstrap = fn.system({
         "git",
         "clone",
         "--depth",
         "1",
-        "https://github.com/wbthomason/packer.nvim",
+        "https://hub.fastgit.xyz/wbthomason/packer.nvim",
         install_path,
     })
+    print("Installing packer close and reopen Neovim...")
+    vim.cmd([[packadd packer.nvim]])
 end
 
 vim.cmd([[
@@ -18,7 +20,22 @@ vim.cmd([[
   augroup end
 ]])
 
--- base16_theme = 'material-darker'
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    return
+end
+
+-- Have packer use a popup window
+packer.init({
+    display = {
+        open_fn = function()
+            return require("packer.util").float({ border = "rounded" })
+        end,
+    },
+    git = {
+        default_url_format = "https://hub.fastgit.xyz/%s",
+    },
+})
 
 return require("packer").startup(function(use)
     -- add packer itself to packer manager, to avoid remove
@@ -308,7 +325,8 @@ return require("packer").startup(function(use)
     use({ "editorconfig/editorconfig-vim" })
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
-    if packer_bootstrap then
+    if vim.g.packer_bootstrap then
+        print("First install")
         require("packer").sync()
     end
 end)
