@@ -15,7 +15,7 @@ augroup end
 
 local M = {}
 M.set_transparent = function()
-    local enable = true
+    local enable = false
     if vim.g.GuiLoaded or vim.g.GUI == 1 then
         enable = false
     end
