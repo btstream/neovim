@@ -3,6 +3,8 @@ local colors = require("plugins.settings.statusline.themes.colors.base16").get("
 require("material").setup({
     custom_colors = {
         accent = colors.blue, -- or whatever color you like
+        blue = colors.blue,
+        green = colors.green,
     },
 })
 vim.cmd("colorscheme material")
