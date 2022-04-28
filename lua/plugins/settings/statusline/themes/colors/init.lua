@@ -1,3 +1,4 @@
+local buffer = require("galaxyline.providers.buffer")
 local M = {}
 
 local mode_color = { -- {{{2
@@ -22,6 +23,15 @@ local mode_color = { -- {{{2
     v = "red",
     V = "red",
     -- [''] = colors.red
+}
+
+local filetype_colors = {
+    DAPUI_WATCHES = "magenta",
+    DAPUI_CONFIG = "magenta",
+    DAPUI_SCOPES = "magenta",
+    DAPUI_BREAKPOINTS = "magenta",
+    ["DAP-REPL"] = "magenta",
+    DAPUI_STACKS = "magenta",
 }
 
 --- update color scheme. If no param is given, it will generate color automaytically
@@ -51,7 +61,7 @@ end
 M.get_mode_color = function()
     local s = vim.g.statusline_colors[mode_color[vim.fn.mode()]]
     if vim.g.dap_loaded then
-        s = vim.g.statusline_colors.magenta
+        s = vim.g.statusline_("magenta")
     end
     print(s)
     if type(s) == "function" then
@@ -72,4 +82,25 @@ M.set_indicator_color = function(group, fg)
     end
     vim.cmd("hi! " .. g .. " " .. x .. "=" .. M.get_mode_color())
 end
+
+M.set_filetype_color = function(group, fg)
+    local x = "guibg"
+    local g = "Galaxy" .. group
+    if fg then
+        x = "guifg"
+    end
+
+    local buftype = buffer.get_buffer_filetype()
+    local color = vim.g.statusline_colors[filetype_colors[buftype]]
+    if color then
+        if type(color) == "function" then
+            color = color()
+        end
+    else
+        color = M.get_mode_color()
+    end
+
+    vim.cmd("hi! " .. g .. " " .. x .. "=" .. color)
+end
+
 return M

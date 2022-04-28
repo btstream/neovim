@@ -481,26 +481,27 @@ M.setup = function()
         DAPUI_STACKS = colors.magenta,
     }
 
-    local function set_filetype_color(group, fg)
-        local x = "guibg"
-        local g = "Galaxy" .. group
-        if fg then
-            x = "guifg"
-        end
+    -- local function set_filetype_color(group, fg)
+    --     local x = "guibg"
+    --     local g = "Galaxy" .. group
+    --     if fg then
+    --         x = "guifg"
+    --     end
+    --
+    --     local buftype = buffer.get_buffer_filetype()
+    --     local color = filetype_colors[buftype]
+    --     if color then
+    --         if type(color) == "function" then
+    --             color = color()
+    --         end
+    --     else
+    --         color = mode_color.get()
+    --     end
+    --
+    --     vim.cmd("hi! " .. g .. " " .. x .. "=" .. color)
+    -- end
 
-        local buftype = buffer.get_buffer_filetype()
-        local color = filetype_colors[buftype]
-        if color then
-            if type(color) == "function" then
-                color = color()
-            end
-        else
-            color = mode_color.get()
-        end
-
-        vim.cmd("hi! " .. g .. " " .. x .. "=" .. color)
-    end
-
+    local set_filetype_color = require("plugins.settings.statusline.themes.colors").set_filetype_color
     -- gls.short_line_left[0] = {
     --     ModeNumShort = {
     --         highlight = { colors.bg, mode_color.get() },
