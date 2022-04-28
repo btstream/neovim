@@ -1,15 +1,15 @@
--- vim.cmd('colorscheme base16-material-darker')
 vim.g.material_style = "darker"
--- vim.g.galaxyline_colorscheme = 'base16-material-darker'
+local colors = require("plugins.settings.statusline.themes.colors.base16").get("material-darker")
+require("material").setup({
+    custom_colors = {
+        accent = colors.blue, -- or whatever color you like
+    },
+})
 vim.cmd("colorscheme material")
 vim.cmd([[
-" hi! link Visual CursorLine
-" hi! link VertSplit CursorLine
-" set fillchars+=vert:\ 
 augroup themes
     autocmd!
     autocmd VimEnter * lua require('plugins.settings.themes').set_transparent()
-    " autocmd colorscheme * hi! link VertSplit CursorLine
 augroup end
 ]])
 
