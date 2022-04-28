@@ -149,6 +149,8 @@ M.setup = function()
         return mode_icon[vim.fn.mode()]
     end
 
+    mode_icon.get = require("plugins.settings.statusline.themes.icons").get_mode_icon
+
     local num_icons = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " }
     num_icons.get = function()
         return num_icons[math.min(10, buffer.get_buffer_number())]
@@ -444,29 +446,32 @@ M.setup = function()
     --     return mode_icon_short[vim.fn.mode()]
     -- end
 
-    local filetype_icons = {
-        NVIMTREE = "פּ ",
-        HELP = "ﲉ ",
-        TOGGLETERM = " ",
-        OUTLINE = " ",
-        PACKER = " ",
-        DAPUI_WATCHES = " ",
-        DAPUI_CONFIG = " ",
-        DAPUI_SCOPES = " ",
-        DAPUI_BREAKPOINTS = " ",
-        ["DAP-REPL"] = " ",
-        DAPUI_STACKS = " ",
-    }
-    filetype_icons.get = function()
-        local buftype = buffer.get_buffer_filetype()
-        -- print(buftype)
-        local icon = filetype_icons[buftype]
-        if icon then
-            return icon
-        else
-            return " "
-        end
-    end
+    -- local filetype_icons = {
+    --     NVIMTREE = "פּ ",
+    --     HELP = "ﲉ ",
+    --     TOGGLETERM = " ",
+    --     OUTLINE = " ",
+    --     PACKER = " ",
+    --     DAPUI_WATCHES = " ",
+    --     DAPUI_CONFIG = " ",
+    --     DAPUI_SCOPES = " ",
+    --     DAPUI_BREAKPOINTS = " ",
+    --     ["DAP-REPL"] = " ",
+    --     DAPUI_STACKS = " ",
+    -- }
+    -- filetype_icons.get = function()
+    --     local buftype = buffer.get_buffer_filetype()
+    --     -- print(buftype)
+    --     local icon = filetype_icons[buftype]
+    --     if icon then
+    --         return icon
+    --     else
+    --         return " "
+    --     end
+    -- end
+    local filetype_icons = {}
+
+    filetype_icons.get = require("plugins.settings.statusline.themes.icons").get_filetype_icon
 
     -- local filetype_colors = {
     --     -- NVIMTREE = colors.blue,
