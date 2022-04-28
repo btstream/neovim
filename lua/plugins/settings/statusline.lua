@@ -52,6 +52,8 @@ local function get_colors(name)
 end
 
 M.setup = function()
+    require("plugins.settings.statusline.themes.colors").init_or_update()
+
     local colors = {
         bg = get_colors("bg_cur"),
         fg = get_colors("fg"),
@@ -121,6 +123,8 @@ M.setup = function()
         end
     end
 
+    mode_color.get = require("plugins.settings.statusline.themes.colors").get_mode_color
+
     local mode_icon = { --- {{{2
         c = "גּ COMMAND",
         ["!"] = "גּ COMMAND",
@@ -158,6 +162,7 @@ M.setup = function()
         end
         vim.cmd("hi! " .. g .. " " .. x .. "=" .. mode_color.get())
     end
+
     --------------------
     -- left
     --------------------
