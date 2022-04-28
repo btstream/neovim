@@ -52,7 +52,6 @@ M.init_or_update = function(colors)
             colors = require("plugins.settings.statusline.themes.colors.base16").get(nil)
         end
     end
-    print(vim.json.encode(colors))
     -- set a global color scheme
     vim.g.statusline_colors = colors
 end
@@ -63,7 +62,6 @@ M.get_mode_color = function()
     if vim.g.dap_loaded then
         s = vim.g.statusline_("magenta")
     end
-    print(s)
     if type(s) == "function" then
         return s()
     else

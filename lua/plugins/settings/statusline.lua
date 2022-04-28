@@ -468,18 +468,18 @@ M.setup = function()
         end
     end
 
-    local filetype_colors = {
-        -- NVIMTREE = colors.blue,
-        -- HELP = colors.blue,
-        -- TOGGLETERM = colors.blue,
-        -- OUTLINE = colors.blue,
-        DAPUI_WATCHES = colors.magenta,
-        DAPUI_CONFIG = colors.magenta,
-        DAPUI_SCOPES = colors.magenta,
-        DAPUI_BREAKPOINTS = colors.magenta,
-        ["DAP-REPL"] = colors.magenta,
-        DAPUI_STACKS = colors.magenta,
-    }
+    -- local filetype_colors = {
+    --     -- NVIMTREE = colors.blue,
+    --     -- HELP = colors.blue,
+    --     -- TOGGLETERM = colors.blue,
+    --     -- OUTLINE = colors.blue,
+    --     DAPUI_WATCHES = colors.magenta,
+    --     DAPUI_CONFIG = colors.magenta,
+    --     DAPUI_SCOPES = colors.magenta,
+    --     DAPUI_BREAKPOINTS = colors.magenta,
+    --     ["DAP-REPL"] = colors.magenta,
+    --     DAPUI_STACKS = colors.magenta,
+    -- }
 
     -- local function set_filetype_color(group, fg)
     --     local x = "guibg"
