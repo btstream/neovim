@@ -12,7 +12,7 @@ require("lualine").setup({
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {},
-        always_divide_middle = true,
+        always_divide_middle = false,
         globalstatus = false,
     },
     sections = {
@@ -23,12 +23,12 @@ require("lualine").setup({
                 separator = { right = "" },
             },
         },
-        lualine_b = {
+        lualine_c = {
             "branch",
             { "diff", symbols = { added = " ", modified = " ", removed = " " } },
             { "diagnostics", symbols = { error = " ", warn = " ", hint = " ", info = " " } },
         },
-        lualine_c = {
+        lualine_b = {
             {
                 filename,
                 symbols = { modified = " ", readonly = " ", unnamed = " " },
