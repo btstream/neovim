@@ -1,5 +1,5 @@
 vim.g.material_style = "darker"
-local colors = require("plugins.settings.statusline.themes.colors.base16").get("material-darker")
+local colors = require("plugins.settings.statusline.galaxyline.themes.colors.base16").get("material-darker")
 require("material").setup({
     custom_colors = {
         accent = colors.blue, -- or whatever color you like

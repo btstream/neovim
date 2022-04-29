@@ -25,6 +25,8 @@ if not status_ok then
     return
 end
 
+vim.g.statusline = "lualine"
+
 -- Have packer use a popup window
 packer.init({
     display = {
@@ -176,8 +178,22 @@ return require("packer").startup(function(use)
         "NTBBloodbath/galaxyline.nvim",
         requires = { { "kyazdani42/nvim-web-devicons" }, { "RRethy/nvim-base16", opt = true } },
         after = "nvim-base16",
+        cond = function()
+            return vim.g.statusline == "galaxyline"
+        end,
         config = function()
-            require("plugins.settings.statusline").setup()
+            require("plugins.settings.statusline.galaxyline").setup()
+        end,
+    })
+
+    use({
+        "nvim-lualine/lualine.nvim",
+        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+        cond = function()
+            return vim.g.statusline == "lualine"
+        end,
+        config = function()
+            require("plugins.settings.statusline.lualine")
         end,
     })
 

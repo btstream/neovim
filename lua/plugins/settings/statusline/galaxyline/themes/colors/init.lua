@@ -43,7 +43,7 @@ M.init_or_update = function(colors)
     if colors == nil then
         -- generate colors for material colors
         if vim.g.colors_name == "material" then
-            colors = require("plugins.settings.statusline.themes.colors.base16").get(
+            colors = require("plugins.settings.statusline.galaxyline.themes.colors.base16").get(
                 "material" .. "-" .. vim.g.material_style
             )
             local mcolors = require("material.colors")
@@ -51,7 +51,7 @@ M.init_or_update = function(colors)
             -- set background to a lighter colors for material themes
             colors.bg = colors.bg_cur
         elseif vim.g.colors_name:find("base16") then -- if base16 colors
-            colors = require("plugins.settings.statusline.themes.colors.base16").get(nil)
+            colors = require("plugins.settings.statusline.galaxyline.themes.colors.base16").get(nil)
         end
     end
     -- set a global color scheme

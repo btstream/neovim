@@ -11,9 +11,9 @@ local vcs = require("galaxyline.providers.vcs")
 lsp_status.config({})
 
 M.setup = function()
-    -- require("plugins.settings.statusline.themes.colors").init_or_update()
-    local colors = require("plugins.settings.statusline.themes.colors")
-    local icons = require("plugins.settings.statusline.themes.icons")
+    -- require("plugins.settings.statusline.galaxyline.themes.colors").init_or_update()
+    local colors = require("plugins.settings.statusline.galaxyline.themes.colors")
+    local icons = require("plugins.settings.statusline.galaxyline.themes.icons")
     colors.init_or_update(nil)
 
     gl.short_line_list = {
@@ -286,7 +286,7 @@ M.setup = function()
         },
     }
 
-    -- local icons = require("plugins.settings.statusline.themes.icons")
+    -- local icons = require("plugins.settings.statusline.galaxyline.themes.icons")
     gls.short_line_left[0] = {
         FiletypeIcon = {
             highlight = { colors.bg, colors.get_mode_color() },
@@ -338,8 +338,8 @@ M.setup = function()
 end
 
 M.update_status_bg = function()
-    require("plugins.settings.statusline.themes.colors").init_or_update(nil)
-    vim.cmd([[hi! StatusLine guibg=]] .. require("plugins.settings.statusline.themes.colors").bg)
+    require("plugins.settings.statusline.galaxyline.themes.colors").init_or_update(nil)
+    vim.cmd([[hi! StatusLine guibg=]] .. require("plugins.settings.statusline.galaxyline.themes.colors").bg)
 end
 
 return M
