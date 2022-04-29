@@ -9,8 +9,8 @@ require("lualine").setup({
     options = {
         icons_enabled = true,
         theme = "material",
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
         disabled_filetypes = {},
         always_divide_middle = true,
         globalstatus = false,
@@ -20,7 +20,7 @@ require("lualine").setup({
             {
                 "mode",
                 color = get_debug_color,
-                separator = { right = "" },
+                separator = { right = "" },
             },
         },
         lualine_b = {
