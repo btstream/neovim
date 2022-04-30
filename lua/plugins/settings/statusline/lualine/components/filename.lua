@@ -9,7 +9,9 @@ function filename:update_status(is_focused)
         return ""
     end
 
-    return filename.super.update_status(self, is_focused)
+    local indent = vim.bo.filetype == "" and " " or ""
+
+    return indent .. filename.super.update_status(self, is_focused)
 end
 
 return filename
