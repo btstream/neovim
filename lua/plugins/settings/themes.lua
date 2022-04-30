@@ -10,6 +10,7 @@ require("material").setup({
         eob_line = true,
     },
 })
+require("nightfox").setup({})
 vim.cmd("colorscheme material")
 vim.cmd([[
 augroup themes
