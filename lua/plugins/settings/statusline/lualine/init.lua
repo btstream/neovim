@@ -41,6 +41,17 @@ require("lualine").setup({
                 -- separator = { right = "" },
                 separator = { right = "" },
             },
+            {
+                function()
+                    return "(DEBUG)"
+                end,
+                color = get_debug_color,
+                padding = { left = 0, right = 1 },
+                cond = function()
+                    return vim.g.dap_loaded
+                end,
+                separator = { right = "" },
+            },
         },
         lualine_b = {
             {
