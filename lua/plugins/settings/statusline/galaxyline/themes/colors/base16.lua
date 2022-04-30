@@ -15,6 +15,10 @@ local name_scheme = {
     bg_cur = "base01",
 }
 
+local function has_color(scheme)
+    vim.tbl_contains(vim.tbl_keys(colors), scheme)
+end
+
 local M = {}
 --- get a material color
 ---@param name string a color scheme's name
@@ -28,11 +32,12 @@ M.get = function(name)
         end
     end
 
-    local mcolor = colors[name]
-    if colors == nil then
-        -- use a default base16 color
-        mcolor = colors["material-darker"]
-    end
+    print(has_color(name))
+    local mcolor = has_color(name) and colors[name] or colors["material-darker"]
+    -- if has_color(name) then
+    --     -- use a default base16 color
+    --     mcolor = colors[name]
+    -- end
 
     local color = {}
     for key, value in pairs(name_scheme) do
