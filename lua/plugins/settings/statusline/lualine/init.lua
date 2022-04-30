@@ -25,7 +25,7 @@ filetype_tools.add_none_filetypes({
 require("lualine").setup({
     options = {
         icons_enabled = true,
-        theme = "material",
+        theme = "auto",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {},
