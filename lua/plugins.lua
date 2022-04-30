@@ -89,6 +89,13 @@ return require("packer").startup(function(use)
         end,
     })
 
+    use({
+        "rcarriga/nvim-notify",
+        config = function()
+            vim.notify = require("notify")
+        end,
+    })
+
     -- lsp and cmp
     use({
         "hrsh7th/nvim-cmp",
