@@ -7,7 +7,7 @@ require("material").setup({
     --     green = colors.green,
     -- },
     disable = {
-        eob_line = true,
+        eob_lines = true,
     },
 })
 require("nightfox").setup({})
