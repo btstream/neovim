@@ -25,6 +25,7 @@ M._icons = {
     DEFALT            = " ",
     TELESCOPEPROMPT   = " ",
     DASHBOARD         = " ",
+    LAZYGIT           = " ",
 }
 
 M.add_none_filetypes = function(types)
