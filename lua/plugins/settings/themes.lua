@@ -1,10 +1,13 @@
-vim.g.material_style = "darker"
-local colors = require("plugins.settings.statusline.galaxyline.themes.colors.base16").get("material-darker")
+vim.g.material_style = "Deep ocean"
+-- local colors = require("plugins.settings.statusline.galaxyline.themes.colors.base16").get("material-darker")
 require("material").setup({
-    custom_colors = {
-        accent = colors.blue, -- or whatever color you like
-        blue = colors.blue,
-        green = colors.green,
+    -- custom_colors = {
+    --     accent = colors.blue, -- or whatever color you like
+    --     blue = colors.blue,
+    --     green = colors.green,
+    -- },
+    disable = {
+        eob_line = true,
     },
 })
 vim.cmd("colorscheme material")
@@ -17,6 +20,7 @@ augroup end
 
 local M = {}
 M.set_transparent = function()
+    vim.cmd("highlight! link DashboardHeader String")
     local enable = false
     if vim.g.GuiLoaded or vim.g.GUI == 1 then
         enable = false
