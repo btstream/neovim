@@ -6,6 +6,7 @@ local filetype_tools = require("plugins.settings.statusline.lualine.utils.filety
 local mode = require("plugins.settings.statusline.lualine.components.mode")
 local filename = require("plugins.settings.statusline.lualine.components.filename")
 local search_result = require("plugins.settings.statusline.lualine.components.search_result")
+local terminal_info = require("plugins.settings.statusline.lualine.components.terminal_info")
 
 local function get_debug_color()
     return { bg = vim.g.dap_loaded and colors.darkpurple }
@@ -67,6 +68,12 @@ require("lualine").setup({
             },
         },
         lualine_c = {
+            {
+                terminal_info,
+                cond = function()
+                    return vim.bo.filetype:upper() == "TOGGLETERM"
+                end,
+            },
             "branch",
             { "diff", symbols = { added = " ", modified = " ", removed = " " } },
             {
