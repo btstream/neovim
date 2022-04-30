@@ -10,6 +10,36 @@ vim.g.dashboard_custom_section = {
     h = { description = { "  Configuration                  SPC s s" }, command = ":e ~/.config/nvim/init.lua" },
 }
 
+-- vim.g.dashboard_custom_header = {
+--     "",
+--     "",
+--     "",
+--     "",
+--     "      ╦           ┐",
+--     "   ╓▒╠╠▒╕        ╒╣▓╕",
+--     " ╓╣╬╬╬╠╠╠▒        ╣╣╣▓▄                                                     ╫██─",
+--     "╒▒▒╠╬╬╬╠╠╠▒       ╣╣╣╣╣▌",
+--     "╒╠╠╠╠╣╬╠╠╠╠╠▒     ╣╣╣╣╣▌      ▐▌╓╧▀╙╙▀▄    ▄▀▀╙╙╙╗    ╓▌▀╙╙▀▀▄  ██▓     ▓██ ╟██─ ╟██▓████▓▄▓█████▌",
+--     "╒╠╠╠╠╠▒╣╠╠╠╠╠▒    ▓▓▓▓▓▌      ║█      ║▌  ▓─      ║╕ ▓▀      └█ ╙██▌   ╟██─ ╟██─ ╟██╩   ║██▌   ║██▌",
+--     "▐╠╠╠╠╠░ ╚╠╠╠╠╠╬╕  ▓▓▓▓▓▌      ║▌       █ ▐█╙╙╙╙╙╙╙▀▀ █        ╫▌ ╙██▄ ╔██╛  ╟██─ ╟██    ║██▌   ╒██▌",
+--     "▐╠╠╠╠╠▒  └╣╬╬╬╬╬▒╓▓▓▓▓▓▌      ║▌       █ └█          █        ▓▌  ╚██╗██▀   ╟██─ ╟██    ║██▌   ╒██▌",
+--     "▐╠╠╠╠╠▒    ╚╬╬╬╬╬╣▓▓▓▓▓▌      ║▌       █  ╙▓      ╓  ╙▓      ▄▀    ║███▀    ╟██─ ╟██    ║██▌   ╒██▌",
+--     "▐╠╠╠╠╠▒     └╣╬╬╬╣▓▓█▓▓▌      ╙└       ▀    └╙▀▀╙╙     └╙╙╙▀╙       ╙╙╙     ╙╙╙  ╙╙╙    └╙╙     ╙╙└",
+--     " ╩╬╬╬╬▒       ║╬╬╣▓▓▓██╙",
+--     "   ╚╬╬▒        ╙╣╣▓▓▓╙",
+--     "     ╙▒          ╣▀└",
+--     "",
+-- }
+vim.g.dashboard_preview_command = "cat"
+vim.g.dashboard_preview_pipeline = "cat"
+vim.g.dashboard_preview_file = "~/.config/nvim/neovim_logo.dat"
+vim.g.dashboard_preview_file_height = 14
+vim.g.dashboard_preview_file_width = 80
+
+vim.g.dashboard_custom_footer = {
+    "",
+}
+
 local mopt = { noremap = true, silent = true }
 local map = vim.api.nvim_set_keymap
 
