@@ -1,4 +1,5 @@
 local lsp_status = require("lsp-status")
+local filetype_tools = require("plugins.settings.statusline.lualine.utils.filetype_tools")
 lsp_status.config({})
 
 --- function to get active_lsps, comes from galaxyline
@@ -30,15 +31,24 @@ end
 local function lsp_progress()
     -- local icon = ""
     local active_lsp = get_lsp_client("", { "null-ls" })
+    local icon = " "
     if active_lsp == "" then
-        return ""
+        icon = " "
+        if vim.bo.filetype == "" then
+            active_lsp = "plaintext"
+        elseif filetype_tools.is_nonefiletype() then
+            active_lsp = vim.bo.filetype
+            icon = ""
+        else
+            active_lsp = vim.bo.filetype
+        end
     end
 
     local progress = lsp_status.status_progress() .. " "
     if string.len(progress) > 1 then
         return progress
     else
-        return active_lsp .. " "
+        return icon .. active_lsp
     end
 end
 
