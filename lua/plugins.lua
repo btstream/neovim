@@ -1,7 +1,7 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-    vim.g.packer_bootstrap = fn.system({
+    PACKER_BOOTSTRAPG = fn.system({
         "git",
         "clone",
         "--depth",
@@ -44,9 +44,12 @@ return require("packer").startup(function(use)
     use("wbthomason/packer.nvim")
 
     -- themes
+    use({ "xiyaowong/nvim-transparent" })
+    use({ "marko-cerovac/material.nvim" })
+    use({ "EdenEast/nightfox.nvim" })
     use({
         "RRethy/nvim-base16",
-        requires = { "xiyaowong/nvim-transparent", "marko-cerovac/material.nvim", "EdenEast/nightfox.nvim" },
+        -- requires = { "xiyaowong/nvim-transparent", "marko-cerovac/material.nvim", "EdenEast/nightfox.nvim" },
         config = function()
             require("plugins.settings.themes")
         end,
@@ -97,20 +100,11 @@ return require("packer").startup(function(use)
     })
 
     -- lsp and cmp
+
     use({
-        "hrsh7th/nvim-cmp",
+        "neovim/nvim-lspconfig",
         requires = {
-            "neovim/nvim-lspconfig",
             "williamboman/nvim-lsp-installer",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
-            "hrsh7th/cmp-vsnip",
-            "hrsh7th/vim-vsnip",
-            "windwp/nvim-autopairs",
-            "rafamadriz/friendly-snippets",
             "onsails/lspkind-nvim",
             "simrat39/rust-tools.nvim",
             "nvim-lua/lsp-status.nvim",
@@ -120,24 +114,41 @@ return require("packer").startup(function(use)
             "ray-x/lsp_signature.nvim",
         },
         config = function()
-            require("plugins.settings.cmp")
             require("plugins.settings.lsp")
         end,
     })
 
-    use({
+    use({ -- outline
         "simrat39/symbols-outline.nvim",
         config = function()
             require("plugins.settings.symbols_outline")
         end,
     })
 
-    -- null-ls
-    use({
+    use({ -- null-ls
         "jose-elias-alvarez/null-ls.nvim",
         requires = { "nvim-lua/plenary.nvim" },
         config = function()
             require("plugins.settings.lsp.providers.null_ls")
+        end,
+    })
+
+    -- cmp
+    use({
+        "hrsh7th/nvim-cmp",
+        requires = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-vsnip",
+            "hrsh7th/vim-vsnip",
+            "windwp/nvim-autopairs",
+            "rafamadriz/friendly-snippets",
+        },
+        config = function()
+            require("plugins.settings.cmp")
         end,
     })
 
@@ -155,6 +166,7 @@ return require("packer").startup(function(use)
         branch = "dev",
     })
 
+    -- colorizer
     use({
         "norcalli/nvim-colorizer.lua",
         config = function()
@@ -314,6 +326,7 @@ return require("packer").startup(function(use)
         run = function()
             vim.cmd("call mkdp#util#install()")
         end,
+        ft = { "markdown" },
     })
 
     -- SnipR
@@ -329,6 +342,7 @@ return require("packer").startup(function(use)
         end,
     })
 
+    -- suda
     use({
         "lambdalisue/suda.vim",
         config = function()
@@ -345,10 +359,12 @@ return require("packer").startup(function(use)
         end,
     })
 
+    -- editorconfig
     use({ "editorconfig/editorconfig-vim" })
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
-    if vim.g.packer_bootstrap then
+    if PACKER_BOOTSTRAPG then
         print("First install")
         require("packer").sync()
     end
