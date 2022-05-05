@@ -47,8 +47,9 @@ end
 --- @param server Server object of lsp config
 --- @return function
 M.on_init = function(server)
+    local name = type(server) == table and server.name or server
     return function(client)
-        local local_settings = local_config.local_lsp_config(server.name)
+        local local_settings = local_config.local_lsp_config(name)
         client.config.settings = vim.tbl_deep_extend("force", client.config.settings, local_settings)
         -- vim.lsp.rpc.notify("workspace/didChangeConfiguration")
         client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })

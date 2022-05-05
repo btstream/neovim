@@ -1,6 +1,6 @@
 local lsp_installer = require("nvim-lsp-installer")
+local servers = require("nvim-lsp-installer.servers")
 local lspconfig = require("lspconfig")
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 capabilities = vim.tbl_deep_extend("keep", capabilities, require("lsp-status").capabilities)
@@ -8,7 +8,7 @@ capabilities = vim.tbl_deep_extend("keep", capabilities, require("lsp-status").c
 -----------------------------------
 -- setup lsp with lsp_installer
 -----------------------------------
-local servers = {
+local needed = {
     "bashls",
     "pyright",
     "jdtls",
@@ -24,11 +24,11 @@ local servers = {
     "lemminx",
 }
 lsp_installer.setup({
-    ensure_installed = servers,
+    ensure_installed = needed,
     automatic_installation = true,
 })
 
-for _, server in ipairs(lsp_installer.get_installed_servers()) do
+lsp_installer.on_server_ready(function(server)
     local on_init_callback = require("plugins.settings.lsp.utils").on_init(server)
     local on_attach_callback = require("plugins.settings.lsp.utils").on_attach
 
@@ -65,4 +65,4 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         end
     end
     lspconfig[server.name].setup(opts)
-end
+end)
