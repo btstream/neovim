@@ -12,12 +12,6 @@ require("material").setup({
 })
 require("nightfox").setup({})
 vim.cmd("colorscheme material")
--- vim.cmd([[
--- augroup themes
---     autocmd!
---     autocmd VimEnter * lua require('plugins.settings.themes').set_transparent()
--- augroup end
--- ]])
 vim.api.nvim_create_augroup("themes", {
     clear = true,
 })
@@ -59,4 +53,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
             exclude = {}, -- table: groups you don't want to clear
         })
     end,
+    group = "themes",
 })
