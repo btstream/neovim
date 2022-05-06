@@ -24,7 +24,7 @@ local needed = {
 }
 
 for _, server in pairs(lsp_installer.get_installed_servers()) do
-    vim.schedule(function()
+    server:on_ready(function(server)
         local on_init_callback = require("plugins.settings.lsp.utils").on_init(server)
         local on_attach_callback = require("plugins.settings.lsp.utils").on_attach
 
@@ -66,8 +66,5 @@ end
 
 lsp_installer.setup({
     ensure_installed = needed,
-    automatic_installation = true,
+    -- automatic_installation = true,
 })
-
--- lsp_installer.on_server_ready(function(server)
----- end)
