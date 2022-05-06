@@ -99,8 +99,7 @@ return require("packer").startup(function(use)
         end,
     })
 
-    -- lsp and cmp
-
+    -- lsp
     use({
         "neovim/nvim-lspconfig",
         requires = {
@@ -110,8 +109,9 @@ return require("packer").startup(function(use)
             "nvim-lua/lsp-status.nvim",
             "mfussenegger/nvim-jdtls",
             -- "tami5/lspsaga.nvim",
-            "btstream/nvim-dotnvim",
+            -- "btstream/nvim-dotnvim",
             "ray-x/lsp_signature.nvim",
+            "tamago324/nlsp-settings.nvim",
         },
         config = function()
             require("plugins.settings.lsp")

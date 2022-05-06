@@ -1,4 +1,4 @@
-local local_config = require("nvim-dotnvim")
+-- local local_config = require("nvim-dotnvim")
 local lsp_status = require("lsp-status")
 
 local M = {}
@@ -46,15 +46,15 @@ end
 --- tools to return an function for on_init call back
 --- @param server Server object of lsp config
 --- @return function
-M.on_init = function(server)
-    local name = type(server) == table and server.name or server
-    return function(client)
-        local local_settings = local_config.local_lsp_config(name)
-        client.config.settings = vim.tbl_deep_extend("force", client.config.settings, local_settings)
-        -- vim.lsp.rpc.notify("workspace/didChangeConfiguration")
-        client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-    end
-end
+-- M.on_init = function(server)
+--     local name = type(server) == table and server.name or server
+--     return function(client)
+--         local local_settings = local_config.local_lsp_config(name)
+--         client.config.settings = vim.tbl_deep_extend("force", client.config.settings, local_settings)
+--         -- vim.lsp.rpc.notify("workspace/didChangeConfiguration")
+--         client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+--     end
+-- end
 
 --- helper function for lsp server's on_attach callback
 --- @param client LspClient

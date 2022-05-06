@@ -1,19 +1,5 @@
 local jdtls = require("jdtls")
-local M = {}
-M.setup = function(opt)
-    _JdtCmd = opt.cmd
-    _OnAttach = opt.on_attach
-    _OnInit = opt.on_init
-    -- register startup hook
-    vim.cmd([[
-        augroup user-jdtls
-            autocmd!
-            autocmd FileType java lua require('plugins.settings.lsp.providers.jdtls').start()
-        augroup end
-    ]])
-end
-
-M.start = function()
+local function start_jdtls()
     -- local root_markers = {'gradlew', '.git'}
     -- local root_dir = require('jdtls.setup').find_root(root_markers)
     -- local home = os.getenv('HOME')
@@ -31,7 +17,7 @@ M.start = function()
 
     local config = {
         name = "jdtls",
-        cmd = _JdtCmd,
+        cmd = require("nvim-lsp-installer.servers.jdtls"):get_default_options().cmd,
         flags = { allow_incremental_sync = true },
         -- handlers = {
         --     ["textDocument/publishDiagnostics"] = lsp_diag.publishDiagnostics,
@@ -63,14 +49,20 @@ M.start = function()
             },
         },
         init_options = { extendedClientCapabilities = extendedClientCapabilities },
-        on_init = _OnInit,
         on_attach = function(client, bufnr)
             jdtls.setup.add_commands()
-            _OnAttach(client, bufnr)
+            require("plugins.settings.lsp.utils").on_attach(client, bufnr)
         end,
     }
 
     jdtls.start_or_attach(config)
 end
 
-return M
+vim.api.nvim_create_augroup("StartJdtls", {
+    clear = true,
+})
+vim.api.nvim_clear_autocmds("FileType", {
+    pattern = "java",
+    callback = start_jdtls,
+    group = "StartJdtls",
+})
