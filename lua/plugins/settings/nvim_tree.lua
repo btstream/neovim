@@ -1,4 +1,5 @@
-local map = vim.api.nvim_set_keymap
+-- local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 vim.g.nvim_tree_icons = { git = { unstaged = "", staged = "", untracked = "" } }
 
@@ -25,8 +26,8 @@ require("nvim-tree").setup({
         mappings = { custom_only = false, list = { { key = "<C-k>", action = "" } } },
     },
 })
-map("n", "<C-k>b", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true })
-map("i", "<C-k>b", "<Esc><cmd>NvimTreeToggle<CR>", { noremap = true, silent = true })
+map("n", "<C-k>b", "<cmd>NvimTreeToggle<CR>")
+map("i", "<C-k>b", "<Esc><cmd>NvimTreeToggle<CR>")
 
 vim.cmd([[
 augroup nvim-tree-refresh

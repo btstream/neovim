@@ -40,15 +40,14 @@ vim.g.dashboard_custom_footer = {
     "",
 }
 
-local mopt = { noremap = true, silent = true }
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
-map("n", "<Leader>fh", ":DashboardFindHistory<CR>", mopt)
-map("n", "<Leader>ff", ":DashboardFindFile<CR>", mopt)
-map("n", "<Leader>tc", ":DashboardChangeColorscheme<CR>", mopt)
-map("n", "<Leader>fw", ":DashboardFindWord<CR>", mopt)
-map("n", "<Leader>fb", ":DashboardJumpMark<CR>", mopt)
-map("n", "<Leader>cn", ":DashboardNewFile<CR>", mopt)
-map("n", "<Leader>fp", ":Telescope projects<cr>", mopt)
-map("n", "<Leader>pu", ":PackerUpdate<cr>", mopt)
-map("n", "<Leader>ss", ":e ~/.config/nvim/init.lua<cr>", mopt)
+map("n", "<Leader>fh", ":DashboardFindHistory<CR>")
+map("n", "<Leader>ff", ":DashboardFindFile<CR>")
+map("n", "<Leader>tc", ":DashboardChangeColorscheme<CR>")
+map("n", "<Leader>fw", ":DashboardFindWord<CR>")
+map("n", "<Leader>fb", ":DashboardJumpMark<CR>")
+map("n", "<Leader>cn", ":DashboardNewFile<CR>")
+map("n", "<Leader>fp", ":Telescope projects<cr>")
+map("n", "<Leader>pu", ":PackerUpdate<cr>")
+map("n", "<Leader>ss", ":e ~/.config/nvim/init.lua<cr>")

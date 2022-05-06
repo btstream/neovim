@@ -5,12 +5,12 @@ local dapui = require("dapui")
 dap_install.setup({ installation_path = vim.fn.stdpath("data") .. "/dapinstall/" })
 
 -- auto install debugger-adaptors
-vim.cmd([[
-augroup DapAutoInstall
-    autocmd!
-    autocmd VimEnter * lua require('plugins.settings.dap').setup()
-augroup end
-]])
+-- vim.cmd([[
+-- augroup DapAutoInstall
+--     autocmd!
+--     autocmd VimEnter * lua require('plugins.settings.dap').setup()
+-- augroup end
+-- ]])
 
 vim.cmd([[
     nnoremap <silent> <F6> :lua require'dap'.continue()<CR>
@@ -24,8 +24,7 @@ vim.cmd([[
     nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 ]])
 
-local M = {}
-M.setup = function()
+local function setupdap()
     -- auto install
     require("plugins.settings.dap.install")
     for _, d in pairs(di_api.get_installed_debuggers()) do
@@ -55,4 +54,11 @@ M.setup = function()
         dapui.close()
     end
 end
-return M
+
+vim.api.nvim_create_augroup("DapSetup", {
+    clear = true,
+})
+vim.api.nvim_create_autocmd("VimEnter", {
+    pattern = "*",
+    callback = setupdap,
+})

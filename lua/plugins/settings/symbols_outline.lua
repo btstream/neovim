@@ -49,6 +49,5 @@ vim.g.symbols_outline = {
     },
 }
 
-local map = vim.api.nvim_set_keymap
-local mopt = { noremap = true, silent = true }
-map("n", "<C-k>o", "<cmd>SymbolsOutline<cr>", mopt)
+local map = vim.keymap.set
+map("n", "<C-k>o", "<cmd>SymbolsOutline<cr>")

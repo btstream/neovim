@@ -1,4 +1,3 @@
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+local map = vim.keymap.set
 require("sniprun").setup({ display = { "Classic" } })
-map("n", "<F5>", "<cmd>%SnipRun<CR>", opts)
+map("n", "<F5>", "<cmd>%SnipRun<CR>")

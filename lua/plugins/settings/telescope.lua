@@ -1,4 +1,4 @@
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local actions = require("telescope.actions")
 require("telescope").setup({
     defaults = {
@@ -17,22 +17,20 @@ require("telescope").setup({
 
 require("telescope").load_extension("ui-select")
 
-local mopts = { noremap = true, silent = true }
-
 -- find files
-map("n", "<C-k>p", "<cmd>Telescope find_files<cr>", mopts)
-map("i", "<C-k>p", "<Esc><cmd>Telescope find_files<cr>", mopts)
+map("n", "<C-k>p", "<cmd>Telescope find_files<cr>")
+map("i", "<C-k>p", "<Esc><cmd>Telescope find_files<cr>")
 
 -- find symbols
-map("n", "<C-k>s", "<cmd>Telescope lsp_document_symbols<cr>", mopts)
-map("i", "<C-k>s", "<Esc><cmd>Telescope lsp_document_symbols<cr>", mopts)
-map("n", "<C-k><S-s>", "<cmd>Telescope lsp_workspace_symbols<cr>", mopts)
-map("i", "<C-k><S-s>", "<Esc><cmd>Telescope lsp_workspace_symbols<cr>", mopts)
+map("n", "<C-k>s", "<cmd>Telescope lsp_document_symbols<cr>")
+map("i", "<C-k>s", "<Esc><cmd>Telescope lsp_document_symbols<cr>")
+map("n", "<C-k><S-s>", "<cmd>Telescope lsp_workspace_symbols<cr>")
+map("i", "<C-k><S-s>", "<Esc><cmd>Telescope lsp_workspace_symbols<cr>")
 
 -- global find
-map("i", "<C-k>f", "<ESC><cmd>Telescope live_grep<cr>", mopts)
-map("n", "<C-k>f", "<ESC><cmd>Telescope live_grep<cr>", mopts)
+map("i", "<C-k>f", "<ESC><cmd>Telescope live_grep<cr>")
+map("n", "<C-k>f", "<ESC><cmd>Telescope live_grep<cr>")
 
 -- code actions
 -- registers
-map("i", "<C-p>", "<Esc><cmd>Telescope registers<cr>", mopts)
+map("i", "<C-p>", "<Esc><cmd>Telescope registers<cr>")

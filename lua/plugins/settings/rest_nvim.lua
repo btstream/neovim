@@ -1,4 +1,4 @@
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 require("rest-nvim").setup({
     -- Open request results in a horizontal split
@@ -20,5 +20,4 @@ require("rest-nvim").setup({
     yank_dry_run = true,
 })
 
-local opts = { noremap = true, silent = true }
-map("n", "<leader>rr", ":lua require('rest-nvim').run()<CR>", opts)
+map("n", "<leader>rr", ":lua require('rest-nvim').run()<CR>")

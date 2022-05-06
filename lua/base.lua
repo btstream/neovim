@@ -1,5 +1,5 @@
 local opt = vim.opt
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 vim.g.mapleader = " "
 
@@ -40,28 +40,27 @@ augroup end
 -----------------------------------------------------------
 -- set keymaps
 -----------------------------------------------------------
-local mopt = { noremap = true, silent = true }
-map("n", "<C-s>", "<cmd>w<CR>", mopt)
-map("i", "<C-s>", "<ESC><cmd>w<CR>", mopt)
-map("n", "<SPACEE>", "<Nop>", mopt)
-map("i", "<S-Tab>", "<C-d>", mopt)
+map({ "n", "i" }, "<C-s>", "<cmd>w<cr>")
+map("n", "<SPACEE>", "<Nop>")
+map("i", "<S-Tab>", "<C-d>")
+map("n", "<SPACEE>", "<Nop>")
 
 local modes = { "i", "n", "v" }
 for _, m in ipairs(modes) do
-    map(m, "<C-n>", "<down>", mopt)
-    map(m, "<C-p>", "<up>", mopt)
-    map(m, "<C-f>", "<right>", mopt)
-    map(m, "<C-b>", "<left>", mopt)
-    map(m, "<C-a>", "<home>", mopt)
-    map(m, "<C-e>", "<end>", mopt)
+    map(m, "<C-n>", "<down>")
+    map(m, "<C-p>", "<up>")
+    map(m, "<C-f>", "<right>")
+    map(m, "<C-b>", "<left>")
+    map(m, "<C-a>", "<home>")
+    map(m, "<C-e>", "<end>")
 end
 
 -- clean search hilight
-map("n", "<Esc><Esc>", "<cmd>nohl<cr>", mopt)
-map("n", "<C-S-right>", ":vertical resize +1<cr>", mopt)
-map("n", "<C-S-left>", ":vertical resize -1<cr>", mopt)
-map("n", "<C-S-up>", ":resize +1<cr>", mopt)
-map("n", "<C-S-down>", ":resize -1<cr>", mopt)
+map("n", "<Esc><Esc>", "<cmd>nohl<cr>")
+map("n", "<C-S-right>", ":vertical resize +1<cr>")
+map("n", "<C-S-left>", ":vertical resize -1<cr>")
+map("n", "<C-S-up>", ":resize +1<cr>")
+map("n", "<C-S-down>", ":resize -1<cr>")
 
 vim.cmd([[
 nnoremap <silent> <A-j> :m .+1<CR>==

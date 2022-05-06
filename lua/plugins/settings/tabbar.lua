@@ -80,30 +80,27 @@ require("bufferline").setup({
     },
 })
 
-local map = vim.api.nvim_set_keymap
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+local map = vim.keymap.set
 
 -- Move to previous/next
-map("n", "<A-,>", ":BufferLineCyclePrev<CR>", opts)
-map("n", "<A-.>", ":BufferLineCycleNext<CR>", opts)
+map("n", "<A-,>", "<cmd>BufferLineCyclePrev<CR>")
+map("n", "<A-.>", "<cmd>BufferLineCycleNext<CR>")
 -- Re-order to previous/next
--- map('n', '<A-<>', ':BufferMovePrevious<CR>', opts)
--- map('n', '<A->>', ' :BufferMoveNext<CR>', opts)
+-- map('n', '<A-<>', ':BufferMovePrevious<CR>')
+-- map('n', '<A->>', ' :BufferMoveNext<CR>')
 -- Goto buffer in position...
-map("n", "<A-1>", ":BufferLineGoToBuffer 1<CR>", opts)
-map("n", "<A-2>", ":BufferLineGoToBuffer 2<CR>", opts)
-map("n", "<A-3>", ":BufferLineGoToBuffer 3<CR>", opts)
-map("n", "<A-4>", ":BufferLineGoToBuffer 4<CR>", opts)
-map("n", "<A-5>", ":BufferLineGoToBuffer 5<CR>", opts)
-map("n", "<A-6>", ":BufferLineGoToBuffer 6<CR>", opts)
-map("n", "<A-7>", ":BufferLineGoToBuffer 7<CR>", opts)
-map("n", "<A-8>", ":BufferLineGoToBuffer 8<CR>", opts)
-map("n", "<A-9>", ":BufferLineGoToBuffer 9<CR>", opts)
--- map('n', '<A-0>', ':BufferLast<CR>', opts)
+map("n", "<A-1>", "<cmd>BufferLineGoToBuffer 1<CR>")
+map("n", "<A-2>", "<cmd>BufferLineGoToBuffer 2<CR>")
+map("n", "<A-3>", "<cmd>BufferLineGoToBuffer 3<CR>")
+map("n", "<A-4>", "<cmd>BufferLineGoToBuffer 4<CR>")
+map("n", "<A-5>", "<cmd>BufferLineGoToBuffer 5<CR>")
+map("n", "<A-6>", "<cmd>BufferLineGoToBuffer 6<CR>")
+map("n", "<A-7>", "<cmd>BufferLineGoToBuffer 7<CR>")
+map("n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<CR>")
+map("n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>")
+-- map('n', '<A-0>', ':BufferLast<CR>')
 -- Close buffer
-map("n", "<A-w>", ":bdelete!<CR>", opts)
-map("i", "<A-w>", "<ESC>:bdelete!<CR>", opts)
+map({ "n", "i" }, "<A-w>", "<cmd>bdelete!<CR>")
 -- Wipeout buffer
 --                 :BufferWipeout<CR>
 -- Close commands
@@ -111,11 +108,11 @@ map("i", "<A-w>", "<ESC>:bdelete!<CR>", opts)
 --                 :BufferCloseBuffersLeft<CR>
 --                 :BufferCloseBuffersRight<CR>
 -- Magic buffer-picking mode
-map("n", "<Space>pp", ":BufferLinePick<CR>", opts)
+map("n", "<Space>pp", "<cmd>BufferLinePick<CR>")
 -- Sort automatically by...
--- map('n', '<Space>bb', ':BufferOrderByBufferNumber<CR>', opts)
--- map('n', '<Space>bd', ':BufferOrderByDirectory<CR>', opts)
--- map('n', '<Space>bl', ':BufferOrderByLanguage<CR>', opts)
+-- map('n', '<Space>bb', ':BufferOrderByBufferNumber<CR>')
+-- map('n', '<Space>bd', ':BufferOrderByDirectory<CR>')
+-- map('n', '<Space>bl', ':BufferOrderByLanguage<CR>')
 
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
