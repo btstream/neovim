@@ -33,4 +33,4 @@ map("n", "<C-k>f", "<ESC><cmd>Telescope live_grep<cr>")
 
 -- code actions
 -- registers
-map("i", "<C-p>", "<Esc><cmd>Telescope registers<cr>")
+map({ "n", "i" }, "<C-k>r", "<Esc><cmd>Telescope registers<cr>")
