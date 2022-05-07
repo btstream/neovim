@@ -1,3 +1,1 @@
-return {
-    ["Lua.format.enable"] = true,
-}
+return {}

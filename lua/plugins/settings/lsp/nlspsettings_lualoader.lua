@@ -10,20 +10,17 @@ local function validate_config(server_name, settings)
     local error_key = {}
 
     -- flat table to vailida keys
-    local schema_file = schemas[server_name]
-    vim.notify(schema_file)
+    local schema_file = vim.fn.expand(schemas[server_name])
     if schema_file and vim.fn.filereadable(schema_file) == 1 then
-        -- stylua: ignore
-        local schema = vim.fn.system({
-            "jq \'.properties\' " .. schema_file,
-        })
+        local command = string.format("jq '.properties' %s", schema_file)
+        local schema = vim.json.decode(vim.fn.system(command))
         local max_depth = 0
         for key, _ in pairs(schema) do
             local len = #vim.split(key, "[.]")
             max_depth = max_depth < len and len or max_depth
         end
         settings = flatten(settings, max_depth)
-        for key, _ in pairs(settings) do
+        for _, key in pairs(vim.tbl_keys(settings)) do
             if not schema[key] then
                 table.insert(error_key, key)
             end
@@ -67,12 +64,18 @@ local function get_settings(root_dir, server_name)
 
     -- local settings
     local local_conf_file = vim.fn.expand(string.format("%s/%s/%s.lua", root_dir, local_settings_dir, server_name))
-    local local_settings = vim.fn.filereadable(local_conf_file) == 1 and dofile(local_conf_file) or {}
+    local local_settings = {}
+    if vim.fn.filereadable(local_conf_file) == 1 then
+        local_settings = dofile(local_conf_file)
+    end
+    -- local local_settings = vim.fn.filereadable(local_conf_file) == 1 and dofile(local_conf_file) or {}
 
     -- global settings
     local global_conf_file = vim.fn.expand(string.format("%s/%s.lua", global_settings_dir, server_name))
-    local global_settings = vim.fn.filereadable(global_conf_file) == 1 and dofile(global_conf_file) or {}
-    -- vim.notify(vim.json.encode(global_settings))
+    local global_settings = {}
+    if vim.fn.filereadable(global_conf_file) == 1 then
+        global_settings = dofile(global_conf_file)
+    end
 
     -- validate
     local valid = true
@@ -94,9 +97,8 @@ local function get_settings(root_dir, server_name)
     local settings = {}
     if valid then
         settings = vim.tbl_deep_extend("keep", settings, local_settings)
-        settings = vim.tbl.deep_extend("keep", settings, global_settings)
+        settings = vim.tbl_deep_extend("keep", settings, global_settings)
     end
-    vim.notify(vim.json.encode(lsp_table_to_lua_table(settings)))
     return lsp_table_to_lua_table(settings)
 end
 

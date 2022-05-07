@@ -1,6 +1,7 @@
 local jdtls = require("jdtls")
 local find_root = require("jdtls.setup").find_root
 local get_settings = require("nlspsettings").get_settings
+local get_lua_settings = require("plugins.settings.lsp.nlspsettings_lualoader").get_settings
 
 local function start_jdtls()
     -- local root_markers = {'gradlew', '.git'}
@@ -62,6 +63,7 @@ local function start_jdtls()
     }
 
     config.settings = vim.tbl_deep_extend("force", config.settings, get_settings(root_dir, "jdtls"))
+    config.settings = vim.tbl_deep_extend("force", config.settings, get_lua_settings(root_dir, "jdtls"))
     jdtls.start_or_attach(config)
 end
 

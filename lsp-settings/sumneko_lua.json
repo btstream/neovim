@@ -1,0 +1,9 @@
+{
+    "Lua.format.enable": false,
+    "Lua.diagnostics.globals": [
+        "vim"
+    ],
+    "Lua.diagnostics.disable": [
+        "unused-vararg"
+    ]
+}

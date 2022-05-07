@@ -20,20 +20,6 @@ require("nlspsettings").setup({
 })
 
 -----------------------------------
--- setup to load global and local
--- lua config
------------------------------------
--- lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
---     on_new_config = lspconfig_utils.add_hook_before(
---         lspconfig.util.default_config.on_new_config,
---         function(new_config, root_dir)
---             vim.notify(new_config.name)
---         end
---     ),
--- })
--- lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {})
-
------------------------------------
 -- setup lsp with lsp_installer
 -----------------------------------
 local needed = {
@@ -56,7 +42,6 @@ lsp_installer.setup({
 })
 
 local on_new_config = lspconfig_utils.default_config.on_new_config
-vim.notify(type(on_new_config))
 
 lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.default_config, {
     on_attach = require("plugins.settings.lsp.utils").on_attach,
@@ -72,7 +57,6 @@ lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.de
 })
 
 for _, server in pairs(lsp_installer.get_installed_servers()) do
-    vim.notify(server.name)
     -- first to call server specified config
     if not pcall(require, "plugins.settings.lsp.providers." .. server.name) then
         lspconfig[server.name].setup({})
