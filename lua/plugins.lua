@@ -51,9 +51,9 @@ return require("packer").startup(function(use)
     use({
         "RRethy/nvim-base16",
         -- requires = { "xiyaowong/nvim-transparent", "marko-cerovac/material.nvim", "EdenEast/nightfox.nvim" },
-        config = function()
-            require("plugins.settings.themes")
-        end,
+        -- config = function()
+        --     require("plugins.settings.themes")
+        -- end,
     })
 
     use({

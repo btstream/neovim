@@ -11,9 +11,9 @@ vim.diagnostic.config({
     update_in_insert = true,
     severity_sort = true,
     float = {
-        border = "single",
+        border = "rounded",
         focusable = false,
-        header = { " Diagnostics:", "Normal" },
+        header = { " Diagnostics:", "NormalFloat" },
         source = "always",
     },
     virtual_text = false,

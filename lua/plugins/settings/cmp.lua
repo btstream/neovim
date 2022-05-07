@@ -11,6 +11,34 @@ local feedkey = function(key, mode)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
+local symbol_map = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "⌘",
+    Field = "ﰠ",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "ﰠ",
+    Unit = "塞",
+    Value = "",
+    Enum = "",
+    Keyword = "廓",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "פּ",
+    Event = "",
+    Operator = "",
+    TypeParameter = "",
+}
+
 ---@diagnostic disable-next-line: redundant-parameter
 cmp.setup({
     snippet = {
@@ -67,7 +95,14 @@ cmp.setup({
     }, { { name = "buffer" } }),
     completion = { completeopt = "menu,menuone,noinsert,preview" },
     -- cmp kind info
-    formatting = { format = lspkind.cmp_format({ with_text = false, maxwidth = 50 }) },
+    formatting = {
+        format = lspkind.cmp_format({
+            symbol_map = symbol_map,
+            mode = "symbolt",
+            maxwidth = 50,
+        }),
+        -- end,
+    },
 })
 
 -- Use buffer source for `/`.
