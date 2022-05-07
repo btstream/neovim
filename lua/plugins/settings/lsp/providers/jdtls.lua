@@ -1,4 +1,7 @@
 local jdtls = require("jdtls")
+local find_root = require("jdtls.setup").find_root
+local get_settings = require("nlspsettings").get_settings
+
 local function start_jdtls()
     -- local root_markers = {'gradlew', '.git'}
     -- local root_dir = require('jdtls.setup').find_root(root_markers)
@@ -9,11 +12,14 @@ local function start_jdtls()
     -- basic capabilities
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.workspace.configuration = true
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    -- capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
     -- extended capabilities
     local extendedClientCapabilities = jdtls.extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+
+    local root_dir = find_root({ "pom.xml", "mnvw", ".git", "gradlew" })
 
     local config = {
         name = "jdtls",
@@ -24,7 +30,7 @@ local function start_jdtls()
         -- },
         capabilities = capabilities,
         ["flags.server_side_fuzzy_completion"] = true,
-        root_dir = require("jdtls.setup").find_root({ "pom.xml", "mnvw", ".git", "gradlew" }),
+        root_dir = root_dir,
         -- settings
         settings = {
             java = {
@@ -55,6 +61,7 @@ local function start_jdtls()
         end,
     }
 
+    config.settings = vim.tbl_deep_extend("force", config.settings, get_settings(root_dir, "jdtls"))
     jdtls.start_or_attach(config)
 end
 

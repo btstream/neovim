@@ -27,6 +27,7 @@ opt.autoindent = true
 opt.signcolumn = "yes"
 opt.exrc = true
 opt.laststatus = 3
+opt.splitright = true
 
 -- auto commands to reload buffer
 vim.cmd([[

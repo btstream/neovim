@@ -17,6 +17,16 @@ require("nvim-tree").setup({
     update_focused_file = { enable = true, update_cwd = true, ignore_list = {} },
     system_open = { cmd = nil, args = {} },
     filters = { dotfiles = false, custom = {} },
+    renderer = {
+        indent_markers = {
+            enable = true,
+            icons = {
+                corner = "└ ",
+                edge = "│ ",
+                none = "  ",
+            },
+        },
+    },
     view = {
         width = 30,
         height = 30,
@@ -24,6 +34,11 @@ require("nvim-tree").setup({
         side = "left",
         -- auto_resize = true,
         mappings = { custom_only = false, list = { { key = "<C-k>", action = "" } } },
+    },
+    actions = {
+        open_file = {
+            quit_on_open = true,
+        },
     },
 })
 map("n", "<C-k>b", "<cmd>NvimTreeToggle<CR>")
