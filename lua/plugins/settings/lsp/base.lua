@@ -5,17 +5,24 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 capabilities = vim.tbl_deep_extend("keep", capabilities, require("lsp-status").capabilities)
 
+local lsp_settings_path = vim.fn.stdpath("config") .. "/lsp-settings"
+
 -----------------------------------
 -- setup nlspsettings to load
 -- json config
 -----------------------------------
 require("nlspsettings").setup({
-    config_home = vim.fn.stdpath("config") .. "/lsp-settings",
+    config_home = lsp_settings_path,
     local_settings_dir = ".nvim",
     local_settings_root_markers = { ".git", ".nvim" },
     append_default_schemas = true,
     loader = "json",
 })
+
+-----------------------------------
+-- setup to load global and local
+-- lua config
+-----------------------------------
 
 -----------------------------------
 -- setup lsp with lsp_installer
