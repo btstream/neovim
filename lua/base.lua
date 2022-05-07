@@ -28,6 +28,7 @@ opt.signcolumn = "yes"
 opt.exrc = true
 opt.laststatus = 3
 opt.splitright = true
+opt.fillchars = "vert:┃"
 
 -- auto commands to reload buffer
 vim.cmd([[
