@@ -133,4 +133,36 @@ local function flatten(tbl, maxdepth, encoder, setter)
     }, setter)
 end
 
-return flatten
+local function deflatten(tbl)
+    vim.validate({
+        t = { t, "t" },
+    })
+
+    local res = {}
+
+    for key, value in pairs(t) do
+        local key_list = {}
+
+        for k in string.gmatch(key, "([^.]+)") do
+            table.insert(key_list, k)
+        end
+
+        local tbl = res
+        for i, k in ipairs(key_list) do
+            if i == #key_list then
+                tbl[k] = value
+            end
+            if tbl[k] == nil then
+                tbl[k] = {}
+            end
+            tbl = tbl[k]
+        end
+    end
+
+    return res
+end
+
+return {
+    flatten = flatten,
+    deflatten = deflatten,
+}

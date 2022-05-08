@@ -1,4 +1,4 @@
-local colors = {
+local colors = vim.tbl_extend("keep", {
     bg = "#2e3440",
     fg = "#ECEFF4",
     red = "#bf616a",
@@ -28,18 +28,15 @@ local colors = {
     grey17 = "#0f1115",
     grey18 = "#0d0e11",
     grey19 = "#020203",
-}
+}, require("onenord.colors.onenord"))
 
 require("onenord").setup({
-    borders = true,
+    borders = false,
     fade_nc = false,
     styles = {
-        comments = "italic",
         strings = "NONE",
         keywords = "NONE",
-        functions = "italic",
-        variables = "bold",
-        diagnostics = "underline",
+        -- diagnostics = "underline",
     },
     disable = {
         background = false,
@@ -50,17 +47,26 @@ require("onenord").setup({
         VertSplit = { fg = colors.grey14 },
         BufferLineIndicatorSelected = { fg = colors.cyan, bg = colors.bg },
         BufferLineFill = { fg = colors.fg, bg = colors.grey14 },
-        NvimTreeNormal = { fg = colors.grey5, bg = colors.grey14 },
+
+        -- wichkey
         WhichKeyFloat = { bg = colors.grey14 },
+
+        -- git
         GitSignsAdd = { fg = colors.green },
         GitSignsChange = { fg = colors.orange },
         GitSignsDelete = { fg = colors.red },
+        gitblame = { bg = colors.active, fg = colors.light_gray },
+
+        -- nvimtree
+        NvimTreeNormal = { fg = colors.grey5, bg = colors.grey13 },
         NvimTreeFolderIcon = { fg = colors.grey9 },
         NvimTreeIndentMarker = { fg = colors.grey12 },
 
+        -- NormalFloat
         NormalFloat = { bg = colors.grey14 },
         FloatBorder = { bg = colors.grey14, fg = colors.grey14 },
 
+        -- Telescope
         TelescopePromptPrefix = { bg = colors.grey14 },
         TelescopePromptNormal = { bg = colors.grey14 },
         TelescopeResultsNormal = { bg = colors.grey15 },
@@ -74,10 +80,14 @@ require("onenord").setup({
         TelescopeResultsTitle = { fg = colors.grey15 },
         TelescopePreviewTitle = { fg = colors.grey16 },
 
+        -- cmp
         PmenuSel = { bg = colors.grey12 },
         Pmenu = { bg = colors.grey14 },
+        CmpDocumentation = { bg = colors.grey14 },
+        CmpDocumentationBorder = { fg = colors.grey14, bg = colors.grey14 },
 
-        LspFloatWinNormal = { fg = colors.fg, bg = colors.grey14 },
-        LspFloatWinBorder = { fg = colors.grey14 },
+        -- cmp
+        LspFloatNormal = { bg = colors.grey14 },
+        LspFloatBorder = { fg = colors.grey14, bg = colors.grey14 },
     },
 })

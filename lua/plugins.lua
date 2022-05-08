@@ -52,36 +52,7 @@ packer.startup(function(use)
         "CosmicNvim/cosmic-ui",
         requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
         config = function()
-            require("cosmic-ui").setup({
-                -- default border to use
-                -- 'single', 'double', 'rounded', 'solid', 'shadow'
-                border_style = "single",
-
-                -- rename popup settings
-                rename = {
-                    border = {
-                        highlight = "FloatBorder",
-                        style = "single",
-                        title = " Rename ",
-                        title_align = "left",
-                        title_hl = "Normal",
-                    },
-                    prompt = "> ",
-                    prompt_hl = "Normal",
-                },
-
-                code_actions = {
-                    min_width = nil,
-                    border = {
-                        bottom_hl = "FloatBorder",
-                        highlight = "FloatBorder",
-                        style = "single",
-                        title = "Code Actions",
-                        title_align = "center",
-                        title_hl = "Normal",
-                    },
-                },
-            })
+            require("plugins.settings.cosmic-ui")
         end,
     })
 
@@ -219,7 +190,7 @@ packer.startup(function(use)
     use({
         "folke/which-key.nvim",
         config = function()
-            require("which-key").setup({ window = { border = "single" } })
+            require("which-key").setup({ window = { border = "solid" } })
         end,
     })
 
@@ -354,7 +325,6 @@ packer.startup(function(use)
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAPG then
-        print("First install")
         require("packer").sync()
     end
 end)

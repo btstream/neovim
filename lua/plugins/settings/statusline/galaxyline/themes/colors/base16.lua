@@ -32,7 +32,6 @@ M.get = function(name)
         end
     end
 
-    print(has_color(name))
     local mcolor = has_color(name) and colors[name] or colors["material-darker"]
     -- if has_color(name) then
     --     -- use a default base16 color

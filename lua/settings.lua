@@ -1,6 +1,6 @@
 local settings = {}
 settings.theme = {
-    color = "material",
+    color = "onenord",
     transparent = false,
     statusline = {
         "lualine",

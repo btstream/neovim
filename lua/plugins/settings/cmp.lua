@@ -52,7 +52,8 @@ cmp.setup({
     },
     window = {
         documentation = cmp.config.window.bordered({
-            winhighlight = "FloatBorder:FloatBorder",
+            border = "solid",
+            winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder,",
         }),
     },
     mapping = {

@@ -1,6 +1,7 @@
 local config = require("nlspsettings.config").get()
 local schemas = require("nlspsettings.schemas").get_base_schemas_data()
-local flatten = require("utils.flatten")
+local flatten = require("utils.flatten").flatten
+local deflatten = require("utils.flatten").deflatten
 
 local function validate_config(server_name, settings)
     vim.validate({
@@ -27,35 +28,6 @@ local function validate_config(server_name, settings)
         end
     end
     return error_key
-end
-
-local lsp_table_to_lua_table = function(t)
-    vim.validate({
-        t = { t, "t" },
-    })
-
-    local res = {}
-
-    for key, value in pairs(t) do
-        local key_list = {}
-
-        for k in string.gmatch(key, "([^.]+)") do
-            table.insert(key_list, k)
-        end
-
-        local tbl = res
-        for i, k in ipairs(key_list) do
-            if i == #key_list then
-                tbl[k] = value
-            end
-            if tbl[k] == nil then
-                tbl[k] = {}
-            end
-            tbl = tbl[k]
-        end
-    end
-
-    return res
 end
 
 local function get_settings(root_dir, server_name)
@@ -99,7 +71,7 @@ local function get_settings(root_dir, server_name)
         settings = vim.tbl_deep_extend("keep", settings, local_settings)
         settings = vim.tbl_deep_extend("keep", settings, global_settings)
     end
-    return lsp_table_to_lua_table(settings)
+    return deflatten(settings)
 end
 
 return {
