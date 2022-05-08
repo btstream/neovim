@@ -1,7 +1,7 @@
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAPG = fn.system({
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+    PACKER_BOOTSTRAPG = vim.fn.system({
         "git",
         "clone",
         "--depth",
@@ -25,8 +25,6 @@ if not status_ok then
     return
 end
 
-vim.g.statusline = "lualine"
-
 -- Have packer use a popup window
 packer.init({
     display = {
@@ -39,22 +37,20 @@ packer.init({
     },
 })
 
-return require("packer").startup(function(use)
+packer.startup(function(use)
     -- add packer itself to packer manager, to avoid remove
     use("wbthomason/packer.nvim")
 
     -- themes
-    use("xiyaowong/nvim-transparent")
-    use("marko-cerovac/material.nvim")
+    use({
+        "xiyaowong/nvim-transparent",
+    })
+    use({
+        "marko-cerovac/material.nvim",
+    })
     use("EdenEast/nightfox.nvim")
     use("rmehri01/onenord.nvim")
-    use({
-        "RRethy/nvim-base16",
-        -- requires = { "xiyaowong/nvim-transparent", "marko-cerovac/material.nvim", "EdenEast/nightfox.nvim" },
-        -- config = function()
-        --     require("plugins.settings.themes")
-        -- end,
-    })
+    use("RRethy/nvim-base16")
 
     use({
         "CosmicNvim/cosmic-ui",
@@ -109,8 +105,6 @@ return require("packer").startup(function(use)
             "simrat39/rust-tools.nvim",
             "nvim-lua/lsp-status.nvim",
             "mfussenegger/nvim-jdtls",
-            -- "tami5/lspsaga.nvim",
-            -- "btstream/nvim-dotnvim",
             "ray-x/lsp_signature.nvim",
             "tamago324/nlsp-settings.nvim",
         },
@@ -199,7 +193,7 @@ return require("packer").startup(function(use)
         requires = { { "kyazdani42/nvim-web-devicons" }, { "RRethy/nvim-base16", opt = true } },
         after = "nvim-base16",
         cond = function()
-            return vim.g.statusline == "galaxyline"
+            return require("settings").theme.statusline[1] == "galaxyline"
         end,
         config = function()
             require("plugins.settings.statusline.galaxyline").setup()
@@ -210,7 +204,7 @@ return require("packer").startup(function(use)
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
         cond = function()
-            return vim.g.statusline == "lualine"
+            return require("settings").theme.statusline[1] == "lualine"
         end,
         config = function()
             require("plugins.settings.statusline.lualine")

@@ -1,6 +1,6 @@
 local opt = vim.opt
-local map = vim.keymap.set
 
+-- set leader char to space
 vim.g.mapleader = " "
 
 -- use terminal color
@@ -12,20 +12,25 @@ opt.shiftwidth = 4
 opt.tabstop = 4
 opt.wrap = false
 opt.autoread = true
+
 -- mouse
 opt.mouse = opt.mouse + "a"
 opt.list = true
 opt.cursorline = true
+
 -- clipboard
--- opt.clipboard = opt.clipboard + "unnamedplus"
 opt.clipboard = "unnamedplus"
+
 -- fileformats
 opt.fileformats = "unix,dos"
 opt.showmatch = true
-opt.spell = false
 opt.autoindent = true
+
+-- spell
+opt.spell = false
+
+-- themes
 opt.signcolumn = "yes"
-opt.exrc = true
 opt.laststatus = 3
 opt.splitright = true
 opt.fillchars = "vert:┃"
@@ -40,8 +45,9 @@ augroup end
 ]])
 
 -----------------------------------------------------------
--- set keymaps
+-- set basic keymaps
 -----------------------------------------------------------
+local map = vim.keymap.set
 map("n", "<C-s>", "<cmd>w<cr>")
 map("i", "<C-s>", "<cmd>w<cr><ESC>")
 map("n", "<SPACEE>", "<Nop>")

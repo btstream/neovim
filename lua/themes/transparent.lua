@@ -1,11 +1,16 @@
+local settings = require("settings")
+
 vim.api.nvim_create_augroup("themes", {
     clear = true,
 })
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
     callback = function()
+        if not settings.theme.transparent then
+            return
+        end
         vim.cmd("highlight! link DashboardHeader String")
-        local enable = false
+        local enable = settings.theme.transparent
         if vim.g.GuiLoaded or vim.g.GUI == 1 then
             enable = false
         end
