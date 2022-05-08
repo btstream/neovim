@@ -42,12 +42,8 @@ packer.startup(function(use)
     use("wbthomason/packer.nvim")
 
     -- themes
-    use({
-        "xiyaowong/nvim-transparent",
-    })
-    use({
-        "marko-cerovac/material.nvim",
-    })
+    use("xiyaowong/nvim-transparent")
+    use("marko-cerovac/material.nvim")
     use("EdenEast/nightfox.nvim")
     use("rmehri01/onenord.nvim")
     use("RRethy/nvim-base16")
@@ -215,7 +211,7 @@ packer.startup(function(use)
         "akinsho/bufferline.nvim",
         requires = { "kyazdani42/nvim-web-devicons" },
         config = function()
-            require("plugins.settings.tabbar")
+            require("plugins.settings.bufferline")
         end,
     })
 
@@ -249,7 +245,6 @@ packer.startup(function(use)
         after = "telescope.nvim",
         config = function()
             require("plugins.settings.file_explorer")
-            -- require('telescope').load_extension('file_browser')
         end,
     })
 
@@ -328,8 +323,7 @@ packer.startup(function(use)
     use({
         "michaelb/sniprun",
         run = "bash ./install.sh",
-        cond = function()
-            -- only load on macos and linux
+        cond = function() -- only load on macos and linux
             return vim.fn.has("win32") == 0
         end,
         config = function()
