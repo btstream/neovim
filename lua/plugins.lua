@@ -52,7 +52,8 @@ packer.startup(function(use)
     use("marko-cerovac/material.nvim")
     use("EdenEast/nightfox.nvim")
     use("rmehri01/onenord.nvim")
-    use("navarasu/onedark.nvim")
+    -- use("navarasu/onedarkpro.nvim")
+    use("olimorris/onedarkpro.nvim")
     use("RRethy/nvim-base16")
 
     use({
