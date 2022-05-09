@@ -48,6 +48,9 @@ require("onenord").setup({
         BufferLineIndicatorSelected = { fg = colors.cyan, bg = colors.bg },
         BufferLineFill = { fg = colors.fg, bg = colors.grey14 },
 
+        -- dashboard
+        DashboardHeader = { fg = colors.green },
+
         -- wichkey
         WhichKeyFloat = { bg = colors.grey14 },
 
@@ -63,7 +66,7 @@ require("onenord").setup({
         NvimTreeIndentMarker = { fg = colors.grey12 },
 
         -- NormalFloat
-        NormalFloat = { bg = colors.grey14 },
+        NormalFloat = { bg = colors.bg },
         FloatBorder = { bg = colors.grey14, fg = colors.grey14 },
 
         -- Telescope
@@ -91,10 +94,17 @@ require("onenord").setup({
         LspFloatWinBorder = { bg = colors.bg, fg = colors.fg },
 
         LspWinHoverNormal = { bg = colors.bg },
-        LspWinHoverBorder = { fg = colors.blue, bg = colors.bg },
+        LspWinHoverBorder = { fg = colors.grey10, bg = colors.bg },
 
         LspWinDiagnosticsNormal = { bg = colors.bg },
         LspWinDiagnosticsBorder = { fg = colors.pink, bg = colors.bg },
         LspWinDiagnosticsTitle = { fg = colors.pink },
+
+        LspWinRenameTitle = { bg = colors.bg, fg = colors.blue },
+        LspWinRenameBorder = { bg = colors.bg, fg = colors.blue },
+        LspWinRenamePrompt = { bg = colors.bg, fg = colors.blue },
+
+        LspWinCodeActionTitle = { bg = colors.bg, fg = colors.blue },
+        LspWinCodeActionBorder = { bg = colors.bg, fg = colors.blue },
     },
 })
