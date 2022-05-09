@@ -13,9 +13,9 @@ vim.diagnostic.config({
     float = {
         border = "solid",
         focusable = false,
-        header = { " Diagnostics:", "NormalFloat" },
+        header = { " Diagnostics:", "LspWinDiagnosticsNormal" },
         source = "always",
-        winhighlight = "NormalFloat:LspFloatNormal,FloatBorder:LspFloatBorder",
+        winhighlight = "NormalFloat:LspWinDiagnosticsNormal,FloatBorder:LspWinDiagnosticsBorder",
     },
     virtual_text = false,
 })

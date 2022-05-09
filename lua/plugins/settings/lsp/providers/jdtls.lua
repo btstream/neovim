@@ -55,6 +55,7 @@ local function start_jdtls()
                 },
             },
         },
+        handlers = require("plugins.settings.lsp.handlers"),
         init_options = { extendedClientCapabilities = extendedClientCapabilities },
         on_attach = function(client, bufnr)
             jdtls.setup.add_commands()
