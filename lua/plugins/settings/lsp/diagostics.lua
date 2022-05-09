@@ -11,11 +11,14 @@ vim.diagnostic.config({
     update_in_insert = true,
     severity_sort = true,
     float = {
-        border = "solid",
+        border = "rounded",
         focusable = false,
-        header = { " Diagnostics:", "LspWinDiagnosticsNormal" },
+        header = { "  Diagnostics:", "LspWinDiagnosticsTitle" },
         source = "always",
         winhighlight = "NormalFloat:LspWinDiagnosticsNormal,FloatBorder:LspWinDiagnosticsBorder",
+        prefix = function(_, i, _)
+            return " " .. i .. ". ", "LspWinDiagnosticsNormal"
+        end,
     },
     virtual_text = false,
 })

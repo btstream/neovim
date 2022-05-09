@@ -86,8 +86,16 @@ require("onenord").setup({
         CmpDocumentation = { bg = colors.grey14 },
         CmpDocumentationBorder = { fg = colors.grey14, bg = colors.grey14 },
 
-        -- cmp
-        LspFloatNormal = { bg = colors.grey14 },
-        LspFloatBorder = { fg = colors.grey14, bg = colors.grey14 },
+        -- LSP
+
+        LspFloatWinNormal = { bg = colors.bg, fg = colors.fg },
+        LspFloatWinBorder = { bg = colors.bg, fg = colors.fg },
+
+        LspWinHoverNormal = { bg = colors.bg },
+        LspWinHoverBorder = { fg = colors.grey14, bg = colors.bg },
+
+        LspWinDiagnosticsNormal = { bg = colors.bg },
+        LspWinDiagnosticsBorder = { fg = colors.cyan, bg = colors.bg },
+        LspWinDiagnosticsTitle = { fg = colors.cyan },
     },
 })
