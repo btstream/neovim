@@ -1,23 +1,20 @@
 -- local local_config = require("nvim-dotnvim")
 local lsp_status = require("lsp-status")
+local cosmic_ui = require("cosmic-ui")
 
-local M = {}
+local function rename()
+    cosmic_ui.rename({
+        win_options = {
+            winhighlight = "NormalFloat:LspFloatWinNormal",
+        },
+    })
+end
 
 local attach_keys = function(client, bufnr)
-    -- set keyboar for buffer
-    local function buf_map(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
-    -- Enable completion triggered by <c-x><c-o>
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+    local buf_map = vim.keymap.set
 
     -- Mappings.
-    local opts = { noremap = true, silent = true }
+    local opts = { buffer = bufnr, silent = true }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_map("n", "gd", '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', opts)
@@ -26,7 +23,7 @@ local attach_keys = function(client, bufnr)
     buf_map("n", "gt", '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>', opts)
     buf_map("n", "gr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>', opts)
     -- buf_map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-    buf_map("n", "<leader>rn", '<cmd>lua require("cosmic-ui").rename()<cr>', opts)
+    buf_map("n", "<leader>rn", rename, opts)
 
     -- diagnostic
     buf_map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
@@ -43,6 +40,7 @@ local attach_keys = function(client, bufnr)
     buf_map("v", "<C-k>.", "<cmd>lua require('cosmic-ui').range_code_actions()<cr>", opts)
 end
 
+local M = {}
 --- tools to return an function for on_init call back
 --- @param server Server object of lsp config
 --- @return function

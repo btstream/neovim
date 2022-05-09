@@ -1,6 +1,7 @@
 require("cosmic-ui").setup({
     -- default border to use
     -- 'single', 'double', 'rounded', 'solid', 'shadow'
+    notify_title = "Lsp Server",
     border_style = "solid",
 
     -- rename popup settings
