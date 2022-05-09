@@ -1,5 +1,6 @@
 local style = require("settings").theme.base16_style
 local colors = require("base16-colorscheme").colorschemes[style]
+
 local hex_re = vim.regex("#\\x\\x\\x\\x\\x\\x")
 
 local HEX_DIGITS = {
@@ -46,25 +47,6 @@ local function darken(hex, pct)
     return string.format("#%s", rgb_to_hex(r, g, b))
 end
 
--- local colors = {
---     base00 = "#282c34",
---     base0F = "#be5046",
---     base0E = "#c678dd",
---     base02 = "#3e4451",
---     base08 = "#e06c75",
---     base0B = "#98c379",
---     base0D = "#61afef",
---     base06 = "#b6bdca",
---     base09 = "#d19a66",
---     base0A = "#e5c07b",
---     base0C = "#56b6c2",
---     base07 = "#c8ccd4",
---     base03 = "#545862",
---     base01 = "#353b45",
---     base04 = "#565c64",
---     base05 = "#abb2bf",
--- }
-
 local dbg010 = darken(colors.base00, 0.10)
 local dbg015 = darken(colors.base00, 0.15)
 local dbg020 = darken(colors.base00, 0.20)
@@ -84,11 +66,12 @@ require("base16-colorscheme").setup(colors)
 highlight({
     -- common for nvim
     EndOfBuffer = { fg = colors.base00, bg = colors.base00 },
-    VertSplit = { fg = dbg010 },
+    VertSplit = { fg = dbg020 },
     -- LineNr = { fg = darken(colors.base03, 0.3) },
-    CursorLineNr = { fg = darken(colors.base0D, 0.3) },
+    CursorLineNr = { fg = darken(colors.base0D, 0.1) },
     StatusLine = { bg = colors.base00, fg = colors.base00 },
     StatusLineNC = { bg = colors.base00, fg = colors.base00 },
+    LineNr = { fg = colors.base03 },
 
     -- bufferline
     BufferLineIndicatorSelected = { fg = colors.base0D, bg = colors.base00 },
@@ -98,10 +81,10 @@ highlight({
     -- DashboardHeader = { fg = colors.base0B },
 
     -- wichkey
-    WhichKeyFloat = { bg = colors.base02 },
+    WhichKeyFloat = { bg = dbg010 },
 
     -- git
-    gitblame = { bg = colors.base01, fg = colors.base04 },
+    gitblame = { bg = colors.base01, fg = colors.base03 },
 
     -- nvimtree
     NvimTreeNormal = { bg = dbg015 },
@@ -111,8 +94,8 @@ highlight({
     NvimTreeVertSplit = { bg = colors.base00, fg = colors.base00 },
 
     -- NormalFloat
-    NormalFloat = { bg = colors.base02 },
-    FloatBorder = { bg = colors.base02, fg = colors.base02 },
+    NormalFloat = { bg = dbg010 },
+    FloatBorder = { bg = dbg010, fg = dbg010 },
 
     -- Packer
     PackerFloatNormal = { bg = dbg010 },
@@ -124,7 +107,7 @@ highlight({
     TelescopePreviewTitle = { bg = colors.base0B },
 
     -- cmp
-    PmenuSel = { bg = dbg015 },
+    PmenuSel = { bg = colors.base02 },
     Pmenu = { bg = dbg015 },
 
     -- CmpItemAbbr = { fg = colors.fg },
