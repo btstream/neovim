@@ -1,7 +1,7 @@
 local settings = {}
 settings.theme = {
     color = "base16",
-    base16_style = "material-darker",
+    base16_style = "onedark",
     transparent = false,
     statusline = {
         "lualine",

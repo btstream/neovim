@@ -33,7 +33,7 @@ packer.init({
             vim.api.nvim_win_set_option(
                 win,
                 "winhighlight",
-                "NormalFloat:PackerFloatNormal,FloatBorder:PackerFloatBorder"
+                "NormalFloat:PackerFloatNormal,FloatBorder:PackerFloatBorder,EndOfBuffer:PackerFloatNormal"
             )
             return status, win, buf
         end,
