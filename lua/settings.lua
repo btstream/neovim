@@ -1,10 +1,11 @@
 local settings = {}
 settings.theme = {
-    color = "onenord",
+    color = "base16",
+    base16_style = "material-darker",
     transparent = false,
     statusline = {
         "lualine",
-        theme = "auto",
+        theme = "base16",
     },
 }
 return settings
