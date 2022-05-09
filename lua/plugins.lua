@@ -29,7 +29,13 @@ end
 packer.init({
     display = {
         open_fn = function()
-            return require("packer.util").float({ border = "rounded" })
+            local status, win, buf = require("packer.util").float({ border = "rounded" })
+            vim.api.nvim_win_set_option(
+                win,
+                "winhighlight",
+                "NormalFloat:PackerFloatNormal,FloatBorder:PackerFloatBorder"
+            )
+            return status, win, buf
         end,
     },
     git = {
@@ -46,6 +52,7 @@ packer.startup(function(use)
     use("marko-cerovac/material.nvim")
     use("EdenEast/nightfox.nvim")
     use("rmehri01/onenord.nvim")
+    use("navarasu/onedark.nvim")
     use("RRethy/nvim-base16")
 
     use({

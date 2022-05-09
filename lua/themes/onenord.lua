@@ -66,8 +66,12 @@ require("onenord").setup({
         NvimTreeIndentMarker = { fg = colors.grey12 },
 
         -- NormalFloat
-        NormalFloat = { bg = colors.bg },
+        NormalFloat = { bg = colors.grey14 },
         FloatBorder = { bg = colors.grey14, fg = colors.grey14 },
+
+        -- Packer
+        PackerFloatNormal = { bg = colors.grey14 },
+        PackerFloatBorder = { bg = colors.grey14, fg = colors.grey14 },
 
         -- Telescope
         TelescopePromptPrefix = { bg = colors.grey14 },
