@@ -37,7 +37,7 @@ local function customize(scheme)
         -- nvimtree
         NvimTreeNormal          = { bg = dbg015 },
         NvimTreeFolderIcon      = { fg = colors.base0D },
-        NvimTreeIndentMarker    = { fg = colors.base01 },
+        NvimTreeIndentrker    = { fg = colors.base01 },
         NvimTreeEndOfBuffer     = { bg = dbg015, fg = dbg015 },
         NvimTreeVertSplit       = { bg = colors.base00, fg = colors.base00 },
 
@@ -57,24 +57,24 @@ local function customize(scheme)
         -- cmp
         PmenuSel                 = { bg = colors.base02, fg = 'None' },
         Pmenu                    = { bg = dbg015 },
-        CmpItemAbbrMatch         = { fg = colors.base0D, gui = "bold" },
-        CmpItemAbbrMatchFuzzy    = { fg = colors.base0D, gui = "underline" },
-        CmpItemMenu              = { fg = colors.base03 },
+        CmpItemAbbrtch           = { fg = colors.base0D, gui = "bold" },
+        CmpItemAbbrtchFuzzy      = { fg = colors.base0D, gui = "underline" },
+        CmpItemnu                = { fg = colors.base03 },
         CmpItemKindText          = { fg = colors.base09 },
-        CmpItemKindMethod        = { fg = colors.base0D },
+        CmpItemKindthod          = { fg = colors.base0D },
         CmpItemKindFunction      = { fg = colors.base0D },
         CmpItemKindConstructor   = { fg = colors.base0A },
         CmpItemKindField         = { fg = colors.base0D },
         CmpItemKindClass         = { fg = colors.base0A },
         CmpItemKindInterface     = { fg = colors.base0A },
-        CmpItemKindModule        = { fg = colors.base0D },
+        CmpItemKinddule          = { fg = colors.base0D },
         CmpItemKindProperty      = { fg = colors.base0D },
         CmpItemKindValue         = { fg = colors.base09 },
         CmpItemKindEnum          = { fg = colors.base0A },
         CmpItemKindKeyword       = { fg = colors.base0E },
         CmpItemKindSnippet       = { fg = colors.base0B },
         CmpItemKindFile          = { fg = colors.base0D },
-        CmpItemKindEnumMember    = { fg = colors.base0C },
+        CmpItemKindEnummber      = { fg = colors.base0C },
         CmpItemKindConstant      = { fg = colors.base09 },
         CmpItemKindStruct        = { fg = colors.base0A },
         CmpItemKindTypeParameter = { fg = colors.base0A },
@@ -98,6 +98,28 @@ local function customize(scheme)
 
         LspWinCodeActionTitle   = { bg = colors.base00, fg = colors.base0D },
         LspWinCodeActionBorder  = { bg = colors.base00, fg = colors.base0D },
+
+        -- Notify
+        NotifyERRORBorder = { fg = colors.base08, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyWARNBorder  = { fg = colors.base0E, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyINFOBorder  = { fg = colors.base0B, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyDEBUGBorder = { fg = colors.base0C, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyTRACEBorder = { fg = colors.base0C, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyERRORIcon   = { fg = colors.base08, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyWARNIcon    = { fg = colors.base0E, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyINFOIcon    = { fg = colors.base0B, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyDEBUGIcon   = { fg = colors.base0C, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyTRACEIcon   = { fg = colors.base0C, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyERRORTitle  = { fg = colors.base08, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyWARNTitle   = { fg = colors.base0E, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyINFOTitle   = { fg = colors.base0B, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyDEBUGTitle  = { fg = colors.base0C, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyTRACETitle  = { fg = colors.base0C, guibg = colors.base00, gui = 'none', guisp = nil },
+        NotifyERRORBody   = 'Normal',
+        NotifyWARNBody    = 'Normal',
+        NotifyINFOBody    = 'Normal',
+        NotifyDEBUGBody   = 'Normal',
+        NotifyTRACEBody   = 'Normal'
     })
 end
 
