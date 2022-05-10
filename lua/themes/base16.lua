@@ -18,7 +18,7 @@ local function customize(scheme)
     highlight({
         -- vim commmon
         EndOfBuffer             = { fg = colors.base00, bg = colors.base00 },
-        VertSplit               = { fg = dbg020 },
+        VertSplit               = { fg = dbg010 },
         CursorLineNr            = { fg = darken(colors.base0D, 0.1) },
         -- StatusLine              = { bg = colors.base00, fg = colors.base00 },
         -- StatusLineNC            = { bg = colors.base00, fg = colors.base00 },
@@ -35,12 +35,12 @@ local function customize(scheme)
         gitblame                = { bg = colors.base01, fg = colors.base03 },
 
         -- nvimtree
-        NvimTreeNormal          = { bg = dbg015 },
+        -- NvimTreeNormal          = { bg = dbg015 },
         NvimTreeFolderIcon      = { fg = colors.base0D },
         NvimTreeIndentrker      = { fg = colors.base01 },
-        NvimTreeEndOfBuffer     = { bg = dbg015, fg = dbg015 },
-        NvimTreeVertSplit       = { bg = colors.base00, fg = colors.base00 },
-        NvimTreeWinSeparator    = { bg = colors.base00, fg = colors.base00 },
+        -- NvimTreeEndOfBuffer     = { bg = dbg015, fg = dbg015 },
+        -- NvimTreeVertSplit       = { bg = colors.base00, fg = colors.base00 },
+        -- NvimTreeWinSeparator    = { bg = colors.base00, fg = colors.base00 },
 
         -- NormalFloat
         NormalFloat             = { bg = dbg010 },
@@ -143,5 +143,21 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         if b then
             customize(vim.g.colors_name:sub(p + 2))
         end
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "Outline",
+    callback = function()
+        local opts = "Normal:OutlineNormal,"
+            .. "NormalNC:OutlineNormal,"
+            .. "EndOfBuffer:OutlineEndOfBuffer,"
+            .. "SignColumn:OutlineNormal,"
+            .. "LineNr:OutlineLineNr,"
+            .. "VertSplit:OutlineWinSeparator,"
+            .. "WinSeparator:OutlineWinSeparator,"
+        vim.wo.list = false
+        vim.wo.fillchars = "vert: "
+        vim.cmd("setlocal winhighlight=" .. opts)
     end,
 })

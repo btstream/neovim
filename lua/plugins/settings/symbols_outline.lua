@@ -51,19 +51,3 @@ vim.g.symbols_outline = {
 
 local map = vim.keymap.set
 map("n", "<C-k>o", "<cmd>SymbolsOutline<cr>")
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "Outline",
-    callback = function()
-        local opts = "Normal:OutlineNormal,"
-            .. "NormalNC:OutlineNormal,"
-            .. "EndOfBuffer:OutlineEndOfBuffer,"
-            .. "SignColumn:OutlineNormal,"
-            .. "LineNr:OutlineLineNr,"
-            .. "VertSplit:OutlineWinSeparator,"
-            .. "WinSeparator:OutlineWinSeparator,"
-        print(opts)
-        vim.wo.list = false
-        vim.cmd("setlocal winhighlight=" .. opts)
-    end,
-})

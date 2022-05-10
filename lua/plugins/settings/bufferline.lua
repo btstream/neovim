@@ -58,10 +58,10 @@ require("bufferline").setup({
                     -- return vim.fn.getcwd()
                     return "File Explorer"
                 end,
-                highlight = "Directory",
+                highlight = "NvimTreeNormal",
                 text_align = "center",
             },
-            { filetype = "Outline", text = "Outline", highlight = "Directory", text_align = "center" },
+            { filetype = "Outline", text = "Outline", highlight = "NvimTreeNormal", text_align = "center" },
         },
         show_buffer_icons = true, -- disable filetype icons for buffers
         show_buffer_close_icons = true,
