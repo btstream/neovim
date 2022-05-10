@@ -18,7 +18,7 @@ local function customize(scheme)
     highlight({
         -- vim commmon
         EndOfBuffer             = { fg = colors.base00, bg = colors.base00 },
-        VertSplit               = { fg = dbg010 },
+        VertSplit               = { fg = dbg020 },
         CursorLineNr            = { fg = darken(colors.base0D, 0.1) },
         -- StatusLine              = { bg = colors.base00, fg = colors.base00 },
         -- StatusLineNC            = { bg = colors.base00, fg = colors.base00 },
@@ -27,6 +27,7 @@ local function customize(scheme)
         -- bufferline
         BufferLineIndicatorSelected = { fg = colors.base0D, bg = colors.base00 },
         BufferLineFill              = { fg = lighten(colors.base00, 0.2), bg = lighten(colors.base00, 0.2) },
+        BufferLineTabClose          = { bg = dbg010 },
 
         -- wichkey
         WhichKeyFloat           = { bg = dbg010 },
@@ -36,6 +37,7 @@ local function customize(scheme)
 
         -- nvimtree
         -- NvimTreeNormal          = { bg = dbg015 },
+        SidebarTitle            = { bg = dbg010 },
         NvimTreeFolderIcon      = { fg = colors.base0D },
         NvimTreeIndentrker      = { fg = colors.base01 },
         -- NvimTreeEndOfBuffer     = { bg = dbg015, fg = dbg015 },

@@ -33,7 +33,7 @@ opt.spell = false
 opt.signcolumn = "yes"
 opt.laststatus = 3
 opt.splitright = true
--- opt.fillchars = "vert:┃"
+opt.fillchars = "vert:┃,vertleft:┫,vertright:┣,verthoriz:╋,horiz:━,horizup:┻,horizdown:┳"
 
 -- auto commands to reload buffer
 vim.cmd([[
