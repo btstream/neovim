@@ -1,4 +1,6 @@
-require("Comment").setup()
+require("Comment").setup({
+    ignore = "^$",
+})
 
 local map = vim.keymap.set
 
