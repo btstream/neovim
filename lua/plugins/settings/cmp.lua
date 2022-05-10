@@ -41,6 +41,16 @@ local symbol_map = {
 
 ---@diagnostic disable-next-line: redundant-parameter
 cmp.setup({
+    enabled = function()
+        -- disable completion in comments
+        local context = require("cmp.config.context")
+        -- keep command mode completion enabled when cursor is in a comment
+        if vim.api.nvim_get_mode().mode == "c" then
+            return true
+        else
+            return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+        end
+    end,
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
@@ -73,8 +83,8 @@ cmp.setup({
                 cmp.select_next_item()
             elseif vim.fn["vsnip#available"](1) == 1 then
                 feedkey("<Plug>(vsnip-expand-or-jump)", "")
-            elseif has_words_before() then
-                cmp.complete()
+                -- elseif has_words_before() then
+                --     cmp.complete()
             else
                 fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end

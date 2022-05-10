@@ -116,5 +116,5 @@ end
 return {
     darken = darken,
     lighten = lighten,
-    hilight = highlight,
+    highlight = highlight,
 }

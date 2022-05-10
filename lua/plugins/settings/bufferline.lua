@@ -113,7 +113,3 @@ map("n", "<Space>pp", "<cmd>BufferLinePick<CR>")
 -- map('n', '<Space>bb', ':BufferOrderByBufferNumber<CR>')
 -- map('n', '<Space>bd', ':BufferOrderByDirectory<CR>')
 -- map('n', '<Space>bl', ':BufferOrderByLanguage<CR>')
-
--- Other:
--- :BarbarEnable - enables barbar (enabled by default)
--- :BarbarDisable - very bad command, should never be used

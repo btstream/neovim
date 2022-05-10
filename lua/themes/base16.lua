@@ -1,5 +1,6 @@
 local darken = require("themes.utils").darken
-local highlight = require("themes.utils").hilight
+local lighten = require("themes.utils").lighten
+local highlight = require("themes.utils").highlight
 
 local function get_base16_colors(scheme)
     local style = scheme and scheme or require("settings").theme.base16_style
@@ -19,13 +20,13 @@ local function customize(scheme)
         EndOfBuffer             = { fg = colors.base00, bg = colors.base00 },
         VertSplit               = { fg = dbg020 },
         CursorLineNr            = { fg = darken(colors.base0D, 0.1) },
-        StatusLine              = { bg = colors.base00, fg = colors.base00 },
-        StatusLineNC            = { bg = colors.base00, fg = colors.base00 },
+        -- StatusLine              = { bg = colors.base00, fg = colors.base00 },
+        -- StatusLineNC            = { bg = colors.base00, fg = colors.base00 },
         LineNr                  = { fg = colors.base03 },
 
         -- bufferline
         BufferLineIndicatorSelected = { fg = colors.base0D, bg = colors.base00 },
-        BufferLineFill              = { fg = colors.base01, bg = colors.base01 },
+        BufferLineFill              = { fg = lighten(colors.base00, 0.2), bg = lighten(colors.base00, 0.2) },
 
         -- wichkey
         WhichKeyFloat           = { bg = dbg010 },
@@ -54,7 +55,7 @@ local function customize(scheme)
         TelescopePreviewTitle   = { bg = colors.base0B },
 
         -- cmp
-        PmenuSel                 = { bg = colors.base02 },
+        PmenuSel                 = { bg = colors.base02, fg = 'None' },
         Pmenu                    = { bg = dbg015 },
         CmpItemAbbrMatch         = { fg = colors.base0D, gui = "bold" },
         CmpItemAbbrMatchFuzzy    = { fg = colors.base0D, gui = "underline" },
