@@ -26,7 +26,7 @@ local function customize(scheme)
 
         -- bufferline
         BufferLineIndicatorSelected = { fg = colors.base0D, bg = colors.base00 },
-        BufferLineFill              = { fg = lighten(colors.base00, 0.2), bg = lighten(colors.base00, 0.2) },
+        BufferLineFill              = { fg = dbg010, bg = dbg010 },
         BufferLineTabClose          = { bg = dbg010 },
 
         -- wichkey
