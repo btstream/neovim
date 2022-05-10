@@ -40,6 +40,7 @@ local function customize(scheme)
         NvimTreeIndentrker      = { fg = colors.base01 },
         NvimTreeEndOfBuffer     = { bg = dbg015, fg = dbg015 },
         NvimTreeVertSplit       = { bg = colors.base00, fg = colors.base00 },
+        NvimTreeWinSeparator    = { bg = colors.base00, fg = colors.base00 },
 
         -- NormalFloat
         NormalFloat             = { bg = dbg010 },
@@ -119,7 +120,14 @@ local function customize(scheme)
         NotifyWARNBody    = 'Normal',
         NotifyINFOBody    = 'Normal',
         NotifyDEBUGBody   = 'Normal',
-        NotifyTRACEBody   = 'Normal'
+        NotifyTRACEBody   = 'Normal',
+
+        -- Outline
+        OutlineNormal       = "NvimTreeNormal",
+        OutlineEndOfBuffer  = "NvimTreeEndOfBuffer",
+        OutlineSignColumn   = "OutlineNormal",
+        OutlineLineNr       = "OutlineNormal",
+        OutlineWinSeparator = "NvimTreeWinSeparator",
     })
 end
 
