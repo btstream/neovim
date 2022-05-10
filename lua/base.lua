@@ -66,23 +66,23 @@ end
 
 -- clean search hilight
 map("n", "<Esc><Esc>", "<cmd>nohl<cr>")
-map("n", "<C-S-right>", ":vertical resize +1<cr>")
-map("n", "<C-S-left>", ":vertical resize -1<cr>")
-map("n", "<C-S-up>", ":resize +1<cr>")
-map("n", "<C-S-down>", ":resize -1<cr>")
+map("n", "<C-S-right>", "<cmd>vertical resize +1<cr>")
+map("n", "<C-S-left>", "<cmd>vertical resize -1<cr>")
+map("n", "<C-S-up>", "<cmd>resize +1<cr>")
+map("n", "<C-S-down>", "<cmd>resize -1<cr>")
 
 vim.cmd([[
-nnoremap <silent> <A-j> :m .+1<CR>==
-nnoremap <silent> <A-k> :m .-2<CR>==
-inoremap <silent> <A-j> <Esc>:m .+1<CR>==gi
-inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <silent> <A-j> :m '>+1<CR>gv=gv
-vnoremap <silent> <A-k> :m '<-2<CR>gv=gv
+nnoremap <silent> <A-j> <cmd>m .+1<CR>==
+nnoremap <silent> <A-k> <cmd>m .-2<CR>==
+inoremap <silent> <A-j> <Esc><cmd>m .+1<CR>==gi
+inoremap <silent> <A-k> <Esc><cmd>m .-2<CR>==gi
+vnoremap <silent> <A-j> <cmd>m '>+1<CR>gv=gv
+vnoremap <silent> <A-k> <cmd>m '<-2<CR>gv=gv
 
-nnoremap <silent> <C-down> :m .+1<CR>==
-nnoremap <silent> <C-up> :m .-2<CR>==
-inoremap <silent> <C-down> <Esc>:m .+1<CR>==gi
-inoremap <silent> <C-up> <Esc>:m .-2<CR>==gi
-vnoremap <silent> <C-down> :m '>+1<CR>gv=gv
-vnoremap <silent> <C-up> :m '<-2<CR>gv=gv
+nnoremap <silent> <C-down> <cmd>m .+1<CR>==
+nnoremap <silent> <C-up> <cmd>m .-2<CR>==
+inoremap <silent> <C-down> <Esc><cmd>m .+1<CR>==gi
+inoremap <silent> <C-up> <Esc><cmd>m .-2<CR>==gi
+vnoremap <silent> <C-down> <cmd>m '>+1<CR>gv=gv
+vnoremap <silent> <C-up> <cmd>m '<-2<CR>gv=gv
 ]])

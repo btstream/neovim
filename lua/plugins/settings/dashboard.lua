@@ -7,7 +7,7 @@ vim.g.dashboard_custom_section = {
     e = { description = { "  Find Word                      SPC f w" }, command = "Telescope live_grep" },
     f = { description = { "  Choose Colorscheme             SPC t c" }, command = "Telescope colorscheme" },
     g = { description = { "  Update Plugins                 SPC p u" }, command = "PackerUpdate" },
-    h = { description = { "  Configuration                  SPC s s" }, command = ":e ~/.config/nvim/init.lua" },
+    h = { description = { "  Configuration                  SPC s s" }, command = "<cmd>e ~/.config/nvim/init.lua" },
 }
 
 vim.g.dashboard_custom_header = {
@@ -42,12 +42,12 @@ vim.g.dashboard_custom_footer = {
 
 local map = vim.keymap.set
 
-map("n", "<Leader>fh", ":DashboardFindHistory<CR>")
-map("n", "<Leader>ff", ":DashboardFindFile<CR>")
-map("n", "<Leader>tc", ":DashboardChangeColorscheme<CR>")
-map("n", "<Leader>fw", ":DashboardFindWord<CR>")
-map("n", "<Leader>fb", ":DashboardJumpMark<CR>")
-map("n", "<Leader>cn", ":DashboardNewFile<CR>")
-map("n", "<Leader>fp", ":Telescope projects<cr>")
-map("n", "<Leader>pu", ":PackerUpdate<cr>")
-map("n", "<Leader>ss", ":e ~/.config/nvim/init.lua<cr>")
+map("n", "<Leader>fh", "<cmd>DashboardFindHistory<CR>")
+map("n", "<Leader>ff", "<cmd>DashboardFindFile<CR>")
+map("n", "<Leader>tc", "<cmd>DashboardChangeColorscheme<CR>")
+map("n", "<Leader>fw", "<cmd>DashboardFindWord<CR>")
+map("n", "<Leader>fb", "<cmd>DashboardJumpMark<CR>")
+map("n", "<Leader>cn", "<cmd>DashboardNewFile<CR>")
+map("n", "<Leader>fp", "<cmd>Telescope projects<cr>")
+map("n", "<Leader>pu", "<cmd>PackerUpdate<cr>")
+map("n", "<Leader>ss", "<cmd>e ~/.config/nvim/init.lua<cr>")
