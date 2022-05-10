@@ -1,4 +1,4 @@
-local colors = require("material.colors")
+-- local colors = require("material.colors")
 
 local lsp_progress = require("plugins.settings.statusline.lualine.components.lsp_progress")
 local filetype_tools = require("plugins.settings.statusline.lualine.utils.filetype_tools")
@@ -9,7 +9,7 @@ local search_result = require("plugins.settings.statusline.lualine.components.se
 local terminal_info = require("plugins.settings.statusline.lualine.components.terminal_info")
 
 local function get_debug_color()
-    return { bg = vim.g.dap_loaded and colors.darkpurple }
+    return { bg = vim.g.dap_loaded and (vim.g.terminal_color_5 or "#c678dd") }
 end
 
 filetype_tools.add_none_filetypes({
@@ -84,7 +84,7 @@ require("lualine").setup({
         },
 
         lualine_x = {
-            { search_result, icon = { "" }, color = { fg = colors.orange } },
+            { search_result, icon = { "" }, color = { fg = vim.g.terminal_color_11 or "#e5c07b" } },
             {
                 "encoding",
                 cond = function()
