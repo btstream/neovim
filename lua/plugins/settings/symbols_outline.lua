@@ -7,7 +7,7 @@ vim.g.symbols_outline = {
     show_numbers = false,
     show_relative_numbers = false,
     show_symbol_details = true,
-    preview_bg_highlight = "Pmenu",
+    preview_bg_highlight = "NormalFloat",
     keymaps = { -- These keymaps can be a string or a table for multiple keys
         close = { "<Esc>", "q" },
         goto_location = "<Cr>",
@@ -39,8 +39,8 @@ vim.g.symbols_outline = {
         Boolean = { icon = "⊨", hl = "TSBoolean" },
         Array = { icon = "", hl = "TSConstant" },
         Object = { icon = "⦿", hl = "TSType" },
-        Key = { icon = "🔐", hl = "TSType" },
-        Null = { icon = "NULL", hl = "TSType" },
+        Key = { icon = "", hl = "TSType" },
+        Null = { icon = "", hl = "TSType" },
         EnumMember = { icon = "", hl = "TSField" },
         Struct = { icon = "𝓢", hl = "TSType" },
         Event = { icon = "🗲", hl = "TSType" },
@@ -61,7 +61,7 @@ vim.api.nvim_create_autocmd("FileType", {
             .. "SignColumn:OutlineNormal,"
             .. "LineNr:OutlineLineNr,"
             .. "VertSplit:OutlineWinSeparator,"
-            .. "WinSeparator:OutlineWinSeparator"
+            .. "WinSeparator:OutlineWinSeparator,"
         print(opts)
         vim.wo.list = false
         vim.cmd("setlocal winhighlight=" .. opts)
