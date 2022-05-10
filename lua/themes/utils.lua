@@ -73,33 +73,33 @@ local function highlight(opts)
             local cmd = {}
             table.insert(cmd, "highlight! " .. hl_group)
             local has_style = false
-            for key, color in pairs(scheme) do
-                if color == nil then
+            for key, value in pairs(scheme) do
+                if value == nil then
                     goto continue
                 end
 
                 if key == "bg" then
-                    table.insert(cmd, "guibg=" .. color)
+                    table.insert(cmd, "guibg=" .. value)
                     has_style = true
                 end
 
                 if key == "fg" then
-                    table.insert(cmd, "guifg=" .. color)
+                    table.insert(cmd, "guifg=" .. value)
                     has_style = true
                 end
 
                 if key == "gui" then
-                    table.insert(cmd, "gui=" .. color)
+                    table.insert(cmd, "gui=" .. value)
                     has_style = true
                 end
 
                 if key == "guisp" then
-                    table.insert(cmd, "guisp=" .. color)
+                    table.insert(cmd, "guisp=" .. value)
                     has_style = true
                 end
 
                 if key == "cterm" then
-                    table.insert(cmd, "cterm=" .. color)
+                    table.insert(cmd, "cterm=" .. value)
                     has_style = true
                 end
 
@@ -107,6 +107,7 @@ local function highlight(opts)
             end
 
             if has_style then
+                -- print(table.concat(cmd, " "))
                 vim.cmd(table.concat(cmd, " "))
             end
         end
