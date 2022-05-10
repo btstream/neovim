@@ -125,6 +125,10 @@ cmp.setup.cmdline(":", {
     completion = { completeopt = "menu,noselect" },
 })
 
+cmp.setup.filetype("TelescopePrompt", {
+    enabled = false,
+})
+
 -- autopairs
 require("nvim-autopairs").setup({ disable_filetype = { "TelescopePrompt", "vim" } })
 
