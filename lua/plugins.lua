@@ -268,6 +268,16 @@ packer.startup(function(use)
         requires = "nvim-treesitter/nvim-treesitter",
     })
 
+    use({
+        "s1n7ax/nvim-comment-frame",
+        requires = {
+            { "nvim-treesitter" },
+        },
+        config = function()
+            require("plugins.settings.nvim_comment_frame")
+        end,
+    })
+
     -- gitsigns
     use({
         "lewis6991/gitsigns.nvim",
