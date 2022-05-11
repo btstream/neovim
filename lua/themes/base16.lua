@@ -15,7 +15,7 @@ local function customize(scheme)
     local dbg020 = darken(colors.base00, 0.20)
 
     -- stylua: ignore
-    highlight({
+    local custom_colors = {
         -- vim commmon
         EndOfBuffer             = { fg = colors.base00, bg = colors.base00 },
         VertSplit               = { fg = dbg020 },
@@ -130,7 +130,9 @@ local function customize(scheme)
         OutlineSignColumn   = "OutlineNormal",
         OutlineLineNr       = "OutlineNormal",
         OutlineWinSeparator = "NvimTreeWinSeparator",
-    })
+    }
+
+    highlight(custom_colors)
 end
 
 -- load colors
