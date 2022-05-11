@@ -68,6 +68,7 @@ require("bufferline").setup({
         enforce_regular_tabs = false,
         always_show_bufferline = false,
         sort_by = "id",
+        themable = true,
     },
 })
 
