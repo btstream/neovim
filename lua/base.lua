@@ -58,7 +58,7 @@ opt.spell = false
 --performance
 -------------------------
 opt.redrawtime = 1500
-opt.timeoutlen = 250
+opt.timeoutlen = 500
 opt.ttimeoutlen = 10
 opt.updatetime = 100
 

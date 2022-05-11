@@ -1,9 +1,10 @@
 vim.g.symbols_outline = {
     highlight_hovered_item = true,
     show_guides = true,
-    auto_preview = true,
+    auto_preview = false,
+    relative_width = false,
     position = "right",
-    width = 25,
+    width = 40,
     show_numbers = false,
     show_relative_numbers = false,
     show_symbol_details = true,

@@ -169,9 +169,27 @@ local function customize(scheme)
         BufferLineHintDiagnostic    = { bg = dbg015 },
         BufferLineCloseButton       = { bg = dbg015 },
         BufferLineNumbers           = { bg = dbg015 },
+        
+        BufferLineBackgroundVisible        = { bg = dbg015 },
+        BufferLineModifiedVisible          = { bg = dbg015 },
+        BufferLineDuplicateVisible         = { bg = dbg015 },
+        BufferLinePickVisible              = { bg = dbg015 },
+        BufferLineSeparatorVisible         = { bg = dbg015, fg = dbg015 },
+        BufferLineBufferVisible            = { bg = dbg015 },
+        BufferLineDiagnosticVisible        = { bg = dbg015 },
+        BufferLineErrorVisible             = { bg = dbg015 },
+        BufferLineErrorDiagnosticVisible   = { bg = dbg015 },
+        BufferLineWarningVisible           = { bg = dbg015 },
+        BufferLineWarningDiagnosticVisible = { bg = dbg015 },
+        BufferLineInfoVisible              = { bg = dbg015 },
+        BufferLineInfoDiagnosticVisible    = { bg = dbg015 },
+        BufferLineHintVisible              = { bg = dbg015 },
+        BufferLineHintDiagnosticVisible    = { bg = dbg015 },
+        BufferLineCloseButtonVisible       = { bg = dbg015 },
+        BufferLineNumbersVisible           = { bg = dbg015 },
 
         -- selected
-        BufferLineIndicatorSelected = { fg = colors.base0D },
+        BufferLineIndicatorSelected = { fg = colors.base0D, bg = colors.base00 },
         BufferLineSeparatorSelected = { bg = dbg015, fg = dbg015 },
 
         -- fill and close button
@@ -208,7 +226,6 @@ vim.api.nvim_create_autocmd("FileType", {
             .. "VertSplit:OutlineWinSeparator,"
             .. "WinSeparator:OutlineWinSeparator,"
         vim.wo.list = false
-        vim.wo.fillchars = "vert: "
         vim.cmd("setlocal winhighlight=" .. opts)
     end,
 })
