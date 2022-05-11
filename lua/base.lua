@@ -1,40 +1,81 @@
 local opt = vim.opt
 
--- set leader char to space
-vim.g.mapleader = " "
-
--- use terminal color
-opt.termguicolors = true
+-------------------------
+-- ui
+-------------------------
+opt.cursorline = true
+opt.signcolumn = "yes"
 opt.number = true
+opt.laststatus = 3
+opt.fillchars = {
+    vert = "┃",
+    vertleft = "┫",
+    vertright = "┣",
+    verthoriz = "╋",
+    horiz = "━",
+    horizup = "┻",
+    horizdown = "┳",
+}
+opt.list = true
+opt.listchars = {
+    lead = "⋅",
+    tab = ">>",
+}
+opt.termguicolors = true
+
+-------------------------
+-- indent
+-------------------------
+opt.autoindent = true
 opt.expandtab = true
 opt.shiftround = true
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.wrap = false
-opt.autoread = true
 
+-------------------------
 -- mouse
+-------------------------
 opt.mouse = opt.mouse + "a"
-opt.list = true
-opt.cursorline = true
 
+-------------------------
 -- clipboard
+-------------------------
 opt.clipboard = "unnamedplus"
 
+-------------------------
 -- fileformats
+-------------------------
 opt.fileformats = "unix,dos"
 opt.showmatch = true
-opt.autoindent = true
 
+-------------------------
 -- spell
+-------------------------
 opt.spell = false
 
--- themes
-opt.signcolumn = "yes"
-opt.laststatus = 3
-opt.splitright = true
-opt.fillchars = "vert:┃,vertleft:┫,vertright:┣,verthoriz:╋,horiz:━,horizup:┻,horizdown:┳"
+-------------------------
+--performance
+-------------------------
+opt.redrawtime = 1500
+opt.timeoutlen = 250
+opt.ttimeoutlen = 10
+opt.updatetime = 100
 
+-------------------------
+--search
+-------------------------
+opt.hlsearch = false
+opt.ignorecase = true
+opt.smartcase = true
+opt.wildignore = opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" }
+opt.wildmenu = true
+
+-------------------------
+-- behavious
+-------------------------
+opt.splitright = true
+opt.autoread = true
 -- auto commands to reload buffer
 vim.cmd([[
 augroup reladbuffer
@@ -45,9 +86,12 @@ augroup end
 ]])
 
 -----------------------------------------------------------
--- set basic keymaps
+-- keys
 -----------------------------------------------------------
+-- set leader char to space
+vim.g.mapleader = " "
 local map = vim.keymap.set
+
 map("n", "<C-s>", "<cmd>w<cr>")
 map("i", "<C-s>", "<cmd>w<cr><ESC>")
 map("n", "<SPACEE>", "<Nop>")
