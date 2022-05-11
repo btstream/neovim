@@ -16,48 +16,58 @@ local function customize(scheme)
 
     -- stylua: ignore
     local custom_colors = {
-        -- vim commmon
+
+        ----------------------------------------------------------------------
+        --                           Vim Commons                            --
+        ----------------------------------------------------------------------
         EndOfBuffer             = { fg = colors.base00, bg = colors.base00 },
         VertSplit               = { fg = dbg020 },
         CursorLineNr            = { fg = darken(colors.base0D, 0.1) },
-        -- StatusLine              = { bg = colors.base00, fg = colors.base00 },
-        -- StatusLineNC            = { bg = colors.base00, fg = colors.base00 },
         LineNr                  = { fg = colors.base03 },
 
-        -- bufferline
-        BufferLineIndicatorSelected = { fg = colors.base0D, bg = colors.base00 },
-        BufferLineFill              = { fg = dbg010, bg = dbg010 },
-        BufferLineTabClose          = { bg = dbg010 },
+        ----------------------------------------------------------------------
+        --                             Whichkey                             --
+        ----------------------------------------------------------------------
+        WhichKeyFloat           = { bg = dbg015 },
 
-        -- wichkey
-        WhichKeyFloat           = { bg = dbg010 },
-
-        -- git
+        ----------------------------------------------------------------------
+        --                               git                                --
+        ----------------------------------------------------------------------
         gitblame                = { bg = colors.base01, fg = colors.base03 },
 
-        -- nvimtree
+        ----------------------------------------------------------------------
+        --                          NvimTreeNormal                          --
+        ----------------------------------------------------------------------
         -- NvimTreeNormal          = { bg = dbg015 },
-        SidebarTitle            = { bg = dbg010 },
+        SidebarTitle            = { bg = dbg015 },
         NvimTreeFolderIcon      = { fg = colors.base0D },
         NvimTreeIndentrker      = { fg = colors.base01 },
         -- NvimTreeEndOfBuffer     = { bg = dbg015, fg = dbg015 },
         -- NvimTreeVertSplit       = { bg = colors.base00, fg = colors.base00 },
         -- NvimTreeWinSeparator    = { bg = colors.base00, fg = colors.base00 },
 
-        -- NormalFloat
-        NormalFloat             = { bg = dbg010 },
-        FloatBorder             = { bg = dbg010, fg = dbg010 },
+        ----------------------------------------------------------------------
+        --                           NormalFloat                            --
+        ----------------------------------------------------------------------
+        NormalFloat             = { bg = dbg015 },
+        FloatBorder             = { bg = dbg015, fg = dbg015 },
 
-        -- Packer
-        PackerFloatNormal       = { bg = dbg010 },
-        PackerFloatBorder       = { bg = dbg010, fg = dbg010 },
+        ----------------------------------------------------------------------
+        --                              Pacer                               --
+        ----------------------------------------------------------------------
+        PackerFloatNormal       = { bg = dbg015 },
+        PackerFloatBorder       = { bg = dbg015, fg = dbg015 },
 
-        -- Telescope
+        ----------------------------------------------------------------------
+        --                            Telescope                             --
+        ----------------------------------------------------------------------
         TelescopePreviewNormal  = { bg = dbg020 },
         TelescopePreviewBorder  = { bg = dbg020, fg = dbg020 },
         TelescopePreviewTitle   = { bg = colors.base0B },
 
-        -- cmp
+        ----------------------------------------------------------------------
+        --                               CMP                                --
+        ----------------------------------------------------------------------
         PmenuSel                 = { bg = colors.base02, fg = 'None' },
         Pmenu                    = { bg = dbg015 },
         CmpItemAbbrMatch         = { fg = colors.base0D, gui = "bold" },
@@ -84,7 +94,9 @@ local function customize(scheme)
         CmpDocumentation         = { bg = dbg015 },
         CmpDocumentationBorder   = { fg = dbg015, bg = dbg015 },
 
-        -- LSP
+        ----------------------------------------------------------------------
+        --                            LSP COnfig                            --
+        ----------------------------------------------------------------------
         LspFloatWinNormal       = { bg = colors.base00 },
         LspFloatWinBorder       = { bg = colors.base00, fg = colors.base02 },
 
@@ -102,7 +114,9 @@ local function customize(scheme)
         LspWinCodeActionTitle   = { bg = colors.base00, fg = colors.base0D },
         LspWinCodeActionBorder  = { bg = colors.base00, fg = colors.base0D },
 
-        -- Notify
+        ----------------------------------------------------------------------
+        --                              Notify                              --
+        ----------------------------------------------------------------------
         NotifyERRORBorder = { fg = colors.base08, guibg = colors.base00, gui = nil, guisp = nil },
         NotifyWARNBorder  = { fg = colors.base0E, guibg = colors.base00, gui = nil, guisp = nil },
         NotifyINFOBorder  = { fg = colors.base0B, guibg = colors.base00, gui = nil, guisp = nil },
@@ -124,12 +138,45 @@ local function customize(scheme)
         NotifyDEBUGBody   = 'Normal',
         NotifyTRACEBody   = 'Normal',
 
-        -- Outline
+        ----------------------------------------------------------------------
+        --                             Outline                              --
+        ----------------------------------------------------------------------
         OutlineNormal       = "NvimTreeNormal",
         OutlineEndOfBuffer  = "NvimTreeEndOfBuffer",
         OutlineSignColumn   = "OutlineNormal",
         OutlineLineNr       = "OutlineNormal",
         OutlineWinSeparator = "NvimTreeWinSeparator",
+        
+
+        ----------------------------------------------------------------------
+        --                             BuffLine                             --
+        ----------------------------------------------------------------------
+        -- normal tab
+        BufferLineBackground        = { bg = dbg015 },
+        BufferLineModified          = { bg = dbg015 },
+        BufferLineDuplicate         = { bg = dbg015 },
+        BufferLinePick              = { bg = dbg015 },
+        BufferLineSeparator         = { bg = dbg015, fg = dbg015 },
+        BufferLineBuffer            = { bg = dbg015 },
+        BufferLineDiagnostic        = { bg = dbg015 },
+        BufferLineError             = { bg = dbg015 },
+        BufferLineErrorDiagnostic   = { bg = dbg015 },
+        BufferLineWarning           = { bg = dbg015 },
+        BufferLineWarningDiagnostic = { bg = dbg015 },
+        BufferLineInfo              = { bg = dbg015 },
+        BufferLineInfoDiagnostic    = { bg = dbg015 },
+        BufferLineHint              = { bg = dbg015 },
+        BufferLineHintDiagnostic    = { bg = dbg015 },
+        BufferLineCloseButton       = { bg = dbg015 },
+        BufferLineNumbers           = { bg = dbg015 },
+
+        -- selected
+        BufferLineIndicatorSelected = { fg = colors.base0D },
+        BufferLineSeparatorSelected = { bg = dbg015, fg = dbg015 },
+
+        -- fill and close button
+        BufferLineFill              = { bg = dbg015, fg = dbg015 },
+        BufferLineTabClose          = { bg = dbg015 },
     }
 
     highlight(custom_colors)
