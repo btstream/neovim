@@ -15,6 +15,7 @@ opt.fillchars = {
     horiz = "━",
     horizup = "┻",
     horizdown = "┳",
+    eob = " ",
 }
 opt.list = true
 opt.listchars = {

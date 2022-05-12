@@ -20,7 +20,7 @@ local function customize(scheme)
         ----------------------------------------------------------------------
         --                           Vim Commons                            --
         ----------------------------------------------------------------------
-        EndOfBuffer             = { fg = colors.base00, bg = colors.base00 },
+        -- EndOfBuffer             = { fg = colors.base00, bg = colors.base00 },
         VertSplit               = { fg = dbg020 },
         CursorLineNr            = { fg = darken(colors.base0D, 0.1) },
         LineNr                  = { fg = colors.base03 },
