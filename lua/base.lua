@@ -19,7 +19,8 @@ opt.fillchars = {
 }
 opt.list = true
 opt.listchars = {
-    lead = "⋅",
+    lead = "",
+    space = "",
     tab = ">>",
 }
 opt.termguicolors = true
@@ -66,11 +67,11 @@ opt.updatetime = 100
 -------------------------
 --search
 -------------------------
-opt.hlsearch = false
-opt.ignorecase = true
-opt.smartcase = true
-opt.wildignore = opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" }
-opt.wildmenu = true
+-- opt.hlsearch = true
+-- opt.ignorecase = true
+-- opt.smartcase = true
+-- opt.wildignore = opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" }
+-- opt.wildmenu = true
 
 -------------------------
 -- behavious
