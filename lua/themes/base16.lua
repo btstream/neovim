@@ -147,6 +147,7 @@ local function customize(scheme)
         OutlineSignColumn   = "OutlineNormal",
         OutlineLineNr       = "OutlineNormal",
         OutlineWinSeparator = "NvimTreeWinSeparator",
+        FocusedSymbol       = { bg = colors.base01, fg = "None", gui = "None" },
         
 
         ----------------------------------------------------------------------
