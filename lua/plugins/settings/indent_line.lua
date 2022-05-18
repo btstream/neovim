@@ -12,6 +12,7 @@ require("indent_blankline").setup({
         "Outline",
         "NvimTree",
         "help",
+        "lspinfo",
         "",
     },
 })
