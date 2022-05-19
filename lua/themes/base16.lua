@@ -148,7 +148,6 @@ local function customize(scheme)
         OutlineLineNr       = "OutlineNormal",
         OutlineWinSeparator = "NvimTreeWinSeparator",
         FocusedSymbol       = { bg = colors.base01, fg = "None", gui = "None" },
-        
 
         ----------------------------------------------------------------------
         --                             BuffLine                             --
@@ -171,7 +170,7 @@ local function customize(scheme)
         BufferLineHintDiagnostic    = { bg = dbg015 },
         BufferLineCloseButton       = { bg = dbg015 },
         BufferLineNumbers           = { bg = dbg015 },
-        
+
         BufferLineBackgroundVisible        = { bg = dbg015 },
         BufferLineModifiedVisible          = { bg = dbg015 },
         BufferLineDuplicateVisible         = { bg = dbg015 },
