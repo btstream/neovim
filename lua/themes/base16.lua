@@ -1,5 +1,4 @@
 local darken = require("themes.utils").darken
-local lighten = require("themes.utils").lighten
 local highlight = require("themes.utils").highlight
 
 local function get_base16_colors(scheme)
@@ -10,7 +9,7 @@ end
 
 local function customize(scheme)
     local colors = get_base16_colors(scheme)
-    local dbg010 = darken(colors.base00, 0.10)
+    -- local dbg010 = darken(colors.base00, 0.10)
     local dbg015 = darken(colors.base00, 0.15)
     local dbg020 = darken(colors.base00, 0.20)
 
