@@ -211,7 +211,11 @@ packer.startup(function(use)
     -- telescope
     use({
         "nvim-telescope/telescope.nvim",
-        requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim" },
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope-ui-select.nvim",
+            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+        },
         config = function()
             require("plugins.settings.telescope")
         end,
