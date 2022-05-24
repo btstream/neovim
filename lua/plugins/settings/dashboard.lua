@@ -7,13 +7,15 @@ vim.g.dashboard_custom_section = {
     e = { description = { "  Find Word                      SPC f w" }, command = "Telescope live_grep" },
     f = { description = { "  Choose Colorscheme             SPC t c" }, command = "Telescope colorscheme" },
     g = { description = { "  Update Plugins                 SPC p u" }, command = "PackerUpdate" },
-    h = { description = { "  Configuration                  SPC s s" }, command = "<cmd>e ~/.config/nvim/init.lua" },
+    h = {
+        description = { "  Configuration                  SPC s s" },
+        command = function()
+            vim.cmd("e " .. vim.fn.stdpath("config") .. "/" .. "init.lua")
+        end,
+    },
 }
 
 vim.g.dashboard_custom_header = {
-    "",
-    "",
-    "",
     "",
     "      ╦           ┐",
     "   ╓▒╠╠▒╕        ╒╣▓╕",
