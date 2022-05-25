@@ -64,6 +64,7 @@ local function customize(scheme)
         TelescopePreviewNormal  = { bg = dbg020 },
         TelescopePreviewBorder  = { bg = dbg020, fg = dbg020 },
         TelescopePreviewTitle   = { bg = colors.base0B },
+        TelescopeResultsLineNr  = { bg = "None" },
 
         ----------------------------------------------------------------------
         --                               CMP                                --
