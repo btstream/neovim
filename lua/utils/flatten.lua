@@ -135,27 +135,27 @@ end
 
 local function deflatten(tbl)
     vim.validate({
-        t = { t, "t" },
+        tbl = { tbl, "table" },
     })
 
     local res = {}
 
-    for key, value in pairs(t) do
+    for key, value in pairs(tbl) do
         local key_list = {}
 
         for k in string.gmatch(key, "([^.]+)") do
             table.insert(key_list, k)
         end
 
-        local tbl = res
+        local t = res
         for i, k in ipairs(key_list) do
             if i == #key_list then
-                tbl[k] = value
+                t[k] = value
             end
-            if tbl[k] == nil then
-                tbl[k] = {}
+            if t[k] == nil then
+                t[k] = {}
             end
-            tbl = tbl[k]
+            t = t[k]
         end
     end
 
