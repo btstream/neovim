@@ -3,4 +3,4 @@ require("rust-tools").setup({
     dap = require("plugins.settings.dap.rust"),
     tools = { autoSetHints = true },
 })
-require("lspconfig").rust_analyzer.setup({})
+-- require("lspconfig").rust_analyzer.setup({})
