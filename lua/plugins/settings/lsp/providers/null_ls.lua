@@ -18,5 +18,6 @@ require("null-ls").setup({
             end,
         }),
         require("null-ls").builtins.formatting.jq,
+        require("null-ls").builtins.formatting.yapf,
     },
 })
