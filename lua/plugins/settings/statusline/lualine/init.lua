@@ -21,6 +21,7 @@ filetype_tools.add_none_filetypes({
     "TELESCOPEPROMPT",
     "OUTLINE",
     "HELP",
+    "LSP-INSTALLER",
 })
 
 require("lualine").setup({

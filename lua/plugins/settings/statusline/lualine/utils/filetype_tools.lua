@@ -26,6 +26,7 @@ M._icons = {
     TELESCOPEPROMPT   = " ",
     DASHBOARD         = " ",
     LAZYGIT           = " ",
+    ["LSP-INSTALLER"] = " ",
 }
 
 M.add_none_filetypes = function(types)
