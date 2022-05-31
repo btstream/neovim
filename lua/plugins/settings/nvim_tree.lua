@@ -1,7 +1,7 @@
 -- local map = vim.api.nvim_set_keymap
 local map = vim.keymap.set
 
-vim.g.nvim_tree_icons = { git = { unstaged = "", staged = "", untracked = "" } }
+-- vim.g.nvim_tree_icons = { git = { unstaged = "", staged = "", untracked = "" } }
 
 require("nvim-tree").setup({
     disable_netrw = true,
@@ -24,6 +24,19 @@ require("nvim-tree").setup({
                 corner = "└ ",
                 edge = "│ ",
                 none = "  ",
+            },
+        },
+        icons = {
+            glyphs = {
+                git = {
+                    unstaged = "",
+                    staged = "",
+                    unmerged = "",
+                    renamed = "➜",
+                    untracked = "",
+                    deleted = "",
+                    ignored = "◌",
+                },
             },
         },
     },
