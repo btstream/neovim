@@ -1,8 +1,6 @@
 -- local map = vim.api.nvim_set_keymap
 local map = vim.keymap.set
 
--- vim.g.nvim_tree_icons = { git = { unstaged = "", staged = "", untracked = "" } }
-
 require("nvim-tree").setup({
     disable_netrw = true,
     hijack_netrw = true,
