@@ -41,23 +41,13 @@ local attach_keys = function(client, bufnr)
 end
 
 local M = {}
---- tools to return an function for on_init call back
---- @param server Server object of lsp config
---- @return function
--- M.on_init = function(server)
---     local name = type(server) == table and server.name or server
---     return function(client)
---         local local_settings = local_config.local_lsp_config(name)
---         client.config.settings = vim.tbl_deep_extend("force", client.config.settings, local_settings)
---         -- vim.lsp.rpc.notify("workspace/didChangeConfiguration")
---         client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
---     end
--- end
 
+local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 --- helper function for lsp server's on_attach callback
 --- @param client LspClient
 --- @param bufnr number buffer handler
 M.on_attach = function(client, bufnr)
+    -- print(client.name)
     lsp_status.register_progress()
     lsp_status.on_attach(client, bufnr)
     attach_keys(client, bufnr)
@@ -71,14 +61,35 @@ M.on_attach = function(client, bufnr)
     }, bufnr)
 
     -- save on formatting
-    if client.resolved_capabilities.document_formatting then
-        vim.cmd([[
-        augroup LspFormat
-            autocmd! * <buffer>
-            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-        augroup end
-        ]])
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                -- TODO: to use lsp.buf.format function after update version to nvim-0.8
+                -- check if null-ls attached
+                local clients = vim.lsp.buf_get_clients(bufnr)
+                local has_null_ls = false
+                for _, c in pairs(clients) do
+                    if c.name == "null-ls" then
+                        has_null_ls = true
+                    end
+                end
+                -- disable other language servers for format function
+                -- if null-ls is attached
+                if has_null_ls and client.name ~= "null-ls" then
+                    return
+                end
+
+                if vim.fn.has("nvim-0.8") == 1 then
+                    vim.lsp.buf.format({
+                        bufnr = bufnr,
+                    })
+                else
+                    vim.lsp.buf.formatting_seq_sync()
+                end
+            end,
+        })
     end
 end
-
 return M

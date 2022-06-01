@@ -282,6 +282,14 @@ packer.startup(function(use)
         end,
     })
 
+    use({
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("plugins.settings.todo_comments")
+        end,
+    })
+
     -- gitsigns
     use({
         "lewis6991/gitsigns.nvim",

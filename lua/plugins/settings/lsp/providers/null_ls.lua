@@ -1,6 +1,7 @@
 local find_stylua_config = require("lspconfig.util").root_pattern("stylua.toml", ".stylua.toml")
 
 require("null-ls").setup({
+    on_attach = require("plugins.settings.lsp.utils").on_attach,
     sources = {
         require("null-ls").builtins.formatting.stylua.with({
             extra_args = function(_)
