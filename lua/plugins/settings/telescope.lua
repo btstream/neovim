@@ -1,5 +1,19 @@
 local map = vim.keymap.set
 local actions = require("telescope.actions")
+
+local telescope_actions = require("telescope.actions.set")
+local fixfolds = {
+    hidden = true,
+    attach_mappings = function(_)
+        telescope_actions.select:enhance({
+            post = function()
+                vim.cmd(":normal! zx")
+            end,
+        })
+        return true
+    end,
+}
+
 require("telescope").setup({
     defaults = {
         sorting_strategy = "ascending",
@@ -13,6 +27,12 @@ require("telescope").setup({
         -- find_files = {
         --     theme = "dropdown"
         -- },
+        buffers = fixfolds,
+        find_files = fixfolds,
+        git_files = fixfolds,
+        grep_string = fixfolds,
+        live_grep = fixfolds,
+        oldfiles = fixfolds,
         lsp_code_actions = { theme = "cursor" },
     },
     extensions = {

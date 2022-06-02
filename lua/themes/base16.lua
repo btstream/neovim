@@ -9,6 +9,7 @@ end
 
 local function customize(scheme)
     local colors = get_base16_colors(scheme)
+    -- print(vim.json.encode(colors))
     -- local dbg010 = darken(colors.base00, 0.10)
     local dbg015 = darken(colors.base00, 0.15)
     local dbg020 = darken(colors.base00, 0.20)
@@ -24,6 +25,7 @@ local function customize(scheme)
         CursorLineNr            = { fg = darken(colors.base0D, 0.1) },
         LineNr                  = { fg = colors.base03 },
         SignColumn              = { bg = "None"},
+        -- Folded                  = { fg = darken(colors.base0A, 0.20) },
 
         ----------------------------------------------------------------------
         --                             Whichkey                             --
