@@ -74,7 +74,7 @@ opt.updatetime = 100
 function _G.custom_fold_text()
     local line = vim.fn.getline(vim.v.foldstart)
     local line_count = vim.v.foldend - vim.v.foldstart + 1
-    return "┄┄┄┄┄┄┄┄┄┄" .. line .. ": " .. line_count .. " lines"
+    return "┄┄┄┄┄┄┄┄┄" .. line .. ": " .. line_count .. " lines"
 end
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
