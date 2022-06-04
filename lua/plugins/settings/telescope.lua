@@ -3,7 +3,7 @@ local actions = require("telescope.actions")
 
 local telescope_actions = require("telescope.actions.set")
 local fixfolds = {
-    hidden = true,
+    hidden = false,
     attach_mappings = function(_)
         telescope_actions.select:enhance({
             post = function()
