@@ -1,3 +1,4 @@
+local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
 require("toggleterm").setup({
     -- size can be a number or function which is passed the current terminal
     size = function(term)
@@ -20,6 +21,7 @@ require("toggleterm").setup({
     close_on_exit = true, -- close the terminal window when the process exits
     shell = vim.o.shell, -- change the default shell
     on_open = function(terminal)
+        -- set nvim tree
         local nvimtree = require("nvim-tree")
         local nvimtree_view = require("nvim-tree.view")
         if nvimtree_view.is_visible() and terminal.direction == "horizontal" then
@@ -27,6 +29,12 @@ require("toggleterm").setup({
             nvimtree.toggle()
             nvimtree_view.View.width = nvimtree_width
             nvimtree.toggle(false, true)
+        end
+
+        -- enter poetry virtual env
+        local path = find_pyproject_toml(vim.fn.getcwd())
+        if path then
+            terminal:send("poetry shell -q && exit")
         end
     end,
 })
