@@ -194,6 +194,7 @@ local function customize(scheme)
         -- selected
         BufferLineIndicatorSelected = { fg = colors.base0D, bg = colors.base00 },
         BufferLineSeparatorSelected = { bg = dbg015, fg = dbg015 },
+        BufferLineIndicatorVisible  = { bg = dbg015, fg = dbg015 },
 
         -- fill and close button
         BufferLineFill              = { bg = dbg015, fg = dbg015 },
