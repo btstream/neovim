@@ -6,7 +6,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
         "clone",
         "--depth",
         "1",
-        "https://hub.fastgit.xyz/wbthomason/packer.nvim",
+        "https://github.com/wbthomason/packer.nvim",
         install_path,
     })
     print("Installing packer close and reopen Neovim...")
@@ -38,9 +38,9 @@ packer.init({
             return status, win, buf
         end,
     },
-    git = {
-        default_url_format = "https://hub.fastgit.xyz/%s",
-    },
+    -- git = {
+    --     default_url_format = "https://hub.fastgit.xyz/%s",
+    -- },
 })
 
 packer.startup(function(use)
