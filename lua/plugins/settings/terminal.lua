@@ -48,3 +48,12 @@ local lazygit = Terminal:new({
 vim.keymap.set("n", "<C-k>g", function()
     lazygit:toggle()
 end)
+
+-- ensure enter insert mode when terminal gained focus
+vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+    callback = function()
+        if vim.bo.filetype:upper() == "TOGGLETERM" then
+            vim.cmd("startinsert")
+        end
+    end,
+})
