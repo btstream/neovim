@@ -53,8 +53,12 @@ local lazygit = Terminal:new({
     end,
 })
 
+-- set keymap
 vim.keymap.set("n", "<C-k>g", function()
     lazygit:toggle()
+end)
+vim.keymap.set("t", "<C-w>k", function()
+    vim.cmd("wincmd k")
 end)
 
 -- ensure enter insert mode when terminal gained focus
