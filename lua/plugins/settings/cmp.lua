@@ -125,6 +125,13 @@ cmp.setup.cmdline(":", {
     completion = { completeopt = "menu,noselect" },
 })
 
+-- TODO: ref https://github.com/hrsh7th/nvim-cmp/issues/877
+cmp.setup.filetype("java", {
+    confirmation = {
+        default_behavior = require("cmp.types").cmp.ConfirmBehavior.Replace,
+    },
+})
+
 cmp.setup.filetype("TelescopePrompt", {
     enabled = false,
 })
