@@ -7,6 +7,26 @@ local function get_base16_colors(scheme)
     return colors
 end
 
+-- color reference
+-- {
+--   "base0F": "#be5046",
+--   "base0D": "#61afef",
+--   "base07": "#c8ccd4",
+--   "base05": "#abb2bf",
+--   "base0E": "#c678dd",
+--   "base02": "#3e4451",
+--   "base0C": "#56b6c2",
+--   "base01": "#353b45",
+--   "base0B": "#98c379",
+--   "base0A": "#e5c07b",
+--   "base09": "#d19a66",
+--   "base00": "#282c34",
+--   "base08": "#e06c75",
+--   "base03": "#545862",
+--   "base06": "#b6bdca",
+--   "base04": "#565c64"
+-- }
+
 local function customize(scheme)
     local colors = get_base16_colors(scheme)
     -- print(vim.json.encode(colors))
@@ -199,6 +219,16 @@ local function customize(scheme)
         -- fill and close button
         BufferLineFill              = { bg = dbg015, fg = dbg015 },
         BufferLineTabClose          = { bg = dbg015 },
+
+        ----------------------------------------------------------------------
+        --                            Dashboard                             --
+        ----------------------------------------------------------------------
+        DashboardHeader             = { fg = colors.base0D },
+        DashboardCenter             = { fg = colors.base09 },
+        DashboardCenterIcon         = { fg = colors.base0B },
+        DashboardShortCut           = { fg = colors.base0E },
+        DashboardFooter             = { fg = colors.base04 },
+
     }
 
     highlight(custom_colors)
