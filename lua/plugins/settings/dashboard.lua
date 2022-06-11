@@ -2,19 +2,8 @@ local function edit_config()
     vim.cmd("e " .. vim.fn.stdpath("config") .. "/" .. "init.lua")
 end
 
-vim.g.dashboard_default_executive = "telescope"
-vim.g.dashboard_custom_section = {
-    a = { description = { "  Recently Opened Files          SPC f h" }, command = "Telescope oldfiles" },
-    b = { description = { "  Open Project                   SPC f p" }, command = "Telescope projects" },
-    c = { description = { "  Create New File                SPC c n" }, command = "DashboardNewFile" },
-    d = { description = { "  Find File                      SPC f f" }, command = "Telescope find_files" },
-    e = { description = { "  Find Word                      SPC f w" }, command = "Telescope live_grep" },
-    f = { description = { "  Choose Colorscheme             SPC t c" }, command = "Telescope colorscheme" },
-    g = { description = { "  Update Plugins                 SPC p u" }, command = "PackerUpdate" },
-    h = { description = { "  Configuration                  SPC s s" }, command = edit_config },
-}
-
-vim.g.dashboard_custom_header = {
+local dashboard = require("dashboard")
+dashboard.custom_header = {
     "",
     "      ╦           ┐",
     "   ╓▒╠╠▒╕        ╒╣▓╕",
@@ -31,18 +20,32 @@ vim.g.dashboard_custom_header = {
     "     ╙▒          ╣▀└",
     "",
 }
--- vim.g.dashboard_preview_command = "cat"
+
+dashboard.hide_statusline = false -- boolean default is true.it will hide statusline in dashboard buffer and auto open in other buffer
+dashboard.hide_tabline = false
+
+-- stylua: ignore
+dashboard.custom_center = {
+    { icon = "  ", desc = "Recently Opened Files          ", shortcut = "SPC f h", action = "Telescope oldfiles" },
+    { icon = "  ", desc = "Open Project                   ", shortcut = "SPC f p", action = "Telescope projects" },
+    { icon = "  ", desc = "Create New File                ", shortcut = "SPC c n", action = "DashboardNewFile" },
+    { icon = "  ", desc = "Find File                      ", shortcut = "SPC f f", action = "Telescope find_files" },
+    { icon = "  ", desc = "Find Word                      ", shortcut = "SPC f w", action = "Telescope live_grep" },
+    { icon = "  ", desc = "Choosehoose Colorscheme        ", shortcut = "SPC t c", action = "Telescope colorscheme" },
+    -- { icon = "  ", desc = "Update Plugins                 ", shortcut = "SPC p u", action = "PackerUpdate" },
+    { icon = "  ", desc = "Configuration                  ", shortcut = "SPC s s", action = edit_config },
+}
+
+-- vim.g.dashboard_preview_action = "cat"
 -- vim.g.dashboard_preview_pipeline = "cat"
 -- vim.g.dashboard_preview_file = "~/.config/nvim/neovim_logo.dat"
 -- vim.g.dashboard_preview_file_height = 14
 -- vim.g.dashboard_preview_file_width = 80
-
-vim.g.dashboard_custom_footer = {
-    "",
-}
+-- vim.g.dashboard_custom_footer = {
+--     "",
+-- }
 
 local map = vim.keymap.set
-
 map("n", "<Leader>fh", "<cmd>DashboardFindHistory<CR>")
 map("n", "<Leader>ff", "<cmd>DashboardFindFile<CR>")
 map("n", "<Leader>tc", "<cmd>DashboardChangeColorscheme<CR>")
