@@ -57,7 +57,7 @@ dashboard.custom_center = {
 local map = vim.keymap.set
 map("n", "<Leader>fh", "<cmd>Telescope oldfiles<CR>")
 map("n", "<Leader>ff", "<cmd>Telescope find_files<CR>")
-map("n", "<Leader>tc", "<cmd>Telescope find_files<CR>")
+map("n", "<Leader>tc", "<cmd>Telescope colorscheme<CR>")
 map("n", "<Leader>fw", "<cmd>Telescope live_grep<CR>")
 map("n", "<Leader>cn", "<cmd>enew<CR>")
 map("n", "<Leader>fp", "<cmd>Telescope projects<cr>")
