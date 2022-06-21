@@ -17,7 +17,7 @@ require("nvim-tree").setup({
     filters = { dotfiles = false, custom = {} },
     renderer = {
         indent_markers = {
-            enable = false,
+            enable = true,
             icons = {
                 corner = "└ ",
                 edge = "│ ",
