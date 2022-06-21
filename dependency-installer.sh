@@ -12,7 +12,7 @@ if [[ "$(uname)" == 'Linux' ]]; then
 elif [[ "$(uname)" == "Darwin" ]]; then
     PACKAGES+=(poetry)
     PKG_INSTALLER="brew install "
-    pip install neovim
+    pip install pynvim
 fi
 
 ${PKG_INSTALLER} ${PACKAGES[@]}
