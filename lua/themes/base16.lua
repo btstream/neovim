@@ -93,6 +93,7 @@ local function customize(scheme)
         ----------------------------------------------------------------------
         PmenuSel                 = { bg = colors.base02, fg = 'None' },
         Pmenu                    = { bg = dbg015 },
+        CmpItemAbbr              = { bg = dbg015 },
         CmpItemAbbrMatch         = { fg = colors.base0D, gui = "bold" },
         CmpItemAbbrtMatchFuzzy   = { fg = colors.base0D, gui = "underline" },
         CmpItemnu                = { fg = colors.base03 },
