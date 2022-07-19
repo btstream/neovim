@@ -143,7 +143,7 @@ packer.startup(function(use)
     use({
         "norcalli/nvim-colorizer.lua",
         config = function()
-            require("colorizer").setup({ "!packer" })
+            require("colorizer").setup()
         end,
     })
 
