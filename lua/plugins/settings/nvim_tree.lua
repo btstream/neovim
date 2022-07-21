@@ -1,5 +1,12 @@
 -- local map = vim.api.nvim_set_keymap
 local map = vim.keymap.set
+local view = require("nvim-tree.view")
+
+local _abandon_current_window = view.abandon_current_window
+view.abandon_current_window = function()
+    view._prevent_buffer_override()
+    _abandon_current_window()
+end
 
 require("nvim-tree").setup({
     disable_netrw = true,
