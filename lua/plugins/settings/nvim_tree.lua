@@ -2,6 +2,9 @@
 local map = vim.keymap.set
 local view = require("nvim-tree.view")
 
+----------------------------------------------------------------------
+--              prevent open buffer on NvimTree window              --
+----------------------------------------------------------------------
 local _abandon_current_window = view.abandon_current_window
 view.abandon_current_window = function()
     view._prevent_buffer_override()
