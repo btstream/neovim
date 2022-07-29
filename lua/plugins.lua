@@ -83,7 +83,7 @@ packer.startup(function(use)
         end,
     })
 
-    use({ "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" })
+    use({ "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "WhoIsSethDaniel/mason-tool-installer.nvim" })
 
     -- trouble
     use({
@@ -135,11 +135,6 @@ packer.startup(function(use)
         config = function()
             require("plugins.settings.dap")
         end,
-    })
-
-    use({
-        "Pocco81/DAPInstall.nvim",
-        branch = "dev",
     })
 
     -- colorizer
