@@ -1,8 +1,5 @@
-local dap_install = require("dap-install")
-local di_api = require("dap-install.api.debuggers")
 local dap = require("dap")
 local dapui = require("dapui")
-dap_install.setup({ installation_path = vim.fn.stdpath("data") .. "/dapinstall/" })
 
 -- vim.cmd([
 vim.cmd([[
@@ -18,14 +15,6 @@ vim.cmd([[
 ]])
 
 local function setupdap()
-    -- auto install
-    require("plugins.settings.dap.install")
-    for _, d in pairs(di_api.get_installed_debuggers()) do
-        if d ~= "codelldb" then
-            dap_install.config(d)
-        end
-    end
-
     vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticError", numhl = "" })
     vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticError", numhl = "" })
     vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DiagnosticError", numhl = "" })
