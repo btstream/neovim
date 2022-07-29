@@ -13,6 +13,7 @@ require("indent_blankline").setup({
         "NvimTree",
         "help",
         "lspinfo",
+        "Trouble",
         "",
     },
 })

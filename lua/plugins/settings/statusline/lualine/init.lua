@@ -22,6 +22,7 @@ filetype_tools.add_none_filetypes({
     "OUTLINE",
     "HELP",
     "LSP-INSTALLER",
+    "TROUBLE",
 })
 
 require("lualine").setup({

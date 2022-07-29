@@ -230,6 +230,14 @@ local function customize(scheme)
         DashboardShortCut           = { fg = colors.base0E },
         DashboardFooter             = { fg = colors.base04 },
 
+        ----------------------------------------------------------------------
+        --                             Trouble                              --
+        ----------------------------------------------------------------------
+        TroubleCount        = { bg = "None", fg = colors.base0B },
+        TroubleFoldIcon     = { bg = "None" },
+        TroubleIndent       = { bg = "None" },
+        TroubleLocation     = { bg = "None", fg = colors.base03 },
+        TroubleText         = { bg = "None" },
     }
 
     highlight(custom_colors)

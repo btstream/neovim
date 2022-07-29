@@ -91,6 +91,15 @@ packer.startup(function(use)
         end,
     })
 
+    -- trouble
+    use({
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("plugins.settings.trouble")
+        end,
+    })
+
     use({ -- outline
         "simrat39/symbols-outline.nvim",
         config = function()
