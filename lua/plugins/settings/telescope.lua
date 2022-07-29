@@ -36,7 +36,7 @@ require("telescope").setup({
         lsp_code_actions = { theme = "cursor" },
     },
     extensions = {
-        ["ui-select"] = { require("telescope.themes").get_dropdown() },
+        -- ["ui-select"] = { require("telescope.themes").get_dropdown() },
         fzf = {
             fuzzy = true, -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
@@ -47,7 +47,7 @@ require("telescope").setup({
     },
 })
 
-require("telescope").load_extension("ui-select")
+-- require("telescope").load_extension("ui-select")
 require("telescope").load_extension("fzf")
 
 -- find files

@@ -73,6 +73,8 @@ local function customize(scheme)
         ----------------------------------------------------------------------
         NormalFloat             = { bg = dbg015 },
         FloatBorder             = { bg = dbg015, fg = dbg015 },
+        -- for dressing
+        FloatTitle              = { bg = colors.base00, fg = colors.base05 },
 
         ----------------------------------------------------------------------
         --                              Pacer                               --

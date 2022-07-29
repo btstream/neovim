@@ -60,14 +60,6 @@ packer.startup(function(use)
     use("RRethy/nvim-base16")
 
     use({
-        "CosmicNvim/cosmic-ui",
-        requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-        config = function()
-            require("plugins.settings.cosmic-ui")
-        end,
-    })
-
-    use({
         "rcarriga/nvim-notify",
         config = function()
             vim.notify = require("notify")
@@ -243,6 +235,14 @@ packer.startup(function(use)
         after = "telescope.nvim",
         config = function()
             require("plugins.settings.file_explorer")
+        end,
+    })
+
+    -- dressing
+    use({
+        "stevearc/dressing.nvim",
+        config = function()
+            require("plugins.settings.dressing")
         end,
     })
 

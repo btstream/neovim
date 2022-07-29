@@ -1,14 +1,5 @@
 -- local local_config = require("nvim-dotnvim")
 local lsp_status = require("lsp-status")
-local cosmic_ui = require("cosmic-ui")
-
-local function rename()
-    cosmic_ui.rename({
-        win_options = {
-            winhighlight = "NormalFloat:LspFloatWinNormal",
-        },
-    })
-end
 
 local attach_keys = function(client, bufnr)
     local buf_map = vim.keymap.set
@@ -23,7 +14,7 @@ local attach_keys = function(client, bufnr)
     buf_map("n", "gt", '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>', opts)
     buf_map("n", "gr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>', opts)
     -- buf_map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-    buf_map("n", "<leader>rn", rename, opts)
+    buf_map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 
     -- diagnostic
     buf_map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
@@ -36,8 +27,8 @@ local attach_keys = function(client, bufnr)
     buf_map("n", "gs", "<cmd>lua require('lsp_signature').signature()<cr>", opts)
 
     -- code actions
-    buf_map("n", "<C-k>.", "<cmd>lua require('cosmic-ui').code_actions()<cr>", opts)
-    buf_map("v", "<C-k>.", "<cmd>lua require('cosmic-ui').range_code_actions()<cr>", opts)
+    buf_map("n", "<C-k>.", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+    buf_map("v", "<C-k>.", "<cmd>lua vim.lsp.buf.range_code_actions()<cr>", opts)
 end
 
 local M = {}
