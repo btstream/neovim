@@ -70,7 +70,7 @@ packer.startup(function(use)
     use({
         "neovim/nvim-lspconfig",
         requires = {
-            "williamboman/nvim-lsp-installer",
+            -- "williamboman/nvim-lsp-installer",
             "onsails/lspkind-nvim",
             "simrat39/rust-tools.nvim",
             "nvim-lua/lsp-status.nvim",
@@ -82,6 +82,8 @@ packer.startup(function(use)
             require("plugins.settings.lsp")
         end,
     })
+
+    use({ "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" })
 
     -- trouble
     use({

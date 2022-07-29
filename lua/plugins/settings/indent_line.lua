@@ -14,6 +14,7 @@ require("indent_blankline").setup({
         "help",
         "lspinfo",
         "Trouble",
+        "mason.nvim",
         "",
     },
 })

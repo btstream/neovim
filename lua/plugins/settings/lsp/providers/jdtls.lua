@@ -24,7 +24,7 @@ local function start_jdtls()
 
     local config = {
         name = "jdtls",
-        cmd = require("nvim-lsp-installer.servers.jdtls"):get_default_options().cmd,
+        -- cmd = require("nvim-lsp-installer.servers.jdtls"):get_default_options().cmd,
         flags = { allow_incremental_sync = true },
         -- handlers = {
         --     ["textDocument/publishDiagnostics"] = lsp_diag.publishDiagnostics,

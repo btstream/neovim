@@ -1,4 +1,4 @@
-local lsp_installer = require("nvim-lsp-installer")
+-- local lsp_installer = require("nvim-lsp-installer")
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 
@@ -58,13 +58,14 @@ local needed = {
     "lemminx",
 }
 
-lsp_installer.setup({
+require("mason").setup()
+require("mason-lspconfig").setup({
     ensure_installed = needed,
 })
-
-for _, server in pairs(lsp_installer.get_installed_servers()) do
-    -- first to call server specified config
-    if not pcall(require, "plugins.settings.lsp.providers." .. server.name) then
-        lspconfig[server.name].setup({})
-    end
-end
+require("mason-lspconfig").setup_handlers({
+    function(server_name)
+        if not pcall(require, "plugins.settings.lsp.providers." .. server_name) then
+            lspconfig[server_name].setup({})
+        end
+    end,
+})

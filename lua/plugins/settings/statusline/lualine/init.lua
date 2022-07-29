@@ -23,6 +23,7 @@ filetype_tools.add_none_filetypes({
     "HELP",
     "LSP-INSTALLER",
     "TROUBLE",
+    "MASON.NVIM",
 })
 
 require("lualine").setup({
