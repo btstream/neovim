@@ -41,8 +41,10 @@ lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.de
 })
 
 -----------------------------------
--- setup lsp with lsp_installer
+-- setup lsp with mason
 -----------------------------------
+
+-- config ensure installed lsp servers
 local _servers = {
     "bashls",
     "pyright",
