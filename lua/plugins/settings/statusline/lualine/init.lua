@@ -77,7 +77,12 @@ require("lualine").setup({
                     return vim.bo.filetype:upper() == "TOGGLETERM"
                 end,
             },
-            "branch",
+            {
+                "branch",
+                cond = function()
+                    return not filetype_tools.is_nonefiletype()
+                end,
+            },
             { "diff", symbols = { added = " ", modified = " ", removed = " " } },
             {
                 "diagnostics",
@@ -101,7 +106,22 @@ require("lualine").setup({
                 end,
             },
         },
-        lualine_y = { { lsp_progress, padding = 1 } },
+        lualine_y = {
+            {
+                lsp_progress,
+                padding = 1,
+                cond = function()
+                    return not filetype_tools.is_nonefiletype()
+                end,
+            },
+            {
+                "filetype",
+                icon_only = true,
+                cond = function()
+                    return filetype_tools.is_nonefiletype()
+                end,
+            },
+        },
         lualine_z = {
             {
                 "location",
