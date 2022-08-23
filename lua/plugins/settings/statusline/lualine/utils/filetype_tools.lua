@@ -38,7 +38,7 @@ M.add_none_filetypes = function(types)
         elseif type(value) == "table" then
             assert(#value ~= 2, "Format error, must in format of {'filetype', icon = ''}")
             assert(type(value.icon) ~= "string", "Format error, icon key must be a string")
-            M._icons[value[1]] = value.icon
+            M._icons[value[1]:upper()] = value.icon
         end
     end
 end
