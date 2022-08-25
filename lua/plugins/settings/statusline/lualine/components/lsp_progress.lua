@@ -36,9 +36,6 @@ local function lsp_progress()
         icon = " "
         if vim.bo.filetype == "" then
             active_lsp = "plaintext"
-        elseif filetype_tools.is_nonefiletype() then
-            active_lsp = vim.bo.filetype
-            icon = ""
         else
             active_lsp = vim.bo.filetype
         end

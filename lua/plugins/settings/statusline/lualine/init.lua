@@ -1,12 +1,11 @@
--- local colors = require("material.colors")
-
-local lsp_progress = require("plugins.settings.statusline.lualine.components.lsp_progress")
 local filetype_tools = require("plugins.settings.statusline.lualine.utils.filetype_tools")
 
 local mode = require("plugins.settings.statusline.lualine.components.mode")
 local filename = require("plugins.settings.statusline.lualine.components.filename")
 local search_result = require("plugins.settings.statusline.lualine.components.search_result")
 local terminal_info = require("plugins.settings.statusline.lualine.components.terminal_info")
+local lsp_progress = require("plugins.settings.statusline.lualine.components.lsp_progress")
+local nft_indicator = filetype_tools.type
 
 local function get_debug_color()
     return { bg = vim.g.dap_loaded and (vim.g.terminal_color_5 or "#c678dd") }
@@ -63,6 +62,15 @@ require("lualine").setup({
                 icon_only = true,
                 padding = { right = 1, left = 1 },
                 separator = { right = "" },
+                cond = function()
+                    return not filetype_tools.is_nonefiletype()
+                end,
+            },
+            {
+                nft_indicator,
+                cond = function()
+                    return filetype_tools.is_nonefiletype()
+                end,
             },
             {
                 filename,
@@ -115,8 +123,7 @@ require("lualine").setup({
                 end,
             },
             {
-                "filetype",
-                icon_only = true,
+                nft_indicator,
                 cond = function()
                     return filetype_tools.is_nonefiletype()
                 end,
