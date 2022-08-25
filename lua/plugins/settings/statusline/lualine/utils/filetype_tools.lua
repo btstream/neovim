@@ -54,7 +54,16 @@ M.get_icon = function()
 end
 
 M.type = function()
-    return vim.bo.filetype:upper() == "TELESCOPEPROMPT" and "Telescope" or vim.bo.filetype
+    local filetype = vim.bo.filetype
+    if filetype:upper() == "TOGGLETERM" then
+        return "terminal"
+    end
+
+    if filetype:upper() == "TELESCOPEPROMPT" then
+        return "telescope"
+    end
+
+    return filetype
 end
 
 return M
