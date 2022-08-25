@@ -4,7 +4,6 @@ settings.theme = {
     base16_style = "onedark",
     transparent = false,
     statusline = {
-        "lualine",
         theme = "base16",
     },
 }

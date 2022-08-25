@@ -168,23 +168,8 @@ packer.startup(function(use)
 
     -- status line and tabbar
     use({
-        "NTBBloodbath/galaxyline.nvim",
-        requires = { { "kyazdani42/nvim-web-devicons" }, { "RRethy/nvim-base16", opt = true } },
-        after = "nvim-base16",
-        cond = function()
-            return require("settings").theme.statusline[1] == "galaxyline"
-        end,
-        config = function()
-            require("plugins.settings.statusline.galaxyline").setup()
-        end,
-    })
-
-    use({
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
-        cond = function()
-            return require("settings").theme.statusline[1] == "lualine"
-        end,
         config = function()
             require("plugins.settings.statusline.lualine")
         end,
