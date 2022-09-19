@@ -15,6 +15,7 @@ local function start_jdtls()
     capabilities.workspace.configuration = true
     -- capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+    capabilities = vim.tbl_deep_extend("keep", capabilities, require("lsp-status").capabilities)
 
     -- extended capabilities
     local extendedClientCapabilities = jdtls.extendedClientCapabilities

@@ -8,6 +8,7 @@ capabilities = vim.tbl_deep_extend("keep", capabilities, require("lsp-status").c
 
 local lsp_settings_path = vim.fn.stdpath("config") .. "/lsp-settings"
 
+require("lsp-status").register_progress()
 require("plugins.settings.lsp.ui").setup()
 -----------------------------------
 -- setup nlspsettings to load

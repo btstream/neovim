@@ -38,8 +38,6 @@ local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 --- @param client LspClient
 --- @param bufnr number buffer handler
 M.on_attach = function(client, bufnr)
-    -- print(client.name)
-    lsp_status.register_progress()
     lsp_status.on_attach(client, bufnr)
     attach_keys(client, bufnr)
     require("lsp_signature").on_attach({
