@@ -214,6 +214,8 @@ local function customize(scheme)
         BufferLineCloseButtonVisible       = { bg = dbg015 },
         BufferLineNumbersVisible           = { bg = dbg015 },
 
+        BufferLineDevIconLua               = { fg = colors.base0D, bg = dbg015 },
+
         -- selected
         BufferLineIndicatorSelected = { fg = colors.base0D, bg = colors.base00 },
         BufferLineSeparatorSelected = { bg = dbg015, fg = dbg015 },
