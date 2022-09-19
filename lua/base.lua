@@ -85,11 +85,11 @@ opt.foldtext = "v:lua.custom_fold_text()"
 ----------------------------------------------------------------------
 --                              search                              --
 ----------------------------------------------------------------------
--- opt.hlsearch = true
--- opt.ignorecase = true
--- opt.smartcase = true
--- opt.wildignore = opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" }
--- opt.wildmenu = true
+opt.hlsearch = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.wildignore = opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" }
+opt.wildmenu = true
 
 ----------------------------------------------------------------------
 --                            behavious                             --
