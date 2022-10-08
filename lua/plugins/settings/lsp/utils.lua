@@ -55,28 +55,27 @@ M.on_attach = function(client, bufnr)
             group = augroup,
             buffer = bufnr,
             callback = function()
-                -- TODO: to use lsp.buf.format function after update version to nvim-0.8
-                -- check if null-ls attached
-                local clients = vim.lsp.buf_get_clients(bufnr)
-                local has_null_ls = false
-                for _, c in pairs(clients) do
-                    if c.name == "null-ls" then
-                        has_null_ls = true
-                    end
-                end
-                -- disable other language servers for format function
-                -- if null-ls is attached
-                if has_null_ls and client.name ~= "null-ls" then
-                    return
-                end
+                vim.lsp.buf.format({
+                    bufnr = bufnr,
+                    filter = function(client)
+                        -- to check if null-ls has attached
+                        local clients = vim.lsp.buf_get_clients(bufnr)
+                        local has_null_ls = false
+                        for _, c in pairs(clients) do
+                            if c.name == "null-ls" then
+                                has_null_ls = true
+                            end
+                        end
 
-                if vim.fn.has("nvim-0.8") == 1 then
-                    vim.lsp.buf.format({
-                        bufnr = bufnr,
-                    })
-                else
-                    vim.lsp.buf.formatting_seq_sync()
-                end
+                        if not has_null_ls then
+                            return true
+                        elseif client.name == "null-ls" then
+                            return true
+                        else
+                            return false
+                        end
+                    end,
+                })
             end,
         })
     end
