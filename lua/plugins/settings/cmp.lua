@@ -61,11 +61,10 @@ cmp.setup({
         end,
     },
     window = {
-        -- documentation = cmp.config.window.bordered({
-        --     border = "single",
-        --     winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder,",
-        -- }),
-        documentation = cmp.config.disable,
+        documentation = cmp.config.window.bordered({
+            border = "single",
+            winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder",
+        }),
     },
     mapping = {
         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
