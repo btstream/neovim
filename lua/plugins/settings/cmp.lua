@@ -61,10 +61,11 @@ cmp.setup({
         end,
     },
     window = {
-        documentation = cmp.config.window.bordered({
-            border = "single",
-            winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder,",
-        }),
+        -- documentation = cmp.config.window.bordered({
+        --     border = "single",
+        --     winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder,",
+        -- }),
+        documentation = cmp.config.disable,
     },
     mapping = {
         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
@@ -109,7 +110,7 @@ cmp.setup({
     formatting = {
         format = lspkind.cmp_format({
             symbol_map = symbol_map,
-            mode = "symbolt",
+            mode = "symbol",
             maxwidth = 50,
         }),
         -- end,
