@@ -257,7 +257,7 @@ packer.startup(function(use)
     -- comments
     use({
         "numToStr/Comment.nvim",
-        tag = "v0.6",
+        -- tag = "v0.6",
         config = function()
             require("plugins.settings.comments")
         end,
