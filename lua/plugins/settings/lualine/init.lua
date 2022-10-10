@@ -220,6 +220,24 @@ require("lualine").setup({
                 require("plugins.settings.lualine.components.filepath"),
                 color = { bg = "NONE" },
             },
+            {
+
+                function()
+                    return ">"
+                end,
+                color = { bg = "NONE" },
+                padding = { left = 1, right = 1 },
+            },
+            {
+                "filetype",
+                icon_only = true,
+                color = { bg = "NONE" },
+                padding = { left = 0, right = 0 },
+            },
+            {
+                filename,
+                color = { bg = "NONE" },
+            },
         },
     },
     extensions = {},
