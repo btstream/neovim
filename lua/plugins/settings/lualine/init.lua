@@ -29,6 +29,7 @@ filetype_tools.add_none_filetypes({
 
 navic.setup({
     highlight = true,
+    separator = "›",
 })
 
 -- for filetypes to disable winbar
@@ -184,7 +185,7 @@ require("lualine").setup({
             {
 
                 function()
-                    return ">"
+                    return "›"
                 end,
                 color = { bg = "NONE" },
                 padding = { left = 0, right = 1 },
@@ -201,7 +202,7 @@ require("lualine").setup({
             },
             {
                 function()
-                    return ">"
+                    return "›"
                 end,
                 padding = { left = 0, right = 0 },
                 cond = function()
@@ -223,7 +224,7 @@ require("lualine").setup({
             {
 
                 function()
-                    return ">"
+                    return "›"
                 end,
                 color = { bg = "NONE" },
                 padding = { left = 0, right = 1 },

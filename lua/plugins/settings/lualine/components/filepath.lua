@@ -12,7 +12,7 @@ local function filepath()
         table.remove(p, #p)
     end
 
-    return table.concat(p, " > ")
+    return table.concat(p, " › ")
 end
 
 return filepath
