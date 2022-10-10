@@ -1,6 +1,6 @@
 -- extend filename section to indicate dashboards/terminals and other things
 local filename = require("lualine.components.filename"):extend()
-local filetype_tools = require("plugins.settings.statusline.lualine.utils.filetype_tools")
+local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
 
 -- override
 function filename:update_status(is_focused)

@@ -1,5 +1,5 @@
 local lsp_status = require("lsp-status")
-local filetype_tools = require("plugins.settings.statusline.lualine.utils.filetype_tools")
+local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
 lsp_status.config({})
 
 --- function to get active_lsps, comes from galaxyline

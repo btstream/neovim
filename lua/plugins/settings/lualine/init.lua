@@ -1,10 +1,10 @@
-local filetype_tools = require("plugins.settings.statusline.lualine.utils.filetype_tools")
+local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
 
-local mode = require("plugins.settings.statusline.lualine.components.mode")
-local filename = require("plugins.settings.statusline.lualine.components.filename")
-local search_result = require("plugins.settings.statusline.lualine.components.search_result")
-local terminal_info = require("plugins.settings.statusline.lualine.components.terminal_info")
-local lsp_progress = require("plugins.settings.statusline.lualine.components.lsp_progress")
+local mode = require("plugins.settings.lualine.components.mode")
+local filename = require("plugins.settings.lualine.components.filename")
+local search_result = require("plugins.settings.lualine.components.search_result")
+local terminal_info = require("plugins.settings.lualine.components.terminal_info")
+local lsp_progress = require("plugins.settings.lualine.components.lsp_progress")
 local nft_indicator = filetype_tools.type
 
 local function get_debug_color()
