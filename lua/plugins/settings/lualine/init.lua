@@ -179,7 +179,7 @@ require("lualine").setup({
             {
                 require("plugins.settings.lualine.components.filepath"),
                 color = { bg = "NONE" },
-                padding = { left = 0, right = 1 },
+                -- padding = { left = 1, right = 1 },
             },
             {
                 function()

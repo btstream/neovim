@@ -6,7 +6,12 @@ local function filepath()
         return " "
     end
 
-    return table.concat((Path:new(bfpath)):_split(), " > ")
+    local p = (Path:new(bfpath)):_split()
+    if p[1] == "" then
+        table.remove(p, 1)
+    end
+
+    return table.concat(p, " > ")
 end
 
 return filepath
