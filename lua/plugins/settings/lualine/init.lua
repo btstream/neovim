@@ -1,3 +1,5 @@
+local navic = require("nvim-navic")
+
 local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
 
 local mode = require("plugins.settings.lualine.components.mode")
@@ -25,13 +27,27 @@ filetype_tools.add_none_filetypes({
     "MASON",
 })
 
+navic.setup({
+    highlight = true,
+})
+
+-- for filetypes to disable winbar
+local disabled_winbar = {
+    "NvimTree",
+}
+for _, value in ipairs(filetype_tools._nonefiletypes) do
+    table.insert(disabled_winbar, value:lower())
+end
+
 require("lualine").setup({
     options = {
         icons_enabled = true,
         theme = require("settings").theme.statusline.theme,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
-        disabled_filetypes = {},
+        disabled_filetypes = {
+            winbar = disabled_winbar,
+        },
         always_divide_middle = false,
         globalstatus = true,
     },
@@ -158,5 +174,35 @@ require("lualine").setup({
         lualine_z = {},
     },
     tabline = {},
+    winbar = {
+        lualine_b = {
+            {
+                require("plugins.settings.lualine.components.filepath"),
+                color = { bg = "NONE" },
+                padding = { left = 0, right = 1 },
+            },
+            {
+                function()
+                    return ">"
+                end,
+                padding = { left = 0, right = 0 },
+                cond = function()
+                    return navic.get_location({}) ~= ""
+                end,
+                color = { bg = "NONE" },
+            },
+        },
+        lualine_c = {
+            { navic.get_location, cond = navic.is_available },
+        },
+    },
+    inactive_winbar = {
+        lualine_b = {
+            {
+                require("plugins.settings.lualine.components.filepath"),
+                color = { bg = "NONE" },
+            },
+        },
+    },
     extensions = {},
 })

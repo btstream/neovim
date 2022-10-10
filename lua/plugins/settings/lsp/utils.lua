@@ -1,4 +1,3 @@
--- local local_config = require("nvim-dotnvim")
 local lsp_status = require("lsp-status")
 
 local attach_keys = function(client, bufnr)
@@ -49,7 +48,10 @@ M.on_attach = function(client, bufnr)
         },
     }, bufnr)
 
-    -- save on formatting
+    if client.server_capabilities.documentSymbolProvider then
+        require("nvim-navic").attach(client, bufnr)
+    end -- save on formatting
+
     if client.supports_method("textDocument/formatting") then
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,

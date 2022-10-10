@@ -183,6 +183,11 @@ packer.startup(function(use)
         end,
     })
 
+    use({
+        "SmiteshP/nvim-navic",
+        requires = "neovim/nvim-lspconfig",
+    })
+
     -- which-key
     use({
         "folke/which-key.nvim",

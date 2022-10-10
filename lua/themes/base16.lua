@@ -121,6 +121,28 @@ local function customize(scheme)
         CmpDocumentationBorder   = { fg = dbg015, bg = dbg015 },
 
         ----------------------------------------------------------------------
+        --                           Winbar Navic                           --
+        ----------------------------------------------------------------------
+        NavicIconsText          = { fg = colors.base09 },
+        NavicIconsthod          = { fg = colors.base0D },
+        NavicIconsFunction      = { fg = colors.base0D },
+        NavicIconsConstructor   = { fg = colors.base0A },
+        NavicIconsField         = { fg = colors.base0D },
+        NavicIconsClass         = { fg = colors.base0A },
+        NavicIconsInterface     = { fg = colors.base0A },
+        NavicIconsdule          = { fg = colors.base0D },
+        NavicIconsProperty      = { fg = colors.base0D },
+        NavicIconsValue         = { fg = colors.base09 },
+        NavicIconsEnum          = { fg = colors.base0A },
+        NavicIconsKeyword       = { fg = colors.base0E },
+        NavicIconsSnippet       = { fg = colors.base0B },
+        NavicIconsFile          = { fg = colors.base0D },
+        NavicIconsEnummber      = { fg = colors.base0C },
+        NavicIconsConstant      = { fg = colors.base09 },
+        NavicIconsStruct        = { fg = colors.base0A },
+        NavicIconsTypeParameter = { fg = colors.base0A },
+
+        ----------------------------------------------------------------------
         --                            LSP COnfig                            --
         ----------------------------------------------------------------------
         LspFloatWinNormal       = { bg = colors.base00 },
