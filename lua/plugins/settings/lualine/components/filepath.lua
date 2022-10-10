@@ -9,6 +9,7 @@ local function filepath()
     local p = (Path:new(bfpath)):_split()
     if p[1] == "" then
         table.remove(p, 1)
+        table.remove(p, #p)
     end
 
     return table.concat(p, " > ")
