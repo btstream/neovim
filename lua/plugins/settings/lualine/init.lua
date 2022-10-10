@@ -187,7 +187,7 @@ require("lualine").setup({
                     return ">"
                 end,
                 color = { bg = "NONE" },
-                padding = { left = 1, right = 1 },
+                padding = { left = 0, right = 1 },
             },
             {
                 "filetype",
@@ -226,7 +226,7 @@ require("lualine").setup({
                     return ">"
                 end,
                 color = { bg = "NONE" },
-                padding = { left = 1, right = 1 },
+                padding = { left = 0, right = 1 },
             },
             {
                 "filetype",
