@@ -27,9 +27,15 @@ filetype_tools.add_none_filetypes({
     "MASON",
 })
 
+-- config navic
+local navic_icons = {}
+for k, v in ipairs(require("themes.icons").lsp_symbol_icons) do
+    navic_icons[k] = (" %s "):format(v)
+end
 navic.setup({
     highlight = true,
-    separator = "›",
+    separator = " › ",
+    icons = navic_icons,
 })
 
 -- for filetypes to disable winbar
