@@ -204,6 +204,7 @@ require("lualine").setup({
             },
             {
                 filename,
+                symbols = { modified = "", readonly = "", unnamed = "" },
                 color = { bg = "NONE" },
             },
             {
@@ -243,6 +244,7 @@ require("lualine").setup({
             },
             {
                 filename,
+                symbols = { modified = "", readonly = "", unnamed = "" },
                 color = { bg = "NONE" },
             },
         },
