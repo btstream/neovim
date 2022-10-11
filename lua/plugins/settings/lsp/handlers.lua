@@ -2,6 +2,11 @@ return {
 
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "rounded",
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        source = "always",
+        prefix = " ",
+        scope = "cursor",
         winhighlight = "NormalFloat:LspWinHoverNormal,FloatBorder:LspWinHoverBorder",
     }),
 

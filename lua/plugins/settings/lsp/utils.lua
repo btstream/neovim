@@ -44,6 +44,15 @@ M.on_attach = function(client, bufnr)
         require("nvim-navic").attach(client, bufnr)
     end -- save on formatting
 
+    -- auto show diagnostics
+    vim.api.nvim_create_autocmd("CursorHold", {
+        buffer = bufnr,
+        callback = function()
+            vim.diagnostic.open_float(nil, {})
+        end,
+    })
+
+    -- formatting before save
     if client.supports_method("textDocument/formatting") then
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
