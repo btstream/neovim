@@ -60,6 +60,7 @@ local _servers = {
     "fortls",
     "lemminx",
     "codelldb",
+    "clangd",
 }
 local ensure_installed = {}
 local lspconfig_to_packages = require("mason-lspconfig.mappings.server").lspconfig_to_package
