@@ -55,7 +55,7 @@ packer.startup(function(use)
         end,
     })
     -- use("marko-cerovac/material.nvim")
-    use("rmehri01/onenord.nvim")
+    -- use("rmehri01/onenord.nvim")
     -- use("navarasu/onedarkpro.nvim")
     use("RRethy/nvim-base16")
 
