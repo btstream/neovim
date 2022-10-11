@@ -39,14 +39,6 @@ local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 M.on_attach = function(client, bufnr)
     lsp_status.on_attach(client, bufnr)
     attach_keys(client, bufnr)
-    require("lsp_signature").on_attach({
-        bind = true,
-        hint_enable = false,
-        hi_parameter = "IncSearch",
-        handler_opts = {
-            border = "single",
-        },
-    }, bufnr)
 
     if client.server_capabilities.documentSymbolProvider then
         require("nvim-navic").attach(client, bufnr)

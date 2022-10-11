@@ -75,8 +75,9 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
+        { name = "nvim_lsp_signature_help" },
         { name = "vsnip" },
-        { name = "path" }, -- For vsnip users.
+        { name = "path" },
     }, { { name = "buffer" } }),
     completion = { completeopt = "menu,menuone,noinsert,preview" },
     -- cmp kind info
