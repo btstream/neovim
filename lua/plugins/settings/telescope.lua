@@ -34,6 +34,7 @@ require("telescope").setup({
         live_grep = fixfolds,
         oldfiles = fixfolds,
         lsp_code_actions = { theme = "cursor" },
+        spell_suggest = { theme = "cursor" },
     },
     extensions = {
         -- ["ui-select"] = { require("telescope.themes").get_dropdown() },
@@ -51,19 +52,17 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 
 -- find files
-map("n", "<C-k>p", "<cmd>Telescope find_files<cr>")
-map("i", "<C-k>p", "<Esc><cmd>Telescope find_files<cr>")
+map({ "n", "i" }, "<C-k>p", "<cmd>Telescope find_files<cr>")
 
 -- find symbols
-map("n", "<C-k>s", "<cmd>Telescope lsp_document_symbols<cr>")
-map("i", "<C-k>s", "<Esc><cmd>Telescope lsp_document_symbols<cr>")
-map("n", "<C-k><S-s>", "<cmd>Telescope lsp_workspace_symbols<cr>")
-map("i", "<C-k><S-s>", "<Esc><cmd>Telescope lsp_workspace_symbols<cr>")
+map({ "n", "i" }, "<C-k>s", "<cmd>Telescope lsp_document_symbols<cr>")
+map({ "n", "i" }, "<C-k><S-s>", "<cmd>Telescope lsp_workspace_symbols<cr>")
 
 -- global find
-map("i", "<C-k>f", "<ESC><cmd>Telescope live_grep<cr>")
-map("n", "<C-k>f", "<ESC><cmd>Telescope live_grep<cr>")
+map({ "n", "i" }, "<C-k>f", "<cmd>Telescope live_grep<cr>")
 
--- code actions
 -- registers
-map({ "n", "i" }, "<C-k>r", "<Esc><cmd>Telescope registers<cr>")
+map({ "n", "i" }, "<C-k>r", "<cmd>Telescope registers<cr>")
+
+-- spell suggest
+map("n", "z=", "<cmd>Telescope spell_suggest<cr>")

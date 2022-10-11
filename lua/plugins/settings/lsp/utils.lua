@@ -23,7 +23,6 @@ local attach_keys = function(client, bufnr)
 
     -- hover
     map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-    map("n", "gs", "<cmd>lua require('lsp_signature').signature()<cr>", opts)
 
     -- code actions
     map("n", "<C-k>.", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
