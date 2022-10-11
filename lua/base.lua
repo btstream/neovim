@@ -96,6 +96,12 @@ opt.wildignore = opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*"
 opt.wildmenu = true
 
 ----------------------------------------------------------------------
+--                           Spell Check                            --
+----------------------------------------------------------------------
+vim.opt_local.spelloptions:append("noplainbuffer")
+opt.spell = true
+
+----------------------------------------------------------------------
 --                            behavious                             --
 ----------------------------------------------------------------------
 opt.splitright = true
