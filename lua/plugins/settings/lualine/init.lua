@@ -189,14 +189,6 @@ require("lualine").setup({
                 -- padding = { left = 1, right = 1 },
             },
             {
-
-                function()
-                    return "›"
-                end,
-                color = { bg = "NONE" },
-                padding = { left = 0, right = 1 },
-            },
-            {
                 "filetype",
                 icon_only = true,
                 color = { bg = "NONE" },
@@ -227,14 +219,6 @@ require("lualine").setup({
             {
                 require("plugins.settings.lualine.components.filepath"),
                 color = { bg = "NONE" },
-            },
-            {
-
-                function()
-                    return "›"
-                end,
-                color = { bg = "NONE" },
-                padding = { left = 0, right = 1 },
             },
             {
                 "filetype",
