@@ -46,6 +46,12 @@ packer.init({
 packer.startup(function(use)
     -- add packer itself to packer manager, to avoid remove
     use("wbthomason/packer.nvim")
+    use({
+        "lewis6991/impatient.nvim",
+        config = function()
+            require("impatient")
+        end,
+    })
 
     -- themes
     -- use({
