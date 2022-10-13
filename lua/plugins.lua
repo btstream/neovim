@@ -132,9 +132,16 @@ packer.startup(function(use)
     })
 
     -- dap
+    use({ "theHamsta/nvim-dap-virtual-text", event = "LspAttach" })
+    use({ "rcarriga/nvim-dap-ui", event = "LspAttach" })
     use({
         "mfussenegger/nvim-dap",
-        requires = { "theHamsta/nvim-dap-virtual-text", "rcarriga/nvim-dap-ui" },
+        event = "LspAttach",
+        -- requires = {
+        --     { "theHamsta/nvim-dap-virtual-text" },
+        --     { "rcarriga/nvim-dap-ui" },
+        -- },
+        after = { "nvim-dap-virtual-text", "nvim-dap-ui" },
         config = function()
             require("plugins.settings.dap")
         end,
@@ -188,7 +195,19 @@ packer.startup(function(use)
 
     use({
         "SmiteshP/nvim-navic",
+        event = "LspAttach",
         requires = "neovim/nvim-lspconfig",
+        config = function()
+            local navic_icons = {}
+            for k, v in ipairs(require("themes.icons").lsp_symbol_icons) do
+                navic_icons[k] = (" %s "):format(v)
+            end
+            require("nvim-navic").setup({
+                highlight = true,
+                separator = " › ",
+                icons = navic_icons,
+            })
+        end,
     })
 
     -- which-key

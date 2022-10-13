@@ -1,4 +1,4 @@
-local navic = require("nvim-navic")
+-- local navic_loaded, navic = pcall(require, "nvim-navic")
 
 local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
 
@@ -28,15 +28,15 @@ filetype_tools.add_none_filetypes({
 })
 
 -- config navic
-local navic_icons = {}
-for k, v in ipairs(require("themes.icons").lsp_symbol_icons) do
-    navic_icons[k] = (" %s "):format(v)
-end
-navic.setup({
-    highlight = true,
-    separator = " › ",
-    icons = navic_icons,
-})
+-- local navic_icons = {}
+-- for k, v in ipairs(require("themes.icons").lsp_symbol_icons) do
+--     navic_icons[k] = (" %s "):format(v)
+-- end
+-- navic.setup({
+--     highlight = true,
+--     separator = " › ",
+--     icons = navic_icons,
+-- })
 
 -- for filetypes to disable winbar
 local disabled_winbar = {
@@ -205,13 +205,20 @@ require("lualine").setup({
                 end,
                 padding = { left = 0, right = 0 },
                 cond = function()
-                    return navic.get_location({}) ~= ""
+                    return packer_plugins["nvim-navic"].loaded and require("nvim-navic").get_location({}) ~= ""
                 end,
                 color = { bg = "NONE" },
             },
         },
         lualine_c = {
-            { navic.get_location, cond = navic.is_available },
+            {
+                function()
+                    return require("nvim-navic").get_location()
+                end,
+                cond = function()
+                    return packer_plugins["nvim-navic"].loaded and require("nvim-navic").is_available()
+                end,
+            },
         },
     },
     inactive_winbar = {

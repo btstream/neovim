@@ -1,5 +1,4 @@
 local dap = require("dap")
-local dapui = require("dapui")
 
 -- vim.cmd([
 vim.cmd([[
@@ -22,18 +21,17 @@ local function setupdap()
     vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticWarn", numhl = "" })
 
     -- config dapui
-    dapui.setup()
     dap.listeners.after.event_initialized["dapui_config"] = function()
         vim.g.dap_loaded = true
-        dapui.open()
+        require("dapui").open()
     end
     dap.listeners.before.event_terminated["dapui_config"] = function()
         vim.g.dap_loaded = false
-        dapui.close()
+        require("dapui").close()
     end
     dap.listeners.before.event_exited["dapui_config"] = function()
         vim.g.dap_loaded = false
-        dapui.close()
+        require("dapui").close()
     end
 end
 
