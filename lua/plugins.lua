@@ -87,6 +87,7 @@ packer.startup(function(use)
     -- trouble
     use({
         "folke/trouble.nvim",
+        event = "LspAttach",
         requires = "kyazdani42/nvim-web-devicons",
         config = function()
             require("plugins.settings.trouble")
@@ -95,6 +96,7 @@ packer.startup(function(use)
 
     use({ -- outline
         "simrat39/symbols-outline.nvim",
+        event = "LspAttach",
         config = function()
             require("plugins.settings.symbols_outline")
         end,
