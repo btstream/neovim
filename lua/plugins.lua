@@ -137,11 +137,6 @@ packer.startup(function(use)
     use({
         "mfussenegger/nvim-dap",
         event = "LspAttach",
-        -- requires = {
-        --     { "theHamsta/nvim-dap-virtual-text" },
-        --     { "rcarriga/nvim-dap-ui" },
-        -- },
-        after = { "nvim-dap-virtual-text", "nvim-dap-ui" },
         config = function()
             require("plugins.settings.dap")
         end,
