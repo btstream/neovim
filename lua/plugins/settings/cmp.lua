@@ -125,8 +125,8 @@ vim.cmd([[
 " smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
 
 " Expand or jump
-imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
-smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
+imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
+smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
 
 imap <expr> <C-S-j>   vsnip#available(1)  ? '<Plug>(vsnip-jump-prev)' : '<C-S-j>'
 smap <expr> <C-S-j>   vsnip#available(1)  ? '<Plug>(vsnip-jump-prev)' : '<C-S-j>'
