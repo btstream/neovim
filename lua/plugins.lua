@@ -48,12 +48,12 @@ packer.startup(function(use)
     use("wbthomason/packer.nvim")
 
     -- themes
-    use({
-        "xiyaowong/nvim-transparent",
-        cond = function()
-            return require("settings").theme.transparent
-        end,
-    })
+    -- use({
+    --     "xiyaowong/nvim-transparent",
+    --     cond = function()
+    --         return require("settings").theme.transparent
+    --     end,
+    -- })
     -- use("marko-cerovac/material.nvim")
     -- use("rmehri01/onenord.nvim")
     -- use("navarasu/onedarkpro.nvim")
