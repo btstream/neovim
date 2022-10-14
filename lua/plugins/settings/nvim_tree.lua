@@ -62,8 +62,8 @@ require("nvim-tree").setup({
         },
     },
 })
-map("n", "<C-k>b", "<cmd>NvimTreeToggle<CR>")
-map("i", "<C-k>b", "<Esc><cmd>NvimTreeToggle<CR>")
+-- map({ "n", "i" }, "<C-k>b", "<cmd>NvimTreeToggle<CR>")
+-- map("i", "<C-k>b", "<Esc><cmd>NvimTreeToggle<CR>")
 
 vim.cmd([[
 augroup nvim-tree-refresh
