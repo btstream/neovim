@@ -25,7 +25,7 @@ vim.diagnostic.config({
             elseif d.severity == vim.diagnostic.severity.WARN then
                 highlight = "Warn"
             elseif d.severity == vim.diagnostic.severity.INFO then
-                highlight = "Infomation"
+                highlight = "Information"
             end
             return " " .. i .. ". ", "LspDiagnosticsDefault" .. highlight
         end,
