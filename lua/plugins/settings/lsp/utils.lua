@@ -1,4 +1,4 @@
-local lsp_status = require("lsp-status")
+-- local lsp_status = require("lsp-status")
 
 local attach_keys = function(client, bufnr)
     local map = vim.keymap.set
@@ -36,7 +36,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 --- @param client LspClient
 --- @param bufnr number buffer handler
 M.on_attach = function(client, bufnr)
-    lsp_status.on_attach(client, bufnr)
+    require("lsp-status").on_attach(client, bufnr)
     attach_keys(client, bufnr)
 
     if client.server_capabilities.documentSymbolProvider then

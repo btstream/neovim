@@ -47,12 +47,12 @@ packer.startup({
     function(use)
         -- add packer itself to packer manager, to avoid remove
         use("wbthomason/packer.nvim")
-        use({
-            "lewis6991/impatient.nvim",
-            config = function()
-                require("impatient")
-            end,
-        })
+        -- use({
+        --     "lewis6991/impatient.nvim",
+        --     config = function()
+        --         require("impatient")
+        --     end,
+        -- })
 
         -- themes
         -- use({
@@ -82,7 +82,7 @@ packer.startup({
 
         use({
             "onsails/lspkind-nvim",
-            event = "BufWinEnter",
+            -- event = "BufWinEnter",
         })
 
         use({
@@ -144,6 +144,7 @@ packer.startup({
             "jose-elias-alvarez/null-ls.nvim",
             requires = { "nvim-lua/plenary.nvim" },
             event = "BufWinEnter",
+            after = { "lsp-status.nvim", "nvim-lspconfig" },
             config = function()
                 require("plugins.settings.lsp.providers.null_ls")
             end,
@@ -154,55 +155,24 @@ packer.startup({
         use({
             "hrsh7th/nvim-cmp",
             requires = {
+                "hrsh7th/cmp-nvim-lsp",
+                "hrsh7th/cmp-nvim-lua",
+                "hrsh7th/cmp-nvim-lsp-signature-help",
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-cmdline",
+                "hrsh7th/cmp-path",
+                "hrsh7th/cmp-vsnip",
                 "hrsh7th/vim-vsnip",
                 "rafamadriz/friendly-snippets",
                 -- "f3fora/cmp-spell",
                 "windwp/nvim-autopairs",
             },
-            event = "BufWinEnter",
-            after = { "lspkind-nvim" },
+            -- event = "BufWinEnter",
+            -- after = { "lspkind-nvim" },
             config = function()
                 require("plugins.settings.cmp")
             end,
         })
-
-        use({
-            "hrsh7th/cmp-nvim-lsp",
-            event = "BufWinEnter",
-            after = "nvim-cmp",
-        })
-        use({
-            "hrsh7th/cmp-nvim-lua",
-            event = "BufWinEnter",
-            after = "nvim-cmp",
-        })
-        use({
-            "hrsh7th/cmp-nvim-lsp-signature-help",
-            event = "BufWinEnter",
-            after = "nvim-cmp",
-        })
-        use({
-            "hrsh7th/cmp-buffer",
-            event = "BufWinEnter",
-            after = "nvim-cmp",
-        })
-        use({
-            "hrsh7th/cmp-cmdline",
-            event = "BufWinEnter",
-            after = "nvim-cmp",
-        })
-        use({
-            "hrsh7th/cmp-path",
-            event = "BufWinEnter",
-            after = "nvim-cmp",
-        })
-        use({
-            "hrsh7th/cmp-vsnip",
-            event = "BufWinEnter",
-            after = "nvim-cmp",
-        })
-
-
 
         -- dap
         use({ "theHamsta/nvim-dap-virtual-text", event = "LspAttach" })
@@ -230,13 +200,14 @@ packer.startup({
         -- nvim treesitter
         use({
             "nvim-treesitter/nvim-treesitter",
-            requires = { "p00f/nvim-ts-rainbow" },
             run = ":TSUpdate",
             event = "BufWinEnter",
+            -- after = "nvim-ts-rainbow",
             config = function()
                 require("plugins.settings.treesitter")
             end,
         })
+        use({ "p00f/nvim-ts-rainbow", opt = true })
 
         -- indent line
         use({
@@ -371,15 +342,15 @@ packer.startup({
             config = function()
                 require("neogen").setup({ enabled = true })
             end,
-            requires = "nvim-treesitter/nvim-treesitter",
+            after = "nvim-treesitter",
         })
 
         use({
             "s1n7ax/nvim-comment-frame",
-            requires = {
-                { "nvim-treesitter" },
-            },
-            event = "BufWinEnter",
+            -- requires = {
+            --     { "nvim-treesitter" },
+            event = "BufRead",
+            after = "nvim-treesitter",
             config = function()
                 require("plugins.settings.nvim_comment_frame")
             end,
