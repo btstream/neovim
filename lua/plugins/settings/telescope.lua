@@ -1,6 +1,10 @@
--- local map = vim.keymap.set
-local actions = require("telescope.actions")
+require("utils.packer").ensure_loaded({
+    "telescope-ui-select.nvim",
+    "telescope-file-browser.nvim",
+    "telescope-fzf-native.nvim",
+})
 
+local actions = require("telescope.actions")
 local telescope_actions = require("telescope.actions.set")
 local fixfolds = {
     hidden = false,
@@ -53,6 +57,7 @@ require("telescope").setup({
 -- require("telescope").load_extension("ui-select")
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("projects")
+require("telescope").load_extension("file_browser")
 
 -- find files
 -- map({ "n", "i" }, "<C-k>p", "<cmd>Telescope find_files<cr>")

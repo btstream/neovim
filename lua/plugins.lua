@@ -284,8 +284,9 @@ packer.startup({
             "nvim-telescope/telescope.nvim",
             requires = {
                 "nvim-lua/plenary.nvim",
-                "nvim-telescope/telescope-ui-select.nvim",
-                { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+                { "nvim-telescope/telescope-ui-select.nvim", opt = true },
+                { "nvim-telescope/telescope-file-browser.nvim", opt = true },
+                { "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true },
             },
             cmd = "Telescope",
             config = function()
@@ -293,13 +294,11 @@ packer.startup({
             end,
         })
 
-        use({
-            "nvim-telescope/telescope-file-browser.nvim",
-            after = "telescope.nvim",
-            config = function()
-                require("plugins.settings.file_explorer")
-            end,
-        })
+        -- use({
+        --     after = "telescope.nvim",
+        --     cmd = "Telescope",
+        --     config = function()
+        --         require("plugins.settings.file_explorer")
 
         -- dressing
         use({

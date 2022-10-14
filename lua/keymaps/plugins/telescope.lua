@@ -13,3 +13,5 @@ map({ "n", "i" }, "<C-k>r", "<cmd>Telescope registers<cr>")
 
 -- spell suggest
 map("n", "z=", "<cmd>Telescope spell_suggest<cr>")
+
+map({ "n", "i" }, "<C-k><C-o>", "<cmd>Telescope file_browser<cr>")
