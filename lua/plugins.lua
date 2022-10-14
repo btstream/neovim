@@ -258,6 +258,7 @@ packer.startup({
         -- which-key
         use({
             "folke/which-key.nvim",
+            event = "BufWinEnter",
             config = function()
                 require("which-key").setup({ window = { border = "solid" } })
             end,
@@ -305,6 +306,7 @@ packer.startup({
         -- dashboard
         use({
             "glepnir/dashboard-nvim",
+            event = "BufWinEnter",
             config = function()
                 require("plugins.settings.dashboard")
             end,
@@ -333,27 +335,29 @@ packer.startup({
         -- comments
         use({
             "numToStr/Comment.nvim",
-            event = "BufWinEnter",
+            -- event = "BufWinEnter",
             -- tag = "v0.6",
             config = function()
                 require("plugins.settings.comments")
             end,
+            keys = { "gcc" },
         })
 
         use({
             "danymat/neogen",
-            event = "BufWinEnter",
+            -- event = "BufWinEnter",
             config = function()
                 require("neogen").setup({ enabled = true })
             end,
             after = "nvim-treesitter",
+            kyes = { "<leader>cC", "<leader>cc", { "i", "<C-k>c" }, { "i", "<C-k>C" } },
         })
 
         use({
             "s1n7ax/nvim-comment-frame",
             -- requires = {
             --     { "nvim-treesitter" },
-            event = "BufRead",
+            -- event = "BufRead",
             after = "nvim-treesitter",
             config = function()
                 require("plugins.settings.nvim_comment_frame")
