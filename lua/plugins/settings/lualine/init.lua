@@ -30,6 +30,7 @@ filetype_tools.add_none_filetypes({
 -- for filetypes to disable winbar
 local disabled_winbar = {
     "NvimTree",
+    "Outline",
 }
 for _, value in ipairs(filetype_tools._nonefiletypes) do
     table.insert(disabled_winbar, value:lower())
