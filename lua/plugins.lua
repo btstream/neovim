@@ -106,11 +106,11 @@ packer.startup({
 
         use({
             "nvim-lua/lsp-status.nvim",
-            event = "BufWinEnter",
+            -- event = "BufReadPost",
             config = function()
                 require("lsp-status").config({})
             end,
-            -- opt = true,
+            opt = true,
         })
 
         use({
@@ -153,25 +153,37 @@ packer.startup({
             end,
         })
 
-        -- cmp
+        ----------------------------------------------------------------------
+        --                            Config cmp                            --
+        ----------------------------------------------------------------------
+
+        local cmps = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-vsnip",
+            "hrsh7th/vim-vsnip",
+            "rafamadriz/friendly-snippets",
+        }
+        for _, v in ipairs(cmps) do
+            use({
+                v,
+                -- event = { "BufRead" },
+                after = "nvim-cmp",
+            })
+        end
+
+        use({
+            "windwp/nvim-autopairs",
+            opt = true,
+        })
 
         use({
             "hrsh7th/nvim-cmp",
-            requires = {
-                "hrsh7th/cmp-nvim-lsp",
-                "hrsh7th/cmp-nvim-lua",
-                "hrsh7th/cmp-nvim-lsp-signature-help",
-                "hrsh7th/cmp-buffer",
-                "hrsh7th/cmp-cmdline",
-                "hrsh7th/cmp-path",
-                "hrsh7th/cmp-vsnip",
-                "hrsh7th/vim-vsnip",
-                "rafamadriz/friendly-snippets",
-                -- "f3fora/cmp-spell",
-                "windwp/nvim-autopairs",
-            },
-            -- event = "BufWinEnter",
-            -- after = { "lspkind-nvim" },
+            event = { "BufRead", "CmdlineEnter" },
             config = function()
                 require("plugins.settings.cmp")
             end,
@@ -191,7 +203,7 @@ packer.startup({
         -- colorizer
         use({
             "norcalli/nvim-colorizer.lua",
-            event = "BufWinEnter",
+            event = "BufRead",
             config = function()
                 require("colorizer").setup({
                     "*",
@@ -235,7 +247,7 @@ packer.startup({
         use({
             "akinsho/bufferline.nvim",
             requires = { "kyazdani42/nvim-web-devicons" },
-            event = "BufWinEnter",
+            event = "BufRead",
             config = function()
                 require("plugins.settings.bufferline")
             end,
@@ -338,8 +350,6 @@ packer.startup({
         -- comments
         use({
             "numToStr/Comment.nvim",
-            -- event = "BufWinEnter",
-            -- tag = "v0.6",
             config = function()
                 require("plugins.settings.comments")
             end,
@@ -381,7 +391,7 @@ packer.startup({
         use({
             "lewis6991/gitsigns.nvim",
             requires = { "nvim-lua/plenary.nvim" },
-            event = "BufWinEnter",
+            event = "BufRead",
             config = function()
                 require("gitsigns").setup()
             end,
@@ -390,7 +400,7 @@ packer.startup({
         -- git-blame
         use({
             "f-person/git-blame.nvim",
-            event = "BufWinEnter",
+            event = "BufRead",
             config = function()
                 require("plugins.settings.gitblame")
             end,

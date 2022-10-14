@@ -1,9 +1,13 @@
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 
-local load_plugin = require("utils.packer").ensure_load
-load_plugin("nlsp-settings.nvim")
-load_plugin("lsp-status.nvim")
+local ensure_loaded = require("utils.packer").ensure_loaded
+ensure_loaded({
+    "nvim-cmp",
+    "cmp-nvim-lsp",
+    "nlsp-settings.nvim",
+    "lsp-status.nvim",
+})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)

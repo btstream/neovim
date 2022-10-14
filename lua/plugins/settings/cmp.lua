@@ -111,6 +111,7 @@ cmp.setup.filetype("TelescopePrompt", {
     enabled = false,
 })
 
+require("utils.packer").ensure_loaded("nvim-autopairs")
 -- autopairs
 require("nvim-autopairs").setup({ disable_filetype = { "TelescopePrompt", "vim" } })
 

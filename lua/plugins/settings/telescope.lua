@@ -14,7 +14,7 @@ local fixfolds = {
     end,
 }
 
-require("utils.packer").ensure_load("project.nvim")
+require("utils.packer").ensure_loaded("project.nvim")
 
 require("telescope").setup({
     defaults = {
