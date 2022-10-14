@@ -1,3 +1,5 @@
+require("utils.packer").ensure_loaded("lspkind-nvim")
+
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 -- local util = require 'lspconfig/util'

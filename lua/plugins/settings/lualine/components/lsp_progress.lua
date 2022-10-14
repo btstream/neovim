@@ -30,8 +30,7 @@ end
 
 local function lsp_progress()
     -- local icon = ""
-    local active_lsp = get_lsp_client("", {})
-    -- local active_lsp = get_lsp_client("", { "null-ls" })
+    local active_lsp = get_lsp_client("", { "null-ls" })
     local icon = " "
     if active_lsp == "" then
         icon = " "

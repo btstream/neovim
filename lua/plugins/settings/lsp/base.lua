@@ -3,6 +3,9 @@ local lspconfig_utils = require("lspconfig.util")
 
 local ensure_loaded = require("utils.packer").ensure_loaded
 ensure_loaded({
+    "mason.nvim",
+    "mason-lspconfig.nvim",
+    "mason-tool-installer.nvim",
     "nvim-cmp",
     "cmp-nvim-lsp",
     "nlsp-settings.nvim",

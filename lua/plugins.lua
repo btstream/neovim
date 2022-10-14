@@ -72,7 +72,6 @@ packer.startup({
                 vim.notify = require("notify")
             end,
         })
-
         ----------------------------------------------------------------------
         --                          Config for LSP                          --
         ----------------------------------------------------------------------
@@ -83,26 +82,19 @@ packer.startup({
             "WhoIsSethDaniel/mason-tool-installer.nvim",
         })
 
-        use({
-            "onsails/lspkind-nvim",
-            -- event = "BufWinEnter",
-        })
-
-        use({
+        local lsp_addons = {
             "simrat39/rust-tools.nvim",
-            event = "BufReadPost",
-        })
-
-        use({
             "mfussenegger/nvim-jdtls",
-            event = "BufReadPost",
-        })
-
-        use({
             "tamago324/nlsp-settings.nvim",
-            -- opt = true,
-            event = "BufReadPost",
-        })
+            "onsails/lspkind-nvim",
+        }
+
+        for _, l in ipairs(lsp_addons) do
+            use({
+                l,
+                event = "BufReadPost",
+            })
+        end
 
         use({
             "nvim-lua/lsp-status.nvim",
@@ -118,7 +110,7 @@ packer.startup({
             requires = {
                 -- "williamboman/nvim-lsp-installer",
             },
-            after = { "nlsp-settings.nvim", "lsp-status.nvim", "cmp-nvim-lsp" },
+            --after = { "nlsp-settings.nvim", "lsp-status.nvim", "cmp-nvim-lsp" },
             event = "BufReadPost",
             config = function()
                 require("plugins.settings.lsp")
@@ -171,7 +163,6 @@ packer.startup({
         for _, v in ipairs(cmps) do
             use({
                 v,
-                -- event = { "BufRead" },
                 after = "nvim-cmp",
             })
         end
