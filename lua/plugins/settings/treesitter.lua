@@ -1,4 +1,4 @@
-require("utils.packer").load_plugin("nvim-ts-rainbow")
+require("utils.packer").ensure_load("nvim-ts-rainbow")
 require("nvim-treesitter.configs").setup({
     ensure_installed = "all",
     ignore_install = { "phpdoc" },

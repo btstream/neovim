@@ -5,5 +5,5 @@ local function load_plugin(name)
 end
 
 return {
-    load_plugin = load_plugin,
+    ensure_load = load_plugin,
 }

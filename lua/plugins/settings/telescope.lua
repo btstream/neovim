@@ -1,4 +1,4 @@
-local map = vim.keymap.set
+-- local map = vim.keymap.set
 local actions = require("telescope.actions")
 
 local telescope_actions = require("telescope.actions.set")
@@ -13,6 +13,8 @@ local fixfolds = {
         return true
     end,
 }
+
+require("utils.packer").ensure_load("project.nvim")
 
 require("telescope").setup({
     defaults = {

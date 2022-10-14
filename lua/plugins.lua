@@ -204,7 +204,7 @@ packer.startup({
         use({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
-            event = "BufWinEnter",
+            event = "BufRead",
             -- after = "nvim-ts-rainbow",
             config = function()
                 require("plugins.settings.treesitter")
@@ -215,7 +215,7 @@ packer.startup({
         -- indent line
         use({
             "lukas-reineke/indent-blankline.nvim",
-            event = "BufWinEnter",
+            event = "BufRead",
             after = "nvim-treesitter",
             config = function()
                 require("plugins.settings.indent_line")
@@ -329,7 +329,7 @@ packer.startup({
         use({
             "ahmedkhalf/project.nvim",
             -- after = "telescope.nvim",
-            event = "BufWinEnter",
+            event = "BufRead",
             config = function()
                 require("plugins.settings.project")
             end,
@@ -365,6 +365,7 @@ packer.startup({
             config = function()
                 require("plugins.settings.nvim_comment_frame")
             end,
+            keys = { "<leader>nf", "<leader>nc" },
         })
 
         use({
@@ -422,7 +423,7 @@ packer.startup({
         -- suda
         use({
             "lambdalisue/suda.vim",
-            -- event = "FileChangedRO",
+            event = "BufRead",
             config = function()
                 vim.g.suda_smart_edit = 1
             end,

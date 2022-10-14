@@ -1,7 +1,7 @@
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 
-local load_plugin = require("utils.packer").load_plugin
+local load_plugin = require("utils.packer").ensure_load
 load_plugin("nlsp-settings.nvim")
 load_plugin("lsp-status.nvim")
 
