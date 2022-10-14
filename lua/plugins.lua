@@ -73,7 +73,10 @@ packer.startup({
             end,
         })
 
-        -- lsp
+        ----------------------------------------------------------------------
+        --                          Config for LSP                          --
+        ----------------------------------------------------------------------
+
         use({
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -87,18 +90,18 @@ packer.startup({
 
         use({
             "simrat39/rust-tools.nvim",
-            event = "BufWinEnter",
+            event = "BufReadPost",
         })
 
         use({
             "mfussenegger/nvim-jdtls",
-            event = "BufWinEnter",
+            event = "BufReadPost",
         })
 
         use({
             "tamago324/nlsp-settings.nvim",
             -- opt = true,
-            event = "BufWinEnter",
+            event = "BufReadPost",
         })
 
         use({
@@ -116,7 +119,7 @@ packer.startup({
                 -- "williamboman/nvim-lsp-installer",
             },
             after = { "nlsp-settings.nvim", "lsp-status.nvim", "cmp-nvim-lsp" },
-            event = "BufWinEnter",
+            event = "BufReadPost",
             config = function()
                 require("plugins.settings.lsp")
             end,
@@ -143,7 +146,7 @@ packer.startup({
         use({ -- null-ls
             "jose-elias-alvarez/null-ls.nvim",
             requires = { "nvim-lua/plenary.nvim" },
-            event = "BufWinEnter",
+            event = "BufReadPost",
             after = { "lsp-status.nvim", "nvim-lspconfig" },
             config = function()
                 require("plugins.settings.lsp.providers.null_ls")

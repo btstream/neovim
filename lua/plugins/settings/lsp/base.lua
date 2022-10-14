@@ -90,3 +90,10 @@ require("mason-lspconfig").setup_handlers({
         end
     end,
 })
+
+-- a little trick for packer to load lspconfig lazily, which
+-- is to call a BufRead autocmd to make current buffer attach
+-- to lsp server
+vim.schedule(function()
+    vim.cmd("doautocmd BufRead")
+end)
