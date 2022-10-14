@@ -1,4 +1,3 @@
-local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
 require("toggleterm").setup({
     -- size can be a number or function which is passed the current terminal
     size = function(term)
@@ -31,6 +30,7 @@ require("toggleterm").setup({
             nvimtree.toggle(false, true)
         end
 
+        local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
         -- enter poetry virtual env
         local path = find_pyproject_toml(vim.fn.getcwd())
         if path then

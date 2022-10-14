@@ -1,6 +1,6 @@
-local lsp_status = require("lsp-status")
+-- local lsp_status = require("lsp-status")
 local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
-lsp_status.config({})
+-- lsp_status.config({})
 
 --- function to get active_lsps, comes from galaxyline
 ---@param msg string default message
@@ -41,7 +41,7 @@ local function lsp_progress()
         end
     end
 
-    local progress = lsp_status.status_progress() .. " "
+    local progress = require("lsp-status").status_progress() .. " "
     if string.len(progress) > 1 then
         return progress
     else
