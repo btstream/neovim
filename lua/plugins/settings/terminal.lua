@@ -21,13 +21,15 @@ require("toggleterm").setup({
     shell = vim.o.shell, -- change the default shell
     on_open = function(terminal)
         -- set nvim tree
-        local nvimtree = require("nvim-tree")
-        local nvimtree_view = require("nvim-tree.view")
-        if nvimtree_view.is_visible() and terminal.direction == "horizontal" then
-            local nvimtree_width = vim.fn.winwidth(nvimtree_view.get_winnr())
-            nvimtree.toggle()
-            nvimtree_view.View.width = nvimtree_width
-            nvimtree.toggle(false, true)
+        if packer_plugins["nvim-tree.lua"].loaded then
+            local nvimtree = require("nvim-tree")
+            local nvimtree_view = require("nvim-tree.view")
+            if nvimtree_view.is_visible() and terminal.direction == "horizontal" then
+                local nvimtree_width = vim.fn.winwidth(nvimtree_view.get_winnr())
+                nvimtree.toggle()
+                nvimtree_view.View.width = nvimtree_width
+                nvimtree.toggle(false, true)
+            end
         end
 
         local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")

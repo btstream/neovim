@@ -1,10 +1,9 @@
-local find_stylua_config = require("lspconfig.util").root_pattern("stylua.toml", ".stylua.toml")
-
 require("null-ls").setup({
     on_attach = require("plugins.settings.lsp.utils").on_attach,
     sources = {
         require("null-ls").builtins.formatting.stylua.with({
             extra_args = function(_)
+                local find_stylua_config = require("lspconfig.util").root_pattern("stylua.toml", ".stylua.toml")
                 local path = find_stylua_config(vim.fn.expand("%:p") or vim.fn.getcwd()) or vim.fn.getcwd()
                 for _, value in pairs({ "stylua.toml", ".stylua.toml" }) do
                     local configfile = vim.fn.expand(string.format("%s/%s", path, value))

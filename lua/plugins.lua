@@ -222,6 +222,7 @@ packer.startup({
         -- status line and tabbar
         use({
             "nvim-lualine/lualine.nvim",
+            event = "BufWinEnter",
             requires = { "kyazdani42/nvim-web-devicons", opt = true },
             config = function()
                 require("plugins.settings.lualine")
@@ -231,6 +232,7 @@ packer.startup({
         use({
             "akinsho/bufferline.nvim",
             requires = { "kyazdani42/nvim-web-devicons" },
+            event = "BufWinEnter",
             config = function()
                 require("plugins.settings.bufferline")
             end,
@@ -267,6 +269,7 @@ packer.startup({
             config = function()
                 require("plugins.settings.terminal")
             end,
+            keys = { "<C-k>t", "<C-k>g" },
         })
 
         -- telescope
@@ -321,6 +324,7 @@ packer.startup({
         use({
             "ahmedkhalf/project.nvim",
             -- after = "telescope.nvim",
+            event = "BufWinEnter",
             config = function()
                 require("plugins.settings.project")
             end,
