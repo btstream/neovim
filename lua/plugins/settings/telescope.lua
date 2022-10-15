@@ -1,9 +1,3 @@
-require("utils.packer").ensure_loaded({
-    "telescope-ui-select.nvim",
-    "telescope-file-browser.nvim",
-    "telescope-fzf-native.nvim",
-})
-
 local actions = require("telescope.actions")
 local telescope_actions = require("telescope.actions.set")
 local fixfolds = {
@@ -18,7 +12,7 @@ local fixfolds = {
     end,
 }
 
-require("utils.packer").ensure_loaded("project.nvim")
+-- require("utils.packer").ensure_loaded("project.nvim")
 
 require("telescope").setup({
     defaults = {

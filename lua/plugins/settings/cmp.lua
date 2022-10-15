@@ -1,5 +1,3 @@
-require("utils.packer").ensure_loaded("lspkind-nvim")
-
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 -- local util = require 'lspconfig/util'
@@ -113,7 +111,6 @@ cmp.setup.filetype("TelescopePrompt", {
     enabled = false,
 })
 
-require("utils.packer").ensure_loaded("nvim-autopairs")
 -- autopairs
 require("nvim-autopairs").setup({ disable_filetype = { "TelescopePrompt", "vim" } })
 

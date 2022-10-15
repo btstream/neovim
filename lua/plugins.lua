@@ -92,13 +92,13 @@ packer.startup({
         for _, l in ipairs(lsp_addons) do
             use({
                 l,
-                event = "BufReadPost",
+                -- event = "BufReadPost",
+                opt = true,
             })
         end
 
         use({
             "nvim-lua/lsp-status.nvim",
-            -- event = "BufReadPost",
             config = function()
                 require("lsp-status").config({})
             end,
@@ -107,11 +107,8 @@ packer.startup({
 
         use({
             "neovim/nvim-lspconfig",
-            requires = {
-                -- "williamboman/nvim-lsp-installer",
-            },
-            --after = { "nlsp-settings.nvim", "lsp-status.nvim", "cmp-nvim-lsp" },
             event = "BufReadPost",
+            wants = { "lsp-status.nvim", "nvim-jdtls", "nlsp-settings.nvim", "lspkind-nvim", "cmp-nvim-lsp" },
             config = function()
                 require("plugins.settings.lsp")
             end,
@@ -150,7 +147,6 @@ packer.startup({
         ----------------------------------------------------------------------
 
         local cmps = {
-            "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "hrsh7th/cmp-buffer",
@@ -167,6 +163,8 @@ packer.startup({
             })
         end
 
+        use({ "hrsh7th/cmp-nvim-lsp", wants = "nvim-cmp" })
+
         use({
             "windwp/nvim-autopairs",
             opt = true,
@@ -175,6 +173,7 @@ packer.startup({
         use({
             "hrsh7th/nvim-cmp",
             event = { "BufRead", "CmdlineEnter" },
+            wants = { "lspkind-nvim", "nvim-autopairs" },
             config = function()
                 require("plugins.settings.cmp")
             end,
@@ -208,7 +207,7 @@ packer.startup({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
             event = "BufRead",
-            -- after = "nvim-ts-rainbow",
+            -- wants = { "nvim-ts-rainbow" },
             config = function()
                 require("plugins.settings.treesitter")
             end,
@@ -288,6 +287,12 @@ packer.startup({
                 { "nvim-telescope/telescope-file-browser.nvim", opt = true },
                 { "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true },
             },
+            wants = {
+                "project.nvim",
+                "telescope-ui-select.nvim",
+                "telescope-file-browser.nvim",
+                "telescope-fzf-native.nvim",
+            },
             cmd = "Telescope",
             config = function()
                 require("plugins.settings.telescope")
@@ -343,7 +348,7 @@ packer.startup({
             config = function()
                 require("plugins.settings.comments")
             end,
-            keys = { "gcc" },
+            keys = { "gcc", { "v", "gc" } },
         })
 
         use({
