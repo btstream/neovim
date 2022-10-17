@@ -66,4 +66,13 @@ M.type = function()
     return filetype
 end
 
+M.get_nonfiletypes = function()
+    local nft = {}
+    vim.tbl_extend("force", nft, M._nonefiletypes)
+    for k, _ in pairs(M._icons) do
+        table.insert(nft, k)
+    end
+    return nft
+end
+
 return M

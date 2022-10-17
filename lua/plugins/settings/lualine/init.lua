@@ -25,14 +25,18 @@ filetype_tools.add_none_filetypes({
     "LSP-INSTALLER",
     "TROUBLE",
     "MASON",
+    "DAP-REPL",
+    "DAPUI_CONSOLE",
 })
 
 -- for filetypes to disable winbar
 local disabled_winbar = {
     "NvimTree",
     "Outline",
+    "dap-repl",
+    "dapui_console",
 }
-for _, value in ipairs(filetype_tools._nonefiletypes) do
+for _, value in ipairs(filetype_tools.get_nonfiletypes()) do
     table.insert(disabled_winbar, value:lower())
 end
 
