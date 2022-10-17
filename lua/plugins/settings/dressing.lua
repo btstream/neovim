@@ -151,6 +151,16 @@ require("dressing").setup({
         format_item_override = {},
 
         -- see :help dressing_get_config
-        get_config = nil,
+        get_config = function(opts)
+            if opts.kind == "codeaction" then
+                return {
+                    backend = "builtin",
+                    builtin = {
+                        relative = "cursor",
+                        winhighlight = "NormalFloat:LspFloatWinNormal,FloatBorder:LspWinRenameBorder",
+                    },
+                }
+            end
+        end,
     },
 })
