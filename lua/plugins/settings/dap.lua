@@ -35,5 +35,6 @@ local function setupdap()
     end
 end
 
+setupdap()
 require("dapui").setup()
 require("dap-python").setup()
