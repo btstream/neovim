@@ -2,7 +2,7 @@ local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 capabilities = vim.tbl_deep_extend("keep", capabilities, require("lsp-status").capabilities)
 
 local lsp_settings_path = vim.fn.stdpath("config") .. "/lsp-settings"

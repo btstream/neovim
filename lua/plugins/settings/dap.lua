@@ -35,11 +35,5 @@ local function setupdap()
     end
 end
 
-vim.api.nvim_create_augroup("DapSetup", {
-    clear = true,
-})
-vim.api.nvim_create_autocmd("VimEnter", {
-    pattern = "*",
-    callback = setupdap,
-    group = "DapSetup",
-})
+require("dapui").setup()
+require("dap-python").setup()

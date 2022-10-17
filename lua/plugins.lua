@@ -180,11 +180,16 @@ packer.startup({
         })
 
         -- dap
-        use({ "theHamsta/nvim-dap-virtual-text", event = "LspAttach" })
-        use({ "rcarriga/nvim-dap-ui", event = "LspAttach" })
         use({
             "mfussenegger/nvim-dap",
             event = "LspAttach",
+            requires = {
+                { "theHamsta/nvim-dap-virtual-text", opt = "true" },
+                { "rcarriga/nvim-dap-ui", opt = "true" },
+                { "mfussenegger/nvim-dap-python", opt = "true" },
+            },
+            wants = { "nvim-dap-virtual-text", "nvim-dap-ui", "nvim-dap-python" },
+            -- keys = { "<F6>" },
             config = function()
                 require("plugins.settings.dap")
             end,
