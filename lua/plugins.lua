@@ -107,7 +107,7 @@ packer.startup({
 
         use({
             "neovim/nvim-lspconfig",
-            event = "BufReadPost",
+            event = {"BufReadPost", "BufNew", "BufNewFile"},
             wants = { "lsp-status.nvim", "nvim-jdtls", "nlsp-settings.nvim", "lspkind-nvim", "cmp-nvim-lsp" },
             config = function()
                 require("plugins.settings.lsp")
