@@ -158,6 +158,7 @@ require("lualine").setup({
             },
             {
                 mode,
+                color = get_debug_color,
                 cond = function()
                     return filetype_tools.is_nonefiletype()
                 end,
