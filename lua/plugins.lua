@@ -406,7 +406,17 @@ packer.startup({
             end,
         })
 
-        use("h-hg/fcitx.nvim")
+        -- use("h-hg/fcitx.nvim")
+        use({
+            "rlue/vim-barbaric",
+            cond = function()
+                return vim.fn.has("win32") == 0
+            end,
+            keys = { { "i", "<Esc>" } },
+            config = function()
+                require("plugins.settings.barbaric")
+            end,
+        })
 
         -- markdown preview
         use({
