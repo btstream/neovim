@@ -107,7 +107,7 @@ packer.startup({
 
         use({
             "neovim/nvim-lspconfig",
-            event = {"BufReadPost", "BufNew", "BufNewFile"},
+            event = { "BufReadPost", "BufNew", "BufNewFile" },
             wants = { "lsp-status.nvim", "nvim-jdtls", "nlsp-settings.nvim", "lspkind-nvim", "cmp-nvim-lsp" },
             config = function()
                 require("plugins.settings.lsp")
@@ -443,7 +443,7 @@ packer.startup({
         -- suda
         use({
             "lambdalisue/suda.vim",
-            event = "BufRead",
+            bufread = true,
             config = function()
                 vim.g.suda_smart_edit = 1
             end,

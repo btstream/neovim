@@ -78,10 +78,12 @@ cmp.setup({
         { name = "nvim_lsp_signature_help" },
         { name = "vsnip" },
         { name = "path" },
-    }, { { name = "buffer" } }),
+        { name = "buffer" },
+    }),
     completion = { completeopt = "menu,menuone,noinsert,preview" },
     -- cmp kind info
     formatting = {
+        fields = { "kind", "abbr", "menu" },
         format = lspkind.cmp_format({
             symbol_map = symbol_map,
             mode = "symbol",
@@ -97,6 +99,9 @@ cmp.setup.cmdline("/", { sources = { { name = "buffer" } }, completion = { compl
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(":", {
     sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+    formatting = {
+        fields = { "abbr", "kind" },
+    },
     completion = { completeopt = "menu,noselect" },
 })
 
