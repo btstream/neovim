@@ -363,7 +363,7 @@ packer.startup({
                 require("neogen").setup({ enabled = true })
             end,
             after = "nvim-treesitter",
-            kyes = { "<leader>cC", "<leader>cc", { "i", "<C-k>c" }, { "i", "<C-k>C" } },
+            -- keys = { "<leader>nf", "<leader>nc" },
         })
 
         use({
@@ -375,7 +375,7 @@ packer.startup({
             config = function()
                 require("plugins.settings.nvim_comment_frame")
             end,
-            keys = { "<leader>nf", "<leader>nc" },
+            kyes = { "<leader>cC", "<leader>cc", { "i", "<C-k>c" }, { "i", "<C-k>C" } },
         })
 
         use({
