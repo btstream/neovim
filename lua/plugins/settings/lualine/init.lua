@@ -35,6 +35,7 @@ local disabled_winbar = {
     "Outline",
     "dap-repl",
     "dapui_console",
+    "Trouble",
 }
 for _, value in ipairs(filetype_tools.get_nonfiletypes()) do
     table.insert(disabled_winbar, value:lower())
