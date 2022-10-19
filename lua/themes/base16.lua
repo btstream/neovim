@@ -268,10 +268,11 @@ local function customize(scheme)
         --                             Trouble                              --
         ----------------------------------------------------------------------
         TroubleCount        = { bg = "None", fg = colors.base0B },
-        TroubleFoldIcon     = { bg = "None" },
-        TroubleIndent       = { bg = "None" },
+        TroubleFoldIcon     = "None",
+        TroubleIndent       = "None",
         TroubleLocation     = { bg = "None", fg = colors.base03 },
-        TroubleText         = { bg = "None" },
+        TroubleText         = "None",
+
     }
 
     highlight(custom_colors)

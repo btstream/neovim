@@ -1,4 +1,4 @@
-require("trouble").setup({ auto_close = true })
+require("trouble").setup({ auto_close = true, use_diagnostic_signs = true, indent_lines = false })
 
 vim.keymap.set("n", "<C-k><C-h>", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
