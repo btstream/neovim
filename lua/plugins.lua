@@ -415,6 +415,8 @@ packer.startup({
             end,
         })
 
+        use({ "Vonr/align.nvim", event = "BufRead", config = [[require("plugins.settings.align")]] })
+
         -- suda
         use({
             "lambdalisue/suda.vim",
