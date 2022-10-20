@@ -275,6 +275,25 @@ local function customize(scheme)
 
     }
 
+    vim.api.nvim_create_augroup("ModeChangeGitblame", {
+        clear = true,
+    })
+    vim.api.nvim_create_autocmd("ModeChanged", {
+        group = "ModeChangeGitblame",
+        callback = function()
+            local mode = vim.fn.mode()
+            if mode == "v" or mode == "vs" or mode == "V" or mode == "Vs" then
+                highlight({
+                    gitblame = { bg = "None", fg = colors.base03 },
+                })
+            else
+                highlight({
+                    gitblame = custom_colors.gitblame,
+                })
+            end
+        end,
+    })
+
     highlight(custom_colors)
 end
 
