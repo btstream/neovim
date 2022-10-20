@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-PACKAGES=(unzip wget nodejs npm rustup ripgrep fd lazygit stylua jq)
+PACKAGES=(unzip wget nodejs npm rustup ripgrep fd lazygit stylua jq bear)
 PYTHON_PACKAGES=(pip neovim poetry debugpy)
 
 if [[ "$(uname)" == 'Linux' ]]; then
