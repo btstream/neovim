@@ -47,23 +47,11 @@ packer.startup({
     function(use)
         -- add packer itself to packer manager, to avoid remove
         use("wbthomason/packer.nvim")
-        -- use({
-        --     "lewis6991/impatient.nvim",
-        --     config = function()
-        --         require("impatient")
-        --     end,
-        -- })
 
-        -- themes
-        -- use({
-        --     "xiyaowong/nvim-transparent",
-        --     cond = function()
-        --         return require("settings").theme.transparent
-        --     end,
-        -- })
-        -- use("marko-cerovac/material.nvim")
-        -- use("rmehri01/onenord.nvim")
-        -- use("navarasu/onedarkpro.nvim")
+        ----------------------------------------------------------------------
+        --                                UI                                --
+        ----------------------------------------------------------------------
+
         use("RRethy/nvim-base16")
 
         use({
@@ -72,6 +60,33 @@ packer.startup({
                 vim.notify = require("notify")
             end,
         })
+        -- dressing
+        use({
+            "stevearc/dressing.nvim",
+            config = function()
+                require("plugins.settings.dressing")
+            end,
+        })
+
+        -- dashboard
+        use({
+            "glepnir/dashboard-nvim",
+            event = "BufWinEnter",
+            config = function()
+                require("plugins.settings.dashboard")
+            end,
+        })
+
+        -- nvim-tree
+        use({
+            "kyazdani42/nvim-tree.lua",
+            requires = "kyazdani42/nvim-web-devicons",
+            cmd = "NvimTree*",
+            config = function()
+                require("plugins.settings.nvim_tree")
+            end,
+        })
+
         ----------------------------------------------------------------------
         --                          Config for LSP                          --
         ----------------------------------------------------------------------
@@ -179,7 +194,10 @@ packer.startup({
             end,
         })
 
-        -- dap
+        ----------------------------------------------------------------------
+        --                               DAP                                --
+        ----------------------------------------------------------------------
+
         use({
             "mfussenegger/nvim-dap",
             event = "LspAttach",
@@ -195,41 +213,9 @@ packer.startup({
             end,
         })
 
-        -- colorizer
-        use({
-            "norcalli/nvim-colorizer.lua",
-            event = "BufRead",
-            config = function()
-                require("colorizer").setup({
-                    "*",
-                    "!packer",
-                })
-            end,
-        })
-
-        -- nvim treesitter
-        use({
-            "nvim-treesitter/nvim-treesitter",
-            run = ":TSUpdate",
-            event = "BufRead",
-            -- wants = { "nvim-ts-rainbow" },
-            config = function()
-                require("plugins.settings.treesitter")
-            end,
-        })
-        use({ "p00f/nvim-ts-rainbow", opt = true })
-
-        -- indent line
-        use({
-            "lukas-reineke/indent-blankline.nvim",
-            event = "BufRead",
-            after = "nvim-treesitter",
-            config = function()
-                require("plugins.settings.indent_line")
-            end,
-        })
-
-        -- status line and tabbar
+        ----------------------------------------------------------------------
+        --                       Status and buffline                        --
+        ----------------------------------------------------------------------
         use({
             "nvim-lualine/lualine.nvim",
             event = "BufWinEnter",
@@ -274,7 +260,9 @@ packer.startup({
             end,
         })
 
-        -- terminal
+        ----------------------------------------------------------------------
+        --                             Terminal                             --
+        ----------------------------------------------------------------------
         use({
             "akinsho/toggleterm.nvim",
             config = function()
@@ -283,7 +271,9 @@ packer.startup({
             keys = { "<C-k>t", "<C-k>g" },
         })
 
-        -- telescope
+        ----------------------------------------------------------------------
+        --                            Telescope                             --
+        ----------------------------------------------------------------------
         use({
             "nvim-telescope/telescope.nvim",
             requires = {
@@ -304,39 +294,6 @@ packer.startup({
             end,
         })
 
-        -- use({
-        --     after = "telescope.nvim",
-        --     cmd = "Telescope",
-        --     config = function()
-        --         require("plugins.settings.file_explorer")
-
-        -- dressing
-        use({
-            "stevearc/dressing.nvim",
-            config = function()
-                require("plugins.settings.dressing")
-            end,
-        })
-
-        -- dashboard
-        use({
-            "glepnir/dashboard-nvim",
-            event = "BufWinEnter",
-            config = function()
-                require("plugins.settings.dashboard")
-            end,
-        })
-
-        -- nvim-tree
-        use({
-            "kyazdani42/nvim-tree.lua",
-            requires = "kyazdani42/nvim-web-devicons",
-            cmd = "NvimTree*",
-            config = function()
-                require("plugins.settings.nvim_tree")
-            end,
-        })
-
         -- project
         use({
             "ahmedkhalf/project.nvim",
@@ -347,7 +304,9 @@ packer.startup({
             end,
         })
 
-        -- comments
+        ----------------------------------------------------------------------
+        --                             Comments                             --
+        ----------------------------------------------------------------------
         use({
             "numToStr/Comment.nvim",
             config = function()
@@ -387,7 +346,9 @@ packer.startup({
             end,
         })
 
-        -- gitsigns
+        ----------------------------------------------------------------------
+        --                            Git Tools                             --
+        ----------------------------------------------------------------------
         use({
             "lewis6991/gitsigns.nvim",
             requires = { "nvim-lua/plenary.nvim" },
@@ -406,7 +367,44 @@ packer.startup({
             end,
         })
 
-        -- use("h-hg/fcitx.nvim")
+        ----------------------------------------------------------------------
+        --                             Edit Enhencement                     --
+        ----------------------------------------------------------------------
+
+        -- colorizer
+        use({
+            "norcalli/nvim-colorizer.lua",
+            event = "BufRead",
+            config = function()
+                require("colorizer").setup({
+                    "*",
+                    "!packer",
+                })
+            end,
+        })
+
+        -- nvim treesitter
+        use({
+            "nvim-treesitter/nvim-treesitter",
+            run = ":TSUpdate",
+            event = "BufRead",
+            -- wants = { "nvim-ts-rainbow" },
+            config = function()
+                require("plugins.settings.treesitter")
+            end,
+        })
+        use({ "p00f/nvim-ts-rainbow", opt = true })
+
+        -- indent line
+        use({
+            "lukas-reineke/indent-blankline.nvim",
+            event = "BufRead",
+            after = "nvim-treesitter",
+            config = function()
+                require("plugins.settings.indent_line")
+            end,
+        })
+
         use({
             "rlue/vim-barbaric",
             cond = function()
@@ -418,6 +416,15 @@ packer.startup({
             end,
         })
 
+        -- suda
+        use({
+            "lambdalisue/suda.vim",
+            bufread = true,
+            config = function()
+                vim.g.suda_smart_edit = 1
+            end,
+        })
+
         -- markdown preview
         use({
             "iamcco/markdown-preview.nvim",
@@ -426,6 +433,13 @@ packer.startup({
             end,
             ft = { "markdown" },
         })
+
+        -- editorconfig
+        use({ "editorconfig/editorconfig-vim" })
+
+        ----------------------------------------------------------------------
+        --                        Runcode and others                        --
+        ----------------------------------------------------------------------
 
         -- SnipR
         use({
@@ -440,15 +454,6 @@ packer.startup({
             end,
         })
 
-        -- suda
-        use({
-            "lambdalisue/suda.vim",
-            bufread = true,
-            config = function()
-                vim.g.suda_smart_edit = 1
-            end,
-        })
-
         -- rest tools
         use({
             "NTBBloodbath/rest.nvim",
@@ -459,8 +464,10 @@ packer.startup({
             end,
         })
 
-        -- editorconfig
-        use({ "editorconfig/editorconfig-vim" })
+        use({
+            "romainl/vim-cool",
+            event = "BufRead",
+        })
 
         -- Automatically set up your configuration after cloning packer.nvim
         -- Put this at the end after all plugins
