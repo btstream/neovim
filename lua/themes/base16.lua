@@ -273,6 +273,11 @@ local function customize(scheme)
         TroubleLocation     = { bg = "None", fg = colors.base03 },
         TroubleText         = "None",
 
+        ----------------------------------------------------------------------
+        --                          LightBulbSign                           --
+        ----------------------------------------------------------------------
+        LightBulbSign   = { fg = colors.base0A }
+
     }
 
     vim.api.nvim_create_augroup("ModeChangeGitblame", {

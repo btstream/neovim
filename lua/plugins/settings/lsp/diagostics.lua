@@ -23,7 +23,7 @@ vim.diagnostic.config({
             elseif d.severity == vim.diagnostic.severity.HINT then
                 highlight = "Hint"
             elseif d.severity == vim.diagnostic.severity.WARN then
-                highlight = "Warn"
+                highlight = "Warning"
             elseif d.severity == vim.diagnostic.severity.INFO then
                 highlight = "Information"
             end

@@ -1,6 +1,7 @@
 -- local navic_loaded, navic = pcall(require, "nvim-navic")
 
 local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
+local signs = require("plugins.settings.lsp.ui").signs
 
 local mode = require("plugins.settings.lualine.components.mode")
 local filename = require("plugins.settings.lualine.components.filename")
@@ -112,7 +113,13 @@ require("lualine").setup({
             { "diff", symbols = { added = " ", modified = " ", removed = " " } },
             {
                 "diagnostics",
-                symbols = { error = " ", warn = " ", hint = " ", info = " " },
+                -- stylua: ignore
+                symbols = {
+                    error = signs.Error .. " ",
+                    warn  = signs.Warn  .. " ",
+                    hint  = signs.Hint  .. " ",
+                    info  = signs.Info  .. " ",
+                },
                 update_in_insert = true,
             },
         },

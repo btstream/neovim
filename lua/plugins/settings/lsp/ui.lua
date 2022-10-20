@@ -1,10 +1,10 @@
 local M = {}
 
 M.signs = {
-    Error = "",
-    Warn = "",
-    Hint = "",
-    Info = "",
+    Error = "",
+    Warn = "",
+    Hint = "",
+    Info = "",
 }
 
 local function extend_open_floating_perview()

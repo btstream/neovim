@@ -139,6 +139,13 @@ packer.startup({
             end,
         })
 
+        use({
+            "kosayoda/nvim-lightbulb",
+            -- requires = "antoinemadec/FixCursorHold.nvim",
+            event = "LspAttach",
+            config = [[require("plugins.settings.lightbulb")]],
+        })
+
         use({ -- outline
             "simrat39/symbols-outline.nvim",
             event = "LspAttach",
