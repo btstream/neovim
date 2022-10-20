@@ -317,12 +317,11 @@ packer.startup({
 
         use({
             "danymat/neogen",
-            -- event = "BufWinEnter",
             config = function()
-                require("neogen").setup({ enabled = true })
+                require("plugins.settings.neogen")
             end,
             after = "nvim-treesitter",
-            -- keys = { "<leader>nf", "<leader>nc" },
+            keys = { "<leader>nf", "<leader>nc" },
         })
 
         use({
