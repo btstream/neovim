@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 PACKAGES=(unzip wget nodejs npm rustup ripgrep fd lazygit stylua jq)
-PYTHON_PACKAGES=(pip neovim poetry)
+PYTHON_PACKAGES=(pip neovim poetry debugpy)
 
 if [[ "$(uname)" == 'Linux' ]]; then
     if [[ "$(type -P pacman)" ]]; then
