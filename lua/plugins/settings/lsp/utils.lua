@@ -1,5 +1,9 @@
 -- local lsp_status = require("lsp-status")
 
+local function set_desc(opts, desc)
+    opts["desc"] = desc
+end
+
 local attach_keys = function(client, bufnr)
     local map = vim.keymap.set
 
@@ -7,26 +11,46 @@ local attach_keys = function(client, bufnr)
     local opts = { buffer = bufnr, silent = true }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    map("n", "gd", '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', opts)
-    map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-    map("n", "gi", '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>', opts)
-    map("n", "gt", '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>', opts)
-    map("n", "gr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>', opts)
+    map("n", "gd", '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', set_desc(opts, "goto definitions"))
+    map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", set_desc(opts, "goto declaration"))
+    map(
+        "n",
+        "gi",
+        '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>',
+        set_desc(opts, "goto implementations")
+    )
+    map(
+        "n",
+        "gt",
+        '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>',
+        set_desc(opts, "goto type definitions")
+    )
+    map("n", "gr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>', set_desc(opts, "get references"))
     -- buf_map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-    map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+    map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", set_desc(opts, "rename"))
 
     -- diagnostic
-    map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
-    map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
-    map("n", "ge", '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line", })<cr>', opts)
-    map("n", "<leader>ge", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)
+    map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", set_desc(opts, "goto prev diagnostic"))
+    map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", set_desc(opts, "goto next diagnostic"))
+    map(
+        "n",
+        "ge",
+        '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line", })<cr>',
+        set_desc(opts, "get current line's diagnostic")
+    )
+    map(
+        "n",
+        "<leader>ge",
+        "<cmd>Telescope diagnostics bufnr=0<cr>",
+        set_desc(opts, "get diagnostics of current buffer")
+    )
 
     -- hover
     map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 
     -- code actions
-    map("n", "<C-k>.", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-    map("v", "<C-k>.", "<cmd>lua vim.lsp.buf.range_code_actions()<cr>", opts)
+    map("n", "<C-k>.", "<cmd>lua vim.lsp.buf.code_action()<cr>", set_desc(opts, "code actions"))
+    map("v", "<C-k>.", "<cmd>lua vim.lsp.buf.range_code_actions()<cr>", set_desc(opts, "code_action"))
 end
 
 local M = {}

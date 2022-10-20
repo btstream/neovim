@@ -58,7 +58,7 @@ local lazygit = Terminal:new({
 -- set keymap
 vim.keymap.set("n", "<C-k>g", function()
     lazygit:toggle()
-end)
+end, { desc = "open lazygit" })
 vim.keymap.set("t", "<C-w>k", function()
     vim.cmd("wincmd k")
 end)
