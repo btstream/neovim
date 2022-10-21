@@ -7,10 +7,9 @@ local function get_base16_colors(scheme)
         if vim.g.colors_name == nil then
             style = require("settings").theme.base16_style
         else
-            local b, p = vim.g.colors_name:find("base16")
+            local b, s = vim.g.colors_name:find("base16")
             if b then
-                style = vim.g.colors_name:sub(p + 2)
-                print(style)
+                style = vim.g.colors_name:sub(s + 2)
             else
                 style = require("settings").theme.base16_style
             end

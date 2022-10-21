@@ -73,8 +73,9 @@ require("bufferline").setup({
         enforce_regular_tabs = false,
         always_show_bufferline = true,
         sort_by = "id",
-        themable = true,
+        -- themable = true,
     },
+    highlights = require("themes.bufferline").highlights,
 })
 
 local map = vim.keymap.set
@@ -97,7 +98,7 @@ map("n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<CR>")
 map("n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>")
 -- map('n', '<A-0>', ':BufferLast<CR>')
 -- Close buffer
-map({ "n", "i" }, "<A-w>", "<cmd>bdelete!<CR>")
+map({ "n", "i" }, "<A-w>", "<cmd>bdelete!<CR><cmd>bprevious<cr>")
 -- Wipeout buffer
 --                 :BufferWipeout<CR>
 -- Close commands
