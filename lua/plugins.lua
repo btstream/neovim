@@ -296,6 +296,7 @@ packer.startup({
                 "telescope-fzf-native.nvim",
             },
             cmd = "Telescope",
+            event = "LspAttach",
             config = function()
                 require("plugins.settings.telescope")
             end,
