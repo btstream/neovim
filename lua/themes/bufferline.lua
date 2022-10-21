@@ -11,10 +11,9 @@ local function gen_base16_hg()
         background = {
             bg = dbg,
         },
-        -- tab = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        tab = {
+            bg = dbg,
+        },
         -- tab_selected = {
         --     fg = "tabline_sel_bg",
         --     bg = "<colour-value-here>",
@@ -31,6 +30,9 @@ local function gen_base16_hg()
         -- close_button_selected = {
         --     bg = dbg015,
         -- },
+        buffer = {
+            bg = dbg,
+        },
         buffer_visible = {
             bg = dbg,
         },
@@ -52,10 +54,9 @@ local function gen_base16_hg()
         --     bold = true,
         --     italic = true,
         -- },
-        -- diagnostic = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        diagnostic = {
+            bg = dbg,
+        },
         diagnostic_visible = {
             bg = dbg,
         },
@@ -65,15 +66,12 @@ local function gen_base16_hg()
         --     bold = true,
         --     italic = true,
         -- },
-        -- hint = {
-        --     fg = "<colour-value-here>",
-        --     sp = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
-        -- hint_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        hint = {
+            bg = dbg,
+        },
+        hint_visible = {
+            bg = dbg,
+        },
         -- hint_selected = {
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
@@ -81,15 +79,12 @@ local function gen_base16_hg()
         --     bold = true,
         --     italic = true,
         -- },
-        -- hint_diagnostic = {
-        --     fg = "<colour-value-here>",
-        --     sp = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
-        -- hint_diagnostic_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        hint_diagnostic = {
+            bg = dbg,
+        },
+        hint_diagnostic_visible = {
+            bg = dbg,
+        },
         -- hint_diagnostic_selected = {
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
@@ -102,10 +97,9 @@ local function gen_base16_hg()
         --     sp = "<colour-value-here>",
         --     bg = "<colour-value-here>",
         -- },
-        -- info_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        info_visible = {
+            bg = dbg,
+        },
         -- info_selected = {
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
@@ -113,15 +107,12 @@ local function gen_base16_hg()
         --     bold = true,
         --     italic = true,
         -- },
-        -- info_diagnostic = {
-        --     fg = "<colour-value-here>",
-        --     sp = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
-        -- info_diagnostic_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        info_diagnostic = {
+            bg = dbg,
+        },
+        info_diagnostic_visible = {
+            bg = dbg,
+        },
         -- info_diagnostic_selected = {
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
@@ -129,15 +120,12 @@ local function gen_base16_hg()
         --     bold = true,
         --     italic = true,
         -- },
-        -- warning = {
-        --     fg = "<colour-value-here>",
-        --     sp = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
-        -- warning_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        warning = {
+            bg = dbg,
+        },
+        warning_visible = {
+            bg = dbg,
+        },
         -- warning_selected = {
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
@@ -145,15 +133,12 @@ local function gen_base16_hg()
         --     bold = true,
         --     italic = true,
         -- },
-        -- warning_diagnostic = {
-        --     fg = "<colour-value-here>",
-        --     sp = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
-        -- warning_diagnostic_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        warning_diagnostic = {
+            bg = dbg,
+        },
+        warning_diagnostic_visible = {
+            bg = dbg,
+        },
         -- warning_diagnostic_selected = {
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
@@ -161,15 +146,12 @@ local function gen_base16_hg()
         --     bold = true,
         --     italic = true,
         -- },
-        -- error = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        --     sp = "<colour-value-here>",
-        -- },
-        -- error_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        error = {
+            bg = dbg,
+        },
+        error_visible = {
+            bg = dbg,
+        },
         -- error_selected = {
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
@@ -177,15 +159,12 @@ local function gen_base16_hg()
         --     bold = true,
         --     italic = true,
         -- },
-        -- error_diagnostic = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        --     sp = "<colour-value-here>",
-        -- },
-        -- error_diagnostic_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        error_diagnostic = {
+            bg = dbg,
+        },
+        error_diagnostic_visible = {
+            bg = dbg,
+        },
         -- error_diagnostic_selected = {
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
@@ -197,10 +176,9 @@ local function gen_base16_hg()
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
         -- },
-        -- modified_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        -- },
+        modified_visible = {
+            bg = dbg,
+        },
         -- modified_selected = {
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
@@ -210,16 +188,13 @@ local function gen_base16_hg()
         --     bg = "<colour-value-here>",
         --     italic = true,
         -- },
-        -- duplicate_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        --     italic = true,
-        -- },
-        -- duplicate = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        --     italic = true,
-        -- },
+        duplicate_visible = {
+            bg = dbg,
+        },
+        duplicate = {
+            bg = dbg,
+            italic = true,
+        },
         separator_selected = {
             fg = dbg,
             bg = dbg,
@@ -247,10 +222,7 @@ local function gen_base16_hg()
         --     italic = true,
         -- },
         -- pick_visible = {
-        --     fg = "<colour-value-here>",
-        --     bg = "<colour-value-here>",
-        --     bold = true,
-        --     italic = true,
+        --     bg = dbg,
         -- },
         -- pick = {
         --     fg = "<colour-value-here>",
