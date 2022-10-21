@@ -1,41 +1,17 @@
 local darken = require("themes.utils").darken
-local highlight = require("themes.utils").highlight
+local get_base16_colors = require("themes.base16.colors").colors
 
-local function get_base16_colors(scheme)
-    local style = scheme and scheme or require("settings").theme.base16_style
-    local colors = require("base16-colorscheme").colorschemes[style]
-    return colors
-end
+local M = {}
 
--- color reference
--- {
---   "base0F": "#be5046",
---   "base0D": "#61afef",
---   "base07": "#c8ccd4",
---   "base05": "#abb2bf",
---   "base0E": "#c678dd",
---   "base02": "#3e4451",
---   "base0C": "#56b6c2",
---   "base01": "#353b45",
---   "base0B": "#98c379",
---   "base0A": "#e5c07b",
---   "base09": "#d19a66",
---   "base00": "#282c34",
---   "base08": "#e06c75",
---   "base03": "#545862",
---   "base06": "#b6bdca",
---   "base04": "#565c64"
--- }
-
-local function customize(scheme)
-    local colors = get_base16_colors(scheme)
+function M.hg()
+    local colors = get_base16_colors()
     -- print(vim.json.encode(colors))
     -- local dbg010 = darken(colors.base00, 0.10)
     local dbg015 = darken(colors.base00, 0.15)
     local dbg020 = darken(colors.base00, 0.20)
 
-    -- stylua: ignore
-    local custom_colors = {
+    --stylua: ignore
+    return {
 
         ----------------------------------------------------------------------
         --                           Vim Commons                            --
@@ -208,52 +184,52 @@ local function customize(scheme)
         --                             BuffLine                             --
         ----------------------------------------------------------------------
         -- normal tab
-        BufferLineBackground        = { bg = dbg015 },
-        BufferLineModified          = { bg = dbg015 },
-        BufferLineDuplicate         = { bg = dbg015 },
-        BufferLinePick              = { bg = dbg015 },
-        BufferLineSeparator         = { bg = dbg015, fg = dbg015 },
-        BufferLineBuffer            = { bg = dbg015 },
-        BufferLineDiagnostic        = { bg = dbg015 },
-        BufferLineError             = { bg = dbg015 },
-        BufferLineErrorDiagnostic   = { bg = dbg015 },
-        BufferLineWarning           = { bg = dbg015 },
-        BufferLineWarningDiagnostic = { bg = dbg015 },
-        BufferLineInfo              = { bg = dbg015 },
-        BufferLineInfoDiagnostic    = { bg = dbg015 },
-        BufferLineHint              = { bg = dbg015 },
-        BufferLineHintDiagnostic    = { bg = dbg015 },
-        BufferLineCloseButton       = { bg = dbg015 },
-        BufferLineNumbers           = { bg = dbg015 },
+        -- BufferLineBackground        = { bg = dbg015 },
+        -- BufferLineModified          = { bg = dbg015 },
+        -- BufferLineDuplicate         = { bg = dbg015 },
+        -- BufferLinePick              = { bg = dbg015 },
+        -- BufferLineSeparator         = { bg = dbg015, fg = dbg015 },
+        -- BufferLineBuffer            = { bg = dbg015 },
+        -- BufferLineDiagnostic        = { bg = dbg015 },
+        -- BufferLineError             = { bg = dbg015 },
+        -- BufferLineErrorDiagnostic   = { bg = dbg015 },
+        -- BufferLineWarning           = { bg = dbg015 },
+        -- BufferLineWarningDiagnostic = { bg = dbg015 },
+        -- BufferLineInfo              = { bg = dbg015 },
+        -- BufferLineInfoDiagnostic    = { bg = dbg015 },
+        -- BufferLineHint              = { bg = dbg015 },
+        -- BufferLineHintDiagnostic    = { bg = dbg015 },
+        -- BufferLineCloseButton       = { bg = dbg015 },
+        -- BufferLineNumbers           = { bg = dbg015 },
 
-        BufferLineBackgroundVisible        = { bg = dbg015 },
-        BufferLineModifiedVisible          = { bg = dbg015 },
-        BufferLineDuplicateVisible         = { bg = dbg015 },
-        BufferLinePickVisible              = { bg = dbg015 },
-        BufferLineSeparatorVisible         = { bg = dbg015, fg = dbg015 },
-        BufferLineBufferVisible            = { bg = dbg015 },
-        BufferLineDiagnosticVisible        = { bg = dbg015 },
-        BufferLineErrorVisible             = { bg = dbg015 },
-        BufferLineErrorDiagnosticVisible   = { bg = dbg015 },
-        BufferLineWarningVisible           = { bg = dbg015 },
-        BufferLineWarningDiagnosticVisible = { bg = dbg015 },
-        BufferLineInfoVisible              = { bg = dbg015 },
-        BufferLineInfoDiagnosticVisible    = { bg = dbg015 },
-        BufferLineHintVisible              = { bg = dbg015 },
-        BufferLineHintDiagnosticVisible    = { bg = dbg015 },
-        BufferLineCloseButtonVisible       = { bg = dbg015 },
-        BufferLineNumbersVisible           = { bg = dbg015 },
+        -- BufferLineBackgroundVisible        = { bg = dbg015 },
+        -- BufferLineModifiedVisible          = { bg = dbg015 },
+        -- BufferLineDuplicateVisible         = { bg = dbg015 },
+        -- BufferLinePickVisible              = { bg = dbg015 },
+        -- BufferLineSeparatorVisible         = { bg = dbg015, fg = dbg015 },
+        -- BufferLineBufferVisible            = { bg = dbg015 },
+        -- BufferLineDiagnosticVisible        = { bg = dbg015 },
+        -- BufferLineErrorVisible             = { bg = dbg015 },
+        -- BufferLineErrorDiagnosticVisible   = { bg = dbg015 },
+        -- BufferLineWarningVisible           = { bg = dbg015 },
+        -- BufferLineWarningDiagnosticVisible = { bg = dbg015 },
+        -- BufferLineInfoVisible              = { bg = dbg015 },
+        -- BufferLineInfoDiagnosticVisible    = { bg = dbg015 },
+        -- BufferLineHintVisible              = { bg = dbg015 },
+        -- BufferLineHintDiagnosticVisible    = { bg = dbg015 },
+        -- BufferLineCloseButtonVisible       = { bg = dbg015 },
+        -- BufferLineNumbersVisible           = { bg = dbg015 },
 
-        BufferLineDevIconLua               = { fg = colors.base0D, bg = dbg015 },
+        -- BufferLineDevIconLua               = { fg = colors.base0D, bg = dbg015 },
 
-        -- selected
-        BufferLineIndicatorSelected = { fg = colors.base0D, bg = colors.base00 },
-        BufferLineSeparatorSelected = { bg = dbg015, fg = dbg015 },
-        BufferLineIndicatorVisible  = { bg = dbg015, fg = dbg015 },
+        -- -- selected
+        -- BufferLineIndicatorSelected = { fg = colors.base0D, bg = colors.base00 },
+        -- BufferLineSeparatorSelected = { bg = dbg015, fg = dbg015 },
+        -- BufferLineIndicatorVisible  = { bg = dbg015, fg = dbg015 },
 
-        -- fill and close button
-        BufferLineFill              = { bg = dbg015, fg = dbg015 },
-        BufferLineTabClose          = { bg = dbg015 },
+        -- -- fill and close button
+        -- BufferLineFill              = { bg = dbg015, fg = dbg015 },
+        -- BufferLineTabClose          = { bg = dbg015 },
 
         ----------------------------------------------------------------------
         --                            Dashboard                             --
@@ -277,57 +253,7 @@ local function customize(scheme)
         --                          LightBulbSign                           --
         ----------------------------------------------------------------------
         LightBulbSign   = { fg = colors.base0A }
-
     }
-
-    vim.api.nvim_create_augroup("ModeChangeGitblame", {
-        clear = true,
-    })
-    vim.api.nvim_create_autocmd("ModeChanged", {
-        group = "ModeChangeGitblame",
-        callback = function()
-            local mode = vim.fn.mode()
-            if mode == "v" or mode == "vs" or mode == "V" or mode == "Vs" then
-                highlight({
-                    gitblame = { bg = "None", fg = colors.base03 },
-                })
-            else
-                highlight({
-                    gitblame = custom_colors.gitblame,
-                })
-            end
-        end,
-    })
-
-    highlight(custom_colors)
 end
 
--- load colors
-require("base16-colorscheme").setup(get_base16_colors())
-
--- do customs
-customize()
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = function()
-        local b, p = vim.g.colors_name:find("base16")
-        if b then
-            customize(vim.g.colors_name:sub(p + 2))
-        end
-    end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "Outline",
-    callback = function()
-        local opts = "Normal:OutlineNormal,"
-            .. "NormalNC:OutlineNormal,"
-            .. "EndOfBuffer:OutlineEndOfBuffer,"
-            .. "SignColumn:OutlineNormal,"
-            .. "LineNr:OutlineLineNr,"
-            .. "VertSplit:OutlineWinSeparator,"
-            .. "WinSeparator:OutlineWinSeparator,"
-        vim.wo.list = false
-        vim.cmd("setlocal winhighlight=" .. opts)
-    end,
-})
+return M
