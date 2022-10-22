@@ -361,16 +361,7 @@ packer.startup({
             requires = { "nvim-lua/plenary.nvim" },
             event = "BufRead",
             config = function()
-                require("gitsigns").setup()
-            end,
-        })
-
-        -- git-blame
-        use({
-            "f-person/git-blame.nvim",
-            event = "BufRead",
-            config = function()
-                require("plugins.settings.gitblame")
+                require("plugins.settings.gitsigns")
             end,
         })
 

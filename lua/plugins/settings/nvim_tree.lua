@@ -65,10 +65,10 @@ require("nvim-tree").setup({
 -- map({ "n", "i" }, "<C-k>b", "<cmd>NvimTreeToggle<CR>")
 -- map("i", "<C-k>b", "<Esc><cmd>NvimTreeToggle<CR>")
 
-vim.cmd([[
-augroup nvim-tree-refresh
-    au!
-    autocmd BufReadPost * NvimTreeRefresh
-    autocmd BufEnter * NvimTreeRefresh
-augroup end
-]])
+-- vim.cmd([[
+-- augroup nvim-tree-refresh
+--     au!
+--     autocmd BufReadPost * NvimTreeRefresh
+--     autocmd BufEnter * NvimTreeRefresh
+-- augroup end
+-- ]])
