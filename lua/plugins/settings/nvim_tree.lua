@@ -1,5 +1,6 @@
 -- local map = vim.api.nvim_set_keymap
-local map = vim.keymap.set
+-- local map = vim.keymap.set
+local signs = require("plugins.settings.lsp.ui").signs
 local view = require("nvim-tree.view")
 
 ----------------------------------------------------------------------
@@ -21,7 +22,10 @@ require("nvim-tree").setup({
     hijack_cursor = false,
     update_cwd = true,
     -- update_to_buf_dir = { enable = true, auto_open = true },
-    diagnostics = { enable = false, icons = { hint = "", info = "", warning = "", error = "" } },
+    diagnostics = {
+        enable = false,
+        icons = { hint = signs.Hint, info = signs.Info, warning = signs.Warn, error = signs.Error },
+    },
     update_focused_file = { enable = true, update_cwd = true, ignore_list = {} },
     system_open = { cmd = nil, args = {} },
     filters = { dotfiles = false, custom = {} },
