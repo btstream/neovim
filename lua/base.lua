@@ -25,7 +25,7 @@ opt.list = true
 opt.listchars = {
     lead = "",
     space = "",
-    tab = ">>",
+    tab = "  ",
 }
 opt.termguicolors = true
 
