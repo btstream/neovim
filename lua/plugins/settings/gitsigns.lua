@@ -1,3 +1,15 @@
+local popup = require("gitsigns.popup")
+local orig_popup = popup.create
+
+popup.create = function(lines_spec, opts, id)
+    local winid, _ = orig_popup(lines_spec, opts, id)
+    vim.api.nvim_win_set_option(
+        winid,
+        "winhighlight",
+        "NormalFloat:GitSignHunkPreviewNormal,FloatBorder:GitSignHunkPreviewBorder"
+    )
+end
+
 require("gitsigns").setup({
     current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
     current_line_blame_opts = {
@@ -9,7 +21,7 @@ require("gitsigns").setup({
     current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
     preview_config = {
         -- Options passed to nvim_open_win
-        border = "single",
+        border = "rounded",
         style = "minimal",
         relative = "cursor",
         row = 0,

@@ -3,6 +3,25 @@ local get_base16_colors = require("themes.base16.colors").colors
 
 local M = {}
 
+-- color reference
+-- {
+--   "base0F": "#be5046",
+--   "base0D": "#61afef",
+--   "base07": "#c8ccd4",
+--   "base05": "#abb2bf",
+--   "base0E": "#c678dd",
+--   "base02": "#3e4451",
+--   "base0C": "#56b6c2",
+--   "base01": "#353b45",
+--   "base0B": "#98c379",
+--   "base0A": "#e5c07b",
+--   "base09": "#d19a66",
+--   "base00": "#282c34",
+--   "base08": "#e06c75",
+--   "base03": "#545862",
+--   "base06": "#b6bdca",
+--   "base04": "#565c64"
+-- }
 function M.hg()
     local colors = get_base16_colors()
     -- print(vim.json.encode(colors))
@@ -31,7 +50,9 @@ function M.hg()
         ----------------------------------------------------------------------
         --                               git                                --
         ----------------------------------------------------------------------
-        gitblame                = { bg = colors.base01, fg = colors.base03 },
+        GitSignsCurrentLineBlame  = { fg = colors.base03 },
+        GitSignHunkPreviewNormal  = "Normal",
+        GitSignHunkPreviewBorder  = { fg = colors.base02 },
 
         ----------------------------------------------------------------------
         --                          NvimTreeNormal                          --
