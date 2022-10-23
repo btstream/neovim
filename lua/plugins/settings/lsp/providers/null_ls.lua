@@ -1,4 +1,5 @@
-require("null-ls").setup({
+local null_ls = require("null-ls")
+null_ls.setup({
     on_attach = require("plugins.settings.lsp.utils").on_attach,
     sources = {
         require("null-ls").builtins.formatting.stylua.with({
@@ -17,7 +18,8 @@ require("null-ls").setup({
                 return { "--indent-type", "Spaces", "--indent-width", "4" }
             end,
         }),
-        require("null-ls").builtins.formatting.jq,
-        require("null-ls").builtins.formatting.yapf,
+        null_ls.builtins.formatting.jq,
+        null_ls.builtins.formatting.yapf,
+        null_ls.builtins.code_actions.gitsigns,
     },
 })
