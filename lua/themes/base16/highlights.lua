@@ -58,7 +58,7 @@ function M.hg()
         --                          NvimTreeNormal                          --
         ----------------------------------------------------------------------
         -- NvimTreeNormal          = { bg = dbg015 },
-        SidebarTitle            = { bg = dbg015 },
+        NvimTreeSidebarTitle    = { bg = dbg015, fg = colors.base03 },
         NvimTreeFolderIcon      = { fg = colors.base0D },
         NvimTreeIndentrker      = { fg = colors.base01 },
         -- NvimTreeEndOfBuffer     = { bg = dbg015, fg = dbg015 },
@@ -194,6 +194,7 @@ function M.hg()
         ----------------------------------------------------------------------
         --                             Outline                              --
         ----------------------------------------------------------------------
+        OutlineSidebarTitle = { bg = dbg015, fg = colors.base03 },
         OutlineNormal       = "NvimTreeNormal",
         OutlineEndOfBuffer  = "NvimTreeEndOfBuffer",
         OutlineSignColumn   = "OutlineNormal",

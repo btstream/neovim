@@ -49,17 +49,19 @@ require("bufferline").setup({
                 filetype = "NvimTree",
                 text = function()
                     -- return vim.fn.getcwd()
-                    return "File Explorer"
+                    return "פּ File Explorer"
                 end,
-                highlight = "SidebarTitle",
+                highlight = "NvimTreeSidebarTitle",
                 text_align = "center",
-                padding = 1,
+                separator = " ",
+                -- padding = 1,
             },
             {
                 filetype = "Outline",
-                text = "Outline",
-                highlight = "SidebarTitle",
+                text = " Outline",
+                highlight = "OutlineSidebarTitle",
                 text_align = "center",
+                separator = " ",
             },
         },
         show_buffer_icons = true, -- disable filetype icons for buffers

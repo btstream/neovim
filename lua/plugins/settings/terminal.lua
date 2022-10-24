@@ -38,6 +38,9 @@ require("toggleterm").setup({
         if path then
             terminal:send("poetry shell -q && exit")
         end
+
+        -- quirk to disable highlight of sidebars
+        vim.cmd("doautocmd BufEnter")
     end,
 })
 

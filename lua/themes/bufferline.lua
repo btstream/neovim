@@ -230,9 +230,10 @@ local function gen_base16_hg()
         --     bold = true,
         --     italic = true,
         -- },
-        -- offset_separator = {
-        --     fg = win_separator_fg,
-        --     bg = separator_background_color,
+        offset_separator = {
+            bg = dbg,
+            fg = dbg,
+        },
     }
 end
 
