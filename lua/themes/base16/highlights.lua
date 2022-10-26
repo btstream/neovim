@@ -41,6 +41,7 @@ function M.hg()
         LineNr                  = { fg = colors.base03 },
         SignColumn              = { bg = "None"},
         -- Folded                  = { fg = darken(colors.base0A, 0.20) },
+        TabLineSel              = { bg = colors.base0D },
 
         ----------------------------------------------------------------------
         --                             Whichkey                             --

@@ -1,6 +1,6 @@
 require("base")
-require("plugins")
 require("theme")
+require("plugins")
 require("keymaps")
 require("commands")
 require("extra")
