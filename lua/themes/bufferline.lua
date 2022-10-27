@@ -232,7 +232,7 @@ local function gen_base16_hg()
         -- },
         offset_separator = {
             bg = dbg,
-            fg = dbg,
+            fg = colors.base00,
         },
     }
 end

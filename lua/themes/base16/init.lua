@@ -1,5 +1,5 @@
 local highlight = require("themes.utils").highlight
-local darken = require("themes.utils").darken
+-- local darken = require("themes.utils").darken
 
 local M = {}
 
@@ -33,21 +33,21 @@ local function setup_autocmds()
         pattern = "*",
         callback = function()
             local colors = require("themes.base16.colors").colors()
-            local dbg = darken(colors.base00, 0.15)
+            -- local dbg = darken(colors.base00, 0.15)
             if vim.bo.filetype == "NvimTree" then
                 highlight({
-                    NvimTreeSidebarTitle = { bg = colors.base0D, fg = colors.base00 },
-                    OutlineSidebarTitle = { bg = dbg, fg = colors.base03 },
+                    NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base0D },
+                    OutlineSidebarTitle = { bg = colors.base00, fg = colors.base03 },
                 })
             elseif vim.bo.filetype == "Outline" then
                 highlight({
-                    NvimTreeSidebarTitle = { bg = dbg, fg = colors.base03 },
-                    OutlineSidebarTitle = { bg = colors.base0D, fg = colors.base00 },
+                    NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
+                    OutlineSidebarTitle = { bg = colors.base00, fg = colors.base0D },
                 })
             else
                 highlight({
-                    NvimTreeSidebarTitle = { bg = dbg, fg = colors.base03 },
-                    OutlineSidebarTitle = { bg = dbg, fg = colors.base03 },
+                    NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
+                    OutlineSidebarTitle = { bg = colors.base00, fg = colors.base03 },
                 })
             end
         end,

@@ -13,8 +13,8 @@ require("bufferline").setup({
         -- indicator_icon = "▍ ",
         indicator = {
             style = "icon",
-            icon = "▏",
-            -- icon = "▍ ",
+            icon = "▎",
+            -- icon = "▍",
         },
         buffer_close_icon = "",
         modified_icon = "●",
@@ -54,7 +54,7 @@ require("bufferline").setup({
                 end,
                 highlight = "NvimTreeSidebarTitle",
                 text_align = "center",
-                separator = " ",
+                separator = "▎",
                 -- padding = 1,
             },
             {
@@ -62,7 +62,7 @@ require("bufferline").setup({
                 text = " Outline",
                 highlight = "OutlineSidebarTitle",
                 text_align = "center",
-                separator = " ",
+                separator = "🮇",
             },
         },
         show_buffer_icons = true, -- disable filetype icons for buffers
