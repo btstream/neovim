@@ -13,7 +13,7 @@ require("bufferline").setup({
         -- indicator_icon = "▍ ",
         indicator = {
             style = "icon",
-            icon = "▎",
+            icon = "▎ ",
             -- icon = "▍",
         },
         buffer_close_icon = "",
