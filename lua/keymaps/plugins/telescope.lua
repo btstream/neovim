@@ -15,3 +15,5 @@ map({ "n", "i" }, "<C-k>r", "<cmd>Telescope registers<cr>", { desc = "look up re
 map("n", "z=", "<cmd>Telescope spell_suggest<cr>", { desc = "spell suggest" })
 
 map({ "n", "i" }, "<C-k><C-o>", "<cmd>Telescope file_browser<cr>", { desc = "open file browser" })
+
+map({ "n", "i" }, "<C-b>", "<cmd>Telescope buffers<cr>", { desc = "open buffers" })
