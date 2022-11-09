@@ -1,3 +1,5 @@
+local lspconfig_utils = require("lspconfig.util")
+lspconfig_utils.default_config.capabilities.offsetEncoding = { "utf-16" }
 require("lspconfig").clangd.setup({
     cmd = {
         "clangd",
@@ -9,4 +11,5 @@ require("lspconfig").clangd.setup({
         "--pch-storage=disk",
         "--log=verbose",
     },
+    capabilities = lspconfig_utils.default_config.capabilities,
 })
