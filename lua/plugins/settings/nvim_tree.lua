@@ -66,6 +66,15 @@ require("nvim-tree").setup({
         },
     },
 })
+
+vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+    callback = function()
+        if vim.bo.filetype == "NvimTree" then
+            vim.cmd("stopinsert")
+        end
+    end,
+})
+
 -- map({ "n", "i" }, "<C-k>b", "<cmd>NvimTreeToggle<CR>")
 -- map("i", "<C-k>b", "<Esc><cmd>NvimTreeToggle<CR>")
 
