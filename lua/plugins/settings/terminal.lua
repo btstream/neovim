@@ -67,7 +67,7 @@ vim.keymap.set("t", "<C-w>k", function()
 end)
 
 -- ensure enter insert mode when terminal gained focus
-vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter" }, {
     callback = function()
         if vim.bo.filetype:upper() == "TOGGLETERM" then
             vim.cmd("startinsert")
