@@ -19,7 +19,10 @@ opt.fillchars = {
     -- disable eob
     eob = " ",
     -- fold char
-    fold = "┄",
+    fold = " ",
+    foldopen = "",
+    foldclose = "",
+    foldsep = " ",
 }
 opt.list = true
 opt.listchars = {
@@ -75,11 +78,13 @@ function _G.custom_fold_text()
     end
     return "┄┄" .. line .. ": " .. line_count .. " lines"
 end
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldenable = false
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldcolumn = "1"
+opt.foldlevel = 99
+opt.foldenable = true
 opt.foldlevelstart = 99
-opt.foldtext = "v:lua.custom_fold_text()"
+-- opt.foldtext = "v:lua.custom_fold_text()"
 
 ----------------------------------------------------------------------
 --                              search                              --
