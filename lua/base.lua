@@ -80,7 +80,8 @@ function _G.custom_fold_text()
 end
 -- opt.foldmethod = "expr"
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldcolumn = "1"
+opt.foldcolumn = "0"
+opt.foldnestmax = 0
 opt.foldlevel = 99
 opt.foldenable = true
 opt.foldlevelstart = 99

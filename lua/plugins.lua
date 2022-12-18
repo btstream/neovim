@@ -441,7 +441,7 @@ packer.startup({
             "kevinhwang91/nvim-ufo",
             requires = "kevinhwang91/promise-async",
             wants = { "nvim-treesitter" },
-            events = { "BufReadPost", "BufNew", "BufNewFile" },
+            events = { "BufRead", "BufNew", "BufNewFile" },
             config = function()
                 require("plugins.settings.ufo")
             end,
