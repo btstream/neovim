@@ -52,6 +52,7 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("projects")
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension("notify")
 
 -- find files
 -- map({ "n", "i" }, "<C-k>p", "<cmd>Telescope find_files<cr>")
