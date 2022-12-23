@@ -1,5 +1,7 @@
 -- local lsp_status = require("lsp-status")
 
+local null_ls_registered_fts = nil
+
 local function set_desc(opts, desc)
     opts["desc"] = desc
 end
@@ -63,6 +65,10 @@ M.on_attach = function(client, bufnr)
     require("lsp-status").on_attach(client, bufnr)
     attach_keys(client, bufnr)
 
+    if client.name == "null-ls" and null_ls_registered_fts == nil then
+        null_ls_registered_fts = require("null-ls.sources").get_filetypes()
+    end
+
     if client.server_capabilities.documentSymbolProvider then
         require("nvim-navic").attach(client, bufnr)
     end -- save on formatting
@@ -86,6 +92,7 @@ M.on_attach = function(client, bufnr)
                     filter = function(client)
                         -- to check if null-ls has attached
                         local clients = vim.lsp.buf_get_clients(bufnr)
+                        local ft = vim.fn.getbufvar(bufnr, "&filetype")
                         local has_null_ls = false
                         for _, c in pairs(clients) do
                             if c.name == "null-ls" then
@@ -93,9 +100,11 @@ M.on_attach = function(client, bufnr)
                             end
                         end
 
-                        if not has_null_ls then
+                        -- if there is no null ls or not configured to format this kind of files, then
+                        -- use this client to format document
+                        if not has_null_ls or not vim.tbl_contains(null_ls_registered_fts, ft) then
                             return true
-                        elseif client.name == "null-ls" then
+                        elseif client.name == "null-ls" and vim.tbl_contains(null_ls_registered_fts, ft) then
                             return true
                         else
                             return false
