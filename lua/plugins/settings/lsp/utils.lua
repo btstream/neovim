@@ -62,7 +62,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 --- @param client LspClient
 --- @param bufnr number buffer handler
 M.on_attach = function(client, bufnr)
-    require("lsp-status").on_attach(client, bufnr)
+    -- require("lsp-status").on_attach(client, bufnr)
     attach_keys(client, bufnr)
 
     if client.name == "null-ls" and null_ls_registered_fts == nil then
@@ -91,18 +91,18 @@ M.on_attach = function(client, bufnr)
                     bufnr = bufnr,
                     filter = function(client)
                         -- to check if null-ls has attached
-                        local clients = vim.lsp.buf_get_clients(bufnr)
+                        -- local clients = vim.lsp.buf_get_clients(bufnr)
                         local ft = vim.fn.getbufvar(bufnr, "&filetype")
-                        local has_null_ls = false
-                        for _, c in pairs(clients) do
-                            if c.name == "null-ls" then
-                                has_null_ls = true
-                            end
-                        end
+                        -- local has_null_ls = false
+                        -- for _, c in pairs(clients) do
+                        --     if c.name == "null-ls" then
+                        --         has_null_ls = true
+                        --     end
+                        -- end
 
                         -- if there is no null ls or not configured to format this kind of files, then
                         -- use this client to format document
-                        if not has_null_ls or not vim.tbl_contains(null_ls_registered_fts, ft) then
+                        if null_ls_registered_fts == nil or not vim.tbl_contains(null_ls_registered_fts, ft) then
                             return true
                         elseif client.name == "null-ls" and vim.tbl_contains(null_ls_registered_fts, ft) then
                             return true

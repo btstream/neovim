@@ -145,7 +145,7 @@ require("lualine").setup({
                 lsp_progress,
                 padding = 1,
                 cond = function()
-                    return packer_plugins["lsp-status.nvim"].loaded and not filetype_tools.is_nonefiletype()
+                    return not filetype_tools.is_nonefiletype()
                 end,
             },
             {

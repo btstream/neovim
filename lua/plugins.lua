@@ -112,18 +112,19 @@ packer.startup({
             })
         end
 
-        use({
-            "nvim-lua/lsp-status.nvim",
-            config = function()
-                require("lsp-status").config({})
-            end,
-            opt = true,
-        })
+        -- use({
+        --     "nvim-lua/lsp-status.nvim",
+        --     config = function()
+        --         require("lsp-status").config({})
+        --     end,
+        --     opt = true,
+        -- })
 
         use({
             "neovim/nvim-lspconfig",
             event = { "BufReadPost", "BufNew", "BufNewFile" },
-            wants = { "lsp-status.nvim", "nvim-jdtls", "nlsp-settings.nvim", "lspkind-nvim", "cmp-nvim-lsp" },
+            -- wants = { "lsp-status.nvim", "nvim-jdtls", "nlsp-settings.nvim", "lspkind-nvim", "cmp-nvim-lsp" },
+            wants = { "nvim-jdtls", "nlsp-settings.nvim", "lspkind-nvim", "cmp-nvim-lsp" },
             config = function()
                 require("plugins.settings.lsp")
             end,
@@ -158,7 +159,7 @@ packer.startup({
             "jose-elias-alvarez/null-ls.nvim",
             requires = { "nvim-lua/plenary.nvim" },
             event = "BufReadPost",
-            after = { "lsp-status.nvim", "nvim-lspconfig" },
+            after = { "nvim-lspconfig" },
             config = function()
                 require("plugins.settings.lsp.providers.null_ls")
             end,
@@ -227,9 +228,15 @@ packer.startup({
             "nvim-lualine/lualine.nvim",
             event = "BufWinEnter",
             requires = { "kyazdani42/nvim-web-devicons", opt = true },
+            wants = "lualine-lsp-progress",
             config = function()
                 require("plugins.settings.lualine")
             end,
+        })
+
+        use({
+            "arkav/lualine-lsp-progress",
+            opt = true,
         })
 
         use({
