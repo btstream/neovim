@@ -5,6 +5,10 @@ local component = lsp_progress:extend()
 component.init = function(self, options)
     options.spinner_symbols =
         vim.tbl_extend("force", lsp_progress.default.spinner_symbols_moon, options.spinner_symbols or {})
+    options.timer = vim.tbl_extend("force", {
+        progress_enddelay = 125,
+        lsp_client_name_enddelay = 250,
+    }, options.timer or {})
     component.super.init(self, options)
     self.options.ignored_servers = vim.tbl_extend("force", { "null-ls" }, self.options.ignored_servers or {})
 end
@@ -54,6 +58,7 @@ component.update_progress = function(self)
                     end
                     break
                 end
+                self:update_spinner()
             end
             if type(display_component) == "table" then
                 self:update_progress_components(result, display_component, client.progress)
@@ -86,6 +91,18 @@ component.update_progress = function(self)
         end
         self.progress_message = string.format("%s %s", icon, active_lsp)
     end
+end
+
+component.setup_spinner = function(self)
+    self.spinner = {}
+    self.spinner.index = 0
+    self.spinner.symbol_mod = #self.options.spinner_symbols
+    self.spinner.symbol = self.options.spinner_symbols[1]
+end
+
+component.update_spinner = function(self)
+    self.spinner.index = (self.spinner.index % self.spinner.symbol_mod) + 1
+    self.spinner.symbol = self.options.spinner_symbols[self.spinner.index]
 end
 
 return component
