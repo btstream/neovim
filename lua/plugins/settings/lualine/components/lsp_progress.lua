@@ -2,13 +2,31 @@ local highlight = require("lualine.highlight")
 local lsp_progress = require("lualine.components.lsp_progress")
 local component = lsp_progress:extend()
 
+lsp_progress.default = {
+    colors = {
+        percentage = highlight.get_lualine_hl("lualine_b_normal"),
+        title = highlight.get_lualine_hl("lualine_b_normal"),
+        message = highlight.get_lualine_hl("lualine_b_normal"),
+        spinner = "#d19a66",
+        lsp_client_name = highlight.get_lualine_hl("lualine_b_normal"),
+        use = false,
+    },
+    separators = {
+        component = " ",
+        progress = " | ",
+        message = { pre = "(", post = ")" },
+        percentage = { pre = "", post = "%% " },
+        title = { pre = "", post = ": " },
+        lsp_client_name = { pre = "[", post = "]" },
+        spinner = { pre = "", post = "" },
+    },
+    display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
+    timer = { progress_enddelay = 125, spinner = 125, lsp_client_name_enddelay = 1000 },
+    spinner_symbols = { "", "", "", "", "", "", "", "" },
+    message = { commenced = "In Progress", completed = "Completed" },
+}
+
 component.init = function(self, options)
-    options.spinner_symbols =
-        vim.tbl_extend("force", lsp_progress.default.spinner_symbols_moon, options.spinner_symbols or {})
-    options.timer = vim.tbl_extend("force", {
-        progress_enddelay = 125,
-        lsp_client_name_enddelay = 250,
-    }, options.timer or {})
     component.super.init(self, options)
     self.options.ignored_servers = vim.tbl_extend("force", { "null-ls" }, self.options.ignored_servers or {})
 end
