@@ -3,7 +3,7 @@ local find_root = require("jdtls.setup").find_root
 -- local get_settings = require("nlspsettings").get_settings
 local get_lua_settings = require("plugins.settings.lsp.nlspsettings_lualoader").get_settings
 
-local lombok_path = vim.fn.stdpath("data") .. "/lsp_servers/jdtls/lombok.jar"
+local lombok_path = require("mason.settings").current.install_root_dir .. "/packages/jdtls/lombok.jar"
 
 if vim.fn.has("win32") == 1 then
     lombok_path = lombok_path:gsub("/", "\\\\")
@@ -28,7 +28,7 @@ local function start_jdtls()
     local extendedClientCapabilities = jdtls.extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
-    local root_dir = find_root({ "pom.xml", "mnvw", ".git", "gradlew" })
+    local root_dir = find_root({ "pom.xml", "mnvw", ".git", "gradlew" }) or vim.fn.getcwd()
 
     local config = {
         name = "jdtls",
@@ -71,8 +71,17 @@ local function start_jdtls()
             },
         },
         handlers = require("plugins.settings.lsp.handlers"),
-        init_options = { extendedClientCapabilities = extendedClientCapabilities },
+        init_options = {
+            extendedClientCapabilities = extendedClientCapabilities,
+            bundles = {
+                vim.fn.glob(
+                    require("mason.settings").current.install_root_dir .. "/packages/java-debug-adapter/**/*debug*.jar",
+                    1
+                ),
+            },
+        },
         on_attach = function(client, bufnr)
+            jdtls.setup_dap({ hotcodereplace = "auto" })
             jdtls.setup.add_commands()
             require("plugins.settings.lsp.utils").on_attach(client, bufnr)
         end,

@@ -15,6 +15,10 @@ require("indent_blankline").setup({
         "lspinfo",
         "Trouble",
         "mason",
+        "dapui_breakpoints",
+        "dapui_scopes",
+        "dap-repl",
+        "dapui_console",
         "",
     },
 })

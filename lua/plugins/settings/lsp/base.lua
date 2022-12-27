@@ -58,8 +58,9 @@ local _servers = {
     "sumneko_lua",
     "fortls",
     "lemminx",
-    "codelldb",
     "clangd",
+    "codelldb",
+    "java-debug-adapter",
 }
 local ensure_installed = {}
 local lspconfig_to_packages = require("mason-lspconfig.mappings.server").lspconfig_to_package
