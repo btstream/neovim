@@ -48,6 +48,7 @@ packer.startup({
         -- add packer itself to packer manager, to avoid remove
         use("wbthomason/packer.nvim")
 
+        use("dstein64/vim-startuptime")
         ----------------------------------------------------------------------
         --                                UI                                --
         ----------------------------------------------------------------------
@@ -91,13 +92,10 @@ packer.startup({
         --                          Config for LSP                          --
         ----------------------------------------------------------------------
 
-        use({
+        local lsp_addons = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
-        })
-
-        local lsp_addons = {
             "simrat39/rust-tools.nvim",
             "mfussenegger/nvim-jdtls",
             "tamago324/nlsp-settings.nvim",
@@ -124,7 +122,16 @@ packer.startup({
             "neovim/nvim-lspconfig",
             event = { "BufReadPost", "BufNew", "BufNewFile" },
             -- wants = { "lsp-status.nvim", "nvim-jdtls", "nlsp-settings.nvim", "lspkind-nvim", "cmp-nvim-lsp" },
-            wants = { "nvim-jdtls", "rust-tools.nvim", "nlsp-settings.nvim", "lspkind-nvim", "cmp-nvim-lsp" },
+            wants = {
+                "nvim-jdtls",
+                "rust-tools.nvim",
+                "nlsp-settings.nvim",
+                "lspkind-nvim",
+                "cmp-nvim-lsp",
+                "mason.nvim",
+                "mason-lspconfig.nvim",
+                "mason-tool-installer.nvim",
+            },
             config = function()
                 require("plugins.settings.lsp")
             end,
@@ -415,7 +422,8 @@ packer.startup({
             cond = function()
                 return vim.fn.has("win32") == 0
             end,
-            keys = { { "i", "<Esc>" } },
+            -- keys = { { "i", "<Esc>" } },
+            event = "BufRead",
             config = function()
                 require("plugins.settings.barbaric")
             end,
@@ -448,7 +456,7 @@ packer.startup({
             "kevinhwang91/nvim-ufo",
             requires = "kevinhwang91/promise-async",
             wants = { "nvim-treesitter" },
-            events = { "BufRead", "BufNew", "BufNewFile" },
+            event = { "BufRead", "BufNew", "BufNewFile" },
             config = function()
                 require("plugins.settings.ufo")
             end,
