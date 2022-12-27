@@ -161,7 +161,14 @@ require("dressing").setup({
                     backend = "builtin",
                     builtin = {
                         relative = "cursor",
-                        winhighlight = "NormalFloat:LspFloatWinNormal,FloatBorder:LspWinRenameBorder",
+                        win_options = {
+                            winhighlight = "NormalFloat:LspFloatWinNormal,FloatBorder:LspWinRenameBorder",
+                        },
+                        mappings = {
+                            ["<Esc>"] = "Close",
+                            ["<C-c>"] = "Close",
+                            ["<CR>"] = "Confirm",
+                        },
                     },
                 }
             end
