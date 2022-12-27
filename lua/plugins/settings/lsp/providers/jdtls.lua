@@ -1,21 +1,28 @@
 local jdtls = require("jdtls")
 local find_root = require("jdtls.setup").find_root
-local get_settings = require("nlspsettings").get_settings
+-- local get_settings = require("nlspsettings").get_settings
 local get_lua_settings = require("plugins.settings.lsp.nlspsettings_lualoader").get_settings
 
-local function start_jdtls()
-    -- local root_markers = {'gradlew', '.git'}
-    -- local root_dir = require('jdtls.setup').find_root(root_markers)
-    -- local home = os.getenv('HOME')
-    -- local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+local lombok_path = vim.fn.stdpath("data") .. "/lsp_servers/jdtls/lombok.jar"
 
-    -- .make basic config
-    -- basic capabilities
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.workspace.configuration = true
-    -- capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-    capabilities = vim.tbl_deep_extend("keep", capabilities, require("lsp-status").capabilities)
+if vim.fn.has("win32") == 1 then
+    lombok_path = lombok_path:gsub("/", "\\\\")
+end
+
+local function start_jdtls()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    capabilities = vim.tbl_deep_extend("force", capabilities, {
+        workspace = {
+            configuration = true,
+        },
+        textDocument = {
+            completion = {
+                completionItem = {
+                    snippetSupport = true,
+                },
+            },
+        },
+    })
 
     -- extended capabilities
     local extendedClientCapabilities = jdtls.extendedClientCapabilities
@@ -25,7 +32,14 @@ local function start_jdtls()
 
     local config = {
         name = "jdtls",
-        -- cmd = require("nvim-lsp-installer.servers.jdtls"):get_default_options().cmd,
+        cmd = {
+            "jdtls",
+            "--jvm-arg=-javaagent:" .. lombok_path,
+            "-data",
+            vim.fn.expand("~/.cache/jdtls/workspace"),
+            "-configuration",
+            vim.fn.expand("~/.cache/jdtls/config"),
+        },
         flags = { allow_incremental_sync = true },
         -- handlers = {
         --     ["textDocument/publishDiagnostics"] = lsp_diag.publishDiagnostics,
@@ -64,15 +78,18 @@ local function start_jdtls()
         end,
     }
 
-    config.settings = vim.tbl_deep_extend("force", config.settings, get_settings(root_dir, "jdtls"))
+    -- config.settings = vim.tbl_deep_extend("force", config.settings, get_settings(root_dir, "jdtls"))
     config.settings = vim.tbl_deep_extend("force", config.settings, get_lua_settings(root_dir, "jdtls"))
+    config.on_init = function(client, _)
+        client.notify("workspace/didChangeConfiguration", { settings = config.settings })
+    end
     jdtls.start_or_attach(config)
 end
 
 vim.api.nvim_create_augroup("StartJdtls", {
     clear = true,
 })
-vim.api.nvim_clear_autocmds("FileType", {
+vim.api.nvim_create_autocmd("FileType", {
     pattern = "java",
     callback = start_jdtls,
     group = "StartJdtls",
