@@ -1,5 +1,9 @@
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
+if vim.fn.has("win32") == 1 then
+    install_path = string.gsub(install_path, "/", "\\\\")
+end
+
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     PACKER_BOOTSTRAPG = vim.fn.system({
         "git",
