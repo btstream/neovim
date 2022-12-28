@@ -40,12 +40,13 @@ local attach_keys = function(client, bufnr)
         '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line", })<cr>',
         set_desc(opts, "get current line's diagnostic")
     )
-    map(
-        "n",
-        "<leader>ge",
-        "<cmd>Telescope diagnostics bufnr=0<cr>",
-        set_desc(opts, "get diagnostics of current buffer")
-    )
+    -- map(
+    --     "n",
+    --     "<leader>ge",
+    --     "<cmd>Telescope diagnostics bufnr=0<cr>",
+    --     set_desc(opts, "get diagnostics of current buffer")
+    -- )
+    map("n", "gE", "<cmd>Telescope diagnostics<cr>", set_desc(opts, "get diagnostics of workspace"))
 
     -- hover
     map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
