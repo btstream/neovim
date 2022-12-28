@@ -53,6 +53,11 @@ packer.startup({
         use("wbthomason/packer.nvim")
 
         use("dstein64/vim-startuptime")
+
+        use({
+            "lewis6991/impatient.nvim",
+            config = [[require('impatient').enable_profile()]],
+        })
         ----------------------------------------------------------------------
         --                                UI                                --
         ----------------------------------------------------------------------
