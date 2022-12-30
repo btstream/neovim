@@ -54,10 +54,10 @@ packer.startup({
 
         use("dstein64/vim-startuptime")
 
-        use({
-            "lewis6991/impatient.nvim",
-            config = [[require('impatient').enable_profile()]],
-        })
+        -- use({
+        --     "lewis6991/impatient.nvim",
+        --     config = [[require('impatient').enable_profile()]],
+        -- })
         ----------------------------------------------------------------------
         --                                UI                                --
         ----------------------------------------------------------------------
@@ -410,12 +410,12 @@ packer.startup({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
             event = "BufRead",
-            wants = { "nvim-ts-rainbow" },
+            -- wants = { "nvim-ts-rainbow" },
             config = function()
                 require("plugins.settings.treesitter")
             end,
         })
-        use({ "p00f/nvim-ts-rainbow", opt = true, wants = "nvim-treesitter" })
+        use({ "p00f/nvim-ts-rainbow", opt = true })
 
         -- indent line
         use({
