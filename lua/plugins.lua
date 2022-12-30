@@ -175,7 +175,7 @@ packer.startup({
             "jose-elias-alvarez/null-ls.nvim",
             requires = { "nvim-lua/plenary.nvim" },
             event = "BufReadPost",
-            after = { "nvim-lspconfig" },
+            wants = { "nvim-lspconfig" },
             config = function()
                 require("plugins.settings.lsp.providers.null_ls")
             end,
@@ -243,16 +243,17 @@ packer.startup({
         use({
             "nvim-lualine/lualine.nvim",
             event = "BufWinEnter",
-            requires = { "kyazdani42/nvim-web-devicons", opt = true },
+            requires = {
+                { "kyazdani42/nvim-web-devicons", opt = true },
+                {
+                    "arkav/lualine-lsp-progress",
+                    opt = true,
+                },
+            },
             wants = "lualine-lsp-progress",
             config = function()
                 require("plugins.settings.lualine")
             end,
-        })
-
-        use({
-            "arkav/lualine-lsp-progress",
-            opt = true,
         })
 
         use({
@@ -328,8 +329,8 @@ packer.startup({
         -- project
         use({
             "ahmedkhalf/project.nvim",
-            -- after = "telescope.nvim",
-            event = "BufRead",
+            wants = "telescope.nvim",
+            opt = true,
             config = function()
                 require("plugins.settings.project")
             end,
@@ -351,7 +352,7 @@ packer.startup({
             config = function()
                 require("plugins.settings.neogen")
             end,
-            after = "nvim-treesitter",
+            wants = "nvim-treesitter",
             keys = { "<leader>nf", "<leader>nc" },
         })
 
@@ -360,11 +361,11 @@ packer.startup({
             -- requires = {
             --     { "nvim-treesitter" },
             -- event = "BufRead",
-            after = "nvim-treesitter",
+            wants = "nvim-treesitter",
             config = function()
                 require("plugins.settings.nvim_comment_frame")
             end,
-            kyes = { "<leader>cC", "<leader>cc", { "i", "<C-k>c" }, { "i", "<C-k>C" } },
+            keys = { "<leader>cC", "<leader>cc", { "i", "<C-k>c" }, { "i", "<C-k>C" } },
         })
 
         use({
@@ -409,18 +410,18 @@ packer.startup({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
             event = "BufRead",
-            -- wants = { "nvim-ts-rainbow" },
+            wants = { "nvim-ts-rainbow" },
             config = function()
                 require("plugins.settings.treesitter")
             end,
         })
-        use({ "p00f/nvim-ts-rainbow", opt = true })
+        use({ "p00f/nvim-ts-rainbow", opt = true, wants = "nvim-treesitter" })
 
         -- indent line
         use({
             "lukas-reineke/indent-blankline.nvim",
             event = "BufRead",
-            after = "nvim-treesitter",
+            wants = "nvim-treesitter",
             config = function()
                 require("plugins.settings.indent_line")
             end,
