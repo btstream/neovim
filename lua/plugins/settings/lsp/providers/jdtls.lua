@@ -29,6 +29,7 @@ local function start_jdtls()
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
     local root_dir = find_root({ "pom.xml", "mnvw", ".git", "gradlew" }) or vim.fn.getcwd()
+    local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
 
     local config = {
         name = "jdtls",
@@ -36,7 +37,7 @@ local function start_jdtls()
             "jdtls",
             "--jvm-arg=-javaagent:" .. lombok_path,
             "-data",
-            vim.fn.expand("~/.cache/jdtls/workspace"),
+            vim.fn.expand("~/.cache/jdtls/workspace/" .. project_name),
             "-configuration",
             vim.fn.expand("~/.cache/jdtls/config"),
         },
@@ -95,11 +96,10 @@ local function start_jdtls()
     jdtls.start_or_attach(config)
 end
 
-vim.api.nvim_create_augroup("StartJdtls", {
-    clear = true,
-})
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "java",
     callback = start_jdtls,
-    group = "StartJdtls",
+    group = vim.api.nvim_create_augroup("StartJdtls", {
+        clear = true,
+    }),
 })
