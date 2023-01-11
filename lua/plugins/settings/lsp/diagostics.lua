@@ -13,6 +13,7 @@ vim.diagnostic.config({
     float = {
         border = "rounded",
         focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
         header = { "  Diagnostics:", "LspWinDiagnosticsTitle" },
         source = "always",
         winhighlight = "NormalFloat:LspWinDiagnosticsNormal,FloatBorder:LspWinDiagnosticsBorder",
