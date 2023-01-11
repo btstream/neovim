@@ -11,6 +11,9 @@ popup.create = function(lines_spec, opts, id)
 end
 
 require("gitsigns").setup({
+    signs = {
+        untracked = { hl = "GitSignsAdd", text = "┋", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+    },
     current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
     current_line_blame_opts = {
         virt_text = true,
