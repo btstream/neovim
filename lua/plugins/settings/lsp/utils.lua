@@ -60,6 +60,7 @@ local attach_keys = function(client, bufnr)
         buffer = bufnr,
         callback = function()
             _G.lsp_show_hover = false
+            vim.diagnostic.enable()
         end,
     })
 
