@@ -40,6 +40,7 @@ require("nvim-tree").setup({
         },
         icons = {
             glyphs = {
+                folder = { arrow_closed = "", arrow_open = "" },
                 git = {
                     unstaged = "",
                     staged = "",
@@ -67,7 +68,7 @@ require("nvim-tree").setup({
     },
 })
 
-vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter", "BufWinEnter" }, {
     callback = function()
         if vim.bo.filetype == "NvimTree" then
             vim.cmd("stopinsert")

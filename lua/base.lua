@@ -18,11 +18,6 @@ opt.fillchars = {
     horizdown = "┳",
     -- disable eob
     eob = " ",
-    -- fold char
-    fold = " ",
-    foldopen = "",
-    foldclose = "",
-    foldsep = " ",
 }
 opt.list = true
 opt.listchars = {
@@ -69,18 +64,33 @@ opt.updatetime = 100
 ----------------------------------------------------------------------
 --                               fold                               --
 ----------------------------------------------------------------------
-function _G.custom_fold_text()
-    local line = vim.fn.getline(vim.v.foldstart)
-    local line_count = vim.v.foldend - vim.v.foldstart + 1
-    local start_space = line:match("^   ")
-    if start_space then
-        line = line:sub(4)
-    end
-    return "┄┄" .. line .. ": " .. line_count .. " lines"
-end
--- opt.foldmethod = "expr"
--- opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldcolumn = "0"
+
+function _G.Test(...)
+    print(vim.inspect(arg))
+end
+
+opt.statuscolumn =
+    ' %=%l %s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "" : "") : " " }%* '
+
+-- disable statuscolumn for none file types
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
+    pattern = "*",
+    group = vim.api.nvim_create_augroup("ClearStatusColumn", { clear = true }),
+    callback = function()
+        local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
+        if filetype_tools.is_nonefiletype() then
+            vim.opt_local.statuscolumn = ""
+        end
+    end,
+})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "Outline",
+--     callback = function()
+--         vim.opt_local.statuscolumn = ""
+--     end,
+-- })
+
 opt.foldnestmax = 0
 opt.foldlevel = 99
 opt.foldenable = true
