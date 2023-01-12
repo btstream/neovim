@@ -25,7 +25,12 @@ require("lazy").setup({
     --                                UI                                --
     ----------------------------------------------------------------------
 
-    "RRethy/nvim-base16",
+    {
+        "RRethy/nvim-base16",
+        config = function()
+            require("theme")
+        end,
+    },
 
     {
         "rcarriga/nvim-notify",
