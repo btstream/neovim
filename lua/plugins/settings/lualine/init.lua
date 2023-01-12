@@ -210,7 +210,7 @@ require("lualine").setup({
                 end,
                 padding = { left = 0, right = 0 },
                 cond = function()
-                    return _G.navic_loaded and require("nvim-navic").get_location({}) ~= ""
+                    return vim.g.navic_loaded and require("nvim-navic").get_location({}) ~= ""
                 end,
                 color = { bg = "NONE" },
             },
@@ -221,7 +221,7 @@ require("lualine").setup({
                     return require("nvim-navic").get_location()
                 end,
                 cond = function()
-                    return _G.navic_loaded and require("nvim-navic").is_available()
+                    return vim.g.navic_loaded and require("nvim-navic").is_available()
                 end,
             },
         },

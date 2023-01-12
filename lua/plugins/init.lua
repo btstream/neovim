@@ -194,7 +194,7 @@ return {
             for k, v in ipairs(require("themes.icons").lsp_symbol_icons) do
                 navic_icons[k] = (" %s "):format(v)
             end
-            _G.navic_loaded = true
+            vim.g.navic_loaded = true
             require("nvim-navic").setup({
                 highlight = true,
                 separator = " › ",
