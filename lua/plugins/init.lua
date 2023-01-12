@@ -44,7 +44,7 @@ return {
     -- dashboard
     {
         "glepnir/dashboard-nvim",
-        -- event = "VeryLazy",
+        event = "VimEnter",
         config = function()
             require("plugins.settings.dashboard")
         end,
