@@ -1,7 +1,6 @@
 require("base")
 -- require("theme")
--- require("plugins")
-require("lazy-nvim")
+require("plugins")
 require("keymaps")
 require("commands")
 require("extra")

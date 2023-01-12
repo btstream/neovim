@@ -28,6 +28,7 @@ filetype_tools.add_none_filetypes({
     "MASON",
     "DAP-REPL",
     "DAPUI_CONSOLE",
+    "LAZY",
 })
 
 -- for filetypes to disable winbar
@@ -209,7 +210,7 @@ require("lualine").setup({
                 end,
                 padding = { left = 0, right = 0 },
                 cond = function()
-                    return require("nvim-navic").get_location({}) ~= ""
+                    return _G.navic_loaded and require("nvim-navic").get_location({}) ~= ""
                 end,
                 color = { bg = "NONE" },
             },
@@ -220,7 +221,7 @@ require("lualine").setup({
                     return require("nvim-navic").get_location()
                 end,
                 cond = function()
-                    return require("nvim-navic").is_available()
+                    return _G.navic_loaded and require("nvim-navic").is_available()
                 end,
             },
         },

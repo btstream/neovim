@@ -19,6 +19,7 @@ require("indent_blankline").setup({
         "dapui_scopes",
         "dap-repl",
         "dapui_console",
+        "lazy",
         "",
     },
 })

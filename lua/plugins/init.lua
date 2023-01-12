@@ -1,26 +1,18 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNew", "BufNewFile" }, {
+    group = vim.api.nvim_create_augroup("CustomBufRead", { clear = true }),
+    callback = function()
+        if not require("plugins.settings.lualine.utils.filetype_tools").is_nonefiletype() then
+            vim.cmd([[do User BufReadRealFile]])
+        end
+    end,
+})
 
-require("lazy").setup({
+return {
     -- add packer itself to packer manager, to avoid remove
-    -- "wbthomason/packer.nvim",
+    "folke/lazy.nvim",
 
     -- "dstein64/vim-startuptime",
 
-    -- use({
-    --     "lewis6991/impatient.nvim",
-    --     config = [[require('impatient').enable_profile()]],
-    -- })
     ----------------------------------------------------------------------
     --                                UI                                --
     ----------------------------------------------------------------------
@@ -62,8 +54,7 @@ require("lazy").setup({
     {
         "kyazdani42/nvim-tree.lua",
         dependencies = "kyazdani42/nvim-web-devicons",
-        event = "VeryLazy",
-        -- cmd = "NvimTree*",
+        cmd = "NvimTreeToggle",
         config = function()
             require("plugins.settings.nvim_tree")
         end,
@@ -75,8 +66,7 @@ require("lazy").setup({
 
     {
         "neovim/nvim-lspconfig",
-        event = { "BufReadPost", "BufNew", "BufNewFile" },
-        -- wants = { "lsp-status.nvim", "nvim-jdtls", "nlsp-settings.nvim", "lspkind-nvim", "cmp-nvim-lsp" },
+        event = "User BufReadRealFile",
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -122,7 +112,7 @@ require("lazy").setup({
     { -- null-ls
         "jose-elias-alvarez/null-ls.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        event = "BufReadPost",
+        event = "User BufReadRealFile",
         -- wants = { "nvim-lspconfig" },
         config = function()
             require("plugins.settings.lsp.providers.null_ls")
@@ -133,34 +123,9 @@ require("lazy").setup({
     --                            Config cmp                            --
     ----------------------------------------------------------------------
 
-    -- local cmps = {
-    --     "hrsh7th/cmp-nvim-lua",
-    --     "hrsh7th/cmp-nvim-lsp-signature-help",
-    --     "hrsh7th/cmp-buffer",
-    --     "hrsh7th/cmp-cmdline",
-    --     "hrsh7th/cmp-path",
-    --     "hrsh7th/cmp-vsnip",
-    --     "hrsh7th/vim-vsnip",
-    --     "rafamadriz/friendly-snippets",
-    -- }
-    -- for _, v in ipairs(cmps) do
-    --     use({
-    --         v,
-    --         after = "nvim-cmp",
-    --     })
-    -- end
-
-    -- { "hrsh7th/cmp-nvim-lsp", wants = "nvim-cmp" },
-
-    -- {
-    --     "windwp/nvim-autopairs",
-    --     lazy = true,
-    -- },
-
     {
         "hrsh7th/nvim-cmp",
-        event = { "BufRead", "CmdlineEnter" },
-        -- wants = { "lspkind-nvim", "nvim-autopairs" },
+        event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-nvim-lsp",
@@ -190,8 +155,6 @@ require("lazy").setup({
             "rcarriga/nvim-dap-ui",
             "mfussenegger/nvim-dap-python",
         },
-        -- wants = { "nvim-dap-virtual-text", "nvim-dap-ui", "nvim-dap-python" },
-        -- keys = { "<F6>" },
         config = function()
             require("plugins.settings.dap")
         end,
@@ -202,7 +165,7 @@ require("lazy").setup({
     ----------------------------------------------------------------------
     {
         "nvim-lualine/lualine.nvim",
-        event = "BufWinEnter",
+        event = "VeryLazy",
         dependencies = {
             "kyazdani42/nvim-web-devicons",
             "arkav/lualine-lsp-progress",
@@ -214,8 +177,9 @@ require("lazy").setup({
 
     {
         "akinsho/bufferline.nvim",
+        name = "bufferline",
         dependencies = { "kyazdani42/nvim-web-devicons" },
-        event = "BufRead",
+        event = "User BufReadRealFile",
         config = function()
             require("plugins.settings.bufferline")
         end,
@@ -230,6 +194,7 @@ require("lazy").setup({
             for k, v in ipairs(require("themes.icons").lsp_symbol_icons) do
                 navic_icons[k] = (" %s "):format(v)
             end
+            _G.navic_loaded = true
             require("nvim-navic").setup({
                 highlight = true,
                 separator = " › ",
@@ -238,7 +203,9 @@ require("lazy").setup({
         end,
     },
 
-    -- which-key
+    ----------------------------------------------------------------------
+    --                            Which Key                             --
+    ----------------------------------------------------------------------
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -270,15 +237,13 @@ require("lazy").setup({
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
             {
                 "ahmedkhalf/project.nvim",
-                -- wants = "telescope.nvim",
                 lazy = true,
                 config = function()
                     require("plugins.settings.project")
                 end,
             },
         },
-        -- cmd = "Telescope",
-        event = "VeryLazy",
+        cmd = "Telescope",
         config = function()
             require("plugins.settings.telescope")
         end,
@@ -300,7 +265,6 @@ require("lazy").setup({
         config = function()
             require("plugins.settings.neogen")
         end,
-        -- wants = "nvim-treesitter",
         dependencies = "nvim-treesitter/nvim-treesitter",
         keys = { "<leader>nf", "<leader>nc" },
     },
@@ -317,8 +281,7 @@ require("lazy").setup({
     {
         "folke/todo-comments.nvim",
         dependencies = "nvim-lua/plenary.nvim",
-        event = "VeryLazy",
-        -- cmd = "Todo*",
+        keys = { mode = { "n", "i" }, "<C-k>T" },
         config = function()
             require("plugins.settings.todo_comments")
         end,
@@ -330,7 +293,7 @@ require("lazy").setup({
     {
         "lewis6991/gitsigns.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        event = "BufRead",
+        event = "User BufReadRealFile",
         config = function()
             require("plugins.settings.gitsigns")
         end,
@@ -343,7 +306,7 @@ require("lazy").setup({
     -- colorizer
     {
         "norcalli/nvim-colorizer.lua",
-        event = "BufRead",
+        event = "User BufReadRealFile",
         config = function()
             require("colorizer").setup({
                 "*",
@@ -356,22 +319,30 @@ require("lazy").setup({
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        event = "BufRead",
-        -- wants = { "nvim-ts-rainbow" },
-        dependencies = "p00f/nvim-ts-rainbow",
+        event = "User BufReadRealFile",
+        dependencies = { "mrjones2014/nvim-ts-rainbow" },
         config = function()
             require("plugins.settings.treesitter")
         end,
     },
 
-    -- -- indent line
+    -- indent line
     {
         "lukas-reineke/indent-blankline.nvim",
-        event = "BufRead",
-        -- wants = "nvim-treesitter",
+        event = "User BufReadRealFile",
         dependencies = "nvim-treesitter/nvim-treesitter",
         config = function()
             require("plugins.settings.indent_line")
+        end,
+    },
+
+    -- fold
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
+        event = "User BufReadRealFile",
+        config = function()
+            require("plugins.settings.ufo")
         end,
     },
 
@@ -380,8 +351,7 @@ require("lazy").setup({
         cond = function()
             return vim.fn.has("win32") == 0
         end,
-        -- keys = { { "i", "<Esc>" } },
-        event = "BufRead",
+        event = "User BufReadRealFile",
         config = function()
             require("plugins.settings.barbaric")
         end,
@@ -389,13 +359,19 @@ require("lazy").setup({
 
     {
         "Vonr/align.nvim",
-        event = "BufRead",
+        event = "User BufReadRealFile",
         config = function()
             require("plugins.settings.align")
         end,
     },
 
-    -- -- suda
+    -- search
+    {
+        "romainl/vim-cool",
+        event = "SearchWrapped",
+    },
+
+    -- suda
     {
         "lambdalisue/suda.vim",
         -- bufread = true,
@@ -416,16 +392,6 @@ require("lazy").setup({
 
     -- -- editorconfig
     { "editorconfig/editorconfig-vim", event = "VeryLazy" },
-
-    {
-        "kevinhwang91/nvim-ufo",
-        dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
-        -- wants = { "nvim-treesitter" },
-        event = { "BufRead", "BufNew", "BufNewFile" },
-        config = function()
-            require("plugins.settings.ufo")
-        end,
-    },
 
     ----------------------------------------------------------------------
     --                        Runcode and others                        --
@@ -453,9 +419,4 @@ require("lazy").setup({
             require("plugins.settings.rest_nvim")
         end,
     },
-
-    {
-        "romainl/vim-cool",
-        event = "BufRead",
-    },
-})
+}
