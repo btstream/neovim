@@ -49,20 +49,20 @@ local attach_keys = function(client, bufnr)
     map("n", "gE", "<cmd>Telescope diagnostics<cr>", set_desc(opts, "get diagnostics of workspace"))
 
     -- hover
-    -- map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-    map("n", "K", function()
-        _G.lsp_show_hover = true
-        vim.diagnostic.disable()
-        vim.lsp.buf.hover()
-    end, opts)
+    map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+    -- map("n", "K", function()
+    --     _G.lsp_show_hover = true
+    --     vim.diagnostic.disable()
+    --     vim.lsp.buf.hover()
+    -- end, opts)
 
-    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-        buffer = bufnr,
-        callback = function()
-            _G.lsp_show_hover = false
-            vim.diagnostic.enable()
-        end,
-    })
+    -- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    --     buffer = bufnr,
+    --     callback = function()
+    --         _G.lsp_show_hover = false
+    --         vim.diagnostic.enable()
+    --     end,
+    -- })
 
     -- code actions
     map("n", "<C-k>.", "<cmd>lua vim.lsp.buf.code_action()<cr>", set_desc(opts, "code actions"))
@@ -91,9 +91,7 @@ M.on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         buffer = bufnr,
         callback = function()
-            if not _G.lsp_show_hover then
-                vim.diagnostic.open_float(nil, {})
-            end
+            vim.diagnostic.open_float(nil, {})
         end,
     })
 
