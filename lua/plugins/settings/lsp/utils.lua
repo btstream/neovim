@@ -88,7 +88,7 @@ M.on_attach = function(client, bufnr)
     end -- save on formatting
 
     -- auto show diagnostics
-    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    vim.api.nvim_create_autocmd({ "CursorHold" }, {
         buffer = bufnr,
         callback = function()
             vim.diagnostic.open_float(nil, {})
