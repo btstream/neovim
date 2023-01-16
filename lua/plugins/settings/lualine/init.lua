@@ -1,6 +1,6 @@
 -- local navic_loaded, navic = pcall(require, "nvim-navic")
 
-local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
+local filetype_tools = require("utils.filetype_tools")
 local signs = require("plugins.settings.lsp.ui").signs
 
 local mode = require("plugins.settings.lualine.components.mode")

@@ -1,4 +1,4 @@
-local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
+local filetype_tools = require("utils.filetype_tools")
 
 local Mode = {}
 

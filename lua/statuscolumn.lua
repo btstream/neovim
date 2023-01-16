@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
     pattern = "*",
     group = vim.api.nvim_create_augroup("ClearStatusColumn", { clear = true }),
     callback = function()
-        local filetype_tools = require("plugins.settings.lualine.utils.filetype_tools")
+        local filetype_tools = require("utils.filetype_tools")
         if filetype_tools.is_nonefiletype() then
             vim.opt_local.statuscolumn = ""
         end
