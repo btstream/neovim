@@ -376,7 +376,7 @@ return {
     {
         "lambdalisue/suda.vim",
         -- bufread = true,
-        envent = "VeryLazy",
+        event = "VeryLazy",
         config = function()
             vim.g.suda_smart_edit = 1
         end,
