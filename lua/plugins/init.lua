@@ -52,8 +52,8 @@ return {
 
     -- nvim-tree
     {
-        "kyazdani42/nvim-tree.lua",
-        dependencies = "kyazdani42/nvim-web-devicons",
+        "nvim-tree/nvim-tree.lua",
+        dependencies = "nvim-tree/nvim-web-devicons",
         cmd = "NvimTreeToggle",
         config = function()
             require("plugins.settings.nvim_tree")
@@ -86,7 +86,7 @@ return {
     {
         "folke/trouble.nvim",
         event = "LspAttach",
-        dependencies = "kyazdani42/nvim-web-devicons",
+        dependencies = "nvim-tree/nvim-web-devicons",
         config = function()
             require("plugins.settings.trouble")
         end,
@@ -167,7 +167,7 @@ return {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         dependencies = {
-            "kyazdani42/nvim-web-devicons",
+            "nvim-tree/nvim-web-devicons",
             "arkav/lualine-lsp-progress",
         },
         config = function()
@@ -178,7 +178,7 @@ return {
     {
         "akinsho/bufferline.nvim",
         name = "bufferline",
-        dependencies = { "kyazdani42/nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         event = "User BufReadRealFile",
         config = function()
             require("plugins.settings.bufferline")
