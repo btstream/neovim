@@ -54,7 +54,8 @@ return {
     {
         "nvim-tree/nvim-tree.lua",
         dependencies = "nvim-tree/nvim-web-devicons",
-        cmd = "NvimTreeToggle",
+        event = "VimEnter",
+        -- cmd = "NvimTreeToggle",
         config = function()
             require("plugins.settings.nvim_tree")
         end,
