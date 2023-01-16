@@ -11,7 +11,7 @@ return {
     -- add packer itself to packer manager, to avoid remove
     "folke/lazy.nvim",
 
-    -- "dstein64/vim-startuptime",
+    { "dstein64/vim-startuptime", cmd = "StartupTime" },
 
     ----------------------------------------------------------------------
     --                                UI                                --
