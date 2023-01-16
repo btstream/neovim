@@ -238,7 +238,7 @@ return {
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
             {
                 "ahmedkhalf/project.nvim",
-                lazy = true,
+                event = "User BufReadRealFile",
                 config = function()
                     require("plugins.settings.project")
                 end,
@@ -370,7 +370,17 @@ return {
     -- search
     {
         "romainl/vim-cool",
-        event = "SearchWrapped",
+        event = "User BufReadRealFile",
+    },
+
+    {
+        "windwp/nvim-spectre",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = function()
+            require("spectre").setup()
+        end,
     },
 
     -- suda
