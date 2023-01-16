@@ -58,6 +58,17 @@ require("bufferline").setup({
                 -- padding = 1,
             },
             {
+                filetype = "neo-tree",
+                text = function()
+                    -- return vim.fn.getcwd()
+                    return "פּ File Explorer"
+                end,
+                highlight = "NvimTreeSidebarTitle",
+                text_align = "center",
+                separator = "▍",
+                -- padding = 1,
+            },
+            {
                 filetype = "Outline",
                 text = " Outline",
                 highlight = "OutlineSidebarTitle",

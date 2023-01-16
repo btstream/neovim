@@ -39,6 +39,7 @@ local disabled_winbar = {
     "dapui_console",
     "Trouble",
     "httpResult",
+    "neo-tree",
 }
 for _, value in ipairs(filetype_tools.get_nonfiletypes()) do
     table.insert(disabled_winbar, value:lower())

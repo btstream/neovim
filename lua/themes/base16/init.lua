@@ -34,7 +34,7 @@ local function setup_autocmds()
         callback = function()
             local colors = require("themes.base16.colors").colors()
             -- local dbg = darken(colors.base00, 0.15)
-            if vim.bo.filetype == "NvimTree" then
+            if vim.bo.filetype == "NvimTree" or vim.bo.filetype == "neo-tree" then
                 highlight({
                     NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base0D },
                     OutlineSidebarTitle = { bg = colors.base00, fg = colors.base03 },

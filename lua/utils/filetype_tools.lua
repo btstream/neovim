@@ -12,6 +12,7 @@ M._nonefiletypes = {
 -- stylua: ignore
 M._icons = {
     NVIMTREE          = "פּ ",
+    ["NEO-TREE"]      = "פּ ",
     HELP              = "ﲉ ",
     TOGGLETERM        = " ",
     OUTLINE           = " ",
