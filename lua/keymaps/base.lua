@@ -5,8 +5,15 @@
 local map = vim.keymap.set
 local m = { "i", "n", "v" }
 
-map("n", "<C-s>", "<cmd>w<cr>")
-map("i", "<C-s>", "<cmd>w<cr><ESC>")
+map({ "n", "i" }, "<C-s>", function()
+    if vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), "readonly") then
+        vim.cmd("SudaWrite")
+    else
+        vim.cmd("write")
+        vim.cmd("stopinsert")
+    end
+end)
+
 map("n", "<SPACEE>", "<Nop>")
 map("i", "<S-Tab>", "<C-d>")
 map("n", "<SPACEE>", "<Nop>")
