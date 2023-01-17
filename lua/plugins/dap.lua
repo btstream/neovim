@@ -22,29 +22,29 @@ return {
             nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
         ]])
 
-        local function setupdap()
-            vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticError", numhl = "" })
-            vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticError", numhl = "" })
-            vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DiagnosticError", numhl = "" })
-            vim.fn.sign_define("DapStopped", { text = "", texthl = "DiagnosticHint", numhl = "" })
-            vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticWarn", numhl = "" })
+        -- local function setupdap()
+        vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticError", numhl = "" })
+        vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticError", numhl = "" })
+        vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DiagnosticError", numhl = "" })
+        vim.fn.sign_define("DapStopped", { text = "", texthl = "DiagnosticHint", numhl = "" })
+        vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticWarn", numhl = "" })
 
-            -- config dapui
-            dap.listeners.after.event_initialized["dapui_config"] = function()
-                vim.g.dap_loaded = true
-                require("dapui").open()
-            end
-            dap.listeners.before.event_terminated["dapui_config"] = function()
-                vim.g.dap_loaded = false
-                require("dapui").close()
-            end
-            dap.listeners.before.event_exited["dapui_config"] = function()
-                vim.g.dap_loaded = false
-                require("dapui").close()
-            end
+        -- config dapui
+        dap.listeners.after.event_initialized["dapui_config"] = function()
+            vim.g.dap_loaded = true
+            require("dapui").open()
         end
+        dap.listeners.before.event_terminated["dapui_config"] = function()
+            vim.g.dap_loaded = false
+            require("dapui").close()
+        end
+        dap.listeners.before.event_exited["dapui_config"] = function()
+            vim.g.dap_loaded = false
+            require("dapui").close()
+        end
+        -- end
 
-        setupdap()
+        -- setupdap()
         require("dapui").setup()
         require("dap-python").setup()
         -- require("plugins.settings.dap")

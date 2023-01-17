@@ -7,7 +7,7 @@ local m = { "i", "n", "v" }
 
 map({ "n", "i" }, "<C-s>", function()
     if not vim.api.nvim_buf_get_option(0, "modifiable") then
-        vim.notify("Buf is not modifiable", vim.log.levels.INFO)
+        -- vim.notify("Buf is not modifiable", vim.log.levels.INFO)
         return
     end
 

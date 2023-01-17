@@ -1,1 +1,1 @@
-require("utils.prequire").prequire("commands", "init")
+require("commands.markdown_preview")

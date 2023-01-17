@@ -5,7 +5,7 @@ return {
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
     },
-    cmd = "NeoTreeShowToggle",
+    keys = { { mode = { "n", "i" }, "<C-k>b", "<cmd>NeoTreeShowToggle<cr>", desc = "open sidebar" } },
     opts = {
         enable_refresh_on_write = false,
         filesystem = {
