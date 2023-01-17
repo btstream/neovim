@@ -47,6 +47,5 @@ return {
         -- setupdap()
         require("dapui").setup()
         require("dap-python").setup()
-        -- require("plugins.settings.dap")
     end,
 }

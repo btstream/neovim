@@ -41,7 +41,6 @@ return {
             )
             vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist<cr>", { silent = true, noremap = true })
             vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", { silent = true, noremap = true })
-            -- require("plugins.settings.trouble")
         end,
     },
 
@@ -65,7 +64,6 @@ return {
                     events = { "CursorHold", "CursorHoldI" },
                 },
             })
-            -- require("plugins.settings.lightbulb")
         end,
     },
 
@@ -105,7 +103,6 @@ return {
 
             local map = vim.keymap.set
             map("n", "<C-k>o", "<cmd>SymbolsOutline<cr>")
-            -- require("plugins.settings.symbols_outline")
         end,
     },
 
@@ -113,7 +110,6 @@ return {
         "jose-elias-alvarez/null-ls.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         event = "User BufReadRealFile",
-        -- wants = { "nvim-lspconfig" },
         config = function()
             require("plugins.settings.lsp.providers.null_ls")
         end,

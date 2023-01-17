@@ -9,6 +9,5 @@ return {
                 return { "treesitter", "indent" }
             end,
         })
-        -- require("plugins.settings.ufo")
     end,
 }

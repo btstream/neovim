@@ -10,7 +10,6 @@ return {
             event = "User BufReadRealFile",
             config = function()
                 require("project_nvim").setup({})
-                -- require("plugins.settings.project")
             end,
         },
     },

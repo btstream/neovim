@@ -28,6 +28,5 @@ return {
                 "",
             },
         })
-        -- require("plugins.settings.indent_line")
     end,
 }

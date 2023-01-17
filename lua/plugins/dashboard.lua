@@ -49,6 +49,5 @@ return {
         map("n", "<Leader>cn", "<cmd>enew<CR>")
         map("n", "<Leader>fp", "<cmd>Telescope projects<cr>")
         map("n", "<Leader>ss", edit_config)
-        -- require("plugins.settings.dashboard")
     end,
 }

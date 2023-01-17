@@ -131,6 +131,5 @@ return {
         -- map('n', '<Space>bb', ':BufferOrderByBufferNumber<CR>')
         -- map('n', '<Space>bd', ':BufferOrderByDirectory<CR>')
         -- map('n', '<Space>bl', ':BufferOrderByLanguage<CR>')
-        -- require("plugins.settings.bufferline")
     end,
 }
