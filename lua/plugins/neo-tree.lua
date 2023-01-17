@@ -45,6 +45,7 @@ return {
         },
         filesystem = {
             use_libuv_file_watcher = true,
+            follow_current_file = true,
         },
         window = {
             mappings = {
@@ -53,6 +54,7 @@ return {
         },
         source_selector = {
             winbar = true,
+            separator = nil,
         },
     },
 }

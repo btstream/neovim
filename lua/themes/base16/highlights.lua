@@ -68,6 +68,27 @@ function M.hg()
         -- NvimTreeWinSeparator    = { bg = colors.base00, fg = colors.base00 },
 
         ----------------------------------------------------------------------
+        --                             NeoTree                              --
+        ----------------------------------------------------------------------
+        NeoTreeModified           = { fg = colors.base09 },
+
+        -- NeoTree git signs
+        NeoTreeGitAdded           = { fg = colors.base0B },
+        NeoTreeGitConflict        = { fg = colors.base0E },
+        NeoTreeGitDeleted         = { fg = colors.base0F },
+        NeoTreeGitIgnored         = { fg = colors.base04 },
+        NeoTreeGitModified        = { fg = colors.base0C },
+        NeoTreeGitUnstaged        = { fg = colors.base09 },
+        NeoTreeGitUntracked       = { fg = colors.base08 },
+        NeoTreeGitStaged          = { fg = colors.base0B },
+
+        -- inactive buffer
+        NeoTreeTabInactive           = { fg = colors.base03, bg = dbg015 },
+        NeoTreeTabSeparatorInactive  = { fg = dbg015, bg = dbg015},
+        NeoTreeTabSeparatorActive    = { bg = colors.base00, fg = colors.base00 },
+        
+
+        ----------------------------------------------------------------------
         --                           NormalFloat                            --
         ----------------------------------------------------------------------
         NormalFloat             = { bg = dbg015 },

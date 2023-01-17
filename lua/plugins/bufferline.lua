@@ -66,8 +66,7 @@ return {
                     {
                         filetype = "neo-tree",
                         text = function()
-                            -- return vim.fn.getcwd()
-                            return "פּ File Explorer"
+                            return "פּ Sidebar"
                         end,
                         highlight = "NvimTreeSidebarTitle",
                         text_align = "center",

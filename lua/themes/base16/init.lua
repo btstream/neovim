@@ -38,16 +38,19 @@ local function setup_autocmds()
                 highlight({
                     NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base0D },
                     OutlineSidebarTitle = { bg = colors.base00, fg = colors.base03 },
+                    NeoTreeTabActive = { bg = colors.base00, fg = colors.base0D },
                 })
             elseif vim.bo.filetype == "Outline" then
                 highlight({
                     NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
                     OutlineSidebarTitle = { bg = colors.base00, fg = colors.base0D },
+                    NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
                 })
             else
                 highlight({
                     NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
                     OutlineSidebarTitle = { bg = colors.base00, fg = colors.base03 },
+                    NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
                 })
             end
         end,
