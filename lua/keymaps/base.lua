@@ -31,7 +31,7 @@ map(m, "<C-a>", "<home>")
 map(m, "<C-e>", "<end>")
 
 -- clean search hilight
-map("n", "<Esc><Esc>", "<cmd>nohl<cr>")
+-- map("n", "<Esc><Esc>", "<cmd>nohl<cr>")
 
 -- resize window
 map("n", "<C-S-right>", "<cmd>vertical resize +1<cr>")
