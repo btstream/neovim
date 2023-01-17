@@ -40,6 +40,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
         local filetype_tools = require("utils.filetype_tools")
         if filetype_tools.is_nonefiletype() then
             vim.opt_local.statuscolumn = ""
+            if vim.bo.filetype == "spectre_panel" then
+                vim.opt_local.statuscolumn = "   "
+                vim.opt_local.number = false
+            end
         end
     end,
 })

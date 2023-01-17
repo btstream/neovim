@@ -40,6 +40,7 @@ local disabled_winbar = {
     "Trouble",
     "httpResult",
     "neo-tree",
+    "spectre_panel",
 }
 for _, value in ipairs(filetype_tools.get_nonfiletypes()) do
     table.insert(disabled_winbar, value:lower())

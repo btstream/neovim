@@ -7,6 +7,7 @@ M._nonefiletypes = {
     "TOGGLETERM",
     "PACKER",
     "TELESCOPEPROMPT",
+    "SPECTRE_PANEL",
 }
 
 -- stylua: ignore
