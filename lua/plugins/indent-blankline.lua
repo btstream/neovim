@@ -16,6 +16,7 @@ return {
                 "packer",
                 "Outline",
                 "NvimTree",
+                "neo-tree",
                 "help",
                 "lspinfo",
                 "Trouble",
