@@ -14,8 +14,7 @@ return {
             end,
         },
     },
-    -- cmd = "Telescope",
-
+    cmd = "Telescope",
     keys = {
         { mode = { "n", "i" }, "<C-k>p", "<cmd>Telescope find_files<cr>", desc = "find file" },
         { mode = { "n", "i" }, "<C-k>s", "<cmd>Telescope lsp_document_symbols<cr>", desc = "show document symboles" },
