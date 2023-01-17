@@ -7,6 +7,10 @@ return {
     },
     cmd = "NeoTreeShowToggle",
     opts = {
+        enable_refresh_on_write = false,
+        filesystem = {
+            use_libuv_file_watcher = true,
+        },
         window = {
             mappings = {
                 ["<space>"] = "none",

@@ -4,6 +4,11 @@ return {
     event = "User BufReadRealFile",
     dependencies = { "mrjones2014/nvim-ts-rainbow" },
     config = function()
-        require("plugins.settings.treesitter")
+        require("nvim-treesitter.configs").setup({
+            ensure_installed = "all",
+            ignore_install = { "phpdoc" },
+            highlight = { enable = true },
+            rainbow = { enable = true },
+        })
     end,
 }

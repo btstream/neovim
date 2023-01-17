@@ -6,6 +6,11 @@ local map = vim.keymap.set
 local m = { "i", "n", "v" }
 
 map({ "n", "i" }, "<C-s>", function()
+    if not vim.api.nvim_buf_get_option(0, "modifiable") then
+        vim.notify("Buf is not modifiable", vim.log.levels.INFO)
+        return
+    end
+
     if vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), "readonly") then
         vim.cmd("SudaWrite")
     else

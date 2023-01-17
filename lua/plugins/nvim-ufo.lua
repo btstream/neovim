@@ -4,6 +4,11 @@ return {
     dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
     event = "User BufReadRealFile",
     config = function()
-        require("plugins.settings.ufo")
+        require("ufo").setup({
+            provider_selector = function(bufnr, filetype, buftype)
+                return { "treesitter", "indent" }
+            end,
+        })
+        -- require("plugins.settings.ufo")
     end,
 }

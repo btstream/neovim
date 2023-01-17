@@ -3,6 +3,31 @@ return {
     event = "User BufReadRealFile",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
-        require("plugins.settings.indent_line")
+        require("indent_blankline").setup({
+            space_char_blankline = " ",
+            show_current_context = true,
+            -- show_end_of_line = true,
+            buftype_exclude = { "terminal", "dashboard" },
+            filetype_exclude = {
+                "TelescopePrompt",
+                "TelescopePreview",
+                "dashboard",
+                "lsp-installer",
+                "packer",
+                "Outline",
+                "NvimTree",
+                "help",
+                "lspinfo",
+                "Trouble",
+                "mason",
+                "dapui_breakpoints",
+                "dapui_scopes",
+                "dap-repl",
+                "dapui_console",
+                "lazy",
+                "",
+            },
+        })
+        -- require("plugins.settings.indent_line")
     end,
 }
