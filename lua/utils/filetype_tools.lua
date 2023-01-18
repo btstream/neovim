@@ -5,15 +5,15 @@ M._nonefiletypes = {
     "TelescopePreview",
     "dashboard",
     "lsp-installer",
+    "lspinfo",
+    "mason",
     "packer",
     "Outline",
     "NvimTree",
     "neo-tree",
     "neo-tree-popup",
     "help",
-    "lspinfo",
     "Trouble",
-    "mason",
     "dapui_breakpoints",
     "dapui_scopes",
     "dap-repl",
@@ -25,38 +25,50 @@ M._nonefiletypes = {
 
 -- stylua: ignore
 M._icons = {
-    NvimTree          = "פּ ",
-    ["neo-tree"]      = "פּ ",
-    help              = "ﲉ ",
-    toggleterm        = " ",
-    Outline           = " ",
-    lazy              = " ",
-    dapui_watches     = " ",
-    dapui_config      = " ",
-    dapui_scopes      = " ",
-    dapui_breakpoints = " ",
-    ["dap-repl"]      = " ",
-    dapui_console     = " ",
-    dapui_stacks      = " ",
-    default           = " ",
-    TelescopePrompt   = " ",
-    dashboard         = " ",
-    Lazygit           = " ",
-    mason             = " ",
-    spectre           = " ",
-    spectre_panel     = " ",
+    NvimTree           = "פּ ",
+    ["neo-tree"]       = "פּ ",
+    ["neo-tree-popup"] = "פּ ",
+    help               = "ﲉ ",
+    toggleterm         = " ",
+    Outline            = " ",
+    lazy               = " ",
+    dapui_watches      = " ",
+    dapui_config       = " ",
+    dapui_scopes       = " ",
+    dapui_breakpoints  = " ",
+    ["dap-repl"]       = " ",
+    dapui_console      = " ",
+    dapui_stacks       = " ",
+    default            = " ",
+    TelescopePrompt    = " ",
+    dashboard          = " ",
+    Lazygit            = " ",
+    mason              = " ",
+    spectre            = " ",
+    spectre_panel      = " ",
 }
+
+local function add_none_filetype(ft)
+    if not vim.tbl_contains(M._nonefiletypes, ft) then
+        table.insert(M._nonefiletypes, ft)
+    end
+end
+
+for key, _ in pairs(M._icons) do
+    add_none_filetype(key)
+end
 
 M.add_none_filetypes = function(types)
     for _, value in ipairs(types) do
         if type(value) == "string" then
             if not vim.tbl_contains(M._nonefiletypes, value) then
-                M._nonefiletypes[#M._nonefiletypes + 1] = value
+                table.insert(M._nonefiletypes, value)
             end
         elseif type(value) == "table" then
             assert(#value ~= 2, "Format error, must in format of {'filetype', icon = ''}")
             assert(type(value.icon) ~= "string", "Format error, icon key must be a string")
             M._icons[value[1]] = value.icon
+            table.insert(M._nonefiletypes, value[1])
         end
     end
 end
@@ -85,12 +97,13 @@ M.type = function()
 end
 
 M.get_nonfiletypes = function()
-    local nft = {}
-    vim.tbl_extend("force", nft, M._nonefiletypes)
-    for k, _ in pairs(M._icons) do
-        table.insert(nft, k)
-    end
-    return nft
+    -- local nft = {}
+    -- for k, _ in pairs(M._icons) do
+    --     table.insert(nft, k)
+    -- end
+    -- vim.tbl_deep_extend("keep", nft, M._nonefiletypes)
+    -- return nft
+    return M._nonefiletypes
 end
 
 return M
