@@ -26,6 +26,7 @@ return {
                 "dap-repl",
                 "dapui_console",
                 "lazy",
+                "neo-tree-popup",
                 "",
             },
         })

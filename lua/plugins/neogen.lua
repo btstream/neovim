@@ -1,8 +1,6 @@
 return {
     "danymat/neogen",
     config = function()
-        local map = vim.keymap.set
-
         require("neogen").setup({ enable = true })
     end,
     dependencies = "nvim-treesitter/nvim-treesitter",
