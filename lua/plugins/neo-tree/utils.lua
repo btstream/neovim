@@ -29,7 +29,7 @@ end
 
 function M.toggle(index)
     local sources = require("neo-tree").config.sources
-    local i = index % #sources == 0 and 1 or index
+    local i = index % #sources == 0 and #sources or index
     local source = sources[i]
     if source ~= M.get_active_source() then
         require("neo-tree").focus(source, true, true)
