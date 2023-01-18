@@ -66,7 +66,8 @@ return {
                     {
                         filetype = "neo-tree",
                         text = function()
-                            return "פּ Sidebar"
+                            -- return "פּ Sidebar"
+                            return require("plugins.neo-tree.utils").get_active_source_label()
                         end,
                         highlight = "NvimTreeSidebarTitle",
                         text_align = "center",

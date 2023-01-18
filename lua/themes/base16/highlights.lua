@@ -75,11 +75,11 @@ function M.hg()
         -- NeoTree git signs
         NeoTreeGitAdded           = { fg = colors.base0B },
         NeoTreeGitConflict        = { fg = colors.base0E },
-        NeoTreeGitDeleted         = { fg = colors.base0F },
+        NeoTreeGitDeleted         = { fg = colors.base08 },
         NeoTreeGitIgnored         = { fg = colors.base04 },
         NeoTreeGitModified        = { fg = colors.base0C },
         NeoTreeGitUnstaged        = { fg = colors.base09 },
-        NeoTreeGitUntracked       = { fg = colors.base08 },
+        NeoTreeGitUntracked       = { fg = colors.base0A },
         NeoTreeGitStaged          = { fg = colors.base0B },
 
         -- inactive buffer
