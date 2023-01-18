@@ -19,7 +19,8 @@ M._nonefiletypes = {
     "dap-repl",
     "dapui_console",
     "lazy",
-    "spectre-panel",
+    "spectre",
+    "spectre_panel",
 }
 
 -- stylua: ignore
@@ -42,6 +43,8 @@ M._icons = {
     dashboard         = " ",
     lazygit           = " ",
     mason             = " ",
+    spectre           = " ",
+    spectre_panel     = " ",
 }
 
 M.add_none_filetypes = function(types)

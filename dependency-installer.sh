@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 PACKAGES=(unzip wget nodejs npm rustup ripgrep fd lazygit stylua jq bear)
+PACKAGES_MAC=(gnu-sed)
 PYTHON_PACKAGES=(pip neovim poetry debugpy)
 
 if [[ "$(uname)" == 'Linux' ]]; then
@@ -10,6 +11,10 @@ if [[ "$(uname)" == 'Linux' ]]; then
         PKG_INSTALLER='pacman -Syu --noconfirm'
     fi
 elif [[ "$(uname)" == "Darwin" ]]; then
+    for p in ${PACKAGES_MAC[@]}; do
+        echo $p
+        PACKAGES+=($p)
+    done
     PACKAGES+=(poetry)
     PKG_INSTALLER="brew install "
     pip install pynvim
