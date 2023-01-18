@@ -1,6 +1,7 @@
 return {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
+    event = "User LazyDone",
+    -- priority = 65535,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         "arkav/lualine-lsp-progress",
