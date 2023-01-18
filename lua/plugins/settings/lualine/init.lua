@@ -14,25 +14,8 @@ local function get_debug_color()
     return { bg = vim.g.dap_loaded and (vim.g.terminal_color_5 or "#c678dd") }
 end
 
-filetype_tools.add_none_filetypes({
-    "NVIMTREE",
-    "TERMINAL",
-    "DASHBOARD",
-    "TOGGLETERM",
-    "PACKER",
-    "TELESCOPEPROMPT",
-    "OUTLINE",
-    "HELP",
-    "LSP-INSTALLER",
-    "TROUBLE",
-    "MASON",
-    "DAP-REPL",
-    "DAPUI_CONSOLE",
-    "LAZY",
-})
-
 -- for filetypes to disable winbar
-local disabled_winbar = {
+local disabled_winbar = vim.tbl_deep_extend("keep", {
     "NvimTree",
     "Outline",
     "dap-repl",
@@ -41,7 +24,7 @@ local disabled_winbar = {
     "httpResult",
     "neo-tree",
     "spectre_panel",
-}
+}, filetype_tools.get_nonfiletypes())
 for _, value in ipairs(filetype_tools.get_nonfiletypes()) do
     table.insert(disabled_winbar, value:lower())
 end
