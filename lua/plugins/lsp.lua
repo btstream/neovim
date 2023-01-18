@@ -11,7 +11,9 @@ return {
             "tamago324/nlsp-settings.nvim",
             "onsails/lspkind-nvim",
         },
-
+        build = function()
+            require("plugins.settings.lsp.mason")
+        end,
         config = function()
             require("plugins.settings.lsp")
         end,

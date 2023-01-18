@@ -43,43 +43,7 @@ lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.de
 -----------------------------------
 -- setup lsp with mason
 -----------------------------------
-
--- config ensure installed lsp servers
-local _servers = {
-    "bashls",
-    "pyright",
-    "jdtls",
-    "rust_analyzer",
-    "jsonls",
-    "cssls",
-    "html",
-    "vuels",
-    "vimls",
-    "sumneko_lua",
-    "fortls",
-    "lemminx",
-    "clangd",
-    "codelldb",
-    "java-debug-adapter",
-}
-local ensure_installed = {}
-local lspconfig_to_packages = require("mason-lspconfig.mappings.server").lspconfig_to_package
-for _, value in ipairs(_servers) do
-    if lspconfig_to_packages[value] then
-        table.insert(ensure_installed, lspconfig_to_packages[value])
-    else
-        table.insert(ensure_installed, value)
-    end
-end
-
-require("mason").setup()
--- require("mason-lspconfig").setup({
---     ensure_installed = needed,
--- })
-require("mason-tool-installer").setup({
-    ensure_installed = ensure_installed,
-    auto_update = true,
-})
+require("plugins.settings.lsp.mason")
 require("mason-lspconfig").setup_handlers({
     function(server_name)
         if not pcall(require, "plugins.settings.lsp.providers." .. server_name) then
