@@ -10,17 +10,7 @@ return {
             mode = { "n", "i" },
             "<C-k>b",
             function()
-                local source = "filesystem"
-                local active_source = require("plugins.neo-tree.utils").get_active_source()
-                if active_source then
-                    source = active_source
-                    vim.g.last_active_neotree_source = active_source
-                else
-                    if vim.g.last_active_neotree_source ~= nil then
-                        source = vim.g.last_active_neotree_source
-                    end
-                end
-                require("neo-tree").focus(source, true, true)
+                require("plugins.neo-tree.utils").toggle()
             end,
             desc = "open sidebar",
         },
@@ -79,24 +69,24 @@ return {
             {
                 event = "neo_tree_buffer_enter",
                 handler = function()
-                    local toggle = function(index)
+                    local go_to = function(index)
                         return function()
-                            require("plugins.neo-tree.utils").toggle(index)
+                            require("plugins.neo-tree.utils").goto_source(index)
                         end
                     end
                     local map = vim.keymap.set
-                    map("n", "<A-1>", toggle(1))
-                    map("n", "<A-2>", toggle(2))
-                    map("n", "<A-3>", toggle(3))
-                    map("n", "<A-4>", toggle(4))
-                    map("n", "<A-5>", toggle(5))
-                    map("n", "<A-6>", toggle(6))
-                    map("n", "<A-7>", toggle(7))
-                    map("n", "<A-8>", toggle(8))
-                    map("n", "<A-9>", toggle(9))
+                    map("n", "<A-1>", go_to(1))
+                    map("n", "<A-2>", go_to(2))
+                    map("n", "<A-3>", go_to(3))
+                    map("n", "<A-4>", go_to(4))
+                    map("n", "<A-5>", go_to(5))
+                    map("n", "<A-6>", go_to(6))
+                    map("n", "<A-7>", go_to(7))
+                    map("n", "<A-8>", go_to(8))
+                    map("n", "<A-9>", go_to(9))
 
-                    map("n", "<A-,>", '<cmd>lua require("plugins.neo-tree.utils").toggle_previous()<CR>')
-                    map("n", "<A-.>", '<cmd>lua require("plugins.neo-tree.utils").toggle_next()<CR>')
+                    map("n", "<A-,>", '<cmd>lua require("plugins.neo-tree.utils").goto_previous_source()<CR>')
+                    map("n", "<A-.>", '<cmd>lua require("plugins.neo-tree.utils").goto_next_source()<CR>')
                 end,
             },
             {

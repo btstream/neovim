@@ -1,5 +1,14 @@
 local manager = require("neo-tree.sources.manager")
 local renderer = require("neo-tree.ui.renderer")
+local command = require("neo-tree.command")
+
+local function focus(source)
+    command.execute({
+        action = "focus",
+        source = source,
+        toggle = true,
+    })
+end
 
 local M = {}
 
@@ -20,35 +29,57 @@ function M.get_active_source()
     return source, index
 end
 
+--- get active sources label, used in lualine
+---@return string or nil
 function M.get_active_source_label()
     local active_source = M.get_active_source()
     if active_source then
         return require("neo-tree").config.source_selector.tab_labels[active_source]
     end
+    return nil
 end
 
-function M.toggle(index)
+--- navigate to source
+---@param index number
+function M.goto_source(index)
     local sources = require("neo-tree").config.sources
     local i = index % #sources == 0 and #sources or index
     local source = sources[i]
     if source ~= M.get_active_source() then
-        require("neo-tree").focus(source, true, true)
+        focus(source)
     end
 end
 
-function M.toggle_next()
+--- goto next source
+function M.goto_next_source()
     local _, index = M.get_active_source()
-    M.toggle(index + 1)
+    M.goto_source(index + 1)
 end
 
-function M.toggle_previous()
+--- goto previous source
+function M.goto_previous_source()
     local _, index = M.get_active_source()
     if index - 1 < 1 then
         index = #require("neo-tree").config.sources
     else
         index = index - 1
     end
-    M.toggle(index)
+    M.goto_source(index)
+end
+
+--- toggle neo-tree sidebar
+function M.toggle()
+    local source = "filesystem"
+    local active_source = require("plugins.neo-tree.utils").get_active_source()
+    if active_source then
+        source = active_source
+        vim.g.last_active_neotree_source = active_source
+    else
+        if vim.g.last_active_neotree_source ~= nil then
+            source = vim.g.last_active_neotree_source
+        end
+    end
+    focus(source)
 end
 
 return M
