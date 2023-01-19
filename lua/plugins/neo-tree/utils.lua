@@ -4,7 +4,7 @@ local command = require("neo-tree.command")
 
 local function show(source, focus)
     command.execute({
-        action = focus and "focus" or "show",
+        action = (focus == nil or focus) and "focus" or "show",
         source = source,
         toggle = true,
     })
