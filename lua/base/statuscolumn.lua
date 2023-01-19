@@ -39,10 +39,13 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
     callback = function()
         local filetype_tools = require("utils.filetype_tools")
         if filetype_tools.is_nonefiletype() then
-            vim.opt_local.statuscolumn = ""
             if vim.bo.filetype == "spectre_panel" then
                 vim.opt_local.statuscolumn = "   "
                 vim.opt_local.number = false
+            elseif vim.bo.filetype == "toggleterm" then
+                vim.opt_local.statuscolumn = " "
+            else
+                vim.opt_local.statuscolumn = ""
             end
         end
     end,
