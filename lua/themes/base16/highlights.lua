@@ -97,6 +97,17 @@ function M.hg()
         FloatTitle              = { bg = colors.base00, fg = colors.base05 },
 
         ----------------------------------------------------------------------
+        --                            for vim.ui                            --
+        ----------------------------------------------------------------------
+        InputUIFloatWinNormal   = { bg = colors.base00 },
+        InputUIFloatBorder      = { fg = colors.base0D, bg = colors.base00 },
+        InputUIFloatTitle       = { fg = colors.base0D, bg = colors.base00 },
+
+        SelectUIFloatWinNormal  = { bg = colors.base00 },
+        SelectUIFloatBorder     = { fg = colors.base0D, bg = colors.base00 },
+        SelectUIFloatTitle      = { fg = colors.base0D, bg = colors.base00 },
+
+        ----------------------------------------------------------------------
         --                              Pacer                               --
         ----------------------------------------------------------------------
         PackerFloatNormal       = { bg = dbg015 },
