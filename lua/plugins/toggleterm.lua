@@ -41,6 +41,12 @@ return {
                 -- quirk to disable highlight of sidebars
                 -- vim.cmd("doautocmd BufEnter")
                 terminal:focus()
+
+                local opts = { buffer = 0 }
+                vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+                vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+                vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+                vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
             end,
         })
 
@@ -65,9 +71,6 @@ return {
         vim.keymap.set("n", "<C-k>g", function()
             lazygit:toggle()
         end, { desc = "open lazygit" })
-        vim.keymap.set("t", "<C-w>k", function()
-            vim.cmd("wincmd k")
-        end)
 
         -- ensure enter insert mode when terminal gained focus
         vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter" }, {
