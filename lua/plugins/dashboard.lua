@@ -11,14 +11,14 @@ return {
             theme = "doom",
             hide = {
                 statusline = false, -- hide statusline default is true
-                tabline = true, -- hide the tabline
+                tabline = false, -- hide the tabline
                 winbar = true, -- hide winbar
             },
             config = {},
         }
 
+        local version = vim.version()
         local __header = {
-            " ",
             " ",
             "      ╦           ┐                                                                                ",
             "   ╓▒╠╠▒╕        ╒╣▓╕                                                                              ",
@@ -33,8 +33,18 @@ return {
             " ╩╬╬╬╬▒       ║╬╬╣▓▓▓██╙                                                                           ",
             "   ╚╬╬▒        ╙╣╣▓▓▓╙                                                                             ",
             "     ╙▒          ╣▀└                                                                               ",
-            " ",
         }
+        version = string.format(
+            "v%s.%s.%s%s",
+            version.major,
+            version.minor,
+            version.patch,
+            version.prerelease and "-dev" or ""
+        )
+        local version_pre_and_post = string.rep("─", (#__header[5] - #version) / 6 - 1)
+        version = string.rep(" ", 10) .. version_pre_and_post .. " " .. version .. " " .. version_pre_and_post
+        table.insert(__header, version)
+        table.insert(__header, " ")
 
         -- dashboard.hide_statusline = false -- boolean default is true.it will hide statusline in dashboard buffer and auto open in other buffer
         -- dashboard.hide_tabline = false
@@ -43,7 +53,7 @@ return {
         dashboard.config.center = {
             {
                 icon = "  ",
-                desc = "Recently Opened Files" .. string.rep(" ", 20),
+                desc = "Recently Opened Files" .. string.rep(" ", #__header[5] / 4 - 10),
                 key = "SPC f h",
                 action = "Telescope oldfiles",
             },
