@@ -244,6 +244,9 @@ function M.hg()
         DashboardCenterIcon         = { fg = colors.base0B },
         DashboardShortCut           = { fg = colors.base0E },
         DashboardFooter             = { fg = colors.base04 },
+        DashboardKey                = "DashboardShortCut",
+        DashboardIcon               = "DashboardCenterIcon",
+        DashboardDesc               = "DashboardCenter",
 
         ----------------------------------------------------------------------
         --                             Trouble                              --

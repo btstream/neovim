@@ -1,15 +1,25 @@
 return {
     "glepnir/dashboard-nvim",
     event = "VimEnter",
+    dependencies = { { "nvim-tree/nvim-web-devicons" } },
     config = function()
         local function edit_config()
             vim.cmd("e " .. vim.fn.stdpath("config") .. "/" .. "init.lua")
         end
 
-        local dashboard = require("dashboard")
+        local dashboard = {
+            theme = "doom",
+            hide = {
+                statusline = false, -- hide statusline default is true
+                tabline = true, -- hide the tabline
+                winbar = true, -- hide winbar
+            },
+            config = {},
+        }
 
         local __header = {
-            "",
+            " ",
+            " ",
             "      ╦           ┐                                                                                ",
             "   ╓▒╠╠▒╕        ╒╣▓╕                                                                              ",
             " ╓╣╬╬╬╠╠╠▒        ╣╣╣▓▄                                                     ╫██─                   ",
@@ -23,22 +33,59 @@ return {
             " ╩╬╬╬╬▒       ║╬╬╣▓▓▓██╙                                                                           ",
             "   ╚╬╬▒        ╙╣╣▓▓▓╙                                                                             ",
             "     ╙▒          ╣▀└                                                                               ",
+            " ",
         }
 
-        dashboard.hide_statusline = false -- boolean default is true.it will hide statusline in dashboard buffer and auto open in other buffer
+        -- dashboard.hide_statusline = false -- boolean default is true.it will hide statusline in dashboard buffer and auto open in other buffer
         -- dashboard.hide_tabline = false
 
-        dashboard.custom_header = __header
-        -- stylua: ignore
-        dashboard.custom_center = {
-            { icon = "  ", desc = "Recently Opened Files          ", shortcut = "SPC f h", action = "Telescope oldfiles" },
-            { icon = "  ", desc = "Open Project                   ", shortcut = "SPC f p", action = "Telescope projects" },
-            { icon = "  ", desc = "Create New File                ", shortcut = "SPC c n", action = "enew" },
-            { icon = "  ", desc = "Find File                      ", shortcut = "SPC f f", action = "Telescope find_files" },
-            { icon = "  ", desc = "Find Word                      ", shortcut = "SPC f w", action = "Telescope live_grep" },
-            { icon = "  ", desc = "Choosehoose Colorscheme        ", shortcut = "SPC t c", action = "Telescope colorscheme" },
-            { icon = "  ", desc = "Configuration                  ", shortcut = "SPC s s", action = edit_config },
+        dashboard.config.header = __header
+        dashboard.config.center = {
+            {
+                icon = "  ",
+                desc = "Recently Opened Files" .. string.rep(" ", 20),
+                key = "SPC f h",
+                action = "Telescope oldfiles",
+            },
+            {
+                icon = "  ",
+                desc = "Open Project",
+                key = "SPC f p",
+                action = "Telescope projects",
+            },
+            {
+                icon = "  ",
+                desc = "Create New File",
+                key = "SPC c n",
+                action = "enew",
+            },
+            {
+                icon = "  ",
+                desc = "Find File",
+                key = "SPC f f",
+                action = "Telescope find_files",
+            },
+            {
+                icon = "  ",
+                desc = "Find Word",
+                key = "SPC f w",
+                action = "Telescope live_grep",
+            },
+            {
+                icon = "  ",
+                desc = "Choosehoose Colorscheme",
+                key = "SPC t c",
+                action = "Telescope colorscheme",
+            },
+            {
+                icon = "  ",
+                desc = "Configuration" .. string.rep("", 20),
+                key = "SPC s s",
+                action = "e " .. vim.fn.stdpath("config") .. "/" .. "init.lua",
+            },
         }
+
+        require("dashboard").setup(dashboard)
 
         -- keymap
         local map = vim.keymap.set
