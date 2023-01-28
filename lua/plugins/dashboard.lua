@@ -94,6 +94,17 @@ return {
                 action = "e " .. vim.fn.stdpath("config") .. "/" .. "init.lua",
             },
         }
+        local lazy_stats = require("lazy").stats()
+        print(vim.inspect(lazy_stats))
+        dashboard.config.footer = {
+            "",
+            string.format(
+                string.rep(" ", 11) .. "NVIM started in %sms, with %s of %s plugins loaded",
+                lazy_stats.times.LazyDone,
+                lazy_stats.loaded,
+                lazy_stats.count
+            ),
+        }
 
         require("dashboard").setup(dashboard)
 
