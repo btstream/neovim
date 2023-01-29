@@ -240,13 +240,22 @@ function M.hg()
         --                            Dashboard                             --
         ----------------------------------------------------------------------
         DashboardHeader             = { fg = colors.base0D },
-        DashboardCenter             = { fg = colors.base09 },
-        DashboardCenterIcon         = { fg = colors.base0B },
         DashboardShortCut           = { fg = colors.base0E },
-        DashboardFooter             = { fg = colors.base04 },
-        DashboardKey                = "DashboardShortCut",
-        DashboardIcon               = "DashboardCenterIcon",
-        DashboardDesc               = "DashboardCenter",
+        DashboardFooter             = { fg = colors.base02 },
+        DashboardKey                = { fg = colors.base0E },
+
+        DashboardProjectTitle       = { fg = colors.base0D },
+        DashboardProjectTitleIcon   = "DashboardProjectTitle",
+        DashboardProjectIcon        = { fg = colors.base0A },
+        DashboardMruTitle           = { fg = colors.base0D },
+        DashboardMruIcon            = "DashboardMruTitle",
+        DashboardFiles              = { fg = colors.base03 },
+
+        DashboardActionFiles        = { fg = colors.base0A },
+        DashboardActionColors       = { fg = colors.base0E },
+        DashboardActionUpdate       = { fg = colors.base0C },
+        DashboardActionSettings     = { fg = colors.base08 },
+
 
         ----------------------------------------------------------------------
         --                             Trouble                              --

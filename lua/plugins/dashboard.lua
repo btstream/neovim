@@ -7,18 +7,17 @@ return {
             vim.cmd("e " .. vim.fn.stdpath("config") .. "/" .. "init.lua")
         end
 
-        local dashboard = {
-            theme = "doom",
-            hide = {
-                statusline = false, -- hide statusline default is true
-                tabline = false, -- hide the tabline
-                winbar = true, -- hide winbar
-            },
-            config = {},
-        }
+        local function version()
+            local v = vim.version()
+            return string.format("v%s.%s.%s%s", v.major, v.minor, v.patch, v.prerelease and "-dev" or "")
+        end
 
-        local version = vim.version()
-        local __header = {
+        ----------------------------------------------------------------------
+        --                        header and footer                         --
+        ----------------------------------------------------------------------
+
+        --- generate header
+        local header = {
             " ",
             "      ╦           ┐                                                                                ",
             "   ╓▒╠╠▒╕        ╒╣▓╕                                                                              ",
@@ -34,79 +33,78 @@ return {
             "   ╚╬╬▒        ╙╣╣▓▓▓╙                                                                             ",
             "     ╙▒          ╣▀└                                                                               ",
         }
-        version = string.format(
-            "v%s.%s.%s%s",
-            version.major,
-            version.minor,
-            version.patch,
-            version.prerelease and "-dev" or ""
-        )
-        local version_pre_and_post = string.rep("─", (#__header[5] - #version) / 6 - 1)
-        version = string.rep(" ", 10) .. version_pre_and_post .. " " .. version .. " " .. version_pre_and_post
-        table.insert(__header, version)
-        table.insert(__header, " ")
-
-        -- dashboard.hide_statusline = false -- boolean default is true.it will hide statusline in dashboard buffer and auto open in other buffer
-        -- dashboard.hide_tabline = false
-
-        dashboard.config.header = __header
-        dashboard.config.center = {
-            {
-                icon = "  ",
-                desc = "Recently Opened Files" .. string.rep(" ", #__header[5] / 4 - 10),
-                key = "SPC f h",
-                action = "Telescope oldfiles",
-            },
-            {
-                icon = "  ",
-                desc = "Open Project",
-                key = "SPC f p",
-                action = "Telescope projects",
-            },
-            {
-                icon = "  ",
-                desc = "Create New File",
-                key = "SPC c n",
-                action = "enew",
-            },
-            {
-                icon = "  ",
-                desc = "Find File",
-                key = "SPC f f",
-                action = "Telescope find_files",
-            },
-            {
-                icon = "  ",
-                desc = "Find Word",
-                key = "SPC f w",
-                action = "Telescope live_grep",
-            },
-            {
-                icon = "  ",
-                desc = "Choosehoose Colorscheme",
-                key = "SPC t c",
-                action = "Telescope colorscheme",
-            },
-            {
-                icon = "  ",
-                desc = "Configuration" .. string.rep("", 20),
-                key = "SPC s s",
-                action = "e " .. vim.fn.stdpath("config") .. "/" .. "init.lua",
-            },
+        header = {
+            "",
+            "",
+            "██████╗ ████████╗███████╗████████╗██████╗ ███████╗ █████╗ ███╗   ███╗",
+            "██╔══██╗╚══██╔══╝██╔════╝╚══██╔══╝██╔══██╗██╔════╝██╔══██╗████╗ ████║",
+            "██████╔╝   ██║   ███████╗   ██║   ██████╔╝█████╗  ███████║██╔████╔██║",
+            "██╔══██╗   ██║   ╚════██║   ██║   ██╔══██╗██╔══╝  ██╔══██║██║╚██╔╝██║",
+            "██████╔╝   ██║   ███████║   ██║   ██║  ██║███████╗██║  ██║██║ ╚═╝ ██║",
+            "╚═════╝    ╚═╝   ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝",
+            "",
         }
+
+        -- generate footer info
         local lazy_stats = require("lazy").stats()
         print(vim.inspect(lazy_stats))
-        dashboard.config.footer = {
+        local footer = {
             "",
             string.format(
-                string.rep(" ", 11) .. "NVIM started in %sms, with %s of %s plugins loaded",
+                string.rep(" ", 5) .. "🎉  NVIM version %s started in %sms with %s of %s plugins loaded",
+                version(),
                 lazy_stats.times.LazyDone,
                 lazy_stats.loaded,
                 lazy_stats.count
             ),
         }
 
-        require("dashboard").setup(dashboard)
+        ----------------------------------------------------------------------
+        --                       config a hyper theme                       --
+        ----------------------------------------------------------------------
+        local hyper = {
+            theme = "hyper",
+            hide = {
+                statusline = false, -- hide statusline default is true
+                tabline = false, -- hide the tabline
+                winbar = true, -- hide winbar
+            },
+            config = {
+                header = header,
+                shortcut = {
+                    {
+                        desc = "󰪶 Files",
+                        group = "DashboardActionFiles",
+                        action = "Telescope file_browser",
+                        key = "b",
+                    },
+                    {
+                        desc = " Colors",
+                        group = "DashboardActionColors",
+                        action = "Telescope colorscheme",
+                        key = "t",
+                    },
+                    { desc = " Update", group = "DashboardActionUpdate", action = "Lazy update", key = "u" },
+                    {
+                        desc = " Settings",
+                        group = "DashboardActionSettings",
+                        key = "s",
+                        action = "e " .. vim.fn.stdpath("config") .. "/" .. "init.lua",
+                    },
+                },
+                packages = { enable = false }, -- show how many plugins neovim loaded
+                project = {
+                    limit = 8,
+                    icon = " ",
+                    label = "Recently Projects",
+                    action = "Telescope find_files cwd=",
+                },
+                mru = { limit = 10, icon = " ", label = "Recently Files" },
+                footer = footer, -- footer
+            },
+        }
+
+        require("dashboard").setup(hyper)
 
         -- keymap
         local map = vim.keymap.set
