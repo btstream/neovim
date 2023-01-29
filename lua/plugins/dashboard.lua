@@ -47,16 +47,10 @@ return {
 
         -- generate footer info
         local lazy_stats = require("lazy").stats()
-        print(vim.inspect(lazy_stats))
         local footer = {
             "",
-            string.format(
-                string.rep(" ", 5) .. "🎉  NVIM version %s started in %sms with %s of %s plugins loaded",
-                version(),
-                lazy_stats.times.LazyDone,
-                lazy_stats.loaded,
-                lazy_stats.count
-            ),
+            string.format("🚀 version %s started in %sms", version(), lazy_stats.times.LazyDone),
+            string.format("🧩 %s of %s plugins loaded", lazy_stats.loaded, lazy_stats.count),
         }
 
         ----------------------------------------------------------------------
