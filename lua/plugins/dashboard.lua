@@ -70,7 +70,13 @@ return {
                         desc = "󰪶 Files",
                         group = "DashboardActionFiles",
                         action = "Telescope file_browser",
-                        key = "b",
+                        key = "o",
+                    },
+                    {
+                        desc = " New",
+                        group = "DashboardActionNew",
+                        action = "enew",
+                        key = "n",
                     },
                     {
                         desc = " Colors",

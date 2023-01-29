@@ -252,6 +252,7 @@ function M.hg()
         DashboardFiles              = { fg = colors.base03 },
 
         DashboardActionFiles        = { fg = colors.base0A },
+        DashboardActionNew          = { fg = colors.base0B },
         DashboardActionColors       = { fg = colors.base0E },
         DashboardActionUpdate       = { fg = colors.base0C },
         DashboardActionSettings     = { fg = colors.base08 },
