@@ -11,7 +11,33 @@ return {
                 -- number_style = "superscript" | "subscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
                 close_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
                 right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
-                left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
+                -- left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
+                left_mouse_command = function(bufnr)
+                    if require("lazy.core.config").plugins["toggleterm.nvim"]._.loaded then
+                        local current_buf = vim.api.nvim_win_get_buf(0)
+                        local terms = require("toggleterm.terminal").get_all()
+
+                        for _, t in pairs(terms) do
+                            if t.bufnr == current_buf then
+                                if t.direction == "horizontal" then
+                                    vim.cmd.wincmd("k")
+                                    break
+                                end
+
+                                if t.direction == "vertical" then
+                                    vim.cmd.wincmd("h")
+                                    break
+                                end
+
+                                if t.direction == "float" then
+                                    t:close()
+                                    break
+                                end
+                            end
+                        end
+                    end
+                    vim.cmd.buffer(bufnr)
+                end,
                 middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
                 -- NOTE: this plugin is designed with this icon in mind,
                 -- and so changing this is NOT recommended, this is intended
