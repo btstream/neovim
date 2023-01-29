@@ -13,8 +13,8 @@ return {
                 right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
                 -- left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
                 left_mouse_command = function(bufnr)
+                    local current_buf = vim.api.nvim_win_get_buf(0)
                     if require("lazy.core.config").plugins["toggleterm.nvim"]._.loaded then
-                        local current_buf = vim.api.nvim_win_get_buf(0)
                         local terms = require("toggleterm.terminal").get_all()
 
                         for _, t in pairs(terms) do
@@ -36,6 +36,12 @@ return {
                             end
                         end
                     end
+
+                    if current_buf == bufnr then
+                        -- TODO: add double click to maximize
+                        print("NOT IMPLEMENTED")
+                    end
+
                     vim.cmd.buffer(bufnr)
                 end,
                 middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
