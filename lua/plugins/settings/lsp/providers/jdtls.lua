@@ -69,6 +69,7 @@ local function start_jdtls()
                 codeGeneration = {
                     toString = { template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}" },
                 },
+                inlayHints = { parameterNames = { enabled = true } },
             },
         },
         handlers = require("plugins.settings.lsp.handlers"),
