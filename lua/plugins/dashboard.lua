@@ -115,5 +115,11 @@ return {
         map("n", "<Leader>cn", "<cmd>enew<CR>")
         map("n", "<Leader>fp", "<cmd>Telescope projects<cr>")
         map("n", "<Leader>ss", edit_config)
+
+        -- trigger a signal to make loading of lsp plugins a little defer,
+        -- as lsp config would also make dap loaded, which is heavy
+        vim.defer_fn(function()
+            vim.cmd("do User UILoaded")
+        end, 70)
     end,
 }

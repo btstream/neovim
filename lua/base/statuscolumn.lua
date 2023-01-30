@@ -26,7 +26,7 @@ function _G.on_fold_sign_click(_, click, button)
     end
 end
 
-opt.statuscolumn = " %=%l %s"
+opt.statuscolumn = " %=%l %s "
 -- .. "%#FoldColumn#%@v:lua.on_fold_sign_click@%{"
 -- .. "foldlevel(v:lnum) > foldlevel(v:lnum - 1) "
 -- .. '? (foldclosed(v:lnum) == -1 ? "" : "") : " " '
