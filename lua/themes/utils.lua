@@ -1,7 +1,7 @@
 -------------------------------
 --utils functions from base16
 -------------------------------
-local hex_re = vim.regex("#\\x\\x\\x\\x\\x\\x")
+-- local hex_re = vim.regex("#\\x\\x\\x\\x\\x\\x")
 
 local HEX_DIGITS = {
     ["0"] = 0,
