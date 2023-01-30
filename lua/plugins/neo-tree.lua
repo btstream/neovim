@@ -55,6 +55,7 @@ return {
         filesystem = {
             use_libuv_file_watcher = true,
             follow_current_file = true,
+            hijack_netrw_behavior = "open_current",
         },
         window = {
             mappings = {

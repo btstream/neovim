@@ -21,6 +21,7 @@ M._nonefiletypes = {
     "lazy",
     "spectre",
     "spectre_panel",
+    "directory",
 }
 
 -- stylua: ignore
@@ -75,7 +76,8 @@ end
 
 M.is_nonefiletype = function()
     local filetype = vim.bo.filetype
-    return vim.tbl_contains(M._nonefiletypes, filetype) or M._icons[filetype] ~= nil, filetype
+    local isdir = vim.fn.isdirectory(vim.fn.expand("%:p")) == 1
+    return vim.tbl_contains(M._nonefiletypes, filetype) or M._icons[filetype] ~= nil or isdir, filetype
 end
 
 M.get_icon = function()

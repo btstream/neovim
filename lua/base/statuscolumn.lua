@@ -27,10 +27,10 @@ function _G.on_fold_sign_click(_, click, button)
 end
 
 opt.statuscolumn = " %=%l %s"
-    .. "%#FoldColumn#%@v:lua.on_fold_sign_click@%{"
-    .. "foldlevel(v:lnum) > foldlevel(v:lnum - 1) "
-    .. '? (foldclosed(v:lnum) == -1 ? "" : "") : " " '
-    .. "}%T%* "
+-- .. "%#FoldColumn#%@v:lua.on_fold_sign_click@%{"
+-- .. "foldlevel(v:lnum) > foldlevel(v:lnum - 1) "
+-- .. '? (foldclosed(v:lnum) == -1 ? "" : "") : " " '
+-- .. "}%T%* "
 
 -- disable statuscolumn for none file types
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
