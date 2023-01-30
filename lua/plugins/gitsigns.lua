@@ -1,7 +1,7 @@
 return {
     "lewis6991/gitsigns.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    event = "User BufReadRealFile",
+    event = "User BufReadRealFilePost",
     config = function()
         local popup = require("gitsigns.popup")
         local orig_popup = popup.create

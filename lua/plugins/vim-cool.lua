@@ -1,4 +1,4 @@
 return {
     "romainl/vim-cool",
-    event = "User BufReadRealFile",
+    event = "User BufReadRealFilePost",
 }
