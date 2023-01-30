@@ -4,6 +4,7 @@ return {
         return vim.fn.has("win32") == 0
     end,
     event = "User BufReadRealFile",
+    enabled = false,
     config = function()
         vim.g.barbaric_ime = "fcitx"
         if vim.fn.has("mac") == 1 then

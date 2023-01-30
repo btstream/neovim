@@ -71,7 +71,6 @@ end
 --- toggle neo tree sidebar
 ---@param f boolean
 function M.toggle(focus, position)
-    print("wokao")
     local source = "filesystem"
     local active_source = require("plugins.neo-tree.utils").get_active_source()
     if active_source then

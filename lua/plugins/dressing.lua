@@ -64,7 +64,6 @@ return {
                 get_config = function(opts)
                     print(vim.inspect(opts))
                     if opts.prompt == "New Name: " then
-                        print("wokao")
                         return {
                             win_options = {
                                 winhighlight = "NormalFloat:LspFloatWinNormal,FloatBorder:LspWinRenameBorder,FloatTitle:LspWinRenameTitle",
