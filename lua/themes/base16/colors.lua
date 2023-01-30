@@ -1,7 +1,5 @@
--- local darken = require("themes.utils").darken
--- local highlight = require("themes.utils").highlight
-
-local function get_base16_colors(scheme)
+local color_scheme = nil
+local function get_color_scheme(scheme)
     local style = scheme and scheme
     if scheme == nil then
         if vim.g.colors_name == nil then
@@ -15,10 +13,29 @@ local function get_base16_colors(scheme)
             end
         end
     end
-    local colors = require("base16-colorscheme").colorschemes[style]
-    return colors
+    local ret = require("base16-colorscheme").colorschemes[style]
+    return ret
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = "*",
+    callback = function()
+        color_scheme = get_color_scheme()
+    end,
+})
+
+local function colors(scheme)
+    if scheme ~= nil then
+        return get_color_scheme(scheme)
+    end
+
+    if color_scheme == nil then
+        color_scheme = get_color_scheme()
+    end
+
+    return color_scheme
 end
 
 return {
-    colors = get_base16_colors,
+    colors = colors,
 }
