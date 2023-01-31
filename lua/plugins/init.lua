@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
                     vim.cmd("do User LoadLsp")
                 end, 200)
 
-                vim.api.nvim_del_augroup_by_name("CustomBufRead")
+                vim.api.nvim_del_augroup_by_id(group)
             end
         end)
     end,
