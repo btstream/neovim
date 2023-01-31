@@ -49,7 +49,7 @@ return {
         local lazy_stats = require("lazy").stats()
         local footer = {
             "",
-            string.format("🚀 version %s started in %sms", version(), lazy_stats.startuptime),
+            string.format("🚀 version %s started in %.2fms", version(), lazy_stats.startuptime),
             string.format("🧩 %s of %s plugins loaded", lazy_stats.loaded, lazy_stats.count),
         }
 
