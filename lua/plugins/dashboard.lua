@@ -1,6 +1,6 @@
 return {
     "glepnir/dashboard-nvim",
-    event = "VimEnter",
+    event = "User LazyVimStarted",
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
     config = function()
         local function edit_config()
@@ -49,7 +49,7 @@ return {
         local lazy_stats = require("lazy").stats()
         local footer = {
             "",
-            string.format("🚀 version %s started in %sms", version(), lazy_stats.times.LazyDone),
+            string.format("🚀 version %s started in %sms", version(), lazy_stats.startuptime),
             string.format("🧩 %s of %s plugins loaded", lazy_stats.loaded, lazy_stats.count),
         }
 
@@ -121,10 +121,8 @@ return {
         map("n", "<Leader>fp", "<cmd>Telescope projects<cr>")
         map("n", "<Leader>ss", edit_config)
 
-        -- trigger a signal to make loading of lsp plugins a little defer,
-        -- as lsp config would also make dap loaded, which is heavy
-        -- vim.defer_fn(function()
-        --     vim.cmd("do User UILoaded")
-        -- end, 70)
+        if vim.fn.argc() == 0 and vim.fn.line2byte("$") == -1 then
+            require("dashboard"):instance()
+        end
     end,
 }
