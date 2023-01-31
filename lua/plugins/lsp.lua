@@ -1,7 +1,7 @@
 return {
     {
         "neovim/nvim-lspconfig",
-        event = { "User UILoaded", "User LoadLsp" },
+        event = { "User BufReadRealFilePost" },
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -111,7 +111,7 @@ return {
     { -- null-ls
         "jose-elias-alvarez/null-ls.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        event = { "User UILoaded", "User LoadLsp" },
+        event = { "User BufReadRealFilePost" },
         config = function()
             require("plugins.settings.lsp.providers.null_ls")
         end,

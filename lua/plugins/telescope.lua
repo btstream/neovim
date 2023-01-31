@@ -7,7 +7,7 @@ return {
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
         {
             "ahmedkhalf/project.nvim",
-            event = "User BufReadRealFile",
+            event = "User BufReadRealFilePost",
             config = function()
                 require("project_nvim").setup({})
             end,
