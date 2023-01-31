@@ -131,7 +131,8 @@ require("lualine").setup({
                 lsp_progress,
                 padding = 1,
                 cond = function()
-                    return not filetype_tools.is_nonefiletype()
+                    return require("lazy.core.config").plugins["nvim-lspconfig"]._.loaded ~= nil
+                        and not filetype_tools.is_nonefiletype()
                 end,
             },
             {

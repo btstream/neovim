@@ -9,13 +9,29 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNew", "BufNewFile" }, {
         if not require("utils.filetype_tools").is_nonefiletype() then
             -- emit BufReadReadFile event first
             vim.cmd([[do User BufReadRealFile]])
-
-            -- in case of lsp not loaded emit a LoadLsp event to load Lsp, for the saituation
-            -- of openning file directly from cli
-            vim.defer_fn(function()
-                vim.cmd("do User BufReadRealFilePost")
-            end, 100)
         end
+    end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = "*",
+    group = group,
+    callback = function()
+        -- defering to next schedule cycle
+        vim.schedule(function()
+            if not require("utils.filetype_tools").is_nonefiletype() then
+                vim.schedule(function()
+                    vim.cmd("do User BufReadRealFilePost")
+                end)
+
+                -- defering loading lsp
+                vim.defer_fn(function()
+                    vim.cmd("do User LoadLsp")
+                end, 200)
+
+                vim.api.nvim_del_augroup_by_name("CustomBufRead")
+            end
+        end)
     end,
 })
 

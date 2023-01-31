@@ -3,6 +3,7 @@ return {
     build = ":TSUpdate",
     event = "User BufReadRealFile",
     dependencies = { "mrjones2014/nvim-ts-rainbow" },
+    module = false,
     config = function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = "all",
