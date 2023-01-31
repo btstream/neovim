@@ -14,6 +14,26 @@ return {
                 -- left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
                 left_mouse_command = function(bufnr)
                     local current_buf = vim.api.nvim_win_get_buf(0)
+
+                    if current_buf == bufnr then
+                        local key = string.format("tab_clicked_%s", bufnr)
+                        if vim.g[key] == nil then
+                            vim.g[key] = os.clock()
+                            vim.defer_fn(function() -- clean timeout
+                                vim.g[key] = nil
+                            end, 300)
+                        else
+                            local timeout = os.clock() - vim.g[key]
+                            if timeout < 0.3 then
+                                -- TODO: to save window session to make double click looks like idea
+                                if require("plugins.neo-tree.utils").get_active_source() then
+                                    require("plugins.neo-tree.utils").toggle()
+                                end
+                            end
+                            vim.g[key] = nil
+                        end
+                    end
+
                     if require("lazy.core.config").plugins["toggleterm.nvim"]._.loaded then
                         local terms = require("toggleterm.terminal").get_all()
 
@@ -35,11 +55,6 @@ return {
                                 end
                             end
                         end
-                    end
-
-                    if current_buf == bufnr then
-                        -- TODO: add double click to maximize
-                        print("NOT IMPLEMENTED")
                     end
 
                     vim.cmd.buffer(bufnr)
