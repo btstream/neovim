@@ -1,7 +1,8 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = "User BufReadRealFile",
+    -- event = "User BufReadRealFile",
+    event = "BufReadPre",
     dependencies = { "mrjones2014/nvim-ts-rainbow" },
     module = false,
     config = function()

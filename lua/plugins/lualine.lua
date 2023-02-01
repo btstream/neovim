@@ -1,6 +1,6 @@
 return {
     "nvim-lualine/lualine.nvim",
-    event = "VimEnter",
+    event = "User LazyDone",
     -- priority = 65535,
     dependencies = {
         "nvim-tree/nvim-web-devicons",

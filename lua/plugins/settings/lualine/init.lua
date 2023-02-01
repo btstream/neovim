@@ -116,6 +116,9 @@ require("lualine").setup({
                     info  = signs.Info  .. " ",
                 },
                 update_in_insert = true,
+                cond = function()
+                    return require("lazy.core.config").plugins["nvim-lspconfig"]._.loaded ~= nil
+                end,
             },
         },
 

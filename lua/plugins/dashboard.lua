@@ -99,7 +99,7 @@ return {
                 },
                 packages = { enable = false }, -- show how many plugins neovim loaded
                 project = {
-                    limit = 8,
+                    limit = 5,
                     icon = " ",
                     label = "Recently Projects",
                     action = "Telescope find_files cwd=",

@@ -1,11 +1,27 @@
 local group = vim.api.nvim_create_augroup("CustomBufRead", { clear = true })
+
+local function schedule(fn, delay)
+    if delay then
+        vim.defer_fn(fn, delay)
+    else
+        vim.schedule(fn)
+    end
+end
+
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNew", "BufNewFile" }, {
     group = group,
     callback = function()
-        if not require("utils.filetype_tools").is_nonefiletype() then
-            -- emit BufReadReadFile event first
-            vim.cmd([[do User BufReadRealFile]])
+        local delay = nil
+        if vim.fn.argc() > 0 then
+            delay = 100
         end
+
+        schedule(function()
+            if not require("utils.filetype_tools").is_nonefiletype() then
+                -- emit BufReadReadFile event first
+                vim.cmd([[do User BufReadRealFile]])
+            end
+        end, delay)
     end,
 })
 
@@ -13,8 +29,12 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     pattern = "*",
     group = group,
     callback = function()
+        local delay = nil
+        if vim.fn.argc() > 0 then
+            delay = 200
+        end
         -- defering to next schedule cycle
-        vim.schedule(function()
+        schedule(function()
             if not require("utils.filetype_tools").is_nonefiletype() then
                 vim.schedule(function()
                     vim.cmd("do User BufReadRealFilePost")
@@ -27,7 +47,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 
                 pcall(vim.api.nvim_del_augroup_by_id, group)
             end
-        end)
+        end, delay)
     end,
 })
 
