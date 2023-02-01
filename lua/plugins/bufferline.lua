@@ -31,7 +31,10 @@ return {
                                     local winid = vim.api.nvim_get_current_win()
 
                                     for _, t in pairs(vim.g.saved_window.term) do
-                                        require("toggleterm.terminal").get(t):toggle()
+                                        local term = require("toggleterm.terminal").get(t)
+                                        if not term:is_open() then
+                                            term:toggle()
+                                        end
                                     end
 
                                     if vim.g.saved_window.neo_tree then
