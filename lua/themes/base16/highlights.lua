@@ -55,6 +55,10 @@ function M.hg()
         GitSignsCurrentLineBlame  = { fg = colors.base03 },
         GitSignHunkPreviewNormal  = "Normal",
         GitSignHunkPreviewBorder  = { fg = colors.base02 },
+        GitSignsChange            = { fg = colors.base0C },
+        GitSignsUntracked         = { fg = colors.base0A },
+        GitSignsUntrackedLn       = "GitSignsUntracked",
+        GitSignsUntrackedNr       = "GitSignsUntracked",
 
         ----------------------------------------------------------------------
         --                          NvimTreeNormal                          --
@@ -73,20 +77,19 @@ function M.hg()
         NeoTreeModified           = { fg = colors.base09 },
 
         -- NeoTree git signs
-        NeoTreeGitAdded           = { fg = colors.base0B },
+        NeoTreeGitAdded           =  "GitSignsAdd",--{ fg = colors.base0B },
         NeoTreeGitConflict        = { fg = colors.base0E },
-        NeoTreeGitDeleted         = { fg = colors.base08 },
+        NeoTreeGitDeleted         = "GitSignsDelete", --{ fg = colors.base08 },
         NeoTreeGitIgnored         = { fg = colors.base04 },
-        NeoTreeGitModified        = { fg = colors.base0C },
+        NeoTreeGitModified        = "GitSignsChange", --{ fg = colors.base0C },
         NeoTreeGitUnstaged        = { fg = colors.base09 },
-        NeoTreeGitUntracked       = { fg = colors.base0A },
+        NeoTreeGitUntracked       = "GitSignsUntracked", { fg = colors.base0A },
         NeoTreeGitStaged          = { fg = colors.base0B },
 
         -- inactive buffer
         NeoTreeTabInactive           = { fg = colors.base03, bg = dbg015 },
         NeoTreeTabSeparatorInactive  = { fg = dbg015, bg = dbg015},
         NeoTreeTabSeparatorActive    = { bg = colors.base00, fg = colors.base00 },
-        
 
         ----------------------------------------------------------------------
         --                           NormalFloat                            --

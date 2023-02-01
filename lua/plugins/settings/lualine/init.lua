@@ -9,7 +9,7 @@ local search_result = require("plugins.settings.lualine.components.search_result
 local terminal_info = require("plugins.settings.lualine.components.terminal_info")
 local lsp_progress = require("plugins.settings.lualine.components.lsp_progress")
 local nft_indicator = filetype_tools.type
-local git_status_icons = require("themes.icons").git_status_icons
+local git_status_icons = require("themes.icons").gitstatus_icons
 
 local function get_debug_color()
     return { bg = vim.g.dap_loaded and (vim.g.terminal_color_5 or "#c678dd") }
