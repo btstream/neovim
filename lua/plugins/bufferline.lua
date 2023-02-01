@@ -16,6 +16,7 @@ return {
                 left_mouse_command = function(bufnr)
                     local current_buf = vim.api.nvim_win_get_buf(0)
 
+                    -- handle double click
                     if current_buf == bufnr then
                         local key = string.format("tab_clicked_%s", bufnr)
                         if vim.g[key] == nil then
@@ -26,10 +27,64 @@ return {
                         else
                             local timeout = os.clock() - vim.g[key]
                             if timeout < 0.3 then
-                                -- TODO: to save window session to make double click looks like idea
-                                if require("plugins.neo-tree.utils").get_active_source() then
-                                    require("plugins.neo-tree.utils").toggle()
+                                if vim.g.saved_window then
+                                    local winid = vim.api.nvim_get_current_win()
+
+                                    for _, t in pairs(vim.g.saved_window.term) do
+                                        require("toggleterm.terminal").get(t):toggle()
+                                    end
+
+                                    if vim.g.saved_window.neo_tree then
+                                        vim.schedule(function()
+                                            require("plugins.neo-tree.utils").toggle(false)
+                                        end)
+                                    end
+
+                                    if vim.g.saved_window.outline then
+                                        require("symbols-outline").toggle_outline()
+                                    end
+
+                                    vim.g.saved_window = nil
+                                    vim.schedule(function()
+                                        -- vim.api.nvim_set_current_win(winid)
+                                        vim.fn.win_gotoid(winid)
+                                        vim.api.nvim_set_current_buf(bufnr)
+                                    end)
+                                else
+                                    local saved_window = {}
+
+                                    -- if have buffer
+                                    if require("plugins.neo-tree.utils").get_active_source() then
+                                        require("plugins.neo-tree.utils").toggle(false)
+                                        saved_window.neo_tree = true
+                                    else
+                                        saved_window.neo_tree = false
+                                    end
+
+                                    local terms = require("lazy.core.config").plugins["toggleterm.nvim"]._.loaded
+                                            and require("toggleterm.terminal").get_all()
+                                        or {}
+
+                                    saved_window.term = {}
+                                    for _, t in pairs(terms) do
+                                        if t:is_open() then
+                                            t:toggle()
+                                            table.insert(saved_window.term, t.id)
+                                        end
+                                    end
+
+                                    saved_window.outline = require("lazy.core.config").plugins["symbols-outline.nvim"]._.loaded
+                                            and require("symbols-outline").view:is_open()
+                                        or false
+
+                                    if saved_window.outline then
+                                        require("symbols-outline").toggle_outline()
+                                    end
+
+                                    vim.g.saved_window = saved_window
                                 end
+                                vim.g[key] = nil
+                                return
                             end
                             vim.g[key] = nil
                         end

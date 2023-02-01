@@ -12,6 +12,12 @@ function M.quit()
 
     -- get current buf
     local current_buf = vim.api.nvim_win_get_buf(0)
+
+    if vim.fn.buflisted(current_buf) ~= 1 then
+        vim.cmd.quit()
+        return
+    end
+
     if #listed_buffers > 1 and vim.tbl_contains(listed_buffers, current_buf) then
         vim.cmd.bnext()
         vim.cmd.bdelete(current_buf)
