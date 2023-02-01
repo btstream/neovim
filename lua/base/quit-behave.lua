@@ -15,14 +15,16 @@ function M.quit()
     if #listed_buffers > 1 and vim.tbl_contains(listed_buffers, current_buf) then
         vim.cmd.bnext()
         vim.cmd.bdelete(current_buf)
+    elseif #listed_buffers == 1 then
+        vim.cmd.quitall()
     else
         vim.cmd.quit()
     end
 end
 
-function M.setup()
-    vim.opt.confirm = true
-    vim.cmd([[cnoreabbrev q lua require("base.quit-behave").quit()<cr><cmd>echon ''<cr>]])
-end
+-- function M.setup()
+vim.opt.confirm = true
+vim.cmd([[cnoreabbrev q lua require("base.quit-behave").quit()<cr><cmd>echon ''<cr>]])
+-- end
 
 return M
