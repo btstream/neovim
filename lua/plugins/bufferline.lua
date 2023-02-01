@@ -33,13 +33,23 @@ return {
                                     for _, t in pairs(vim.g.saved_window.term) do
                                         local term = require("toggleterm.terminal").get(t)
                                         if not term:is_open() then
+                                            local origianl_open = term.on_open
+                                            term.on_open = function(t)
+                                                origianl_open(t)
+                                                vim.api.nvim_set_current_win(winid)
+                                                vim.cmd.buffer(bufnr)
+                                                vim.cmd.stopinsert()
+                                                t.on_open = origianl_open
+                                            end
                                             term:toggle()
                                         end
                                     end
 
                                     if vim.g.saved_window.neo_tree then
                                         vim.schedule(function()
-                                            require("plugins.neo-tree.utils").toggle(false)
+                                            if not require("plugins.neo-tree.utils").get_active_source() then
+                                                require("plugins.neo-tree.utils").toggle(false)
+                                            end
                                         end)
                                     end
 
@@ -48,11 +58,6 @@ return {
                                     end
 
                                     vim.g.saved_window = nil
-                                    vim.schedule(function()
-                                        -- vim.api.nvim_set_current_win(winid)
-                                        vim.fn.win_gotoid(winid)
-                                        vim.api.nvim_set_current_buf(bufnr)
-                                    end)
                                 else
                                     local saved_window = {}
 
