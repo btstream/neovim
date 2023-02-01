@@ -4,7 +4,7 @@ return {
     dependencies = "neovim/nvim-lspconfig",
     config = function()
         local navic_icons = {}
-        for k, v in ipairs(require("themes.icons").lsp_symbol_icons) do
+        for k, v in ipairs(require("themes.icons").lsp_symbols) do
             navic_icons[k] = (" %s "):format(v)
         end
         vim.g.navic_loaded = true

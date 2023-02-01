@@ -1,11 +1,6 @@
 local M = {}
 
-M.signs = {
-    Error = "",
-    Warn = "",
-    Hint = "",
-    Info = "",
-}
+M.signs = require("themes.icons").lsp_diagnostic_signs
 
 local function extend_open_floating_perview()
     local original = vim.lsp.util.open_floating_preview

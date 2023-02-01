@@ -74,7 +74,7 @@ return {
         event = "LspAttach",
         config = function()
             local symbols = {}
-            for k, v in pairs(require("themes.icons").lsp_symbol_icons) do
+            for k, v in pairs(require("themes.icons").lsp_symbols) do
                 symbols[k] = { icon = v }
             end
 

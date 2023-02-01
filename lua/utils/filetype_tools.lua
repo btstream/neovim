@@ -25,29 +25,7 @@ M._nonefiletypes = {
 }
 
 -- stylua: ignore
-M._icons = {
-    NvimTree           = "פּ ",
-    ["neo-tree"]       = "פּ ",
-    ["neo-tree-popup"] = "פּ ",
-    help               = "ﲉ ",
-    toggleterm         = " ",
-    Outline            = " ",
-    lazy               = " ",
-    dapui_watches      = " ",
-    dapui_config       = " ",
-    dapui_scopes       = " ",
-    dapui_breakpoints  = " ",
-    ["dap-repl"]       = " ",
-    dapui_console      = " ",
-    dapui_stacks       = " ",
-    default            = " ",
-    TelescopePrompt    = " ",
-    dashboard          = " ",
-    Lazygit            = " ",
-    mason              = " ",
-    spectre            = " ",
-    spectre_panel      = " ",
-}
+M._icons = require("themes.icons").filetype_icons
 
 local function add_none_filetype(ft)
     if not vim.tbl_contains(M._nonefiletypes, ft) then
