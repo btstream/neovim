@@ -23,7 +23,7 @@ return {
                 anchor = "SW",
                 border = "rounded",
                 -- 'editor' and 'win' will default to being centered
-                relative = "cursor",
+                relative = "editor",
 
                 -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
                 prefer_width = 30,
@@ -65,6 +65,7 @@ return {
                     print(vim.inspect(opts))
                     if opts.prompt == "New Name: " then
                         return {
+                            relative = "cursor",
                             win_options = {
                                 winhighlight = "NormalFloat:LspFloatWinNormal,FloatBorder:LspWinRenameBorder,FloatTitle:LspWinRenameTitle",
                             },
