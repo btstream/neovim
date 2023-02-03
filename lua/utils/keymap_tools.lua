@@ -27,10 +27,10 @@ function M.map(specs, bufnr)
 
         if bufnr then
             if keymap_spec[4] then
-                keymap_spec[4].bufnr = bufnr
+                keymap_spec[4].buffer = bufnr
             else
                 keymap_spec[4] = {
-                    bufnr = bufnr,
+                    buffer = bufnr,
                 }
             end
         end
