@@ -1,3 +1,4 @@
+-- TODO:fix keymap
 return {
     "michaelb/sniprun",
     build = "bash ./install.sh",

@@ -116,14 +116,14 @@ return {
         end
 
         --stylua: ignore
-        require("utils.keymap_tools").map({
-            { "n", "<Leader>fh", "<cmd>Telescope oldfiles<CR>"   , { desc = "Open file history" } }     ,
-            { "n", "<Leader>ff", "<cmd>Telescope find_files<CR>" , { desc = "Find files in cwd" } }     ,
-            { "n", "<Leader>tc", "<cmd>Telescope colorscheme<CR>", { desc = "Change colorscheme" } }    ,
-            { "n", "<Leader>fw", "<cmd>Telescope live_grep<CR>"  , { desc = "Find word in workspace" } },
-            { "n", "<Leader>cn", "<cmd>enew<CR>"                 , { desc = "Create new file" } }       ,
-            { "n", "<Leader>fp", "<cmd>Telescope projects<cr>"   , { desc = "Project history" } }       ,
-            { "n", "<Leader>ss", edit_config                     , { desc = "Open Settings" } }         ,
-        })
+        -- require("utils.keymap_tools").map({
+        --     { "n", "<Leader>fh", "<cmd>Telescope oldfiles<CR>"   , { desc = "Open file history" } }     ,
+        --     { "n", "<Leader>ff", "<cmd>Telescope find_files<CR>" , { desc = "Find files in cwd" } }     ,
+        --     { "n", "<Leader>tc", "<cmd>Telescope colorscheme<CR>", { desc = "Change colorscheme" } }    ,
+        --     { "n", "<Leader>fw", "<cmd>Telescope live_grep<CR>"  , { desc = "Find word in workspace" } },
+        --     { "n", "<Leader>cn", "<cmd>enew<CR>"                 , { desc = "Create new file" } }       ,
+        --     { "n", "<Leader>fp", "<cmd>Telescope projects<cr>"   , { desc = "Project history" } }       ,
+        --     { "n", "<Leader>ss", edit_config                     , { desc = "Open Settings" } }         ,
+        -- })
     end,
 }

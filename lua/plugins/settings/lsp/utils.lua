@@ -2,58 +2,6 @@
 
 local null_ls_registered_fts = nil
 
-local function set_desc(opts, desc)
-    opts["desc"] = desc
-end
-
-local attach_keys = function(client, bufnr)
-    -- Mappings.
-    local opts = { buffer = bufnr, silent = true }
-
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    require("utils.keymap_tools").map({
-        {
-            "n",
-            "gd",
-            '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>',
-            set_desc(opts, "goto definitions"),
-        },
-        { "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", set_desc(opts, "goto declaration") },
-        {
-            "n",
-            "gi",
-            '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>',
-            set_desc(opts, "goto implementations"),
-        },
-        {
-            "n",
-            "gt",
-            '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>',
-            set_desc(opts, "goto type definitions"),
-        },
-        { "n", "gr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>', set_desc(opts, "get references") },
-        -- buf_{"n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts},
-        { "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", set_desc(opts, "rename") },
-
-        -- diagnostic
-        { "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", set_desc(opts, "goto prev diagnostic") },
-        { "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", set_desc(opts, "goto next diagnostic") },
-        {
-            "n",
-            "ge",
-            '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line", })<cr>',
-            set_desc(opts, "get current line's diagnostic"),
-        },
-        { "n", "gE", "<cmd>Telescope diagnostics<cr>", set_desc(opts, "get diagnostics of workspace") },
-
-        -- hover
-        { "n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts },
-        -- code actions
-        { "n", "<C-k>.", "<cmd>lua vim.lsp.buf.code_action()<cr>", set_desc(opts, "code actions") },
-        { "v", "<C-k>.", "<cmd>lua vim.lsp.buf.range_code_actions()<cr>", set_desc(opts, "code_action") },
-    }, bufnr)
-end
-
 local M = {}
 
 local augroup = vim.api.nvim_create_augroup("LspFormat", {})
@@ -62,7 +10,8 @@ local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 --- @param bufnr number buffer handler
 M.on_attach = function(client, bufnr)
     -- require("lsp-status").on_attach(client, bufnr)
-    attach_keys(client, bufnr)
+    -- attach_keys(client, bufnr)
+    require("utils.keymap_tools").map(require("keymaps").lsp, bufnr)
 
     if client.name == "null-ls" and null_ls_registered_fts == nil then
         null_ls_registered_fts = require("null-ls.sources").get_filetypes()

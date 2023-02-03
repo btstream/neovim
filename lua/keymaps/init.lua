@@ -1,6 +1,6 @@
 local function get(key)
     local settings = require("settings")
-    local s, config = pcall(require, "keymaps." .. key)
+    local s, config = pcall(require, "keymaps.default." .. key)
     config = s and config or nil
 
     if settings.keys and settings.keys[key] and vim.tbl_count(settings.keys[key]) > 0 then
