@@ -34,7 +34,7 @@ end
 
 -- function M.setup()
 vim.opt.confirm = true
-vim.cmd([[cnoreabbrev q lua require("base.quit-behave").quit()<cr><cmd>echon ''<cr>]])
+vim.cmd([[cnoreabbrev <silent> q lua require("base.quit-behave").quit()<cr>]])
 -- end
 
 return M
