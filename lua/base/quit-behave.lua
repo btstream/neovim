@@ -22,6 +22,10 @@ function M.quit()
         vim.cmd.bnext()
         vim.cmd.bdelete(current_buf)
     elseif #listed_buffers == 1 then
+        if vim.fn.expand("%f") == "[Command Line]" then
+            vim.cmd("")
+            return
+        end
         vim.cmd.quitall()
     else
         vim.cmd.quit()

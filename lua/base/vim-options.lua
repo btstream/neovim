@@ -81,13 +81,31 @@ opt.spell = false
 opt.splitright = true
 opt.autoread = true
 -- auto commands to reload buffer
-vim.cmd([[
-augroup reladbuffer
-    au!
-    au CursorHold,CursorHoldI * checktime
-    au FocusGained,BufEnter * :checktime
-augroup end
-]])
+-- vim.cmd([[
+-- augroup reladbuffer
+--     au!
+--     au CursorHold,CursorHoldI * checktime
+--     au FocusGained,BufEnter * :checktime
+-- augroup end
+-- ]])
+vim.api.nvim_create_autocmd({ "CursorHold, CursorHoldI, FocusGained, BufEnter" }, {
+    pattern = "*",
+    callback = function()
+        local bufnr = tonumber(vim.fn.expand("<abuf>"))
+        local name = vim.api.nvim_buf_get_name(bufnr)
+        if
+            name == ""
+            -- Only check for normal files
+            or vim.bo[bufnr].buftype ~= ""
+            -- To avoid: E211: File "..." no longer available
+            or not vim.fn.filereadable(name)
+        then
+            return
+        end
+        -- only check for the current buffer
+        vim.cmd(bufnr .. "checktime")
+    end,
+})
 
 ----------------------------------------------------------------------
 --                               keys                               --

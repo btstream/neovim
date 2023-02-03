@@ -110,6 +110,7 @@ M.filetype_icons       = {
     mason              = " ",
     spectre            = " ",
     spectre_panel      = " ",
+    cmdline            = " ",
 }
 -- stylua: ignore end
 

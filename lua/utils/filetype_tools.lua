@@ -22,6 +22,7 @@ M._nonefiletypes = {
     "spectre",
     "spectre_panel",
     "directory",
+    "cmdline",
 }
 
 -- stylua: ignore
