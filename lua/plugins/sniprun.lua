@@ -6,8 +6,7 @@ return {
     end,
     event = "LspAttach",
     config = function()
-        local map = vim.keymap.set
         require("sniprun").setup({ display = { "Classic" } })
-        map("n", "<F5>", "<cmd>%SnipRun<CR>")
+        require("utils.keymap_tools").map({ "n", "<F5>", "<cmd>%SnipRun<CR>" })
     end,
 }

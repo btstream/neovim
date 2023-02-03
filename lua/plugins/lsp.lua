@@ -19,33 +19,6 @@ return {
         end,
     },
 
-    -- trouble
-    {
-        "folke/trouble.nvim",
-        event = "LspAttach",
-        dependencies = "nvim-tree/nvim-web-devicons",
-        config = function()
-            require("trouble").setup({ auto_close = true, use_diagnostic_signs = true, indent_lines = false })
-
-            vim.keymap.set("n", "<C-k><C-h>", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
-            vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
-            vim.keymap.set(
-                "n",
-                "<leader>xw",
-                "<cmd>Trouble workspace_diagnostics<cr>",
-                { silent = true, noremap = true }
-            )
-            vim.keymap.set(
-                "n",
-                "<leader>xd",
-                "<cmd>Trouble document_diagnostics<cr>",
-                { silent = true, noremap = true }
-            )
-            vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist<cr>", { silent = true, noremap = true })
-            vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", { silent = true, noremap = true })
-        end,
-    },
-
     {
         "kosayoda/nvim-lightbulb",
         dependencies = "antoinemadec/FixCursorHold.nvim",

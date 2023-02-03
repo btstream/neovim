@@ -3,8 +3,6 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     ft = "http",
     config = function()
-        local map = vim.keymap.set
-
         require("rest-nvim").setup({
             -- Open request results in a horizontal split
             result_split_horizontal = false,
@@ -25,7 +23,11 @@ return {
             yank_dry_run = true,
         })
 
-        map("n", "<leader>rr", ":lua require('rest-nvim').run()<CR>", { desc = "run http request" })
-        -- require("plugins.settings.rest_nvim")
+        require("utils.keymap_tools").map({
+            "n",
+            "<leader>rr",
+            ":lua require('rest-nvim').run()<CR>",
+            { desc = "run http request" },
+        })
     end,
 }

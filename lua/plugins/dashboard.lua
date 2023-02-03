@@ -110,18 +110,19 @@ return {
 
         require("dashboard").setup(hyper)
 
-        -- keymap
-        local map = vim.keymap.set
-        map("n", "<Leader>fh", "<cmd>Telescope oldfiles<CR>")
-        map("n", "<Leader>ff", "<cmd>Telescope find_files<CR>")
-        map("n", "<Leader>tc", "<cmd>Telescope colorscheme<CR>")
-        map("n", "<Leader>fw", "<cmd>Telescope live_grep<CR>")
-        map("n", "<Leader>cn", "<cmd>enew<CR>")
-        map("n", "<Leader>fp", "<cmd>Telescope projects<cr>")
-        map("n", "<Leader>ss", edit_config)
-
         if vim.fn.argc() == 0 and vim.fn.line2byte("$") == -1 then
             require("dashboard"):instance()
         end
+
+        --stylua: ignore
+        require("utils.keymap_tools").map({
+            { "n", "<Leader>fh", "<cmd>Telescope oldfiles<CR>"   , { desc = "Open file history" } }     ,
+            { "n", "<Leader>ff", "<cmd>Telescope find_files<CR>" , { desc = "Find files in cwd" } }     ,
+            { "n", "<Leader>tc", "<cmd>Telescope colorscheme<CR>", { desc = "Change colorscheme" } }    ,
+            { "n", "<Leader>fw", "<cmd>Telescope live_grep<CR>"  , { desc = "Find word in workspace" } },
+            { "n", "<Leader>cn", "<cmd>enew<CR>"                 , { desc = "Create new file" } }       ,
+            { "n", "<Leader>fp", "<cmd>Telescope projects<cr>"   , { desc = "Project history" } }       ,
+            { "n", "<Leader>ss", edit_config                     , { desc = "Open Settings" } }         ,
+        })
     end,
 }

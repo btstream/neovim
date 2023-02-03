@@ -209,38 +209,25 @@ return {
             highlights = require("themes.bufferline").highlights,
         })
 
-        local map = vim.keymap.set
+        -- local map = vim.keymap.set
 
         -- Move to previous/next
-        map("n", "<A-,>", "<cmd>BufferLineCyclePrev<CR>")
-        map("n", "<A-.>", "<cmd>BufferLineCycleNext<CR>")
-        -- Re-order to previous/next
-        -- map('n', '<A-<>', ':BufferMovePrevious<CR>')
-        -- map('n', '<A->>', ' :BufferMoveNext<CR>')
-        -- Goto buffer in position...
-        map("n", "<A-1>", "<cmd>BufferLineGoToBuffer 1<CR>")
-        map("n", "<A-2>", "<cmd>BufferLineGoToBuffer 2<CR>")
-        map("n", "<A-3>", "<cmd>BufferLineGoToBuffer 3<CR>")
-        map("n", "<A-4>", "<cmd>BufferLineGoToBuffer 4<CR>")
-        map("n", "<A-5>", "<cmd>BufferLineGoToBuffer 5<CR>")
-        map("n", "<A-6>", "<cmd>BufferLineGoToBuffer 6<CR>")
-        map("n", "<A-7>", "<cmd>BufferLineGoToBuffer 7<CR>")
-        map("n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<CR>")
-        map("n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>")
-        -- map('n', '<A-0>', ':BufferLast<CR>')
-        -- Close buffer
-        map({ "n", "i" }, "<A-w>", "<cmd>bdelete!<CR><cmd>bprevious<cr>")
-        -- Wipeout buffer
-        --                 :BufferWipeout<CR>
-        -- Close commands
-        --                 :BufferCloseAllButCurrent<CR>
-        --                 :BufferCloseBuffersLeft<CR>
-        --                 :BufferCloseBuffersRight<CR>
-        -- Magic buffer-picking mode
-        map("n", "<Space>pp", "<cmd>BufferLinePick<CR>")
-        -- Sort automatically by...
-        -- map('n', '<Space>bb', ':BufferOrderByBufferNumber<CR>')
-        -- map('n', '<Space>bd', ':BufferOrderByDirectory<CR>')
-        -- map('n', '<Space>bl', ':BufferOrderByLanguage<CR>')
+        -- stylua: ignore
+        require("utils.keymap_tools").map({
+            { "n", "<A-,>", "<cmd>BufferLineCyclePrev<CR>" },
+            { "n", "<A-.>", "<cmd>BufferLineCycleNext<CR>" },
+            { "n", "<A-1>", "<cmd>BufferLineGoToBuffer 1<CR>" },
+            { "n", "<A-2>", "<cmd>BufferLineGoToBuffer 2<CR>" },
+            { "n", "<A-3>", "<cmd>BufferLineGoToBuffer 3<CR>" },
+            { "n", "<A-4>", "<cmd>BufferLineGoToBuffer 4<CR>" },
+            { "n", "<A-5>", "<cmd>BufferLineGoToBuffer 5<CR>" },
+            { "n", "<A-6>", "<cmd>BufferLineGoToBuffer 6<CR>" },
+            { "n", "<A-7>", "<cmd>BufferLineGoToBuffer 7<CR>" },
+            { "n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<CR>" },
+            { "n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>" },
+            { "n", "<Space>pp", "<cmd>BufferLinePick<CR>" },
+
+            { { "n", "i" }, "<A-w>", "<cmd>bdelete!<CR><cmd>bprevious<cr>" },
+        })
     end,
 }

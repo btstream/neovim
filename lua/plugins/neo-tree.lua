@@ -64,36 +64,38 @@ return {
                             require("plugins.neo-tree.utils").goto_source(index)
                         end
                     end
-                    local map = vim.keymap.set
-                    map("n", "<A-1>", go_to(1))
-                    map("n", "<A-2>", go_to(2))
-                    map("n", "<A-3>", go_to(3))
-                    map("n", "<A-4>", go_to(4))
-                    map("n", "<A-5>", go_to(5))
-                    map("n", "<A-6>", go_to(6))
-                    map("n", "<A-7>", go_to(7))
-                    map("n", "<A-8>", go_to(8))
-                    map("n", "<A-9>", go_to(9))
 
-                    map("n", "<A-,>", '<cmd>lua require("plugins.neo-tree.utils").goto_previous_source()<CR>')
-                    map("n", "<A-.>", '<cmd>lua require("plugins.neo-tree.utils").goto_next_source()<CR>')
+                    require("utils.keymap_tools").map({
+                        { "n", "<A-1>", go_to(1) },
+                        { "n", "<A-2>", go_to(2) },
+                        { "n", "<A-3>", go_to(3) },
+                        { "n", "<A-4>", go_to(4) },
+                        { "n", "<A-5>", go_to(5) },
+                        { "n", "<A-6>", go_to(6) },
+                        { "n", "<A-7>", go_to(7) },
+                        { "n", "<A-8>", go_to(8) },
+                        { "n", "<A-9>", go_to(9) },
+                        { "n", "<A-,>", '<cmd>lua require("plugins.neo-tree.utils").goto_previous_source()<CR>' },
+                        { "n", "<A-.>", '<cmd>lua require("plugins.neo-tree.utils").goto_next_source()<CR>' },
+                    })
                 end,
             },
             {
                 event = "neo_tree_buffer_leave",
                 handler = function()
-                    local map = vim.keymap.set
-                    map("n", "<A-,>", "<cmd>BufferLineCyclePrev<CR>")
-                    map("n", "<A-.>", "<cmd>BufferLineCycleNext<CR>")
-                    map("n", "<A-1>", "<cmd>BufferLineGoToBuffer 1<CR>")
-                    map("n", "<A-2>", "<cmd>BufferLineGoToBuffer 2<CR>")
-                    map("n", "<A-3>", "<cmd>BufferLineGoToBuffer 3<CR>")
-                    map("n", "<A-4>", "<cmd>BufferLineGoToBuffer 4<CR>")
-                    map("n", "<A-5>", "<cmd>BufferLineGoToBuffer 5<CR>")
-                    map("n", "<A-6>", "<cmd>BufferLineGoToBuffer 6<CR>")
-                    map("n", "<A-7>", "<cmd>BufferLineGoToBuffer 7<CR>")
-                    map("n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<CR>")
-                    map("n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>")
+                    require("utils.keymap_tools").map({
+                        { "n", "<A-,>", "<cmd>BufferLineCyclePrev<CR>" },
+                        { "n", "<A-.>", "<cmd>BufferLineCycleNext<CR>" },
+                        { "n", "<A-1>", "<cmd>BufferLineGoToBuffer 1<CR>" },
+                        { "n", "<A-2>", "<cmd>BufferLineGoToBuffer 2<CR>" },
+                        { "n", "<A-3>", "<cmd>BufferLineGoToBuffer 3<CR>" },
+                        { "n", "<A-4>", "<cmd>BufferLineGoToBuffer 4<CR>" },
+                        { "n", "<A-5>", "<cmd>BufferLineGoToBuffer 5<CR>" },
+                        { "n", "<A-6>", "<cmd>BufferLineGoToBuffer 6<CR>" },
+                        { "n", "<A-7>", "<cmd>BufferLineGoToBuffer 7<CR>" },
+                        { "n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<CR>" },
+                        { "n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>" },
+                    })
                 end,
             },
         },
