@@ -12,7 +12,6 @@ end
 ----------------------------------------------------------------------
 --                       Generating settings                        --
 ----------------------------------------------------------------------
-
 local settings = {}
 settings.theme = {
     color = "base16",
@@ -24,7 +23,7 @@ settings.theme = {
 
 return setmetatable({}, {
     __index = function(_, key)
-        if key == "with_custom" then
+        if key == "with" then
             return function(config)
                 settings = vim.tbl_deep_extend("force", settings, config)
             end

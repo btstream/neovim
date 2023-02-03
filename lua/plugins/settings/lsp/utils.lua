@@ -51,7 +51,7 @@ local attach_keys = function(client, bufnr)
         -- code actions
         { "n", "<C-k>.", "<cmd>lua vim.lsp.buf.code_action()<cr>", set_desc(opts, "code actions") },
         { "v", "<C-k>.", "<cmd>lua vim.lsp.buf.range_code_actions()<cr>", set_desc(opts, "code_action") },
-    })
+    }, bufnr)
 end
 
 local M = {}

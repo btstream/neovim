@@ -2,10 +2,10 @@
 --                       Config basic key map                       --
 ----------------------------------------------------------------------
 
-local map = require("utils.keymap_tools").map
+-- local map = require("utils.keymap_tools").map
 local m = { "i", "n", "v" }
 
-map({
+return {
     {
         { "n", "i" },
         "<C-s>",
@@ -58,4 +58,4 @@ map({
     { "v", "<A-k>", "<cmd>m '<-2<CR>gv=gv", { silent = true } },
     { "v", "<C-down>", "<cmd>m '>+1<CR>gv=gv", { silent = true } },
     { "v", "<C-up>", "<cmd>m '<-2<CR>gv=gv", { silent = true } },
-})
+}
