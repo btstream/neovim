@@ -80,6 +80,7 @@ local function init(module)
                 table.insert(generated_keys.actions, k)
                 -- table.insert(generated_keys.lazykeys, to_lazykey(k))
             elseif type == M._keytype.LazyWithAction then
+                k.lazy = true
                 table.insert(generated_keys.actions, k)
                 table.insert(generated_keys.lazykeys, s)
             else
@@ -92,9 +93,13 @@ local function init(module)
 end
 
 local function set(module)
-    return function(bufnr)
+    return function(bufnr, ignore_lazy)
         init(module) --make sure key is parsed, if parsed, do nothing
         for _, v in pairs(M._parsed_spec[module].actions) do
+            if ignore_lazy and v.lazy then
+                goto continue
+            end
+
             if bufnr then
                 if v[4] then
                     v[4].buffer = bufnr
@@ -103,6 +108,8 @@ local function set(module)
                 end
             end
             vim.keymap.set(unpack(v))
+
+            ::continue::
         end
     end
 end
