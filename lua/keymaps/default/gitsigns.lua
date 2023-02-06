@@ -7,7 +7,7 @@ return {
                 return "]c"
             end
             vim.schedule(function()
-                gs.next_hunk()
+                package.loaded.gitsigns.next_hunk()
             end)
             return "<Ignore>"
         end,
@@ -22,7 +22,7 @@ return {
                 return "[c"
             end
             vim.schedule(function()
-                gs.prev_hunk()
+                package.loaded.gitsigns.prev_hunk()
             end)
             return "<Ignore>"
         end,
