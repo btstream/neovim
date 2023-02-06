@@ -1,7 +1,7 @@
 return {
     "gbprod/cutlass.nvim",
     event = "User BufReadRealFilePost",
-    opts = { {
+    opts = {
         cut_key = "x",
-    } },
+    },
 }
