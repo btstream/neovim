@@ -1,4 +1,3 @@
--- TODO:fix keymap
 return {
     "rlue/vim-barbaric",
     cond = function()

@@ -13,4 +13,13 @@ return {
     { "n", "<Space>pp", "<cmd>BufferLinePick<CR>" },
 
     { { "n", "i" }, "<A-w>", "<cmd>bdelete!<CR><cmd>bprevious<cr>" },
+
+    {
+        mode = { "n", "i" },
+        "<C-k>b",
+        function()
+            require("plugins.neo-tree.utils").toggle()
+        end,
+        desc = "open sidebar",
+    },
 }

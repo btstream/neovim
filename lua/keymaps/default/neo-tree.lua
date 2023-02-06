@@ -16,4 +16,13 @@ return {
     { "n", "<A-9>", go_to(9) },
     { "n", "<A-,>", '<cmd>lua require("plugins.neo-tree.utils").goto_previous_source()<CR>' },
     { "n", "<A-.>", '<cmd>lua require("plugins.neo-tree.utils").goto_next_source()<CR>' },
+
+    {
+        mode = { "n", "i" },
+        "<C-k>b",
+        function()
+            require("plugins.neo-tree.utils").toggle()
+        end,
+        desc = "open sidebar",
+    },
 }

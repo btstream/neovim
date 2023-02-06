@@ -1,4 +1,3 @@
--- TODO:fix keymap
 return {
     "NTBBloodbath/rest.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -24,11 +23,6 @@ return {
             yank_dry_run = true,
         })
 
-        require("utils.keymap_tools").map({
-            "n",
-            "<leader>rr",
-            ":lua require('rest-nvim').run()<CR>",
-            { desc = "run http request" },
-        })
+        require("keymaps").rest.set()
     end,
 }

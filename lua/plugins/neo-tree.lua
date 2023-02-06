@@ -5,16 +5,17 @@ return {
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
     },
-    keys = {
-        {
-            mode = { "n", "i" },
-            "<C-k>b",
-            function()
-                require("plugins.neo-tree.utils").toggle()
-            end,
-            desc = "open sidebar",
-        },
-    },
+    -- keys = {
+    --     {
+    --         mode = { "n", "i" },
+    --         "<C-k>b",
+    --         function()
+    --             require("plugins.neo-tree.utils").toggle()
+    --         end,
+    --         desc = "open sidebar",
+    --     },
+    -- },
+    keys = require("keymaps")["neo-tree"].lazy_keys(),
     opts = {
         enable_refresh_on_write = false,
         default_component_configs = {
@@ -59,13 +60,15 @@ return {
             {
                 event = "neo_tree_buffer_enter",
                 handler = function()
-                    require("utils.keymap_tools").map(require("keymaps")["neo-tree"])
+                    -- require("utils.keymap_tools").map(require("keymaps")["neo-tree"])
+                    require("keymaps")["neo-tree"].set()
                 end,
             },
             {
                 event = "neo_tree_buffer_leave",
                 handler = function()
-                    require("utils.keymap_tools").map(require("keymaps").bufferline)
+                    require("keymaps").bufferline.set()
+                    -- require("utils.keymap_tools").map(require("keymaps").bufferline)
                 end,
             },
         },

@@ -11,7 +11,8 @@ local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 M.on_attach = function(client, bufnr)
     -- require("lsp-status").on_attach(client, bufnr)
     -- attach_keys(client, bufnr)
-    require("utils.keymap_tools").map(require("keymaps").lsp, bufnr)
+    -- require("utils.keymap_tools").map(require("keymaps").lsp, bufnr)
+    require("keymaps").lsp.set(bufnr)
 
     if client.name == "null-ls" and null_ls_registered_fts == nil then
         null_ls_registered_fts = require("null-ls.sources").get_filetypes()

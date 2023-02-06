@@ -213,6 +213,7 @@ return {
 
         -- Move to previous/next
         -- stylua: ignore
-        require("utils.keymap_tools").map(require("keymaps").bufferline)
+        -- require("utils.keymap_tools").map(require("keymaps").bufferline)
+        require("keymaps").bufferline.set()
     end,
 }

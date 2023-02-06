@@ -144,6 +144,6 @@ return {
         --                           set keymaps                            --
         ----------------------------------------------------------------------
         --stylua: ignore
-        require("utils.keymap_tools").map(require("keymaps").cmp)
+        require("keymaps").cmp.set()
     end,
 }

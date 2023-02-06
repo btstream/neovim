@@ -1,4 +1,3 @@
--- TODO:fix keymap
 return {
     "michaelb/sniprun",
     build = "bash ./install.sh",
@@ -8,6 +7,6 @@ return {
     event = "LspAttach",
     config = function()
         require("sniprun").setup({ display = { "Classic" } })
-        require("utils.keymap_tools").map({ "n", "<F5>", "<cmd>%SnipRun<CR>" })
+        require("keymaps").sniprun.set()
     end,
 }

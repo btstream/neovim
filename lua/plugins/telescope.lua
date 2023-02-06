@@ -14,7 +14,7 @@ return {
         },
     },
     cmd = "Telescope",
-    keys = require("utils.keymap_tools").to_lazy_key(require("keymaps").telescope),
+    keys = require("keymaps").telescope.lazy_keys(),
     config = function()
         -- require("plugins.settings.telescope")
         local actions = require("telescope.actions")
