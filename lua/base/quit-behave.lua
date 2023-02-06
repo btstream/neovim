@@ -13,8 +13,15 @@ function M.quit()
     -- get current buf
     local current_buf = vim.api.nvim_win_get_buf(0)
 
+    -- not listed buf, quit directly
     if vim.fn.buflisted(current_buf) ~= 1 then
         vim.cmd.quit()
+        return
+    end
+
+    -- if command line window, close directly
+    if vim.fn.expand("%f") == "[Command Line]" then
+        vim.cmd("")
         return
     end
 
@@ -22,10 +29,6 @@ function M.quit()
         vim.cmd.bnext()
         vim.cmd.bdelete(current_buf)
     elseif #listed_buffers == 1 then
-        if vim.fn.expand("%f") == "[Command Line]" then
-            vim.cmd("")
-            return
-        end
         vim.cmd.quitall()
     else
         vim.cmd.quit()
