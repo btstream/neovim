@@ -3,15 +3,6 @@ return {
     event = "User LazyVimStarted",
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
     config = function()
-        local function edit_config()
-            vim.cmd("e " .. vim.fn.stdpath("config") .. "/" .. "init.lua")
-        end
-
-        local function version()
-            local v = vim.version()
-            return string.format("v%s.%s.%s%s", v.major, v.minor, v.patch, v.prerelease and "-dev" or "")
-        end
-
         ----------------------------------------------------------------------
         --                        header and footer                         --
         ----------------------------------------------------------------------
@@ -33,10 +24,11 @@ return {
         --     "   ╚╬╬▒        ╙╣╣▓▓▓╙                                                                             ",
         --     "     ╙▒          ╣▀└                                                                               ",
         -- }
-        local header = require("settings").banner and require("settings").banner
-            or {
+        local function banner()
+            local version = " driven by " .. vim.split(vim.api.nvim_command_output("version"), "\n")[2]
+            local ret = {
                 "",
-                "                                                 🐀 🐅 🐖 🐓 To Taotao",
+                "   🐀 🐅 🐖 🐓 To Taotao, by",
                 "   ██████╗ ████████╗███████╗████████╗██████╗ ███████╗ █████╗ ███╗   ███╗",
                 "   ██╔══██╗╚══██╔══╝██╔════╝╚══██╔══╝██╔══██╗██╔════╝██╔══██╗████╗ ████║",
                 "   ██████╔╝   ██║   ███████╗   ██║   ██████╔╝█████╗  ███████║██╔████╔██║",
@@ -44,13 +36,18 @@ return {
                 "   ██████╔╝   ██║   ███████║   ██║   ██║  ██║███████╗██║  ██║██║ ╚═╝ ██║",
                 "   ╚═════╝    ╚═╝   ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝",
             }
+            table.insert(ret, version)
+            table.insert(ret, "")
+            return ret
+        end
+        local header = require("settings").banner and require("settings").banner or banner()
 
         -- generate footer info
         local lazy_stats = require("lazy").stats()
         local footer = {
             "",
-            string.format("🚀 version %s started in %.2fms", version(), lazy_stats.startuptime),
-            string.format("🧩 %s of %s plugins loaded", lazy_stats.loaded, lazy_stats.count),
+            string.format("🚀 started in %.2fms", lazy_stats.startuptime)
+                .. string.format(", with %s of %s plugins loaded", lazy_stats.loaded, lazy_stats.count),
         }
 
         ----------------------------------------------------------------------
