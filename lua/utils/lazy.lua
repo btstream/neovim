@@ -17,7 +17,15 @@ function M.update()
             })
             :wait(function()
                 vim.notify(
-                    string.format("These plugins has been updated: \n%s", table.concat(outdated, "\n")),
+                    string.format(
+                        "These plugins has been updated: \n%s",
+                        table.concat(
+                            vim.tbl_map(function(t)
+                                return "  * " .. t
+                            end, outdated),
+                            "\n"
+                        )
+                    ),
                     vim.log.levels.INFO,
                     { title = "Plugins Manager" }
                 )
