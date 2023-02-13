@@ -3,19 +3,26 @@ return {
         "neovim/nvim-lspconfig",
         event = { "User LoadLsp" },
         dependencies = {
-            "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            "WhoIsSethDaniel/mason-tool-installer.nvim",
             "simrat39/rust-tools.nvim",
             "mfussenegger/nvim-jdtls",
             "tamago324/nlsp-settings.nvim",
             "onsails/lspkind-nvim",
         },
+        config = function()
+            require("plugins.settings.lsp")
+        end,
+    },
+
+    {
+        "williamboman/mason.nvim",
+        event = "User LoadMason",
+        dependencies = { "WhoIsSethDaniel/mason-tool-installer.nvim" },
         build = function()
             require("plugins.settings.lsp.mason")
         end,
         config = function()
-            require("plugins.settings.lsp")
+            require("plugins.settings.lsp.mason")
         end,
     },
 

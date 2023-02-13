@@ -55,8 +55,9 @@ vim.api.nvim_create_autocmd("User", {
     pattern = { "LazyVimStarted" },
     callback = function()
         vim.defer_fn(function()
+            vim.cmd("do User LoadMason")
             require("utils.lazy").update()
-        end, 1000)
+        end, 2000)
     end,
 })
 
