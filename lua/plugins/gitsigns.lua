@@ -32,7 +32,7 @@ return {
                 delay = 200,
                 ignore_whitespace = false,
             },
-            current_line_blame_formatter = "  <author>, <author_time:%Y-%m-%d> - <summary>",
+            current_line_blame_formatter = "   <author>, <author_time:%Y-%m-%d> - <summary>",
             preview_config = {
                 -- Options passed to nvim_open_win
                 border = "rounded",
