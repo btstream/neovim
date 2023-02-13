@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
 
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
     on_init = function(client)
         local settings = vim.fn.getcwd() == vim.fn.stdpath("config")
                 -- s.Lua["diagnostics"] = { globals = { "vim" } }

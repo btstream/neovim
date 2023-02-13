@@ -8,7 +8,7 @@ local _servers = {
     "html",
     "vuels",
     "vimls",
-    "sumneko_lua",
+    "lua-language-server",
     "fortls",
     "lemminx",
     "clangd",
