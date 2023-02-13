@@ -3,6 +3,7 @@ return {
         "neovim/nvim-lspconfig",
         event = { "User LoadLsp" },
         dependencies = {
+            "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "simrat39/rust-tools.nvim",
             "mfussenegger/nvim-jdtls",
