@@ -15,6 +15,12 @@ local _servers = {
     "codelldb",
     "java-debug-adapter",
 }
+
+if vim.fn.has("win32") == 1 then
+    table.insert(_servers, "stylua")
+    table.insert(_servers, "jq")
+end
+
 local ensure_installed = {}
 local lspconfig_to_packages = require("mason-lspconfig.mappings.server").lspconfig_to_package
 for _, value in ipairs(_servers) do
