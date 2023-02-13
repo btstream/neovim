@@ -49,6 +49,9 @@ return {
                                                 return true
                                             end,
                                         })
+                                        if #vim.g.saved_window.term == 0 then
+                                            vim.cmd("do User OpenOutline")
+                                        end
                                     end
 
                                     for _, t in pairs(vim.g.saved_window.term) do
@@ -121,21 +124,21 @@ return {
 
                         for _, t in pairs(terms) do
                             if t.bufnr == current_buf then
-                                if t.direction == "horizontal" then
-                                    vim.cmd.wincmd("k")
-                                    break
-                                end
-
-                                if t.direction == "vertical" then
-                                    vim.cmd.wincmd("h")
-                                    break
-                                end
-
                                 if t.direction == "float" then
                                     t:close()
                                     break
                                 end
                             end
+                        end
+                    end
+
+                    local windows = vim.api.nvim_tabpage_list_wins(0)
+                    for _, w in pairs(windows) do
+                        if vim.api.nvim_win_get_buf(w) == bufnr then
+                            vim.api.nvim_set_current_win(w)
+                            vim.cmd.buffer(bufnr)
+                            vim.cmd.stopinsert()
+                            break
                         end
                     end
 
