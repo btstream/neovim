@@ -10,7 +10,7 @@ return {
                 numbers = "ordinal", -- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
                 --- @deprecated, please specify numbers as a function to customize the styling
                 -- number_style = "superscript" | "subscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
-                close_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
+                close_command = require("base.quit-behave").quit, --"bdelete! %d", -- can be a string | function, see "Mouse actions"
                 right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
                 -- left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
                 left_mouse_command = function(bufnr)
