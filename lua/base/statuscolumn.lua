@@ -1,10 +1,42 @@
 local opt = vim.opt
-
 opt.foldcolumn = "0"
 opt.foldnestmax = 0
 opt.foldlevel = 99
 opt.foldenable = true
 opt.foldlevelstart = 99
+
+local ffi = require("ffi")
+ffi.cdef([[
+    typedef struct {} Error;
+    typedef struct {} win_T;
+    typedef struct {
+        int start;  // line number where deepest fold starts
+        int level;  // fold level, when zero other fields are N/A
+        int llevel; // lowest level that starts in v:lnum
+        int lines;  // number of lines from v:lnum to end of closed fold
+    } foldinfo_T;
+    foldinfo_T fold_info(win_T* wp, int lnum);
+    win_T *find_window_by_handle(int Window, Error *err);
+    int compute_foldcolumn(win_T *wp, int col);
+    int win_col_off(win_T *wp);
+]])
+
+function _G.get_foldsign()
+    local wp = ffi.C.find_window_by_handle(0, ffi.new("Error"))
+    local fold_info = ffi.C.fold_info(wp, vim.v.lnum)
+
+    if fold_info.start == 0 then
+        return " "
+    elseif fold_info.start == vim.v.lnum then
+        if fold_info.lines > 0 then
+            return ""
+        else
+            return ""
+        end
+    else
+        return " "
+    end
+end
 
 function _G.on_fold_sign_click(_, click, button)
     if click == 1 and button == "l" then
@@ -14,7 +46,10 @@ function _G.on_fold_sign_click(_, click, button)
         -- move cursor to current line of mouse and fold current fold
         local lnum = vim.fn.getmousepos().line
 
-        if vim.fn.foldlevel(lnum) > vim.fn.foldlevel(lnum - 1) then
+        local wp = ffi.C.find_window_by_handle(0, ffi.new("Error"))
+        local fold_info = ffi.C.fold_info(wp, lnum)
+
+        if fold_info.start == lnum then
             local bufnum = vim.api.nvim_get_current_buf()
             local newpos = { bufnum, lnum, 0, 0 }
             vim.fn.setpos(".", newpos)
@@ -26,11 +61,7 @@ function _G.on_fold_sign_click(_, click, button)
     end
 end
 
-opt.statuscolumn = " %=%l %s "
--- .. "%#FoldColumn#%@v:lua.on_fold_sign_click@%{"
--- .. "foldlevel(v:lnum) > foldlevel(v:lnum - 1) "
--- .. '? (foldclosed(v:lnum) == -1 ? "" : "") : " " '
--- .. "}%T%* "
+opt.statuscolumn = " %=%l %s" .. "%#FoldColumn#%@v:lua.on_fold_sign_click@%{%" .. "v:lua.get_foldsign()" .. "%}%T%* "
 
 -- disable statuscolumn for none file types
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
