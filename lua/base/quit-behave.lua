@@ -1,6 +1,6 @@
 local M = {}
 
-function M.quit()
+function M.quit(buf)
     -- get all listed bufs
     local buffers = vim.api.nvim_list_bufs()
     local listed_buffers = {}
@@ -11,10 +11,10 @@ function M.quit()
     end
 
     -- get current buf
-    local current_buf = vim.api.nvim_win_get_buf(0)
+    local target_buf = buf ~= nil and buf or vim.api.nvim_win_get_buf(0)
 
     -- not listed buf, quit directly
-    if vim.fn.buflisted(current_buf) ~= 1 then
+    if vim.fn.buflisted(target_buf) ~= 1 then
         vim.cmd.quit()
         return
     end
@@ -25,9 +25,15 @@ function M.quit()
         return
     end
 
-    if #listed_buffers > 1 and vim.tbl_contains(listed_buffers, current_buf) then
-        vim.cmd.bnext()
-        vim.cmd.bdelete(current_buf)
+    if #listed_buffers > 1 and vim.tbl_contains(listed_buffers, target_buf) then
+        local current_buf = vim.api.nvim_get_current_buf()
+
+        -- if active buf, just move to another buffer, delete it
+        if current_buf == target_buf then
+            vim.cmd.bnext()
+        end
+        vim.cmd("bdelete! " .. target_buf)
+        return true
     elseif #listed_buffers == 1 then
         vim.cmd.quitall()
     else
