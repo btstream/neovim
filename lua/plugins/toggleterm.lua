@@ -41,6 +41,7 @@ return {
 
                 -- quirk to disable highlight of sidebars
                 -- vim.cmd("doautocmd BufEnter")
+                terminal:send("clear")
                 terminal:focus()
 
                 -- local opts = { buffer = 0 }
