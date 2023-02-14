@@ -2,13 +2,18 @@ local manager = require("neo-tree.sources.manager")
 local renderer = require("neo-tree.ui.renderer")
 local command = require("neo-tree.command")
 
-local function show(source, focus, position)
-    command.execute({
+local function show(source, focus, position, dir)
+    local cmd = {
         action = (focus == nil or focus) and "focus" or "show",
         source = source,
         toggle = true,
         position = position == nil and "left" or position,
-    })
+    }
+
+    if dir then
+        cmd.dir = dir
+    end
+    command.execute(cmd)
 end
 
 local M = {}
@@ -70,7 +75,7 @@ end
 
 --- toggle neo tree sidebar
 ---@param f boolean
-function M.toggle(focus, position)
+function M.toggle(focus, position, dir)
     local source = "filesystem"
     local active_source = require("plugins.neo-tree.utils").get_active_source()
     if active_source then
@@ -81,7 +86,7 @@ function M.toggle(focus, position)
             source = vim.g.last_active_neotree_source
         end
     end
-    show(source, focus, position)
+    show(source, focus, position, dir)
 end
 
 return M

@@ -16,12 +16,14 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     callback = function()
         -- work only at opening a directory and neo-tree does not loaded,
         -- as neo-tree registed a autocmd to hijack netrw
+        local path = vim.fn.expand("%:p")
         if
-            vim.fn.isdirectory(vim.fn.expand("%:p")) == 1
+            -- vim.fn.isdirectory(vim.fn.expand("%:p")) == 1
+            vim.fn.isdirectory(path) == 1
             and require("lazy.core.config").plugins["neo-tree.nvim"]._.loaded == nil
         then
             vim.bo.filetype = "directory" -- a trick to disable winbar for lualine on netrw
-            require("plugins.neo-tree.utils").toggle(true, "current")
+            require("plugins.neo-tree.utils").toggle(true, "current", path)
             vim.api.nvim_del_augroup_by_name("HijackNetrw")
         end
     end,
