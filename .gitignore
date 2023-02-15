@@ -4,3 +4,4 @@ plugin/
 lazy-lock.json
 lazy-lock.json
 custom.lua
+lua/plugins/dev.lua
