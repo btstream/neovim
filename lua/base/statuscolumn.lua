@@ -29,9 +29,9 @@ function _G.get_foldsign()
         return " "
     elseif fold_info.start == vim.v.lnum then
         if fold_info.lines > 0 then
-            return ""
+            return ""
         else
-            return ""
+            return ""
         end
     else
         return " "

@@ -34,7 +34,7 @@ return {
 
         -- setupdap()
         require("dapui").setup({
-            icons = { expanded = "", collapsed = "", current_frame = "" },
+            icons = { expanded = "", collapsed = "", current_frame = "" },
         })
         require("dap-python").setup()
 
