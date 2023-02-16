@@ -5,13 +5,13 @@ return {
         "nvim-telescope/telescope-ui-select.nvim",
         "nvim-telescope/telescope-file-browser.nvim",
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
-        {
-            "ahmedkhalf/project.nvim",
-            event = "User BufReadRealFilePost",
-            config = function()
-                require("project_nvim").setup({})
-            end,
-        },
+        -- {
+        "ahmedkhalf/project.nvim",
+        --     event = "User BufReadRealFilePost",
+        --     config = function()
+        --         require("project_nvim").setup({})
+        --     end,
+        -- },
     },
     cmd = "Telescope",
     keys = require("keymaps").telescope.lazy_keys(),
