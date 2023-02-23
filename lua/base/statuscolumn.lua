@@ -31,6 +31,8 @@ if vim.fn.has("nvim-0.9") == 1 then
         elseif fold_info.start == vim.v.lnum then
             if fold_info.lines > 0 then
                 return ""
+            elseif vim.v.relnum ~= 0 then
+                return " "
             else
                 return ""
             end
