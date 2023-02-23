@@ -1,7 +1,7 @@
 return {
     {
         "neovim/nvim-lspconfig",
-        event = { "User LoadLsp" },
+        event = { "User BufReadReadFilePostDefer" },
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -17,7 +17,7 @@ return {
 
     {
         "williamboman/mason.nvim",
-        event = "User LoadMason",
+        event = "User VeryVeryLazy",
         dependencies = { "WhoIsSethDaniel/mason-tool-installer.nvim" },
         build = function()
             require("plugins.settings.lsp.mason")
@@ -92,7 +92,7 @@ return {
     { -- null-ls
         "jose-elias-alvarez/null-ls.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        event = { "User LoadLsp" },
+        event = { "User BufReadReadFilePostDefer" },
         config = function()
             require("plugins.settings.lsp.providers.null_ls")
         end,

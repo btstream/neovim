@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 
                 -- defering loading lsp
                 vim.defer_fn(function()
-                    vim.cmd("do User LoadLsp")
+                    vim.cmd("do User BufReadReadFilePostDefer")
                 end, 200)
 
                 pcall(vim.api.nvim_del_augroup_by_id, group)
@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd("User", {
     pattern = { "LazyVimStarted" },
     callback = function()
         vim.defer_fn(function()
-            vim.cmd("do User LoadMason")
+            vim.cmd("do User VeryVeryLazy")
             require("utils.lazy").update()
         end, 2000)
     end,
