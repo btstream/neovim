@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 })
 
 vim.api.nvim_create_autocmd("User", {
-    pattern = { "LazyVimStarted" },
+    pattern = { "LazyCheck" },
     callback = function()
         vim.defer_fn(function()
             vim.cmd("do User VeryVeryLazy")

@@ -21,7 +21,7 @@ function M.update()
                         "These plugins has been updated: \n%s",
                         table.concat(
                             vim.tbl_map(function(t)
-                                return "  * " .. t
+                                return "   " .. t
                             end, outdated),
                             "\n"
                         )
