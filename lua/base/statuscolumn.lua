@@ -28,13 +28,21 @@ if vim.fn.has("nvim-0.9") == 1 then
 
         if fold_info.start == 0 then
             return " "
-        elseif fold_info.start == vim.v.lnum then
+        elseif fold_info.start == vim.v.lnum then -- if this line is the start of a fold
+            local currentline = vim.fn.getcurpos()[2]
+            local current_fold_info = ffi.C.fold_info(wp, currentline)
+
             if fold_info.lines > 0 then
                 return ""
-            elseif vim.v.relnum ~= 0 then
-                return " "
-            else
+            end
+
+            if current_fold_info.start == fold_info.start then
+                if fold_info.lines > 0 then
+                    return ""
+                end
                 return ""
+            else
+                return " "
             end
         else
             return " "
