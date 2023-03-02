@@ -43,7 +43,7 @@ return {
             },
         },
         source_selector = {
-            winbar = true,
+            winbar = false,
             separator = nil,
         },
         event_handlers = {
