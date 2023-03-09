@@ -62,7 +62,6 @@ return {
 
                 -- see :help dressing_get_config
                 get_config = function(opts)
-                    print(vim.inspect(opts))
                     if opts.prompt == "New Name: " then
                         return {
                             relative = "cursor",
