@@ -10,7 +10,6 @@ if not has_telescope then
 end
 
 local has_session_manager, manager = pcall(require, "session_manager")
-print(has_session_manager)
 local finders = require("telescope.finders")
 local pickers = require("telescope.pickers")
 local telescope_config = require("telescope.config").values
