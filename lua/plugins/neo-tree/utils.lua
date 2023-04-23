@@ -40,7 +40,7 @@ end
 function M.get_active_source_label()
     local active_source = M.get_active_source()
     if active_source then
-        return require("neo-tree").config.source_selector.tab_labels[active_source]
+        return require("neo-tree").config[active_source].display_name
     end
     return nil
 end
