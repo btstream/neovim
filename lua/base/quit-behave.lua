@@ -1,5 +1,15 @@
 local M = {}
 
+local function get_buf_attached_wins(bufnr)
+    local attached_win = 0
+    for _, w in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+        if vim.api.nvim_win_get_buf(w) == bufnr then
+            attached_win = attached_win + 1
+        end
+    end
+    return attached_win
+end
+
 function M.quit(buf)
     -- get all listed bufs
     local buffers = vim.api.nvim_list_bufs()
@@ -30,12 +40,24 @@ function M.quit(buf)
 
         -- if active buf, just move to another buffer, delete it
         if current_buf == target_buf then
-            vim.cmd.bnext()
+            -- if target_buf attached to more than one window, such as in a split or
+            -- vsplit window
+            if get_buf_attached_wins(target_buf) > 1 then
+                vim.cmd.close()
+                return
+            else
+                vim.cmd.bnext()
+            end
         end
+
         vim.cmd("bdelete! " .. target_buf)
         return true
     elseif #listed_buffers == 1 then
-        vim.cmd.quitall()
+        if get_buf_attached_wins(listed_buffers[1]) > 1 then
+            vim.cmd.close()
+        else
+            vim.cmd.quitall()
+        end
     else
         vim.cmd.quit()
     end
