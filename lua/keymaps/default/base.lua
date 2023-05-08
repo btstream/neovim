@@ -15,12 +15,12 @@ return {
                 return
             end
 
-            if vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), "readonly") then
-                vim.cmd("SudaWrite")
-            else
-                vim.cmd("write")
-                vim.cmd("stopinsert")
-            end
+            -- if vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), "readonly") then
+            --     vim.cmd("SudaWrite")
+            -- else
+            vim.cmd("write")
+            vim.cmd("stopinsert")
+            -- end
         end,
     },
     { "n", "<SPACEE>", "<Nop>" },
