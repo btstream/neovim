@@ -52,7 +52,7 @@ function Mode.get_mode()
     -- get icon
     local icon = filetype_tools.get_icon()
     if icon ~= nil then
-        return icon
+        return " " .. icon .. " "
     else
         icon = Mode.icons[mode_code]
     end
@@ -62,7 +62,7 @@ function Mode.get_mode()
         name = name .. " "
     end
 
-    return icon .. " " .. name
+    return " " .. icon .. " " .. name
 end
 
 return Mode.get_mode

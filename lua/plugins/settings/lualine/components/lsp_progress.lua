@@ -95,10 +95,10 @@ component.update_progress = function(self)
                 table.insert(clients, client.name)
             end
         end
-        local icon = ""
+        local icon = " "
         local active_lsp = ""
         if #clients == 0 then
-            icon = ""
+            icon = " "
             if vim.bo.filetype == "" then
                 active_lsp = "plaintext"
             else

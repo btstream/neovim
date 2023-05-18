@@ -47,7 +47,7 @@ require("lualine").setup({
             {
                 mode,
                 color = get_debug_color,
-                padding = { left = 1, right = 0 },
+                padding = { left = 0, right = 0 },
                 -- separator = { right = "" },
                 separator = { right = "" },
             },
@@ -170,7 +170,7 @@ require("lualine").setup({
                     return filetype_tools.is_nonefiletype()
                 end,
                 separator = { left = "" },
-                padding = { right = 0, left = 1 },
+                padding = { right = 0, left = 0 },
             },
         },
     },
