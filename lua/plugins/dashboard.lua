@@ -1,3 +1,4 @@
+local icons = require("themes.icons").common_ui_icons
 return {
     "glepnir/dashboard-nvim",
     event = "User LazyVimStarted",
@@ -64,31 +65,31 @@ return {
                 header = header,
                 shortcut = {
                     {
-                        desc = "󰪶 Files",
+                        desc = icons.folder .. " Files",
                         group = "DashboardActionFiles",
                         action = "Telescope file_browser",
                         key = "o",
                     },
                     {
-                        desc = " New",
+                        desc = icons.file_new .. " New",
                         group = "DashboardActionNew",
                         action = "enew",
                         key = "n",
                     },
                     {
-                        desc = " Colors",
+                        desc = icons.colors .. " Colors",
                         group = "DashboardActionColors",
                         action = "Telescope colorscheme",
                         key = "t",
                     },
                     {
-                        desc = " Update",
+                        desc = icons.update .. " Update",
                         group = "DashboardActionUpdate",
                         action = require("utils.lazy").update,
                         key = "u",
                     },
                     {
-                        desc = " Settings",
+                        desc = icons.settings .. " Settings",
                         group = "DashboardActionSettings",
                         key = "s",
                         action = "e " .. vim.fn.stdpath("config") .. "/" .. "init.lua",
@@ -97,11 +98,11 @@ return {
                 packages = { enable = false }, -- show how many plugins neovim loaded
                 project = {
                     limit = 5,
-                    icon = " ",
+                    icon = icons.project .. " ",
                     label = "Recently Projects",
                     action = "Telescope find_files cwd=",
                 },
-                mru = { limit = 8, icon = " ", label = "Recently Files" },
+                mru = { limit = 8, icon = icons.file_common .. " ", label = "Recently Files" },
                 footer = footer, -- footer
             },
         }

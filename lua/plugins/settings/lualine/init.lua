@@ -1,6 +1,7 @@
 -- local navic_loaded, navic = pcall(require, "nvim-navic")
 
 local filetype_tools = require("utils.filetype_tools")
+local icons = require("themes.icons").common_ui_icons
 local signs = require("plugins.settings.lsp.ui").signs
 
 local mode = require("plugins.settings.lualine.components.mode")
@@ -81,7 +82,11 @@ require("lualine").setup({
             },
             {
                 filename,
-                symbols = { modified = " ", readonly = " ", unnamed = " [No Name]" },
+                symbols = {
+                    modified = " " .. icons.file_modified,
+                    readonly = " " .. icons.file_readonly,
+                    unnamed = " [No Name]",
+                },
                 padding = { left = 0, right = 1 },
             },
         },
@@ -123,7 +128,7 @@ require("lualine").setup({
         },
 
         lualine_x = {
-            { search_result, icon = { "" }, color = { fg = vim.g.terminal_color_11 or "#e5c07b" } },
+            { search_result, icon = { icons.search_result }, color = { fg = vim.g.terminal_color_11 or "#e5c07b" } },
             {
                 "encoding",
                 cond = function()
@@ -156,7 +161,7 @@ require("lualine").setup({
         lualine_z = {
             {
                 "location",
-                icon = "",
+                icon = icons.line_number,
                 color = get_debug_color,
                 separator = { left = "" },
                 cond = function()

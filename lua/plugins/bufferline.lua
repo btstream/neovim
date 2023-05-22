@@ -155,7 +155,7 @@ return {
                     -- icon = "▍",
                 },
                 -- buffer_close_icon = "",
-                modified_icon = "●",
+                modified_icon = "",
                 close_icon = "",
                 left_trunc_marker = "",
                 right_trunc_marker = "",
@@ -188,7 +188,7 @@ return {
                         filetype = "NvimTree",
                         text = function()
                             -- return vim.fn.getcwd()
-                            return "פּ File Explorer"
+                            return "󰙅 File Explorer"
                         end,
                         highlight = "NvimTreeSidebarTitle",
                         text_align = "center",

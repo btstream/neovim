@@ -1,3 +1,5 @@
+local icons = require("themes.icons").common_ui_icons
+
 return {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
@@ -36,6 +38,13 @@ return {
             use_libuv_file_watcher = true,
             follow_current_file = true,
             hijack_netrw_behavior = "open_current",
+            display_name = icons.folder .. " Files",
+        },
+        buffers = {
+            display_name = icons.buffers .. " Buffers",
+        },
+        git_status = {
+            display_name = icons.git .. " Git",
         },
         window = {
             mappings = {

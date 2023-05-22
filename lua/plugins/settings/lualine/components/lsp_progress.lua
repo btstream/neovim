@@ -1,3 +1,4 @@
+local icons = require("themes.icons").common_ui_icons
 local highlight = require("lualine.highlight")
 local lsp_progress = require("lualine.components.lsp_progress")
 local component = lsp_progress:extend()
@@ -22,7 +23,7 @@ lsp_progress.default = {
     },
     display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
     timer = { progress_enddelay = 125, spinner = 125, lsp_client_name_enddelay = 1000 },
-    spinner_symbols = { "", "", "", "", "", "", "", "" },
+    spinner_symbols = icons.lsp_progress_spinners,
     message = { commenced = "In Progress", completed = "Completed" },
 }
 
@@ -95,10 +96,10 @@ component.update_progress = function(self)
                 table.insert(clients, client.name)
             end
         end
-        local icon = " "
+        local icon = icons.lsp_server .. " "
         local active_lsp = ""
         if #clients == 0 then
-            icon = " "
+            icon = icons.lsp_null .. " "
             if vim.bo.filetype == "" then
                 active_lsp = "plaintext"
             else
