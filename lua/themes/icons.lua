@@ -115,7 +115,7 @@ M.filetype_icons       = {
 
 M.common_ui_icons         = {
     folder                = "󰝰",
-    buffers               = "",
+    buffers               = "󰈢",
     project               = "",
     git                   = "󰊢",
     search_result         = "󰱼",
