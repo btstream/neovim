@@ -190,9 +190,9 @@ function M.hg()
         LspFloatWinNormal       = { bg = colors.base00 },
         LspFloatWinBorder       = { bg = colors.base00, fg = colors.base02 },
 
-        LspWinHoverNormal       = { bg = dbg015 },
+        LspWinHoverNormal       = { bg = colors.base00 },
+        LspWinHoverBorder       = { fg = darken(colors.base0C, .3), bg = colors.base00 },
 
-        LspWinHoverBorder       = { fg = dbg015, bg = dbg015 },
         LspWinDiagnosticsNormal = { bg = colors.base00 },
         LspWinDiagnosticsBorder = { fg = darken(colors.base0C, 0.4), bg = colors.base00 },
         LspWinDiagnosticsTitle  = { fg = darken(colors.base0C, 0.4) },

@@ -8,7 +8,7 @@ return {
             show_current_context = true,
             -- show_end_of_line = true,
             buftype_exclude = { "terminal", "dashboard" },
-            filetype_exclude = require("utils.filetype_tools").get_nonfiletypes(),
+            filetype_exclude = table.insert(require("utils.filetype_tools").get_nonfiletypes(), ""),
         })
     end,
 }
