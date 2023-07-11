@@ -1,17 +1,17 @@
 return {
 
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-        -- focusable = false,
-        -- close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-        title = "Documentation",
-        title_pos = "center",
-        source = "always",
-        prefix = " ",
-        scope = "cursor",
-        winhighlight = "NormalFloat:LspWinHoverNormal,FloatBorder:LspWinHoverBorder",
-        max_width = 120,
-    }),
+    -- ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    --     border = "rounded",
+    --     -- focusable = false,
+    --     -- close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+    --     title = "Documentation",
+    --     title_pos = "center",
+    --     source = "always",
+    --     prefix = " ",
+    --     scope = "cursor",
+    --     winhighlight = "NormalFloat:LspWinHoverNormal,FloatBorder:LspWinHoverBorder",
+    --     max_width = 120,
+    -- }),
 
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
         border = "rounded",

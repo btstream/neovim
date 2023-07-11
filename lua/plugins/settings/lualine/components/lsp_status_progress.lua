@@ -31,7 +31,7 @@ end
 local function lsp_progress()
     -- local icon = ""
     local active_lsp = get_lsp_client("", { "null-ls" })
-    local icon = " "
+    local icon = "  "
     local has_active_lsp = true
     if active_lsp == "" then
         has_active_lsp = false
@@ -43,12 +43,12 @@ local function lsp_progress()
         end
     end
 
-    local progress = require("lsp-status").status_progress() .. " "
-    if has_active_lsp and string.len(progress) > 1 then
-        return progress
-    else
-        return icon .. active_lsp
-    end
+    -- local progress = require("lsp-status").status_progress() .. " "
+    -- if has_active_lsp and string.len(progress) > 1 then
+    --     return progress
+    -- else
+    return icon .. active_lsp .. " "
+    -- end
 end
 
 return lsp_progress

@@ -8,7 +8,7 @@ local mode = require("plugins.settings.lualine.components.mode")
 local filename = require("plugins.settings.lualine.components.filename")
 local search_result = require("plugins.settings.lualine.components.search_result")
 local terminal_info = require("plugins.settings.lualine.components.terminal_info")
-local lsp_progress = require("plugins.settings.lualine.components.lsp_progress")
+local lsp_progress = require("plugins.settings.lualine.components.lsp_status_progress")
 local nft_indicator = filetype_tools.type
 local git_status_icons = require("themes.icons").gitstatus_icons
 

@@ -3,6 +3,7 @@
 local null_ls_registered_fts = nil
 
 local M = {}
+local dia_win = nil
 
 local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 --- helper function for lsp server's on_attach callback
@@ -26,9 +27,20 @@ M.on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd({ "CursorHold" }, {
         buffer = bufnr,
         callback = function()
-            vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+            _, dia_win = vim.diagnostic.open_float(nil, {
+                focus = false,
+                scope = "cursor",
+                -- close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+            })
         end,
     })
+
+    vim.on_key(function(_)
+        if dia_win then
+            vim.api.nvim_win_close(dia_win, true)
+            dia_win = nil
+        end
+    end)
 
     -- formatting before save
     if client.supports_method("textDocument/formatting") then
