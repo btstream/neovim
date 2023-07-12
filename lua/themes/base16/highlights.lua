@@ -271,6 +271,15 @@ function M.hg()
         TroubleText         = "None",
 
         ----------------------------------------------------------------------
+        --                              Noice                               --
+        ----------------------------------------------------------------------
+        NoiceCmdlinePopup       = { bg = colors.base01 },
+        NoiceCmdlinePopupBorder = { bg = colors.base01, fg = colors.base01 },
+        NoiceCmdlinePopupTitle  = "TelescopePromptTitle",
+        NoiceCmdlineIcon        = { fg = colors.base08, bg  = colors.base01 },
+
+
+        ----------------------------------------------------------------------
         --                          LightBulbSign                           --
         ----------------------------------------------------------------------
         LightBulbSign   = { fg = colors.base0A }

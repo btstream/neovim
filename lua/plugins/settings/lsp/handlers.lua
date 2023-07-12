@@ -13,10 +13,10 @@ return {
     --     max_width = 120,
     -- }),
 
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "rounded",
-        winhighlight = "NormalFloat:LspWinSignatureNormal,FloatBorder:LspWinSignatureBorder",
-    }),
+    -- ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    --     border = "rounded",
+    --     winhighlight = "NormalFloat:LspWinSignatureNormal,FloatBorder:LspWinSignatureBorder",
+    -- }),
 
     ["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics,
