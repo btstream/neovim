@@ -111,6 +111,7 @@ M.filetype_icons       = {
     spectre            = " ",
     spectre_panel      = " ",
     cmdline            = "󰋚 ",
+    noice              = "󱥁 ",
 }
 
 M.common_ui_icons         = {
