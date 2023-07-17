@@ -32,12 +32,14 @@ return {
         dependencies = "antoinemadec/FixCursorHold.nvim",
         event = "LspAttach",
         config = function()
-            vim.fn.sign_define("LightBulbSign", { text = "", texthl = "LightBulbSign" })
+            -- vim.fn.sign_define("LightBulbSign", { text = "", texthl = "LightBulbSign" })
 
             require("nvim-lightbulb").setup({
                 sign = {
+                    text = "",
                     enabled = true,
                     priority = 30,
+                    hl = "LightBulbSign",
                 },
                 autocmd = {
                     enabled = true,
