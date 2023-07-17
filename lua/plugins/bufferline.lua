@@ -16,7 +16,9 @@ return {
                 left_mouse_command = function(bufnr)
                     local current_buf = vim.api.nvim_win_get_buf(0)
 
-                    -- handle double click
+                    ----------------------------------------------------------------------
+                    --                       Handle double click                        --
+                    ----------------------------------------------------------------------
                     if current_buf == bufnr then
                         local key = string.format("tab_clicked_%s", bufnr)
                         if vim.g[key] == nil then
@@ -28,6 +30,7 @@ return {
                             local timeout = os.clock() - vim.g[key]
                             if timeout < 0.3 then
                                 if vim.g.saved_window then
+                                    -- restore saved layout
                                     local winid = vim.api.nvim_get_current_win()
 
                                     if vim.g.saved_window.outline then
@@ -46,7 +49,7 @@ return {
                                                     end,
                                                 })
                                                 require("symbols-outline").toggle_outline()
-                                                return true
+                                                return true -- only run onece
                                             end,
                                         })
                                         if #vim.g.saved_window.term == 0 then
@@ -119,12 +122,16 @@ return {
                         end
                     end
 
+                    ----------------------------------------------------------------------
+                    --                       handle single click                        --
+                    ----------------------------------------------------------------------
+                    --- to prevent open buffer in terminal window
                     if require("lazy.core.config").plugins["toggleterm.nvim"]._.loaded then
                         local terms = require("toggleterm.terminal").get_all()
 
                         for _, t in pairs(terms) do
                             if t.bufnr == current_buf then
-                                if t.direction == "float" then
+                                if t.direction == "float" then -- if float window, close it
                                     t:close()
                                     break
                                 end
@@ -134,7 +141,16 @@ return {
 
                     local windows = vim.api.nvim_tabpage_list_wins(0)
                     for _, w in pairs(windows) do
-                        if vim.api.nvim_win_get_buf(w) == bufnr then
+                        local buf_in_w = vim.api.nvim_win_get_buf(w)
+                        local nonfiletypes = require("utils.filetype_tools").get_nonfiletypes()
+                        if
+                            current_buf ~= bufnr
+                            and (not vim.tbl_contains(
+                                nonfiletypes,
+                                vim.api.nvim_get_option_value("filetype", { buf = buf_in_w })
+                            ))
+                            and buf_in_w ~= bufnr
+                        then
                             vim.api.nvim_set_current_win(w)
                             vim.cmd.buffer(bufnr)
                             vim.cmd.stopinsert()

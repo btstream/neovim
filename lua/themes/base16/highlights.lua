@@ -277,6 +277,8 @@ function M.hg()
         NoiceCmdlinePopupBorder = { bg = colors.base01, fg = colors.base01 },
         NoiceCmdlinePopupTitle  = { bg = colors.base0D, fg = colors.base00 },
         NoiceCmdlineIcon        = { fg = colors.base0D, bg = colors.base01 },
+        NoiceConfirmBorder      = { fg = colors.base0B },
+        NoiceSplit              = "Normal",
 
 
         ----------------------------------------------------------------------
