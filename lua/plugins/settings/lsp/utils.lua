@@ -36,7 +36,7 @@ M.on_attach = function(client, bufnr)
     })
 
     vim.on_key(function(_)
-        if dia_win then
+        if dia_win and vim.tbl_contains(vim.api.nvim_list_wins(), dia_win) then
             vim.api.nvim_win_close(dia_win, true)
             dia_win = nil
         end
