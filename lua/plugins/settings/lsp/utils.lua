@@ -3,7 +3,12 @@
 local null_ls_registered_fts = nil
 
 local M = {}
+
+-- used to indicate lsp diagnostic float window id
 local dia_win = nil
+
+-- local namespace id, to avoid register key events more than one time
+local ns_id = nil
 
 local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 --- helper function for lsp server's on_attach callback
@@ -35,12 +40,15 @@ M.on_attach = function(client, bufnr)
         end,
     })
 
-    vim.on_key(function(_)
-        if dia_win and vim.tbl_contains(vim.api.nvim_list_wins(), dia_win) then
-            vim.api.nvim_win_close(dia_win, true)
-            dia_win = nil
-        end
-    end)
+    -- to ensure regiester key event for only once
+    if not ns_id then
+        ns_id = vim.on_key(function(_)
+            if dia_win and vim.tbl_contains(vim.api.nvim_list_wins(), dia_win) then
+                vim.api.nvim_win_close(dia_win, true)
+                dia_win = nil
+            end
+        end)
+    end
 
     -- formatting before save
     if client.supports_method("textDocument/formatting") then
