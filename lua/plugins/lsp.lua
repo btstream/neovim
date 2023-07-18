@@ -99,4 +99,10 @@ return {
             require("plugins.settings.lsp.providers.null_ls")
         end,
     },
+
+    -- python-type-stubs
+    {
+        "microsoft/python-type-stubs",
+        cond = false,
+    },
 }
