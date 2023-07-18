@@ -166,7 +166,7 @@ return {
                 -- -- as an escape hatch for people who cannot bear it for whatever reason
                 -- indicator_icon = "▍ ",
                 indicator = {
-                    style = "icon",
+                    style = os.getenv("TERM_PROGRAM") == "WezTerm" and "underline" or "icon",
                     icon = "▎ ",
                     -- icon = "▍",
                 },
