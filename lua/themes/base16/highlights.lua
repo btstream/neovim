@@ -282,6 +282,18 @@ function M.hg()
 
 
         ----------------------------------------------------------------------
+        --                         Rainbow delemers                         --
+        ----------------------------------------------------------------------
+        RainbowDelimiterRed    = { fg = colors.base08 },
+        RainbowDelimiterYellow = { fg = colors.base0A },
+        RainbowDelimiterBlue   = { fg = colors.base0D },
+        RainbowDelimiterOrange = { fg = colors.base09 },
+        RainbowDelimiterGreen  = { fg = colors.base0B },
+        RainbowDelimiterViolet = { fg = colors.base0E },
+        RainbowDelimiterCyan   = { fg = colors.base0C },
+
+
+        ----------------------------------------------------------------------
         --                          LightBulbSign                           --
         ----------------------------------------------------------------------
         LightBulbSign   = { fg = colors.base0A }
