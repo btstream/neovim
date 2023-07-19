@@ -21,6 +21,13 @@ require("noice").setup({
         },
     },
     lsp = {
+        progress = {
+            format_done = {
+                { "󰄬 ", hl_group = "NoiceLspProgressSpinner" },
+                { "{data.progress.title} ", hl_group = "NoiceLspProgressTitle" },
+                { "{data.progress.client} ", hl_group = "NoiceLspProgressClient" },
+            },
+        },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
