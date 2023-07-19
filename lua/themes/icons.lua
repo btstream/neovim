@@ -114,23 +114,23 @@ M.filetype_icons       = {
     noice              = "󱥁 ",
 }
 
-M.common_ui_icons         = {
-    folder                = "󰝰",
-    buffers               = "󰈢",
-    project               = "",
-    git                   = "󰊢",
-    history               = "󰋚",
-    search_result         = "󰱼",
-    file_common           = "󰈙",
-    file_new              = "󱪞",
-    file_modified         = "",
-    file_readonly         = "󰍁",
-    line_number           = "",
-    colors                = "",
-    update                = "󱍸",
-    settings              = "",
-    lsp_server            = "",
-    lsp_server_null              = "󰛄",
+M.common_ui_icons   = {
+    folder          = "󰝰",
+    buffers         = "󰈢",
+    project         = "",
+    git             = "󰊢",
+    history         = "󰋚",
+    search_result   = "󰱼",
+    file_common     = "󰈙",
+    file_new        = "󱪞",
+    file_modified   = "",
+    file_readonly   = "󰍁",
+    line_number     = "",
+    colors          = "",
+    update          = "󱍸",
+    settings        = "",
+    lsp_server      = "",
+    lsp_server_null = "󰛄",
 }
 -- stylua: ignore end
 
