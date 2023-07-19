@@ -119,6 +119,7 @@ M.common_ui_icons         = {
     buffers               = "󰈢",
     project               = "",
     git                   = "󰊢",
+    history               = "󰋚",
     search_result         = "󰱼",
     file_common           = "󰈙",
     file_new              = "󱪞",

@@ -77,6 +77,12 @@ return {
                         key = "n",
                     },
                     {
+                        desc = icons.history .. " History",
+                        group = "DashboardActionHistory",
+                        action = "Telescope oldfiles",
+                        key = "h",
+                    },
+                    {
                         desc = icons.colors .. " Colors",
                         group = "DashboardActionColors",
                         action = "Telescope colorscheme",
