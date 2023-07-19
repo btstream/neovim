@@ -130,8 +130,7 @@ M.common_ui_icons         = {
     update                = "󱍸",
     settings              = "",
     lsp_server            = "",
-    lsp_null              = "󰛄",
-    lsp_progress_spinners = { "", "", "", "", "", "", "", "" }
+    lsp_server_null              = "󰛄",
 }
 -- stylua: ignore end
 

@@ -99,7 +99,7 @@ component.update_progress = function(self)
         local icon = icons.lsp_server .. " "
         local active_lsp = ""
         if #clients == 0 then
-            icon = icons.lsp_null .. " "
+            icon = icons.lsp_server_null .. " "
             if vim.bo.filetype == "" then
                 active_lsp = "plaintext"
             else
