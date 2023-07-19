@@ -273,10 +273,11 @@ function M.hg()
         ----------------------------------------------------------------------
         --                              Noice                               --
         ----------------------------------------------------------------------
-        NoiceCmdlinePopup       = { bg = colors.base01 },
-        NoiceCmdlinePopupBorder = { bg = colors.base01, fg = colors.base01 },
+        -- NoiceCmdlinePopup  = "TelescopePromptNormal",
+        NoiceCmdlinePopup       = { bg = darken(colors.base02, .1) },
+        NoiceCmdlinePopupBorder = { bg = darken(colors.base02, .1), fg = darken(colors.base02, .1) },
         NoiceCmdlinePopupTitle  = { bg = colors.base0D, fg = colors.base00 },
-        NoiceCmdlineIcon        = { fg = colors.base0D, bg = colors.base01 },
+        NoiceCmdlineIcon        = { fg = colors.base0D, bg = darken(colors.base02, 0.1) },
         NoiceConfirmBorder      = { fg = colors.base0B },
         NoiceSplit              = "Normal",
 
