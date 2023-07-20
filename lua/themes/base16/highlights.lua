@@ -192,10 +192,11 @@ function M.hg()
 
         LspWinHoverNormal       = { bg = colors.base00 },
         LspWinHoverBorder       = { fg = darken(colors.base0C, .3), bg = colors.base00 },
+        LspWinHoverTitle        = { fg = darken(colors.base0C, .3) },
 
         LspWinDiagnosticsNormal = { bg = colors.base00 },
-        LspWinDiagnosticsBorder = { fg = darken(colors.base0C, 0.4), bg = colors.base00 },
-        LspWinDiagnosticsTitle  = { fg = darken(colors.base0C, 0.4) },
+        LspWinDiagnosticsBorder = { fg = darken(colors.base0C, 0.3), bg = colors.base00 },
+        LspWinDiagnosticsTitle  = { fg = darken(colors.base0C, 0.3) },
 
         LspWinRenameTitle       = { bg = colors.base00, fg = colors.base0D },
         LspWinRenameBorder      = { bg = colors.base00, fg = colors.base0D },

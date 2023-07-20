@@ -14,9 +14,11 @@ vim.diagnostic.config({
         border = "rounded",
         focusable = false,
         close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-        header = { "  Diagnostics:", "LspWinDiagnosticsTitle" },
+        -- header = { "  Diagnostics:", "LspWinDiagnosticsTitle" },
+        header = "",
+        title = "  Diagnostics ",
         source = "always",
-        winhighlight = "NormalFloat:LspWinDiagnosticsNormal,FloatBorder:LspWinDiagnosticsBorder",
+        winhighlight = "NormalFloat:LspWinDiagnosticsNormal,FloatBorder:LspWinDiagnosticsBorder,FloatTitle:LspWinDiagnosticsTitle",
         prefix = function(d, i, _)
             local highlight = "Normal"
             if d.severity == vim.diagnostic.severity.ERROR then

@@ -8,10 +8,10 @@ return {
                 enabled = true,
 
                 -- Default prompt string
-                default_prompt = "Input:",
+                default_prompt = " Input: ",
 
                 -- Can be 'left', 'right', or 'center'
-                prompt_align = "left",
+                prompt_align = "center",
 
                 -- When true, <Esc> will close the modal
                 insert_only = true,
@@ -63,6 +63,7 @@ return {
                 -- see :help dressing_get_config
                 get_config = function(opts)
                     if opts.prompt == "New Name: " then
+                        opts.prompt = " 󰑕 New name "
                         return {
                             relative = "cursor",
                             win_options = {
@@ -121,6 +122,7 @@ return {
                 -- see :help dressing_get_config
                 get_config = function(opts)
                     if opts.kind == "codeaction" then
+                        opts.prompt = "  Code Action "
                         return {
                             nui = {
                                 relative = "cursor",

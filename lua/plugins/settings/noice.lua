@@ -41,13 +41,17 @@ require("noice").setup({
         documentation = {
             opts = {
                 border = {
-                    text = { top = " Documentation ", top_align = "center" },
+                    text = { top = " 󰬋 Documentation ", top_align = "center" },
                 },
                 size = {
                     max_width = "80",
                 },
                 win_options = {
-                    winhighlight = { NormalFloat = "LspWinHoverNormal", FloatBorder = "LspWinHoverBorder" },
+                    winhighlight = {
+                        NormalFloat = "LspWinHoverNormal",
+                        FloatBorder = "LspWinHoverBorder",
+                        FloatTitle = "LspWinHoverTitle",
+                    },
                 },
             },
         },
