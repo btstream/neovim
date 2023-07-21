@@ -9,6 +9,7 @@ return {
     },
     keys = require("keymaps")["neo-tree"].lazy_keys(),
     opts = {
+        use_popups_for_input = false,
         enable_refresh_on_write = false,
         default_component_configs = {
             indent = {

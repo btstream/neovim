@@ -37,7 +37,7 @@ return {
                 win_options = {
                     winblend = 5,
                     -- Change default highlight groups (see :help winhl)
-                    winhighlight = "NormalFloat:InputUIFloatWinNormal,FloatBorder:InutUIFloatBorder,FloatTitle:InputUIFloatTitle",
+                    winhighlight = "NormalFloat:InputUIFloatWinNormal,FloatBorder:InputUIFloatBorder,FloatTitle:InputUIFloatTitle",
                 },
 
                 -- Set to `false` to disable
