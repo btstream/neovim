@@ -75,6 +75,10 @@ M.type = function()
         return "telescope"
     end
 
+    if filetype == "DressingInput" then
+        return "input"
+    end
+
     return filetype
 end
 

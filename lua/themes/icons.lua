@@ -112,6 +112,7 @@ M.filetype_icons       = {
     spectre_panel      = " ",
     cmdline            = "󰋚 ",
     noice              = "󱥁 ",
+    DressingInput      = "󱓧 ",
 }
 
 M.common_ui_icons   = {
