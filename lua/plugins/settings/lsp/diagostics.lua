@@ -16,7 +16,7 @@ vim.diagnostic.config({
         close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
         -- header = { "  Diagnostics:", "LspWinDiagnosticsTitle" },
         header = "",
-        title = "  Diagnostics ",
+        title = " 󰩂 Diagnostics ",
         source = "always",
         winhighlight = "NormalFloat:LspWinDiagnosticsNormal,FloatBorder:LspWinDiagnosticsBorder,FloatTitle:LspWinDiagnosticsTitle",
         prefix = function(d, i, _)
