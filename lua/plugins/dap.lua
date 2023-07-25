@@ -9,13 +9,26 @@ return {
     module = false,
     config = function()
         local dap = require("dap")
+        local icons = require("themes.icons")
 
         -- local function setupdap()
-        vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticError", numhl = "" })
-        vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticError", numhl = "" })
-        vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DiagnosticError", numhl = "" })
-        vim.fn.sign_define("DapStopped", { text = "", texthl = "DiagnosticHint", numhl = "" })
-        vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticWarn", numhl = "" })
+        vim.fn.sign_define(
+            "DapBreakpoint",
+            { text = icons.dap_icons.BreakPoint, texthl = "DiagnosticError", numhl = "" }
+        )
+        vim.fn.sign_define(
+            "DapBreakpointCondition",
+            { text = icons.dap_icons.BreakPointCondition, texthl = "DiagnosticError", numhl = "" }
+        )
+        vim.fn.sign_define(
+            "DapLogPoint",
+            { text = icons.dap_icons.BreakLogPoint, texthl = "DiagnosticError", numhl = "" }
+        )
+        vim.fn.sign_define("DapStopped", { text = icons.dap_icons.BreakStopped, texthl = "DiagnosticHint", numhl = "" })
+        vim.fn.sign_define(
+            "DapBreakpointRejected",
+            { text = icons.dap_icons.BreakPointRejected, texthl = "DiagnosticWarn", numhl = "" }
+        )
 
         -- config dapui
         dap.listeners.after.event_initialized["dapui_config"] = function()
