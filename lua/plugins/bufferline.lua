@@ -139,10 +139,29 @@ return {
                         end
                     end
 
+                    local nonfiletypes = require("utils.filetype_tools").get_nonfiletypes()
+
+                    --- first of all, if current window is a normal window (contains normal buffer in it)
+                    --- then set target buffer to current window
+                    local current_win = vim.api.nvim_get_current_win()
+                    local current_win_buf = vim.api.nvim_win_get_buf(current_win)
+                    if
+                        not vim.tbl_contains(
+                            nonfiletypes,
+                            vim.api.nvim_get_option_value("filetype", { buf = current_win_buf })
+                        )
+                    then
+                        vim.api.nvim_set_current_win(current_win)
+                        vim.api.nvim_win_set_buf(current_win, bufnr)
+                        return
+                    end
+
+                    --- if current window is not a normal window, then
+                    --- find the first normal window, and set buffer to
+                    --- that window
                     local windows = vim.api.nvim_tabpage_list_wins(0)
                     for _, w in pairs(windows) do
                         local buf_in_w = vim.api.nvim_win_get_buf(w)
-                        local nonfiletypes = require("utils.filetype_tools").get_nonfiletypes()
                         if
                             current_buf ~= bufnr
                             and (not vim.tbl_contains(
@@ -152,13 +171,13 @@ return {
                             and buf_in_w ~= bufnr
                         then
                             vim.api.nvim_set_current_win(w)
-                            vim.cmd.buffer(bufnr)
+                            vim.api.nvim_win_set_buf(w, bufnr)
                             vim.cmd.stopinsert()
-                            break
+                            return
                         end
                     end
 
-                    vim.cmd.buffer(bufnr)
+                    -- vim.cmd.buffer(bufnr)
                 end,
                 middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
                 -- NOTE: this plugin is designed with this icon in mind,
