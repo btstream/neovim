@@ -281,6 +281,7 @@ function M.hg()
         NoiceCmdlineIcon        = { fg = colors.base0D, bg = darken(colors.base02, 0.1) },
         NoiceConfirmBorder      = { fg = colors.base0B },
         NoiceSplit              = "Normal",
+        NoiceVirtualText        = { fg = darken(colors.base09, .25) },
 
 
         ----------------------------------------------------------------------
