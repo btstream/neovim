@@ -114,6 +114,24 @@ local function highlight(opts)
     end
 end
 
+local function _highlight(opts)
+    for hl_group, scheme in pairs(opts) do
+        if type(hl_group) == "number" then
+            goto continue
+        end
+
+        if type(scheme) == "string" then
+            vim.api.nvim_set_hl(0, hl_group, { link = scheme })
+        end
+
+        if type(scheme) == "table" then
+            vim.api.nvim_set_hl(0, hl_group, scheme)
+        end
+
+        ::continue::
+    end
+end
+
 return {
     darken = darken,
     lighten = lighten,
