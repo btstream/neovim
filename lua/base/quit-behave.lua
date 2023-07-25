@@ -35,6 +35,20 @@ function M.quit(buf)
         return
     end
 
+    -- if more than one window is opened, close current window first
+    local opend_window = 0
+    for _, w in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+        local buf_in_w = vim.api.nvim_win_get_buf(w)
+        if vim.fn.buflisted(buf_in_w) == 1 then
+            opend_window = opend_window + 1
+        end
+    end
+    -- print(opend_window)
+    if opend_window > 1 then
+        vim.cmd.quit()
+        return
+    end
+
     if #listed_buffers > 1 and vim.tbl_contains(listed_buffers, target_buf) then
         local current_buf = vim.api.nvim_get_current_buf()
 
