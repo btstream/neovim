@@ -48,12 +48,12 @@ M.lsp_diagnostic_signs = {
     Info               = "󰍪",
 }
 
-M.dap_icons = {
-    BreakPoint = "",
+M.dap_icons             = {
+    BreakPoint          = "",
     BreakPointCondition = "",
-    BreakLogPoint = "",
-    BreakStopped = "",
-    BreakPointRejected = "",
+    BreakLogPoint       = "",
+    BreakStopped        = "",
+    BreakPointRejected  = "",
 }
 
 M.mode_icons  = {
