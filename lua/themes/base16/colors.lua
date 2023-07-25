@@ -3,13 +3,13 @@ local function get_color_scheme(scheme)
     local style = scheme and scheme
     if scheme == nil then
         if vim.g.colors_name == nil then
-            style = require("settings").theme.base16_style
+            style = require("settings").theme.color_scheme
         else
             local b, s = vim.g.colors_name:find("base16")
             if b then
                 style = vim.g.colors_name:sub(s + 2)
             else
-                style = require("settings").theme.base16_style
+                style = require("settings").theme.color_scheme
             end
         end
     end

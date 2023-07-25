@@ -14,8 +14,7 @@ end
 ----------------------------------------------------------------------
 local settings = {}
 settings.theme = {
-    color = "base16",
-    base16_style = custom_wezconfig.color_scheme and custom_wezconfig.color_scheme or "onedark",
+    color_scheme = custom_wezconfig.color_scheme and custom_wezconfig.color_scheme or "onedark",
     statusline = {
         theme = "base16",
     },

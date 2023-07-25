@@ -1,6 +1,6 @@
 return {
     "RRethy/nvim-base16",
     config = function()
-        require("theme")
+        require("themes.base16")
     end,
 }
