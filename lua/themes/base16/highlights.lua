@@ -128,6 +128,8 @@ function M.hg()
         ----------------------------------------------------------------------
         PmenuSel                 = { bg = colors.base02, fg = nil },
         Pmenu                    = { bg = dbg015 },
+        PmenuSbar                = { bg = darken(colors.base03, .60) },
+        PmenuThumb               = { bg = darken(colors.base03, .30) },
         CmpItemAbbr              = { bg = nil },
         CmpItemAbbrMatch         = { fg = colors.base0D }, -- gui = "bold" },
         CmpItemAbbrtMatchFuzzy   = { fg = colors.base0D }, -- gui = "underline" },
