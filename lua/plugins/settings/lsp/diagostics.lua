@@ -18,8 +18,7 @@ vim.diagnostic.config({
         header = "",
         title = " 󰩂 Diagnostics ",
         source = "always",
-        max_width = 120,
-        width = 60,
+        max_width = 180,
         winhighlight = "NormalFloat:LspWinDiagnosticsNormal,FloatBorder:LspWinDiagnosticsBorder,FloatTitle:LspWinDiagnosticsTitle",
         prefix = function(d, i, _)
             local highlight = "Normal"
@@ -33,6 +32,19 @@ vim.diagnostic.config({
                 highlight = "Information"
             end
             return "" .. i .. ". ", "LspDiagnosticsDefault" .. highlight
+        end,
+        suffix = function(d, _, _)
+            local highlight = "Normal"
+            if d.severity == vim.diagnostic.severity.ERROR then
+                highlight = "Error"
+            elseif d.severity == vim.diagnostic.severity.HINT then
+                highlight = "Hint"
+            elseif d.severity == vim.diagnostic.severity.WARN then
+                highlight = "Warning"
+            elseif d.severity == vim.diagnostic.severity.INFO then
+                highlight = "Information"
+            end
+            return " [" .. d.code .. "] ", "LspDiagnosticsDefault" .. highlight
         end,
     },
     virtual_text = false,
