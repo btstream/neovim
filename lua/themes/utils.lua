@@ -69,8 +69,6 @@ local function highlight(opts)
         if type(scheme) == "table" then
             vim.api.nvim_set_hl(0, hl_group, scheme)
         end
-
-        ::continue::
     end
 end
 
