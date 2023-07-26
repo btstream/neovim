@@ -35,14 +35,21 @@ function M.hg()
         ----------------------------------------------------------------------
         --                           Vim Commons                            --
         ----------------------------------------------------------------------
-        -- EndOfBuffer             = { fg = colors.base00, bg = colors.base00 },
-        VertSplit               = { fg = dbg020 },
-        CursorLineNr            = { fg = darken(colors.base0D, 0.1), bg = colors.base00 },
-        LineNr                  = { fg = colors.base03 },
-        SignColumn              = { bg = "None"},
-        -- Folded                  = { fg = darken(colors.base0A, 0.20) },
-        FoldColumn              = { fg = colors.base03, bg = colors.base00 },
-        TabLineSel              = { bg = colors.base0D },
+        -- EndOfBuffer = { fg = colors.base00, bg              = colors.base00 },
+        VertSplit      = { fg = dbg020 },
+        CursorLineNr   = { fg = darken(colors.base0D, 0.1), bg = colors.base00 },
+        LineNr         = { fg = colors.base03 },
+        SignColumn     = { bg = "None"},
+        -- Folded      = { fg = darken(colors.base0A, 0.20) },
+        FoldColumn     = { fg = colors.base03, bg              = colors.base00 },
+        TabLineSel     = { bg = colors.base0D },
+
+        ----------------------------------------------------------------------
+        --                           NormalFloat                            --
+        ----------------------------------------------------------------------
+        NormalFloat             = { bg = dbg015 },
+        FloatBorder             = { bg = dbg015, fg = dbg015 },
+        FloatTitle              = { bg = colors.base00, fg = colors.base05 },
 
         ----------------------------------------------------------------------
         --                             Whichkey                             --
@@ -52,24 +59,24 @@ function M.hg()
         ----------------------------------------------------------------------
         --                               git                                --
         ----------------------------------------------------------------------
-        GitSignsCurrentLineBlame  = { fg = colors.base03 },
-        GitSignHunkPreviewNormal  = "Normal",
-        GitSignHunkPreviewBorder  = { fg = colors.base02 },
-        GitSignsChange            = { fg = colors.base0C },
-        GitSignsUntracked         = { fg = colors.base0A },
-        GitSignsUntrackedLn       = "GitSignsUntracked",
-        GitSignsUntrackedNr       = "GitSignsUntracked",
+        GitSignsCurrentLineBlame = { fg = colors.base03 },
+        GitSignHunkPreviewNormal = "Normal",
+        GitSignHunkPreviewBorder = { fg = colors.base02 },
+        GitSignsChange           = { fg = colors.base0C },
+        GitSignsUntracked        = { fg = colors.base0A },
+        GitSignsUntrackedLn      = "GitSignsUntracked",
+        GitSignsUntrackedNr      = "GitSignsUntracked",
 
         ----------------------------------------------------------------------
         --                          NvimTreeNormal                          --
         ----------------------------------------------------------------------
-        -- NvimTreeNormal          = { bg = dbg015 },
-        NvimTreeSidebarTitle    = { bg = dbg015, fg = colors.base03 },
+        -- NvimTreeNormal       = { bg = dbg015 },
+        NvimTreeSidebarTitle    = { bg = dbg015, fg        = colors.base03 },
         NvimTreeFolderIcon      = { fg = colors.base0D },
         NvimTreeIndentrker      = { fg = colors.base01 },
-        -- NvimTreeEndOfBuffer     = { bg = dbg015, fg = dbg015 },
-        -- NvimTreeVertSplit       = { bg = colors.base00, fg = colors.base00 },
-        -- NvimTreeWinSeparator    = { bg = colors.base00, fg = colors.base00 },
+        -- NvimTreeEndOfBuffer  = { bg = dbg015, fg        = dbg015 },
+        -- NvimTreeVertSplit    = { bg = colors.base00, fg = colors.base00 },
+        -- NvimTreeWinSeparator = { bg = colors.base00, fg = colors.base00 },
 
         ----------------------------------------------------------------------
         --                             NeoTree                              --
@@ -83,21 +90,13 @@ function M.hg()
         NeoTreeGitIgnored         = { fg = colors.base04 },
         NeoTreeGitModified        = "GitSignsChange", --{ fg = colors.base0C },
         NeoTreeGitUnstaged        = { fg = colors.base09 },
-        NeoTreeGitUntracked       = "GitSignsUntracked", { fg = colors.base0A },
+        NeoTreeGitUntracked       = "GitSignsUntracked", --{ fg = colors.base0A },
         NeoTreeGitStaged          = { fg = colors.base0B },
 
         -- inactive buffer
         NeoTreeTabInactive           = { fg = colors.base03, bg = dbg015 },
         NeoTreeTabSeparatorInactive  = { fg = dbg015, bg = dbg015},
         NeoTreeTabSeparatorActive    = { bg = colors.base00, fg = colors.base00 },
-
-        ----------------------------------------------------------------------
-        --                           NormalFloat                            --
-        ----------------------------------------------------------------------
-        NormalFloat             = { bg = dbg015 },
-        FloatBorder             = { bg = dbg015, fg = dbg015 },
-        -- for dressing
-        FloatTitle              = { bg = colors.base00, fg = colors.base05 },
 
         ----------------------------------------------------------------------
         --                            for vim.ui                            --
@@ -111,7 +110,7 @@ function M.hg()
         SelectUIFloatTitle      = { fg = colors.base0D, bg = colors.base00 },
 
         ----------------------------------------------------------------------
-        --                              Pacer                               --
+        --                              Packer                               --
         ----------------------------------------------------------------------
         PackerFloatNormal       = { bg = dbg015 },
         PackerFloatBorder       = { bg = dbg015, fg = dbg015 },
@@ -127,11 +126,11 @@ function M.hg()
         ----------------------------------------------------------------------
         --                               CMP                                --
         ----------------------------------------------------------------------
-        PmenuSel                 = { bg = colors.base02, fg = 'None' },
+        PmenuSel                 = { bg = colors.base02, fg = nil },
         Pmenu                    = { bg = dbg015 },
-        CmpItemAbbr              = { bg = dbg015 },
-        CmpItemAbbrMatch         = { fg = colors.base0D, gui = "bold" },
-        CmpItemAbbrtMatchFuzzy   = { fg = colors.base0D, gui = "underline" },
+        CmpItemAbbr              = { bg = nil },
+        CmpItemAbbrMatch         = { fg = colors.base0D }, -- gui = "bold" },
+        CmpItemAbbrtMatchFuzzy   = { fg = colors.base0D }, -- gui = "underline" },
         CmpItemnu                = { fg = colors.base03 },
         CmpItemKindText          = { fg = colors.base09 },
         CmpItemKindthod          = { fg = colors.base0D },
@@ -153,6 +152,27 @@ function M.hg()
         CmpItemKindTypeParameter = { fg = colors.base0A },
         CmpDocumentation         = { bg = dbg015 },
         CmpDocumentationBorder   = { fg = dbg015, bg = dbg015 },
+
+        ----------------------------------------------------------------------
+        --                            LSP COnfig                            --
+        ----------------------------------------------------------------------
+        LspFloatWinNormal       = { bg = colors.base00 },
+        LspFloatWinBorder       = { bg = colors.base00, fg = colors.base02 },
+
+        LspWinHoverNormal       = { bg = colors.base00 },
+        LspWinHoverBorder       = { fg = darken(colors.base0C, .3), bg = colors.base00 },
+        LspWinHoverTitle        = { fg = darken(colors.base0C, .3) },
+
+        LspWinDiagnosticsNormal = { bg = colors.base00 },
+        LspWinDiagnosticsBorder = { fg = darken(colors.base0C, 0.3), bg = colors.base00 },
+        LspWinDiagnosticsTitle  = { fg = darken(colors.base0C, 0.3) },
+
+        LspWinRenameTitle       = { bg = colors.base00, fg = colors.base0D },
+        LspWinRenameBorder      = { bg = colors.base00, fg = colors.base0D },
+        LspWinRenamePrompt      = { bg = colors.base00, fg = colors.base0D },
+
+        LspWinCodeActionTitle   = { bg = colors.base00, fg = colors.base0D },
+        LspWinCodeActionBorder  = { bg = colors.base00, fg = colors.base0D },
 
         ----------------------------------------------------------------------
         --                           Winbar Navic                           --
@@ -184,45 +204,25 @@ function M.hg()
         NavicIconsNull          = { fg = colors.base0E },
         NavicIconsEvent         = { fg = colors.base09 },
 
-        ----------------------------------------------------------------------
-        --                            LSP COnfig                            --
-        ----------------------------------------------------------------------
-        LspFloatWinNormal       = { bg = colors.base00 },
-        LspFloatWinBorder       = { bg = colors.base00, fg = colors.base02 },
-
-        LspWinHoverNormal       = { bg = colors.base00 },
-        LspWinHoverBorder       = { fg = darken(colors.base0C, .3), bg = colors.base00 },
-        LspWinHoverTitle        = { fg = darken(colors.base0C, .3) },
-
-        LspWinDiagnosticsNormal = { bg = colors.base00 },
-        LspWinDiagnosticsBorder = { fg = darken(colors.base0C, 0.3), bg = colors.base00 },
-        LspWinDiagnosticsTitle  = { fg = darken(colors.base0C, 0.3) },
-
-        LspWinRenameTitle       = { bg = colors.base00, fg = colors.base0D },
-        LspWinRenameBorder      = { bg = colors.base00, fg = colors.base0D },
-        LspWinRenamePrompt      = { bg = colors.base00, fg = colors.base0D },
-
-        LspWinCodeActionTitle   = { bg = colors.base00, fg = colors.base0D },
-        LspWinCodeActionBorder  = { bg = colors.base00, fg = colors.base0D },
 
         ----------------------------------------------------------------------
         --                              Notify                              --
         ----------------------------------------------------------------------
-        NotifyERRORBorder = { fg = colors.base08, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyWARNBorder  = { fg = colors.base0E, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyINFOBorder  = { fg = colors.base0B, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyDEBUGBorder = { fg = colors.base0C, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyTRACEBorder = { fg = colors.base0C, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyERRORIcon   = { fg = colors.base08, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyWARNIcon    = { fg = colors.base0E, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyINFOIcon    = { fg = colors.base0B, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyDEBUGIcon   = { fg = colors.base0C, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyTRACEIcon   = { fg = colors.base0C, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyERRORTitle  = { fg = colors.base08, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyWARNTitle   = { fg = colors.base0E, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyINFOTitle   = { fg = colors.base0B, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyDEBUGTitle  = { fg = colors.base0C, guibg = colors.base00, gui = nil, guisp = nil },
-        NotifyTRACETitle  = { fg = colors.base0C, guibg = colors.base00, gui = nil, guisp = nil },
+        NotifyERRORBorder = { fg = colors.base08, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyWARNBorder  = { fg = colors.base0E, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyINFOBorder  = { fg = colors.base0B, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyDEBUGBorder = { fg = colors.base0C, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyTRACEBorder = { fg = colors.base0C, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyERRORIcon   = { fg = colors.base08, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyWARNIcon    = { fg = colors.base0E, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyINFOIcon    = { fg = colors.base0B, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyDEBUGIcon   = { fg = colors.base0C, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyTRACEIcon   = { fg = colors.base0C, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyERRORTitle  = { fg = colors.base08, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyWARNTitle   = { fg = colors.base0E, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyINFOTitle   = { fg = colors.base0B, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyDEBUGTitle  = { fg = colors.base0C, bg = colors.base00 }, --, gui = nil, guisp = nil },
+        NotifyTRACETitle  = { fg = colors.base0C, bg = colors.base00 }, --, gui = nil, guisp = nil },
         NotifyERRORBody   = 'Normal',
         NotifyWARNBody    = 'Normal',
         NotifyINFOBody    = 'Normal',
@@ -238,7 +238,8 @@ function M.hg()
         OutlineSignColumn   = "OutlineNormal",
         OutlineLineNr       = "OutlineNormal",
         OutlineWinSeparator = "NvimTreeWinSeparator",
-        FocusedSymbol       = { bg = colors.base01, fg = "None", gui = "None" },
+        FocusedSymbol       = { bg = colors.base01, fg = "None" }, -- gui = "None" },
+
 
         ----------------------------------------------------------------------
         --                            Dashboard                             --
@@ -261,7 +262,6 @@ function M.hg()
         DashboardActionUpdate       = { fg = colors.base0C },
         DashboardActionSettings     = { fg = colors.base08 },
 
-
         ----------------------------------------------------------------------
         --                             Trouble                              --
         ----------------------------------------------------------------------
@@ -282,7 +282,6 @@ function M.hg()
         NoiceConfirmBorder      = { fg = colors.base0B },
         NoiceSplit              = "Normal",
         NoiceVirtualText        = { fg = darken(colors.base09, .25) },
-
 
         ----------------------------------------------------------------------
         --                         Rainbow delemers                         --
