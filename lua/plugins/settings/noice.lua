@@ -13,11 +13,35 @@ require("noice").setup({
     cmdline = {
         format = {
             cmdline = { pattern = "^:", icon = "  ", lang = "vim" },
-            search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-            search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+            search_down = {
+                kind = "search",
+                pattern = "^/",
+                icon = require("themes.icons").common_ui_icons.search_result .. " ",
+                lang = "regex",
+            },
+            search_up = {
+                kind = "search",
+                pattern = "^%?",
+                icon = require("themes.icons").common_ui_icons.search_result .. " ",
+                lang = "regex",
+            },
             filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
             lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "  ", lang = "lua" },
             help = { pattern = "^:%s*he?l?p?%s+", icon = " " .. require("themes.icons").filetype_icons.help .. " " },
+        },
+    },
+    views = {
+        confirm = {
+            border = {
+                text = { top = " 󰬚 Confirm ", top_align = "center" },
+            },
+            win_options = {
+                winhighlight = {
+                    Normal = "NoiceConfirm",
+                    FloatBorder = "NoiceConfirmBorder",
+                    FloatTitle = "NoiceConfirmTitle",
+                },
+            },
         },
     },
     lsp = {
