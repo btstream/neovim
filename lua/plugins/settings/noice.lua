@@ -70,6 +70,9 @@ require("noice").setup({
                 size = {
                     max_width = "80",
                 },
+                buf_options = {
+                    filetype = "documentation",
+                },
                 win_options = {
                     winhighlight = {
                         NormalFloat = "LspWinHoverNormal",

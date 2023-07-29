@@ -133,6 +133,7 @@ M.filetype_icons       = {
     cmdline            = "󰋚 ",
     noice              = "󱥁 ",
     DressingInput      = "󱓧 ",
+    documentation      = "󰬋 ",
 }
 
 M.common_ui_icons   = {
