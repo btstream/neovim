@@ -46,6 +46,7 @@ return {
         -- end
 
         -- setupdap()
+        ---@diagnostic disable-next-line: missing-fields
         require("dapui").setup({
             icons = { expanded = "", collapsed = "", current_frame = "" },
         })

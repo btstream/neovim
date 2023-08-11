@@ -11,11 +11,12 @@ M._parsed_spec = {}
 local function get_specs(modules)
     local settings = require("settings")
     local s, config = pcall(require, "keymaps.default." .. modules)
-    config = s and config or nil
+    config = s and config or {}
 
     if settings.keys and settings.keys[modules] and vim.tbl_count(settings.keys[modules]) > 0 then
         local c = settings.keys[modules]
         if c.append then
+            ---@diagnostic disable-next-line: deprecated
             table.move(c, 1, #c, #config + 1, config)
         else
             c.append = nil
@@ -52,18 +53,18 @@ local function parse(spec)
     end
 end
 
-local function to_lazykey(spec)
-    local ret = {}
-    ret.mode = spec[1]
-    ret[1] = spec[2]
-    ret[2] = spec[3]
-    if spec[4] then
-        for k, v in pairs(spec[4]) do
-            ret[k] = v
-        end
-    end
-    return ret
-end
+-- local function to_lazykey(spec)
+--     local ret = {}
+--     ret.mode = spec[1]
+--     ret[1] = spec[2]
+--     ret[2] = spec[3]
+--     if spec[4] then
+--         for k, v in pairs(spec[4]) do
+--             ret[k] = v
+--         end
+--     end
+--     return ret
+-- end
 
 local function init(module)
     if not M._parsed_spec[module] then

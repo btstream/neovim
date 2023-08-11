@@ -26,7 +26,7 @@ return {
         --     "     ╙▒          ╣▀└                                                                               ",
         -- }
         local function banner()
-            local version = " driven by " .. vim.split(vim.api.nvim_command_output("version"), "\n")[2]
+            local version = " driven by " .. vim.split(vim.api.nvim_exec2("version", { output = true }).output, "\n")[2]
             local ret = {
                 "",
                 "   🐀 🐅 🐖 🐓 To Taotao, by",
@@ -115,7 +115,7 @@ return {
 
         require("dashboard").setup(hyper)
 
-        if vim.fn.argc() == 0 and vim.fn.line2byte("$") == -1 then
+        if vim.fn.argc() == 0 and vim.fn.line2byte(vim.fn.line("$")) == -1 then
             require("dashboard"):instance()
         end
     end,
