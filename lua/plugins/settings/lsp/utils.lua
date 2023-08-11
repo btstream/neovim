@@ -12,7 +12,7 @@ local ns_id = nil
 
 local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 --- helper function for lsp server's on_attach callback
---- @param client LspClient
+--- @param client lsp.Client
 --- @param bufnr number buffer handler
 M.on_attach = function(client, bufnr)
     -- require("lsp-status").on_attach(client, bufnr)

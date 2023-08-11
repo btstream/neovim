@@ -78,13 +78,14 @@ local function start_jdtls()
             bundles = {
                 vim.fn.glob(
                     require("mason.settings").current.install_root_dir .. "/packages/java-debug-adapter/**/*debug*.jar",
-                    1
+                    true
                 ),
             },
         },
         on_attach = function(client, bufnr)
+            ---@diagnostic disable-next-line: missing-fields
             jdtls.setup_dap({ hotcodereplace = "auto" })
-            jdtls.setup.add_commands()
+            -- jdtls.setup.add_commands()
             require("plugins.settings.lsp.utils").on_attach(client, bufnr)
         end,
     }

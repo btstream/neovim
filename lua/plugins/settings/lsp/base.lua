@@ -13,6 +13,7 @@ require("plugins.settings.lsp.ui").setup()
 -- setup nlspsettings to load
 -- json and lua config for settings
 -----------------------------------
+---@diagnostic disable-next-line: missing-fields
 require("nlspsettings").setup({
     config_home = lsp_settings_path,
     local_settings_dir = ".nvim",
