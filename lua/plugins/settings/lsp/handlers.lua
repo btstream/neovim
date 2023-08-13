@@ -1,17 +1,21 @@
 return {
 
-    -- ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    --     border = "rounded",
-    --     -- focusable = false,
-    --     -- close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-    --     title = "Documentation",
-    --     title_pos = "center",
-    --     source = "always",
-    --     prefix = " ",
-    --     scope = "cursor",
-    --     winhighlight = "NormalFloat:LspWinHoverNormal,FloatBorder:LspWinHoverBorder",
-    --     max_width = 120,
-    -- }),
+    -- ["textDocument/hover"] = function(_, result, ctx, _)
+    --     local bufnr, _ = vim.lsp.handlers.hover(_, result, ctx, {
+    --         border = "rounded",
+    --         -- focusable = false,
+    --         -- close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+    --         title = "Documentation",
+    --         title_pos = "center",
+    --         source = "always",
+    --         prefix = " ",
+    --         scope = "cursor",
+    --         winhighlight = "NormalFloat:LspWinHoverNormal,FloatBorder:LspWinHoverBorder",
+    --         max_width = 120,
+    --         stylize_markdown = true,
+    --     })
+    --     vim.api.nvim_set_option_value("filetype", "documentation", { buf = bufnr })
+    -- end,
 
     -- ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     --     border = "rounded",
