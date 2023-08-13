@@ -3,11 +3,8 @@ local find_root = require("jdtls.setup").find_root
 -- local get_settings = require("nlspsettings").get_settings
 local get_lua_settings = require("plugins.settings.lsp.nlspsettings_lualoader").get_settings
 
-local lombok_path = require("mason.settings").current.install_root_dir .. "/packages/jdtls/lombok.jar"
-
-if vim.fn.has("win32") == 1 then
-    lombok_path = lombok_path:gsub("/", "\\\\")
-end
+local lombok_path =
+    vim.fs.joinpath(require("mason.settings").current.install_root_dir, "packages", "jdtls", "lombok.jar")
 
 local function start_jdtls()
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
