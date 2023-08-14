@@ -21,7 +21,7 @@ local M = {}
 --- get active source for neotree
 --- if there is an active source, return source name and source index
 --- if not, return nil
----@return string, number or nil, nil
+---@return string, number | nil, nil
 function M.get_active_source()
     local sources = require("neo-tree").config.sources
     local source = nil
@@ -36,7 +36,7 @@ function M.get_active_source()
 end
 
 --- get active sources label, used in lualine
----@return string or nil
+---@return string | nil
 function M.get_active_source_label()
     local active_source = M.get_active_source()
     if active_source then
@@ -74,7 +74,6 @@ function M.goto_previous_source()
 end
 
 --- toggle neo tree sidebar
----@param f boolean
 function M.toggle(focus, position, dir)
     local source = "filesystem"
     local active_source = require("plugins.neo-tree.utils").get_active_source()
