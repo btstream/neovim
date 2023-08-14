@@ -164,11 +164,12 @@ return {
                         local buf_in_w = vim.api.nvim_win_get_buf(w)
                         if
                             current_buf ~= bufnr
-                            and (not vim.tbl_contains(
-                                nonfiletypes,
-                                vim.api.nvim_get_option_value("filetype", { buf = buf_in_w })
-                            ))
-                            and buf_in_w ~= bufnr
+                            and (
+                                not vim.tbl_contains(
+                                    nonfiletypes,
+                                    vim.api.nvim_get_option_value("filetype", { buf = buf_in_w })
+                                )
+                            )
                         then
                             vim.api.nvim_set_current_win(w)
                             vim.api.nvim_win_set_buf(w, bufnr)
