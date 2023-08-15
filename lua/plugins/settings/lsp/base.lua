@@ -45,11 +45,15 @@ lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.de
 -- setup lsp with mason
 -----------------------------------
 require("plugins.settings.lsp.mason")
+local disabled_server = { "pylyzer" }
 require("mason-lspconfig").setup_handlers({
     function(server_name)
         -- if server_name == "pyright" then
         --     return
         -- end
+        if vim.tbl_contains(disabled_server, server_name) then
+            return
+        end
         if not pcall(require, "plugins.settings.lsp.providers." .. server_name) then
             lspconfig[server_name].setup({})
         end

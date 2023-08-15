@@ -14,7 +14,6 @@ vim.diagnostic.config({
         border = "rounded",
         focusable = false,
         close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-        -- header = { "  Diagnostics:", "LspWinDiagnosticsTitle" },
         header = "",
         title = " 󰩂 Diagnostics ",
         source = "always",
@@ -44,7 +43,7 @@ vim.diagnostic.config({
             elseif d.severity == vim.diagnostic.severity.INFO then
                 highlight = "Information"
             end
-            return " [" .. d.code .. "] ", "LspDiagnosticsDefault" .. highlight
+            return d.code == nil and "" or " [" .. d.code .. "] ", "LspDiagnosticsDefault" .. highlight
         end,
     },
     virtual_text = false,

@@ -1,6 +1,6 @@
 local _servers = {
     "bashls",
-    -- "pyright",
+    "pyright",
     "pylyzer",
     "jdtls",
     "rust_analyzer",
