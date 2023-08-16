@@ -28,7 +28,7 @@ return {
                 -- expander_highlight = "NeoTreeExpander",
             },
             modified = {
-                symbol = "M ",
+                symbol = "󱩨 ",
             },
             git_status = {
                 symbols = require("themes.icons").gitstatus_icons,
