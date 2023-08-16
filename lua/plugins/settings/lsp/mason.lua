@@ -37,4 +37,8 @@ require("mason-tool-installer").setup({
     ensure_installed = _servers, -- ensure_installed,
     auto_update = true,
 })
-require("mason-tool-installer").run_on_start()
+
+-- use a schedule to make task kwork in orders
+require("utils.task_scheduler").schedule(function()
+    require("mason-tool-installer").run_on_start()
+end)
