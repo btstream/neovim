@@ -1,7 +1,7 @@
 local task_queue = {}
 local worker = coroutine.create(function()
     while true do
-        local job = table.remove(task_queue)
+        local job = table.remove(task_queue, 1)
         if job == nil then
             coroutine.yield()
         else
@@ -10,13 +10,13 @@ local worker = coroutine.create(function()
                 fn = function()
                     vim.schedule(job.fn)
                 end
-            else
-                fn = job.fn
             end
-            fn()
+            pcall(fn)
         end
     end
 end)
+
+coroutine.resume(worker)
 
 local M = {}
 
