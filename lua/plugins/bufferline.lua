@@ -186,7 +186,11 @@ return {
                 -- -- as an escape hatch for people who cannot bear it for whatever reason
                 -- indicator_icon = "▍ ",
                 indicator = {
-                    style = (os.getenv("TERM_PROGRAM") == "WezTerm" and vim.fn.has("win32") ~= 1) and "underline"
+                    style = (
+                        os.getenv("TERM_PROGRAM") == "WezTerm"
+                        and (vim.fn.has("win32") ~= 1 and vim.fn.has("wsl") ~= 1)
+                    )
+                            and "underline"
                         or "icon",
                     icon = "▎ ",
                     -- icon = "▍",
