@@ -1,7 +1,7 @@
 return {
     "numToStr/Comment.nvim",
-    -- keys = { "gcc", { mode = "v", "gc" } },
-    keys = require("keymaps").comment.lazy_keys(),
+    -- keys = require("keymaps").comment.lazy_keys(),
+    event = { "User BufReadRealFile" },
     config = function()
         require("Comment").setup({
             ignore = "^$",
