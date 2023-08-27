@@ -43,6 +43,11 @@ return {
     { "n", "<C-S-up>", "<cmd>resize +1<cr>" },
     { "n", "<C-S-down>", "<cmd>resize -1<cr>" },
 
+    -- bufer
+    { "n", "bn", "<cmd>bnext<cr>", { desc = "goto next buffer" } },
+    { "n", "bN", "<cmd>bprevious<cr>", { desc = "goto previous buffer" } },
+    { "n", "bc", require("base.quit-behave").quit, {desc = "close current buffer"} },
+
     -- move lines
     { "n", "<A-j>", "<cmd>m .+1<CR>==", { silent = true } },
     { "n", "<A-k>", "<cmd>m .-2<CR>==", { silent = true } },
