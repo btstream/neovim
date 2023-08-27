@@ -50,6 +50,10 @@ M.on_attach = function(client, bufnr)
         end)
     end
 
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.buf.inlay_hint(bufnr, true)
+    end
+
     -- formatting before save
     if client.supports_method("textDocument/formatting") then
         vim.api.nvim_create_autocmd("BufWritePre", {
