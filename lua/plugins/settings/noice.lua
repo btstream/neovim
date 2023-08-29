@@ -2,7 +2,18 @@ local M = require("noice.lsp.progress")
 local orig = M.progress
 -- disable lsp progress messages for null-ls
 M.progress = function(_, msg, info)
-    local name = vim.lsp.get_client_by_id(info.client_id).name
+    local client = vim.lsp.get_client_by_id(info.client_id)
+    local name = client.name
+
+    if name == "jdtls" then
+        if msg.value.kind == "end" and msg.value.message == "Background task" then
+            client.server_ready = true
+            if client.condvar then
+                client.condvar:notify_all()
+            end
+        end
+    end
+
     if name == "null-ls" then
         return
     end
