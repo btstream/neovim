@@ -8,7 +8,7 @@ return {
             source = "always",
             prefix = " ",
             scope = "cursor",
-            winhighlight = "NormalFloat:LspWinHoverNormal,FloatBorder:LspWinHoverBorder",
+            winhighlight = "NormalFloat:LspWinHoverNormal,FloatBorder:LspWinHoverBorder,FloatTitle:LspWinHoverTitle",
             max_width = 120,
             stylize_markdown = true,
         })
