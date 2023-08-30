@@ -35,7 +35,7 @@ return {
                 local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
                 -- enter poetry virtual env
                 local path = find_pyproject_toml(vim.fn.getcwd())
-                if path then
+                if path and vim.fn.executable("poetry") == 1 then
                     terminal:send("poetry shell -q && exit")
                 end
 
