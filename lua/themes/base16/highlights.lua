@@ -54,8 +54,9 @@ function M.hg()
         ----------------------------------------------------------------------
         --                        indent blank line                         --
         ----------------------------------------------------------------------
-        -- IndentBlanklineChar             = { fg = darken(colors.base03, 0.35) },
+        -- IndentBlanklineChar          = { fg = darken(colors.base03, 0.35) },
         IndentBlanklineSpaceChar        = "IndentBlanklineChar",
+        IndentBlanklineContextChar      = { fg = colors.base0E },
         IndentBlanklineContextSpaceChar = "IndentBlanklineChar",
 
         ----------------------------------------------------------------------
