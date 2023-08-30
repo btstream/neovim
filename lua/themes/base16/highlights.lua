@@ -58,6 +58,7 @@ function M.hg()
         IndentBlanklineSpaceChar        = "IndentBlanklineChar",
         IndentBlanklineContextChar      = { fg = colors.base0E },
         IndentBlanklineContextSpaceChar = "IndentBlanklineChar",
+        NonText                         = "IndentBlanklineChar",
 
         ----------------------------------------------------------------------
         --                             Whichkey                             --
