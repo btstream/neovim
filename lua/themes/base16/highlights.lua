@@ -59,7 +59,7 @@ function M.hg()
         ----------------------------------------------------------------------
         --                               git                                --
         ----------------------------------------------------------------------
-        GitSignsCurrentLineBlame = { fg = colors.base03 },
+        GitSignsCurrentLineBlame = { fg = colors.base03, bg = darken(colors.base02, .25) },
         GitSignHunkPreviewNormal = "Normal",
         GitSignHunkPreviewBorder = { fg = colors.base02 },
         GitSignsChange           = { fg = colors.base0C },
