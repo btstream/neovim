@@ -52,6 +52,13 @@ function M.hg()
         FloatTitle              = { bg = colors.base00, fg = colors.base05 },
 
         ----------------------------------------------------------------------
+        --                        indent blank line                         --
+        ----------------------------------------------------------------------
+        -- IndentBlanklineChar             = { fg = darken(colors.base03, 0.35) },
+        IndentBlanklineSpaceChar        = "IndentBlanklineChar",
+        IndentBlanklineContextSpaceChar = "IndentBlanklineChar",
+
+        ----------------------------------------------------------------------
         --                             Whichkey                             --
         ----------------------------------------------------------------------
         WhichKeyFloat           = { bg = dbg015 },
