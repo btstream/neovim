@@ -176,7 +176,7 @@ function M.hg()
         LspWinCodeActionTitle   = { bg = colors.base00, fg = colors.base0D },
         LspWinCodeActionBorder  = { bg = colors.base00, fg = colors.base0D },
 
-        LspInlayHint            = { fg = colors.base05 },
+        LspInlayHint            = { fg = colors.base03, italic = true, blend = 50 },
 
         ----------------------------------------------------------------------
         --                           Winbar Navic                           --
