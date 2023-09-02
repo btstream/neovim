@@ -132,6 +132,12 @@ return {
                             },
                         }
                     end
+
+                    if opts.prompt == "Load Session" or opts.prompt == "Delete Session" then
+                        return {
+                            backend = "telescope",
+                        }
+                    end
                 end,
             },
         })
