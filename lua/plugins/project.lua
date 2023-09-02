@@ -3,6 +3,6 @@ return {
     event = { "User BufReadRealFilePost", "User LazyVimStarted" },
     dependencies = "Shatur/neovim-session-manager",
     config = function()
-        require("project_nvim").setup({})
+        require("plugins.settings.project_and_session")
     end,
 }
