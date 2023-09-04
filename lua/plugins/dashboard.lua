@@ -115,7 +115,10 @@ return {
 
         require("dashboard").setup(hyper)
 
-        if vim.fn.argc() == 0 and vim.fn.line2byte(vim.fn.line("$")) == -1 then
+        local line_byte = vim.fn.line2byte(vim.fn.line("$"))
+        -- line_byte == 1 for nightly from 2023-08-30
+        -- line_byte == -1 for verion before nightly 2023-08-30
+        if vim.fn.argc() == 0 and (line_byte == 1 or line_byte == -1) then
             require("dashboard"):instance()
         end
     end,
