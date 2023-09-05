@@ -6,9 +6,9 @@ local origi_set_pwd = project_nvim_project.set_pwd
 ---@diagnostic disable-next-line: duplicate-set-field
 project_nvim_project.set_pwd = function(dir, method)
     if dir == nil then
-        local current_dir = vim.fn.expand("%:p:h")
-        if vim.fn.fnamemodify(vim.fn.getcwd(), "%p") ~= current_dir then
-            vim.api.nvim_set_current_dir(current_dir)
+        local current_buffer_dir = vim.fn.expand("%:p:h")
+        if vim.fn.fnamemodify(vim.fn.getcwd(), "%p") ~= current_buffer_dir then
+            vim.api.nvim_set_current_dir(current_buffer_dir)
         end
     else
         origi_set_pwd(dir, method)
