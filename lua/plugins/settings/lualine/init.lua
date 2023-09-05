@@ -188,64 +188,64 @@ require("lualine").setup({
         lualine_z = {},
     },
     tabline = {},
-    winbar = {
-        lualine_b = {
-            {
-                require("plugins.settings.lualine.components.filepath"),
-                color = { bg = "NONE" },
-                -- padding = { left = 1, right = 1 },
-            },
-            {
-                "filetype",
-                icon_only = true,
-                color = { bg = "NONE" },
-                padding = { left = 0, right = 0 },
-            },
-            {
-                filename,
-                symbols = { modified = "", readonly = "", unnamed = "" },
-                color = { bg = "NONE" },
-            },
-            {
-                function()
-                    return "›"
-                end,
-                padding = { left = 0, right = 0 },
-                cond = function()
-                    return vim.g.navic_loaded and require("nvim-navic").get_location({}) ~= ""
-                end,
-                color = { bg = "NONE" },
-            },
-        },
-        lualine_c = {
-            {
-                function()
-                    return require("nvim-navic").get_location()
-                end,
-                cond = function()
-                    return vim.g.navic_loaded and require("nvim-navic").is_available()
-                end,
-            },
-        },
-    },
-    inactive_winbar = {
-        lualine_b = {
-            {
-                require("plugins.settings.lualine.components.filepath"),
-                color = { bg = "NONE" },
-            },
-            {
-                "filetype",
-                icon_only = true,
-                color = { bg = "NONE" },
-                padding = { left = 0, right = 0 },
-            },
-            {
-                filename,
-                symbols = { modified = "", readonly = "", unnamed = "" },
-                color = { bg = "NONE" },
-            },
-        },
-    },
+    -- winbar = {
+    --     lualine_b = {
+    --         {
+    --             require("plugins.settings.lualine.components.filepath"),
+    --             color = { bg = "NONE" },
+    --             -- padding = { left = 1, right = 1 },
+    --         },
+    --         {
+    --             "filetype",
+    --             icon_only = true,
+    --             color = { bg = "NONE" },
+    --             padding = { left = 0, right = 0 },
+    --         },
+    --         {
+    --             filename,
+    --             symbols = { modified = "", readonly = "", unnamed = "" },
+    --             color = { bg = "NONE" },
+    --         },
+    --         {
+    --             function()
+    --                 return "›"
+    --             end,
+    --             padding = { left = 0, right = 0 },
+    --             cond = function()
+    --                 return vim.g.navic_loaded and require("nvim-navic").get_location({}) ~= ""
+    --             end,
+    --             color = { bg = "NONE" },
+    --         },
+    --     },
+    --     lualine_c = {
+    --         {
+    --             function()
+    --                 return require("nvim-navic").get_location()
+    --             end,
+    --             cond = function()
+    --                 return vim.g.navic_loaded and require("nvim-navic").is_available()
+    --             end,
+    --         },
+    --     },
+    -- },
+    -- inactive_winbar = {
+    --     lualine_b = {
+    --         {
+    --             require("plugins.settings.lualine.components.filepath"),
+    --             color = { bg = "NONE" },
+    --         },
+    --         {
+    --             "filetype",
+    --             icon_only = true,
+    --             color = { bg = "NONE" },
+    --             padding = { left = 0, right = 0 },
+    --         },
+    --         {
+    --             filename,
+    --             symbols = { modified = "", readonly = "", unnamed = "" },
+    --             color = { bg = "NONE" },
+    --         },
+    --     },
+    -- },
     extensions = {},
 })
