@@ -7,9 +7,7 @@ local origi_set_pwd = project_nvim_project.set_pwd
 project_nvim_project.set_pwd = function(dir, method)
     if dir == nil then
         local current_buffer_dir = vim.fn.expand("%:p:h")
-        if vim.fn.fnamemodify(vim.fn.getcwd(), "%p") ~= current_buffer_dir then
-            vim.api.nvim_set_current_dir(current_buffer_dir)
-        end
+        vim.api.nvim_set_current_dir(current_buffer_dir)
     else
         origi_set_pwd(dir, method)
     end
