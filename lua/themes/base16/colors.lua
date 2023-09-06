@@ -13,6 +13,7 @@ local function get_color_scheme(scheme)
             end
         end
     end
+    style = style:gsub("^(harmonic)-(.*)", "%116-%2")
     local ret = require("base16-colorscheme").colorschemes[style]
     return ret
 end
