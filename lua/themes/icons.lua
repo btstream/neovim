@@ -39,6 +39,8 @@ M.lsp_symbols     = {
     Number        = "",
     Fragment      = "󰅴",
     Namespace     = "",
+    -- for dropbar
+    Identifier    = "󰬐",
 }
 
 M.lsp_diagnostic_signs = {
