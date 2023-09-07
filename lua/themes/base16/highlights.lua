@@ -308,11 +308,13 @@ function M.hg()
         RainbowDelimiterViolet = { fg = colors.base0E },
         RainbowDelimiterCyan   = { fg = colors.base0C },
 
-
         ----------------------------------------------------------------------
-        --                             dropbar                              --
+        --                        winbar and dropbar                        --
         ----------------------------------------------------------------------
-        DropBarIconUISeparator = "Normal",
+        WinBar                 = { fg = darken(colors.base05, 0.25) },
+        DropBarIconUISeparator = "WinBar",
+        DropBarIconUIIndicator = "DropBarIconUISeparator",
+        DropBarMenuHoverIcon   = "WinBar",
 
         ----------------------------------------------------------------------
         --                          LightBulbSign                           --

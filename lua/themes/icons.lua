@@ -136,6 +136,7 @@ M.filetype_icons       = {
     noice              = "󱥁 ",
     DressingInput      = "󱓧 ",
     documentation      = "󰬋 ",
+    dropbar_menu       = "󰮫 ",
 }
 
 M.common_ui_icons   = {
