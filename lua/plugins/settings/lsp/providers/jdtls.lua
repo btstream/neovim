@@ -1,6 +1,4 @@
 local jdtls = require("jdtls")
-local async = require("plenary.async")
-local Condvar = require("plenary.async.control").Condvar
 
 local find_root = require("jdtls.setup").find_root
 -- local get_settings = require("nlspsettings").get_settings
@@ -83,19 +81,10 @@ local function start_jdtls()
             },
         },
         on_attach = function(client, bufnr)
-            client.condvar = client.condvar or Condvar.new()
             ---@diagnostic disable-next-line: missing-fields
             jdtls.setup_dap({ hotcodereplace = "auto" })
             -- jdtls.setup.add_commands()
             require("plugins.settings.lsp.utils").on_attach(client, bufnr)
-
-            ---@diagnostic disable-next-line: missing-parameter
-            async.run(function()
-                if not client.server_ready then
-                    client.condvar:wait()
-                end
-                vim.lsp.inlay_hint(bufnr, true)
-            end)
         end,
     }
 

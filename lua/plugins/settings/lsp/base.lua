@@ -60,6 +60,19 @@ require("mason-lspconfig").setup_handlers({
     end,
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client.server_capabilities.inlayHintProvider or client.supports_method("textDocument/inlayHints") then
+            vim.schedule(function()
+                vim.lsp.inlay_hint(args.buf, true)
+            end)
+        end
+        -- whatever other lsp config you want
+    end,
+})
+
 -- a little trick for packer to load lspconfig lazily, which
 -- is to call a BufRead autocmd to make current buffer attach
 -- to lsp server
