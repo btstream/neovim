@@ -60,6 +60,7 @@ require("mason-lspconfig").setup_handlers({
     end,
 })
 
+---- enable inlayHints ----
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(args)
@@ -70,6 +71,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
             end)
         end
         -- whatever other lsp config you want
+    end,
+})
+
+---- toggle inlayHints for different modes ----
+vim.api.nvim_create_autocmd("ModeChanged", {
+    callback = function(args)
+        local buf = args.buf
+        local match = args.match
+        local clients = vim.lsp.get_clients({ buf = buf })
+        for _, client in ipairs(clients) do
+            if client.supports_method("textDocument/inlayHints") then
+                if match == "n:i" then
+                    vim.lsp.inlay_hint(buf, false)
+                elseif match == "i:n" then
+                    vim.lsp.inlay_hint(buf, true)
+                end
+            end
+        end
     end,
 })
 
