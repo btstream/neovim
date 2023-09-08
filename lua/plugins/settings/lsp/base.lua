@@ -3,11 +3,9 @@ local lspconfig_utils = require("lspconfig.util")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
--- capabilities = vim.tbl_deep_extend("keep", capabilities, require("lsp-status").capabilities)
 
 local lsp_settings_path = vim.fn.stdpath("config") .. "/lsp-settings"
 
--- require("lsp-status").register_progress()
 require("plugins.settings.lsp.ui").setup()
 -----------------------------------
 -- setup nlspsettings to load
@@ -59,6 +57,10 @@ require("mason-lspconfig").setup_handlers({
         end
     end,
 })
+
+----------------------------------------------------------------------
+--                     settings for inlayHints                      --
+----------------------------------------------------------------------
 
 ---- enable inlayHints ----
 vim.api.nvim_create_autocmd("LspAttach", {
