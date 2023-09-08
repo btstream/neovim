@@ -29,23 +29,26 @@ local function setup_autocmds()
         end,
     })
 
-    vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
+    vim.api.nvim_create_autocmd("WinEnter", {
         pattern = "*",
-        callback = function()
+        callback = function(event)
             local colors = require("themes.base16.colors").colors()
-            -- local dbg = darken(colors.base00, 0.15)
-            if vim.bo.filetype == "NvimTree" or vim.bo.filetype == "neo-tree" then
+
+            local filetype = vim.api.nvim_get_option_value("filetype", { buf = event.buf })
+
+            if filetype == "NvimTree" or filetype == "neo-tree" then
                 highlight({
                     NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base0D },
                     OutlineSidebarTitle = { bg = colors.base00, fg = colors.base03 },
                     NeoTreeTabActive = { bg = colors.base00, fg = colors.base0D },
                 })
-            elseif vim.bo.filetype == "Outline" then
-                highlight({
-                    NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
-                    OutlineSidebarTitle = { bg = colors.base00, fg = colors.base0D },
-                    NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
-                })
+            -- disable outline config
+            -- elseif filetype == "Outline" then
+            --     highlight({
+            --         NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
+            --         OutlineSidebarTitle = { bg = colors.base00, fg = colors.base0D },
+            --         NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
+            --     })
             else
                 highlight({
                     NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
