@@ -28,7 +28,7 @@ return {
         vim.api.nvim_create_autocmd("WinEnter", {
             callback = function(event)
                 if vim.api.nvim_get_option_value("filetype", { buf = event.buf }) == "neo-tree" then
-                    codewindow.close_minimap()
+                    vim.schedule(codewindow.close_minimap)
                 end
             end,
         })
