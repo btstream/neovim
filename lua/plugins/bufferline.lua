@@ -33,29 +33,29 @@ return {
                                     -- restore saved layout
                                     local winid = vim.api.nvim_get_current_win()
 
-                                    if vim.g.saved_window.outline then
-                                        vim.api.nvim_create_autocmd("User", {
-                                            pattern = "OpenOutline",
-                                            callback = function()
-                                                vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
-                                                    pattern = "*",
-                                                    callback = function()
-                                                        if vim.bo.filetype == "Outline" then
-                                                            vim.api.nvim_set_current_win(winid)
-                                                            vim.cmd.buffer(bufnr)
-                                                            vim.cmd.stopinsert()
-                                                        end
-                                                        return true
-                                                    end,
-                                                })
-                                                require("symbols-outline").toggle_outline()
-                                                return true -- only run onece
-                                            end,
-                                        })
-                                        if #vim.g.saved_window.term == 0 then
-                                            vim.cmd("do User OpenOutline")
-                                        end
-                                    end
+                                    -- if vim.g.saved_window.outline then
+                                    --     vim.api.nvim_create_autocmd("User", {
+                                    --         pattern = "OpenOutline",
+                                    --         callback = function()
+                                    --             vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
+                                    --                 pattern = "*",
+                                    --                 callback = function()
+                                    --                     if vim.bo.filetype == "Outline" then
+                                    --                         vim.api.nvim_set_current_win(winid)
+                                    --                         vim.cmd.buffer(bufnr)
+                                    --                         vim.cmd.stopinsert()
+                                    --                     end
+                                    --                     return true
+                                    --                 end,
+                                    --             })
+                                    --             require("symbols-outline").toggle_outline()
+                                    --             return true -- only run onece
+                                    --         end,
+                                    --     })
+                                    --     if #vim.g.saved_window.term == 0 then
+                                    --         vim.cmd("do User OpenOutline")
+                                    --     end
+                                    -- end
 
                                     for _, t in pairs(vim.g.saved_window.term) do
                                         local term = require("toggleterm.terminal").get(t)
@@ -67,7 +67,7 @@ return {
                                                 vim.cmd.buffer(bufnr)
                                                 vim.cmd.stopinsert()
                                                 t.on_open = origianl_open
-                                                vim.cmd("do User OpenOutline")
+                                                -- vim.cmd("do User OpenOutline")
                                             end
                                             term:toggle()
                                         end
@@ -105,13 +105,13 @@ return {
                                         end
                                     end
 
-                                    saved_window.outline = require("lazy.core.config").plugins["symbols-outline.nvim"]._.loaded
-                                            and require("symbols-outline").view:is_open()
-                                        or false
+                                    -- saved_window.outline = require("lazy.core.config").plugins["symbols-outline.nvim"]._.loaded
+                                    --         and require("symbols-outline").view:is_open()
+                                    --     or false
 
-                                    if saved_window.outline then
-                                        require("symbols-outline").toggle_outline()
-                                    end
+                                    -- if saved_window.outline then
+                                    --     require("symbols-outline").toggle_outline()
+                                    -- end
 
                                     vim.g.saved_window = saved_window
                                 end
