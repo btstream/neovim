@@ -24,9 +24,9 @@ M.on_attach = function(client, bufnr)
         null_ls_registered_fts = require("null-ls.sources").get_filetypes()
     end
 
-    if client.server_capabilities.documentSymbolProvider then
-        require("nvim-navic").attach(client, bufnr)
-    end -- save on formatting
+    -- if client.server_capabilities.documentSymbolProvider then
+    --     require("nvim-navic").attach(client, bufnr)
+    -- end -- save on formatting
 
     -- auto show diagnostics
     vim.api.nvim_create_autocmd({ "CursorHold" }, {
