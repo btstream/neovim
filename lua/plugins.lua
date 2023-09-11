@@ -16,4 +16,5 @@ require("lazy").setup("plugins", {
         enabled = true,
         notify = false,
     },
+    concurrency = 5,
 })
