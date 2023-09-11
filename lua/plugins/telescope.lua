@@ -6,7 +6,7 @@ return {
         "nvim-telescope/telescope-file-browser.nvim",
         {
             "nvim-telescope/telescope-fzf-native.nvim",
-            build = vim.fn.executable("mingw32-make") and "mingw32-make" or "make",
+            build = vim.fn.executable("mingw32-make") == 1 and "mingw32-make" or "make",
             lazy = true,
         },
         -- {
