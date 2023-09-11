@@ -4,7 +4,7 @@ return {
     -- priority = 65535,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        "arkav/lualine-lsp-progress",
+        -- "arkav/lualine-lsp-progress",
     },
     config = function()
         require("plugins.settings.lualine")
