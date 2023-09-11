@@ -4,7 +4,11 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
         "nvim-telescope/telescope-file-browser.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
+        {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = vim.fn.executable("mingw32-make") and "mingw32-make" or "make",
+            lazy = true,
+        },
         -- {
         "ahmedkhalf/project.nvim",
         --     event = "User BufReadRealFilePost",
