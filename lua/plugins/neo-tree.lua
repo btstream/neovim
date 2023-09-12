@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("User", {
                         require("neo-tree.sources.filesystem").navigate(state, cwd)
                     end
                 end
-            end, 50)
+            end, 100)
         end
     end,
 })
