@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("User", {
         -- end, 2000)
         require("utils.task_scheduler").defer(function()
             require("utils.lazy").update()
-        end, 2000)
+        end, 2000, { ordered = true })
     end,
 })
 return {

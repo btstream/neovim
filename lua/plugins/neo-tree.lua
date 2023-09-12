@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("User", {
     callback = function(ev)
         local plugin = ev.data
         if plugin == "neo-tree.nvim" then
-            vim.defer_fn(function()
+            require("utils.task_scheduler").defer(function()
                 local s, _ = require("plugins.neo-tree.utils").get_active_source()
                 if s == "filesystem" then
                     local state = require("neo-tree.sources.manager").get_state(s)
