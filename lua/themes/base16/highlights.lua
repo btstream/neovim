@@ -25,7 +25,7 @@ local M = {}
 function M.hg()
     local colors = get_base16_colors()
     -- print(vim.json.encode(colors))
-    -- local dbg010 = darken(colors.base00, 0.10)
+    local dbg010 = darken(colors.base00, 0.10)
     local dbg015 = darken(colors.base00, 0.15)
     local dbg020 = darken(colors.base00, 0.20)
 
@@ -68,7 +68,7 @@ function M.hg()
         ----------------------------------------------------------------------
         --                               git                                --
         ----------------------------------------------------------------------
-        GitSignsCurrentLineBlame = { fg = colors.base03, bg = darken(colors.base02, .25) },
+        GitSignsCurrentLineBlame = { fg = colors.base03, bg = dbg010 },
         GitSignHunkPreviewNormal = "Normal",
         GitSignHunkPreviewBorder = { fg = colors.base02 },
         GitSignsChange           = { fg = colors.base0C },
