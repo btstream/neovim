@@ -188,37 +188,6 @@ function M.hg()
         LspInlayHint            = { fg = colors.base04, blend = 50 },
 
         ----------------------------------------------------------------------
-        --                           Winbar Navic                           --
-        ----------------------------------------------------------------------
-        NavicIconsString        = { fg = colors.base0B },
-        NavicIconsMethod        = { fg = colors.base0D },
-        NavicIconsFunction      = { fg = colors.base0D },
-        NavicIconsConstructor   = { fg = colors.base0A },
-        NavicIconsField         = { fg = colors.base0D },
-        NavicIconsClass         = { fg = colors.base0A },
-        NavicIconsInterface     = { fg = colors.base0A },
-        NavicIconsModule        = { fg = colors.base0D },
-        NavicIconsProperty      = { fg = colors.base0D },
-        NavicIconsValue         = { fg = colors.base09 },
-        NavicIconsEnum          = { fg = colors.base0A },
-        NavicIconsKey           = { fg = colors.base0E },
-        NavicIconsSnippet       = { fg = colors.base0B },
-        NavicIconsFile          = { fg = colors.base0D },
-        NavicIconsEnumMember    = { fg = colors.base0C },
-        NavicIconsConstant      = { fg = colors.base09 },
-        NavicIconsStruct        = { fg = colors.base0A },
-        NavicIconsTypeParameter = { fg = colors.base0A },
-        NavicIconsNamespace     = { fg = colors.base0B },
-        NavicIconsPackage       = "NavicIconsModule",
-        NavicIconsVariable      = { fg = colors.base0E },
-        NavicIconsBoolean       = { fg = colors.base0D },
-        NavicIconsArray         = "NavicIconsEnum",
-        NavicIconsObject        = "NavicIconsArray",
-        NavicIconsNull          = { fg = colors.base0E },
-        NavicIconsEvent         = { fg = colors.base09 },
-
-
-        ----------------------------------------------------------------------
         --                              Notify                              --
         ----------------------------------------------------------------------
         NotifyERRORBorder = { fg = colors.base08, bg = colors.base00 }, --, gui = nil, guisp = nil },
