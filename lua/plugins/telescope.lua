@@ -9,13 +9,7 @@ return {
             build = vim.fn.executable("mingw32-make") == 1 and "mingw32-make" or "make",
             lazy = true,
         },
-        -- {
         "ahmedkhalf/project.nvim",
-        --     event = "User BufReadRealFilePost",
-        --     config = function()
-        --         require("project_nvim").setup({})
-        --     end,
-        -- },
     },
     cmd = "Telescope",
     keys = require("keymaps").telescope.lazy_keys(),
@@ -79,21 +73,5 @@ return {
         require("telescope").load_extension("projects")
         require("telescope").load_extension("file_browser")
         require("telescope").load_extension("notify")
-
-        -- find files
-        -- map({ "n", "i" }, "<C-k>p", "<cmd>Telescope find_files<cr>")
-
-        -- -- find symbols
-        -- map({ "n", "i" }, "<C-k>s", "<cmd>Telescope lsp_document_symbols<cr>")
-        -- map({ "n", "i" }, "<C-k><S-s>", "<cmd>Telescope lsp_workspace_symbols<cr>")
-
-        -- -- global find
-        -- map({ "n", "i" }, "<C-k>f", "<cmd>Telescope live_grep<cr>")
-
-        -- -- registers
-        -- map({ "n", "i" }, "<C-k>r", "<cmd>Telescope registers<cr>")
-
-        -- -- spell suggest
-        -- map("n", "z=", "<cmd>Telescope spell_suggest<cr>")
     end,
 }
