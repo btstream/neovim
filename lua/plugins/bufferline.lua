@@ -187,7 +187,7 @@ return {
                 -- indicator_icon = "▍ ",
                 indicator = {
                     style = (
-                        os.getenv("TERM_PROGRAM") == "WezTerm"
+                        (os.getenv("TERM_PROGRAM") == "WezTerm" or os.getenv("TERM") == "xterm-kitty")
                         and (vim.fn.has("win32") ~= 1 and vim.fn.has("wsl") ~= 1)
                     )
                             and "underline"
