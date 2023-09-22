@@ -85,7 +85,7 @@ opt.spell = false
 --                           titlestring                            --
 ----------------------------------------------------------------------
 opt.title = true
-opt.titlestring = [[%f %h%m%r%w %{v:progname} (%{tabpagenr()} of %{tabpagenr('$')})]]
+opt.titlestring = [[%f %h%m%r%w]]
 
 ----------------------------------------------------------------------
 --                            behavious                             --
