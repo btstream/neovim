@@ -82,6 +82,12 @@ vim.opt_local.spelloptions:append("noplainbuffer")
 opt.spell = false
 
 ----------------------------------------------------------------------
+--                           titlestring                            --
+----------------------------------------------------------------------
+opt.title = true
+opt.titlestring = [[%f %h%m%r%w %{v:progname} (%{tabpagenr()} of %{tabpagenr('$')})]]
+
+----------------------------------------------------------------------
 --                            behavious                             --
 ----------------------------------------------------------------------
 opt.splitright = true
