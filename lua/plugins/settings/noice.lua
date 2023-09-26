@@ -1,14 +1,14 @@
 local M = require("noice.lsp.progress")
 local orig = M.progress
 -- disable lsp progress messages for null-ls
-M.progress = function(_, msg, info)
-    local client = vim.lsp.get_client_by_id(info.client_id)
+M.progress = function(data)
+    local client = vim.lsp.get_client_by_id(data.client_id)
     local name = client.name
 
     if name == "null-ls" then
         return
     end
-    orig(_, msg, info)
+    orig(data)
 end
 
 require("noice").setup({
