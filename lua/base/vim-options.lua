@@ -100,7 +100,7 @@ opt.autoread = true
 --     au FocusGained,BufEnter * :checktime
 -- augroup end
 -- ]])
-vim.api.nvim_create_autocmd({ "CursorHold, CursorHoldI, FocusGained, BufEnter" }, {
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI", "FocusGained", "BufEnter" }, {
     pattern = "*",
     callback = function()
         local bufnr = tonumber(vim.fn.expand("<abuf>"))
