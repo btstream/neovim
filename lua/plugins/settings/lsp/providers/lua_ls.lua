@@ -17,6 +17,6 @@ lspconfig.lua_ls.setup({
                 }
             or {}
         client.config.settings = vim.tbl_deep_extend("force", client.config.settings, settings)
-        vim.lsp.rpc.notify("workspace/didChangeConfiguration")
+        client.notify("workspace/didChangeConfiguration")
     end,
 })
