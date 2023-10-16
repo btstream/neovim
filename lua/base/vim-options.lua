@@ -85,7 +85,7 @@ opt.spell = false
 --                           titlestring                            --
 ----------------------------------------------------------------------
 opt.title = true
-opt.titlestring = [[%f %h%m%r%w]]
+opt.titlestring = [[%f %H%M%R%W]]
 
 ----------------------------------------------------------------------
 --                            behavious                             --
