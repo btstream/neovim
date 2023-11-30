@@ -85,9 +85,9 @@ vim.api.nvim_create_autocmd("ModeChanged", {
         for _, client in ipairs(clients) do
             if client.supports_method("textDocument/inlayHints") then
                 if match == "n:i" then
-                    vim.lsp.inlay_hint(buf, false)
+                    vim.lsp.inlay_hint.enable(buf, false)
                 elseif match == "i:n" then
-                    vim.lsp.inlay_hint(buf, true)
+                    vim.lsp.inlay_hint.enable(buf, true)
                 end
             end
         end
