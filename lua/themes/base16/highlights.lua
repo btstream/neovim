@@ -37,6 +37,7 @@ function M.hg()
         ----------------------------------------------------------------------
         -- EndOfBuffer = { fg = colors.base00, bg              = colors.base00 },
         VertSplit      = { fg = dbg020 },
+        WinSeparator   = "VertSplit",
         CursorLineNr   = { fg = darken(colors.base0D, 0.1), bg = colors.base00 },
         LineNr         = { fg = colors.base03 },
         SignColumn     = { bg = "None"},
