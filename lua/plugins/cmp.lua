@@ -106,6 +106,12 @@ return {
                     symbol_map = symbol_map,
                     mode = "symbol",
                     maxwidth = 50,
+                    before = function(entry, vim_item)
+                        if entry.source.name == "codeium" then
+                            vim_item.kind_hl_group = "CmpItemKindCodeium"
+                        end
+                        return vim_item
+                    end,
                 }),
                 -- end,
             },

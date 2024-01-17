@@ -164,6 +164,7 @@ function M.hg()
         CmpItemKindTypeParameter = { fg = colors.base0A },
         CmpDocumentation         = { bg = dbg015 },
         CmpDocumentationBorder   = { fg = dbg015, bg = dbg015 },
+        CmpItemKindCodeium       = { fg = colors.base0C },
 
         ----------------------------------------------------------------------
         --                            LSP COnfig                            --

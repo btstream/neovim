@@ -25,7 +25,7 @@ M.lsp_symbols     = {
     Constant      = "",
     Struct        = "",
     Event         = "",
-    Operator      = "",
+    Operator      = "",
     TypeParameter = "",
     -- for outline
     String        = "",
@@ -41,7 +41,7 @@ M.lsp_symbols     = {
     Namespace     = "",
     -- for dropbar
     Identifier    = "󰬐",
-    Codeium       = "",
+    Codeium       = "",
 }
 
 M.lsp_diagnostic_signs = {
