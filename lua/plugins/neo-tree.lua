@@ -47,6 +47,12 @@ return {
                 expander_expanded = "",
                 -- expander_highlight = "NeoTreeExpander",
             },
+            icon = {
+                folder_closed = icons.folder_closed,
+                folder_open = icons.folder_open,
+                folder_empty = icons.folder_empty,
+                folder_empty_open = icons.folder_empty_open,
+            },
             modified = {
                 symbol = "󰰏 ",
             },
