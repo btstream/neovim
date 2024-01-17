@@ -90,6 +90,7 @@ return {
                 end, { "i", "s" }),
             },
             sources = cmp.config.sources({
+                { name = "codeium" },
                 { name = "nvim_lsp" },
                 { name = "nvim_lua" },
                 { name = "nvim_lsp_signature_help" },
@@ -108,6 +109,7 @@ return {
                 }),
                 -- end,
             },
+            experimental = { ghost_text = true },
         })
 
         -- Use buffer source for `/`.
