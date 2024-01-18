@@ -6,5 +6,6 @@
     "Lua.diagnostics.disable": [
         "unused-vararg"
     ],
-    "Lua.workspace.checkThirdParty": false
+    "Lua.workspace.checkThirdParty": "Disable",
+    "Lua.workspace.maxPreload": 1000
 }
