@@ -115,7 +115,6 @@ return {
                 }),
                 -- end,
             },
-            experimental = { ghost_text = true },
         })
 
         -- Use buffer source for `/`.
