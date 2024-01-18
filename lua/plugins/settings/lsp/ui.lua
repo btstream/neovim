@@ -10,7 +10,7 @@ local function extend_open_floating_perview()
         local bufnr, winnr = original(contents, syntax, opts, ...)
 
         if opts.winhighlight then
-            vim.api.nvim_win_set_option(winnr, "winhighlight", opts.winhighlight)
+            vim.api.nvim_set_option_value("winhighlight", opts.winhighlight, { win = winnr })
         end
 
         return bufnr, winnr

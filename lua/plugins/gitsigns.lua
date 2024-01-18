@@ -8,10 +8,12 @@ return {
 
         popup.create = function(lines_spec, opts, id)
             local winid, _ = orig_popup(lines_spec, opts, id)
-            vim.api.nvim_win_set_option(
-                winid,
+            vim.api.nvim_set_option_value(
                 "winhighlight",
-                "NormalFloat:GitSignHunkPreviewNormal,FloatBorder:GitSignHunkPreviewBorder"
+                "NormalFloat:GitSignHunkPreviewNormal,FloatBorder:GitSignHunkPreviewBorder",
+                {
+                    win = winid,
+                }
             )
         end
 
