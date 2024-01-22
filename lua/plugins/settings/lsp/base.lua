@@ -63,36 +63,45 @@ require("mason-lspconfig").setup_handlers({
 ----------------------------------------------------------------------
 
 ---- enable inlayHints ----
--- vim.api.nvim_create_autocmd("LspAttach", {
---     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
---     callback = function(args)
---         local client = vim.lsp.get_client_by_id(args.data.client_id)
---         if client.server_capabilities.inlayHintProvider or client.supports_method("textDocument/inlayHints") then
---             vim.schedule(function()
---                 vim.lsp.inlay_hint.enable(args.buf, true)
---             end)
---         end
---         -- whatever other lsp config you want
---     end,
--- })
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(args)
+        vim.api.nvim_create_autocmd("LspProgress", {
+            buffer = args.buf,
+            callback = function(ev)
+                if ev.data.result.value.kind == "end" then
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    if
+                        client.server_capabilities.inlayHintProvider
+                        or client.supports_method("textDocument/inlayHints")
+                    then
+                        vim.schedule(function()
+                            vim.lsp.inlay_hint.enable(args.buf, true)
+                        end)
+                    end
+                end
+            end,
+        })
+    end,
+})
 
 ---- toggle inlayHints for different modes ----
--- vim.api.nvim_create_autocmd("ModeChanged", {
---     callback = function(args)
---         local buf = args.buf
---         local match = args.match
---         local clients = vim.lsp.get_clients({ buf = buf })
---         for _, client in ipairs(clients) do
---             if client.supports_method("textDocument/inlayHints") then
---                 if match == "n:i" then
---                     vim.lsp.inlay_hint.enable(buf, false)
---                 elseif match == "i:n" then
---                     vim.lsp.inlay_hint.enable(buf, true)
---                 end
---             end
---         end
---     end,
--- })
+vim.api.nvim_create_autocmd("ModeChanged", {
+    callback = function(args)
+        local buf = args.buf
+        local match = args.match
+        local clients = vim.lsp.get_clients({ buf = buf })
+        for _, client in ipairs(clients) do
+            if client.supports_method("textDocument/inlayHints") then
+                if match == "n:i" then
+                    vim.lsp.inlay_hint.enable(buf, false)
+                elseif match == "i:n" then
+                    vim.lsp.inlay_hint.enable(buf, true)
+                end
+            end
+        end
+    end,
+})
 
 -- a little trick for packer to load lspconfig lazily, which
 -- is to call a BufRead autocmd to make current buffer attach
