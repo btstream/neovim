@@ -70,7 +70,7 @@ local function start_jdtls()
                 inlayHints = { parameterNames = { enabled = true } },
             },
         },
-        handlers = require("plugins.settings.lsp.handlers"),
+        -- handlers = require("plugins.settings.lsp.handlers"),
         init_options = {
             extendedClientCapabilities = extendedClientCapabilities,
             bundles = {
