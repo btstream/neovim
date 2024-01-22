@@ -31,6 +31,14 @@ for _, value in ipairs(filetype_tools.get_nonfiletypes()) do
     table.insert(disabled_winbar, value:lower())
 end
 
+require("lsp-progress").setup()
+vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+vim.api.nvim_create_autocmd("User", {
+    group = "lualine_augroup",
+    pattern = "LspProgressStatusUpdated",
+    callback = require("lualine").refresh,
+})
+
 require("lualine").setup({
     options = {
         icons_enabled = true,
@@ -144,7 +152,8 @@ require("lualine").setup({
         },
         lualine_y = {
             {
-                lsp_server_indicator,
+                -- lsp_server_indicator,
+                require("lsp-progress").progress,
                 padding = 1,
                 cond = function()
                     return require("lazy.core.config").plugins["nvim-lspconfig"]._.loaded ~= nil

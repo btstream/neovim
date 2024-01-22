@@ -4,6 +4,7 @@ return {
     -- priority = 65535,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
+        "linrongbin16/lsp-progress.nvim",
         -- "arkav/lualine-lsp-progress",
     },
     config = function()
