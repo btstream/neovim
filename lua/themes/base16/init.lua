@@ -29,8 +29,8 @@ local function setup_autocmds()
         end,
     })
 
-    vim.api.nvim_create_autocmd("WinEnter", {
-        pattern = "*",
+    vim.api.nvim_create_autocmd({ "WinEnter", "FileType" }, {
+        -- pattern = "*",
         callback = function(event)
             local colors = require("themes.base16.colors").colors()
 
@@ -43,12 +43,12 @@ local function setup_autocmds()
                     NeoTreeTabActive = { bg = colors.base00, fg = colors.base0D },
                 })
             -- disable outline config
-            -- elseif filetype == "Outline" then
-            --     highlight({
-            --         NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
-            --         OutlineSidebarTitle = { bg = colors.base00, fg = colors.base0D },
-            --         NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
-            --     })
+            elseif filetype == "Outline" then
+                highlight({
+                    NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
+                    OutlineSidebarTitle = { bg = colors.base00, fg = colors.base0D },
+                    NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
+                })
             else
                 highlight({
                     NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },

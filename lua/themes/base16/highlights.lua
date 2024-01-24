@@ -217,11 +217,11 @@ function M.hg()
         --                             Outline                              --
         ----------------------------------------------------------------------
         OutlineSidebarTitle = { bg = dbg015, fg = colors.base03 },
-        OutlineNormal       = "NvimTreeNormal",
+        OutlineNormal       = "Normal",
         OutlineEndOfBuffer  = "NvimTreeEndOfBuffer",
         OutlineSignColumn   = "OutlineNormal",
         OutlineLineNr       = "OutlineNormal",
-        OutlineWinSeparator = "NvimTreeWinSeparator",
+        OutlineWinSeparator = "WinSeparator",
         FocusedSymbol       = { bg = colors.base01, fg = "None" }, -- gui = "None" },
 
 
