@@ -90,6 +90,28 @@ return {
     --         map("n", "<C-k>o", "<cmd>SymbolsOutline<cr>")
     --     end,
     -- },
+    {
+        "hedyhli/outline.nvim",
+        -- event = "LspAttach",
+        cmd = { "Outline", "OutlineOpen" },
+        keys = { -- Example mapping to toggle outline
+            { "<C-k>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+        },
+        config = function()
+            local symbol_icons = {}
+            for k, v in pairs(require("themes.icons").lsp_symbols) do
+                symbol_icons[k] = { icon = v }
+            end
+            require("outline").setup({
+                outline_window = {
+                    width = 15,
+                },
+                symbols = {
+                    icons = symbol_icons,
+                },
+            })
+        end,
+    },
 
     { -- null-ls
         -- "jose-elias-alvarez/null-ls.nvim",
