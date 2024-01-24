@@ -1,5 +1,6 @@
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
+local inlay_hint = require("plugins.settings.lsp.utils").inlay_hint
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -67,15 +68,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client.supports_method("textDocument/inlayHints") then
-            vim.lsp.inlay_hint.enable(args.buf, true)
+            inlay_hint(args.buf, true)
             vim.api.nvim_create_autocmd("ModeChanged", {
                 buffer = args.buf,
                 group = vim.api.nvim_create_augroup("LspInlayHintForBuf_" .. args.buf, { clear = true }),
                 callback = function(ev)
                     if ev.match == "n:i" then
-                        vim.lsp.inlay_hint.enable(args.buf, false)
+                        inlay_hint(args.buf, false)
                     elseif ev.match == "i:n" then
-                        vim.lsp.inlay_hint.enable(args.buf, true)
+                        inlay_hint(args.buf, true)
                     end
                 end,
             })
