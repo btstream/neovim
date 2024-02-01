@@ -1,3 +1,24 @@
+local function go_to_terminal(index)
+    return function()
+        print("wokao")
+        local terminals = require("toggleterm.terminal").get_all()
+        local term = terminals[index]
+        if index == -1 or not term then
+            term = terminals[#terminals]
+        end
+        if term:is_open() then
+            return
+        else
+            for _, t in pairs(terminals) do
+                if t.id ~= term.id and t:is_open() then
+                    t:toggle()
+                end
+            end
+            term:toggle()
+        end
+    end
+end
+
 -- TODO:fix keymap
 return {
     "akinsho/toggleterm.nvim",
@@ -51,6 +72,10 @@ return {
                 vim.keymap.set("t", "<C-w>j", [[<Cmd>wincmd j<CR>]], opts)
                 vim.keymap.set("t", "<C-w>k", [[<Cmd>wincmd k<CR>]], opts)
                 vim.keymap.set("t", "<C-w>l", [[<Cmd>wincmd l<CR>]], opts)
+
+                for i = 1, 10, 1 do
+                    vim.keymap.set("t", string.format("<A-%d>", i), go_to_terminal(i), opts)
+                end
             end,
         })
 
