@@ -1,6 +1,5 @@
 local function go_to_terminal(index)
     return function()
-        print("wokao")
         local terminals = require("toggleterm.terminal").get_all()
         local term = terminals[index]
         if index == -1 or not term then

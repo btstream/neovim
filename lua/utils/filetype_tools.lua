@@ -25,6 +25,7 @@ M._nonefiletypes = {
     "cmdline",
     "noice",
     "dropbar_menu",
+    "edgy",
 }
 
 -- stylua: ignore

@@ -1,24 +1,24 @@
 local icons = require("themes.icons").common_ui_icons
 -- to fix does not follow cwd, when in some situations for lazy loading
 -- TODO: inspect neo-tree's source, to make it work more effective
-vim.api.nvim_create_autocmd("User", {
-    pattern = "LazyLoad",
-    callback = function(ev)
-        local plugin = ev.data
-        if plugin == "neo-tree.nvim" then
-            require("utils.task_scheduler").defer(function()
-                local s, _ = require("plugins.neo-tree.utils").get_active_source()
-                if s == "filesystem" then
-                    local state = require("neo-tree.sources.manager").get_state(s)
-                    local cwd = vim.fn.getcwd()
-                    if state.path ~= cwd then
-                        require("neo-tree.sources.filesystem").navigate(state, cwd)
-                    end
-                end
-            end, 100)
-        end
-    end,
-})
+-- vim.api.nvim_create_autocmd("User", {
+--     pattern = "LazyLoad",
+--     callback = function(ev)
+--         local plugin = ev.data
+--         if plugin == "neo-tree.nvim" then
+--             require("utils.task_scheduler").defer(function()
+--                 local s, _ = require("plugins.neo-tree.utils").get_active_source()
+--                 if s == "filesystem" then
+--                     local state = require("neo-tree.sources.manager").get_state(s)
+--                     local cwd = vim.fn.getcwd()
+--                     if state.path ~= cwd then
+--                         require("neo-tree.sources.filesystem").navigate(state, cwd)
+--                     end
+--                 end
+--             end, 100)
+--         end
+--     end,
+-- })
 
 return {
     "nvim-neo-tree/neo-tree.nvim",
