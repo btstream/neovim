@@ -1,3 +1,4 @@
+local icons = require("themes.icons")
 return {
     "folke/edgy.nvim",
     event = "VeryLazy",
@@ -11,6 +12,7 @@ return {
             {
                 ft = "toggleterm",
                 size = { height = 0.25 },
+                title = icons.filetype_icons.toggleterm .. "[%{b:toggle_number}]:%{b:term_title}",
                 -- exclude floating windows
                 filter = function(buf, win)
                     return vim.api.nvim_win_get_config(win).relative == ""
@@ -38,7 +40,7 @@ return {
         left = {
             -- Neo-tree filesystem always takes half the screen height
             {
-                title = "Neo-Tree",
+                title = icons.common_ui_icons.file_explorer .. "  Filesystem",
                 ft = "neo-tree",
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "filesystem"
@@ -48,7 +50,7 @@ return {
                 size = { height = 0.5 },
             },
             {
-                title = "Neo-Tree Buffers",
+                title = icons.common_ui_icons.buffers .. "  Buffers",
                 ft = "neo-tree",
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "buffers"
@@ -57,7 +59,7 @@ return {
                 open = "Neotree position=top buffers",
             },
             {
-                title = "Neo-Tree Git",
+                title = icons.common_ui_icons.git .. "  Git",
                 ft = "neo-tree",
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "git_status"
@@ -72,6 +74,9 @@ return {
                 ft = "Outline",
                 pinned = true,
                 open = "Outline",
+                wo = {
+                    winbar = false,
+                },
             },
         },
 
@@ -85,6 +90,12 @@ return {
             top = { size = 10 },
         },
         close_when_all_hidden = false,
+        icons = {
+            -- closed = " ",
+            -- open = " ",
+            closed = "",
+            open = "",
+        },
         wo = {
             winhighlight = "WinBar:EdgyWinBar,Normal:Normal",
         },

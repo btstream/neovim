@@ -151,6 +151,7 @@ M.common_ui_icons     = {
     git               = "󰊢",
     history           = "󰋚",
     search_result     = "󰱼",
+    file_explorer     = "󰙅",
     file_common       = "󰈙",
     file_new          = "󱪞",
     file_modified     = "",

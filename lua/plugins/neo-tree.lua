@@ -65,7 +65,7 @@ return {
             use_libuv_file_watcher = true,
             follow_current_file = { enabled = true },
             hijack_netrw_behavior = "open_current",
-            display_name = icons.folder .. " Files",
+            display_name = icons.file_explorer .. " Files",
         },
         buffers = {
             display_name = icons.buffers .. " Buffers",
