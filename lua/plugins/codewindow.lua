@@ -25,12 +25,12 @@ return {
         codewindow.apply_default_keybinds()
 
         ---- close minimap on neo-tree ----
-        vim.api.nvim_create_autocmd("WinEnter", {
-            callback = function(event)
-                if vim.api.nvim_get_option_value("filetype", { buf = event.buf }) == "neo-tree" then
-                    vim.schedule(codewindow.close_minimap)
-                end
-            end,
-        })
+        -- vim.api.nvim_create_autocmd("WinEnter", {
+        --     callback = function(event)
+        --         if vim.api.nvim_get_option_value("filetype", { buf = event.buf }) == "neo-tree" then
+        --             vim.schedule(codewindow.close_minimap)
+        --         end
+        --     end,
+        -- })
     end,
 }
