@@ -99,12 +99,12 @@ require("lualine").setup({
             },
         },
         lualine_c = {
-            {
-                terminal_info,
-                cond = function()
-                    return vim.bo.filetype:upper() == "TOGGLETERM"
-                end,
-            },
+            -- {
+            --     terminal_info,
+            --     cond = function()
+            --         return vim.bo.filetype:upper() == "TOGGLETERM"
+            --     end,
+            -- },
             {
                 "branch",
                 cond = function()
