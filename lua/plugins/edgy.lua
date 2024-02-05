@@ -23,10 +23,9 @@ return {
             {
                 ft = "toggleterm",
                 size = { height = 0.25 },
-                title = icons.filetype_icons.toggleterm .. "[%{b:toggle_number}]:%{b:term_title}",
-                wo = {
-                    winhighlight = "EdgyTitle:Comment",
-                },
+                title = "%*%#ToggleTermTitle#"
+                    .. icons.filetype_icons.toggleterm
+                    .. "[%{b:toggle_number}]:%{b:term_title}",
                 -- exclude floating windows
                 filter = function(buf, win)
                     return vim.api.nvim_win_get_config(win).relative == ""
