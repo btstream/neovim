@@ -33,27 +33,58 @@ local function setup_autocmds()
         -- pattern = "*",
         callback = function(event)
             local colors = require("themes.base16.colors").colors()
-
             local filetype = vim.api.nvim_get_option_value("filetype", { buf = event.buf })
 
-            if filetype == "NvimTree" or filetype == "neo-tree" then
+            if filetype == "neo-tree" then
+                local highlights = {}
                 highlight({
                     NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base0D },
                     OutlineSidebarTitle = { bg = colors.base00, fg = colors.base03 },
                     NeoTreeTabActive = { bg = colors.base00, fg = colors.base0D },
                 })
-            -- disable outline config
+                vim.schedule(function()
+                    local source = vim.api.nvim_buf_get_var(event.buf, "neo_tree_source")
+                    if source == "filesystem" then
+                        highlights = vim.tbl_extend("keep", highlights, {
+                            EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base0D },
+                            EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
+                            EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
+                        })
+                    end
+                    if source == "buffers" then
+                        highlights = vim.tbl_extend("keep", highlights, {
+                            EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base03 },
+                            EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base0D },
+                            EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
+                        })
+                    end
+                    if source == "git_status" then
+                        highlights = vim.tbl_extend("keep", highlights, {
+                            EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base03 },
+                            EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
+                            EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base0D },
+                        })
+                    end
+                    highlight(highlights)
+                end)
+                -- disable outline config
             elseif filetype == "Outline" then
                 highlight({
                     NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
                     OutlineSidebarTitle = { bg = colors.base00, fg = colors.base0D },
                     NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
+                    EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base03 },
+                    EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
+                    EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
                 })
-            else
+            elseif filetype ~= "notify" then
                 highlight({
                     NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
                     OutlineSidebarTitle = { bg = colors.base00, fg = colors.base03 },
                     NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
+                    EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base03 },
+                    EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
+                    EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
                 })
             end
         end,

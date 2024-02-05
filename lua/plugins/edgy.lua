@@ -44,7 +44,8 @@ return {
         left = {
             -- Neo-tree filesystem always takes half the screen height
             {
-                title = icons.common_ui_icons.file_explorer .. "  Filesystem",
+                -- reset title highlight group, as edgy use title in winbar, maybe reset to edgytitle after winbar update
+                title = "%*%#EdgyTitleNeoTreeFilesystem#" .. icons.common_ui_icons.file_explorer .. "  Filesystem",
                 ft = "neo-tree",
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "filesystem"
@@ -54,7 +55,7 @@ return {
                 size = { height = 0.5 },
             },
             {
-                title = icons.common_ui_icons.buffers .. "  Buffers",
+                title = "%*%#EdgyTitleNeoTreeBuffers#" .. icons.common_ui_icons.buffers .. "  Buffers",
                 ft = "neo-tree",
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "buffers"
@@ -63,11 +64,14 @@ return {
                 open = "Neotree position=top buffers",
             },
             {
-                title = icons.common_ui_icons.git .. "  Git",
+                title = "%*%#EdgyTitleNeoTreeGit#" .. icons.common_ui_icons.git .. "  Git",
                 ft = "neo-tree",
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "git_status"
                 end,
+                wo = {
+                    winhighlight = "EdgyTitle:EdgyTitleNeoTreeGit",
+                },
                 pinned = true,
                 open = "Neotree position=right git_status",
             },
