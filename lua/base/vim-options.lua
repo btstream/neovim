@@ -103,19 +103,19 @@ opt.autoread = true
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI", "FocusGained", "BufEnter" }, {
     pattern = "*",
     callback = function()
-        local bufnr = tonumber(vim.fn.expand("<abuf>"))
-        local name = vim.api.nvim_buf_get_name(bufnr)
+        local buf = tonumber(vim.fn.expand("<abuf>"))
+        local name = vim.api.nvim_buf_get_name(buf)
         if
             name == ""
             -- Only check for normal files
-            or vim.bo[bufnr].buftype ~= ""
+            or vim.bo[buf].buftype ~= ""
             -- To avoid: E211: File "..." no longer available
             or not vim.fn.filereadable(name)
         then
             return
         end
         -- only check for the current buffer
-        vim.cmd(bufnr .. "checktime")
+        vim.cmd(buf .. "checktime")
     end,
 })
 

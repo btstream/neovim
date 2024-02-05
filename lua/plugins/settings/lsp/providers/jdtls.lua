@@ -80,11 +80,11 @@ local function start_jdtls()
                 ),
             },
         },
-        on_attach = function(client, bufnr)
+        on_attach = function(client, buf)
             ---@diagnostic disable-next-line: missing-fields
             jdtls.setup_dap({ hotcodereplace = "auto" })
             -- jdtls.setup.add_commands()
-            require("plugins.settings.lsp.utils").on_attach(client, bufnr)
+            require("plugins.settings.lsp.utils").on_attach(client, buf)
         end,
     }
 

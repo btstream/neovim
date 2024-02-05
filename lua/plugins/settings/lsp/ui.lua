@@ -7,13 +7,13 @@ local function extend_open_floating_perview()
     vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
         opts = opts or {}
         opts.border = opts.border or { "", "", "", " ", "", "", "", " " }
-        local bufnr, winnr = original(contents, syntax, opts, ...)
+        local buf, win = original(contents, syntax, opts, ...)
 
         if opts.winhighlight then
-            vim.api.nvim_set_option_value("winhighlight", opts.winhighlight, { win = winnr })
+            vim.api.nvim_set_option_value("winhighlight", opts.winhighlight, { win = win })
         end
 
-        return bufnr, winnr
+        return buf, win
     end
 end
 

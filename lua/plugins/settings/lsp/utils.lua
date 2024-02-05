@@ -13,12 +13,12 @@ local ns_id = nil
 local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 --- helper function for lsp server's on_attach callback
 --- @param client lsp.Client
---- @param bufnr number buffer handler
-M.on_attach = function(client, bufnr)
+--- @param buf number buffer handler
+M.on_attach = function(client, buf)
     -- require("lsp-status").on_attach(client, bufnr)
     -- attach_keys(client, bufnr)
     -- require("utils.keymap_tools").map(require("keymaps").lsp, bufnr)
-    require("keymaps").lsp.set(bufnr)
+    require("keymaps").lsp.set(buf)
 
     if client.name == "null-ls" and null_ls_registered_fts == nil then
         null_ls_registered_fts = require("null-ls.sources").get_filetypes()
@@ -30,7 +30,7 @@ M.on_attach = function(client, bufnr)
 
     -- auto show diagnostics
     vim.api.nvim_create_autocmd({ "CursorHold" }, {
-        buffer = bufnr,
+        buffer = buf,
         callback = function()
             _, dia_win = vim.diagnostic.open_float(nil, {
                 focus = false,
@@ -54,14 +54,14 @@ M.on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
-            buffer = bufnr,
+            buffer = buf,
             callback = function()
                 vim.lsp.buf.format({
-                    bufnr = bufnr,
+                    bufnr = buf,
                     filter = function(client)
                         -- to check if null-ls has attached
                         -- local clients = vim.lsp.buf_get_clients(bufnr)
-                        local ft = vim.fn.getbufvar(bufnr, "&filetype")
+                        local ft = vim.fn.getbufvar(buf, "&filetype")
                         -- local has_null_ls = false
                         -- for _, c in pairs(clients) do
                         --     if c.name == "null-ls" then

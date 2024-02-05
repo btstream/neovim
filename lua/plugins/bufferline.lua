@@ -13,7 +13,7 @@ return {
                 close_command = 'lua require("base.quit-behave").quit(%d)', --"bdelete! %d", -- can be a string | function, see "Mouse actions"
                 right_mouse_command = 'lua require("base.quit-behave").quit(%d)', -- can be a string | function, see "Mouse actions"
                 -- left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
-                left_mouse_command = function(bufnr)
+                left_mouse_command = function(buf)
                     local current_buf = vim.api.nvim_win_get_buf(0)
 
                     ----------------------------------------------------------------------
@@ -152,7 +152,7 @@ return {
                         )
                     then
                         vim.api.nvim_set_current_win(current_win)
-                        vim.api.nvim_win_set_buf(current_win, bufnr)
+                        vim.api.nvim_win_set_buf(current_win, buf)
                         return
                     end
 
@@ -163,7 +163,7 @@ return {
                     for _, w in pairs(windows) do
                         local buf_in_w = vim.api.nvim_win_get_buf(w)
                         if
-                            current_buf ~= bufnr
+                            current_buf ~= buf
                             and (
                                 not vim.tbl_contains(
                                     nonfiletypes,
@@ -172,7 +172,7 @@ return {
                             )
                         then
                             vim.api.nvim_set_current_win(w)
-                            vim.api.nvim_win_set_buf(w, bufnr)
+                            vim.api.nvim_win_set_buf(w, buf)
                             vim.cmd.stopinsert()
                             return
                         end

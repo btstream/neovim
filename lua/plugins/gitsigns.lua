@@ -43,11 +43,11 @@ return {
                 row = 0,
                 col = 1,
             },
-            on_attach = function(bufnr)
+            on_attach = function(buf)
                 local gs = package.loaded.gitsigns
 
                 if gs then
-                    require("keymaps").gitsigns.set(bufnr)
+                    require("keymaps").gitsigns.set(buf)
                 end
             end,
         })

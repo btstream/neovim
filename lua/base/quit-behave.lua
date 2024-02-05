@@ -1,9 +1,9 @@
 local M = {}
 
-local function get_buf_attached_wins(bufnr)
+local function get_buf_attached_wins(buf)
     local attached_win = 0
     for _, w in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-        if vim.api.nvim_win_get_buf(w) == bufnr then
+        if vim.api.nvim_win_get_buf(w) == buf then
             attached_win = attached_win + 1
         end
     end
