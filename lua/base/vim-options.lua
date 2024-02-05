@@ -9,20 +9,20 @@ opt.laststatus = 3
 local fillchars = {
     eob = " ",
 }
-if os.getenv("TERM_PROGRAM") ~= "WezTerm" then
-    fillchars = {
-        -- winframes to use heavy separator
-        vert = "┃",
-        vertleft = "┫",
-        vertright = "┣",
-        verthoriz = "╋",
-        horiz = "━",
-        horizup = "┻",
-        horizdown = "┳",
-        -- disable eob
-        eob = " ",
-    }
-end
+-- if os.getenv("TERM_PROGRAM") ~= "WezTerm" then
+--     fillchars = {
+--         -- winframes to use heavy separator
+--         vert = "┃",
+--         vertleft = "┫",
+--         vertright = "┣",
+--         verthoriz = "╋",
+--         horiz = "━",
+--         horizup = "┻",
+--         horizdown = "┳",
+--         -- disable eob
+--         eob = " ",
+--     }
+-- end
 opt.fillchars = fillchars
 opt.list = true
 opt.listchars = {
