@@ -48,7 +48,8 @@ return {
                 title = "%*%#EdgyTitleNeoTreeFilesystem#" .. icons.common_ui_icons.file_explorer .. "  Filesystem",
                 ft = "neo-tree",
                 filter = function(buf)
-                    return vim.b[buf].neo_tree_source == "filesystem"
+                    -- filter out filesystem's source for current position, which is uesed for hijack netrw
+                    return vim.b[buf].neo_tree_source == "filesystem" and vim.b[buf].neo_tree_position ~= "current"
                 end,
                 pinned = true,
                 open = "Neotree position=left filesystem",
