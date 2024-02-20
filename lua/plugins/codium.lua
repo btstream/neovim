@@ -1,6 +1,6 @@
 return {
     "Exafunction/codeium.nvim",
-    event = { "BufEnter" },
+    event = { "User BufReadRealFile" },
     config = function()
         require("codeium").setup({})
         -- stylua: ignore start

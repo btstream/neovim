@@ -1,6 +1,6 @@
 return {
     "stevearc/overseer.nvim",
-    events = { "LspAttach" },
+    event = { "LspAttach" },
     opts = {
         strategy = "toggleterm",
     },

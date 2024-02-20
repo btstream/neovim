@@ -1,7 +1,8 @@
 local icons = require("themes.icons").common_ui_icons
 return {
     "glepnir/dashboard-nvim",
-    event = "User LazyVimStarted",
+    -- event = "User LazyVimStarted",
+    event = "VeryLazy",
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
     config = function()
         ----------------------------------------------------------------------
