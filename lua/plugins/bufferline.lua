@@ -17,112 +17,6 @@ return {
                     local current_buf = vim.api.nvim_win_get_buf(0)
 
                     ----------------------------------------------------------------------
-                    --                       Handle double click                        --
-                    ----------------------------------------------------------------------
-                    -- if current_buf == bufnr then
-                    --     local key = string.format("tab_clicked_%s", bufnr)
-                    --     if vim.g[key] == nil then
-                    --         vim.g[key] = os.clock()
-                    --         vim.defer_fn(function() -- clean timeout
-                    --             vim.g[key] = nil
-                    --         end, 300)
-                    --     else
-                    --         local timeout = os.clock() - vim.g[key]
-                    --         if timeout < 0.3 then
-                    --             if vim.g.saved_window then
-                    --                 -- restore saved layout
-                    --                 local winid = vim.api.nvim_get_current_win()
-
-                    --                 -- if vim.g.saved_window.outline then
-                    --                 --     vim.api.nvim_create_autocmd("User", {
-                    --                 --         pattern = "OpenOutline",
-                    --                 --         callback = function()
-                    --                 --             vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
-                    --                 --                 pattern = "*",
-                    --                 --                 callback = function()
-                    --                 --                     if vim.bo.filetype == "Outline" then
-                    --                 --                         vim.api.nvim_set_current_win(winid)
-                    --                 --                         vim.cmd.buffer(bufnr)
-                    --                 --                         vim.cmd.stopinsert()
-                    --                 --                     end
-                    --                 --                     return true
-                    --                 --                 end,
-                    --                 --             })
-                    --                 --             require("symbols-outline").toggle_outline()
-                    --                 --             return true -- only run onece
-                    --                 --         end,
-                    --                 --     })
-                    --                 --     if #vim.g.saved_window.term == 0 then
-                    --                 --         vim.cmd("do User OpenOutline")
-                    --                 --     end
-                    --                 -- end
-
-                    --                 for _, t in pairs(vim.g.saved_window.term) do
-                    --                     local term = require("toggleterm.terminal").get(t)
-                    --                     if not term:is_open() then
-                    --                         local origianl_open = term.on_open
-                    --                         term.on_open = function(t)
-                    --                             origianl_open(t)
-                    --                             vim.api.nvim_set_current_win(winid)
-                    --                             vim.cmd.buffer(bufnr)
-                    --                             vim.cmd.stopinsert()
-                    --                             t.on_open = origianl_open
-                    --                             -- vim.cmd("do User OpenOutline")
-                    --                         end
-                    --                         term:toggle()
-                    --                     end
-                    --                 end
-
-                    --                 if vim.g.saved_window.neo_tree then
-                    --                     vim.schedule(function()
-                    --                         if not require("plugins.neo-tree.utils").get_active_source() then
-                    --                             require("plugins.neo-tree.utils").toggle(false)
-                    --                         end
-                    --                     end)
-                    --                 end
-
-                    --                 vim.g.saved_window = nil
-                    --             else
-                    --                 local saved_window = {}
-
-                    --                 -- if have buffer
-                    --                 if require("plugins.neo-tree.utils").get_active_source() then
-                    --                     require("plugins.neo-tree.utils").toggle(false)
-                    --                     saved_window.neo_tree = true
-                    --                 else
-                    --                     saved_window.neo_tree = false
-                    --                 end
-
-                    --                 local terms = require("lazy.core.config").plugins["toggleterm.nvim"]._.loaded
-                    --                         and require("toggleterm.terminal").get_all()
-                    --                     or {}
-
-                    --                 saved_window.term = {}
-                    --                 for _, t in pairs(terms) do
-                    --                     if t:is_open() then
-                    --                         t:toggle()
-                    --                         table.insert(saved_window.term, t.id)
-                    --                     end
-                    --                 end
-
-                    --                 -- saved_window.outline = require("lazy.core.config").plugins["symbols-outline.nvim"]._.loaded
-                    --                 --         and require("symbols-outline").view:is_open()
-                    --                 --     or false
-
-                    --                 -- if saved_window.outline then
-                    --                 --     require("symbols-outline").toggle_outline()
-                    --                 -- end
-
-                    --                 vim.g.saved_window = saved_window
-                    --             end
-                    --             vim.g[key] = nil
-                    --             return
-                    --         end
-                    --         vim.g[key] = nil
-                    --     end
-                    -- end
-
-                    ----------------------------------------------------------------------
                     --                       handle single click                        --
                     ----------------------------------------------------------------------
                     --- to prevent open buffer in terminal window
@@ -224,37 +118,26 @@ return {
                         return true
                     end
                 end,
-                offsets = {
-                    {
-                        filetype = "NvimTree",
-                        text = function()
-                            -- return vim.fn.getcwd()
-                            return "󰙅 File Explorer"
-                        end,
-                        highlight = "NvimTreeSidebarTitle",
-                        text_align = "center",
-                        separator = "▍",
-                        -- padding = 1,
-                    },
-                    -- {
-                    --     filetype = "neo-tree",
-                    --     text = function()
-                    --         return "  Sidebar"
-                    --         -- return require("plugins.neo-tree.utils").get_active_source_label()
-                    --     end,
-                    --     highlight = "NvimTreeSidebarTitle",
-                    --     text_align = "center",
-                    --     separator = "▍",
-                    --     -- padding = 1,
-                    -- },
-                    -- {
-                    --     filetype = "Outline",
-                    --     text = " Outline",
-                    --     highlight = "OutlineSidebarTitle",
-                    --     text_align = "center",
-                    --     separator = "🮈",
-                    -- },
-                },
+                -- offsets = {
+                -- {
+                --     filetype = "neo-tree",
+                --     text = function()
+                --         return "  Sidebar"
+                --         -- return require("plugins.neo-tree.utils").get_active_source_label()
+                --     end,
+                --     highlight = "NvimTreeSidebarTitle",
+                --     text_align = "center",
+                --     separator = "▍",
+                --     -- padding = 1,
+                -- },
+                -- {
+                --     filetype = "Outline",
+                --     text = " Outline",
+                --     highlight = "OutlineSidebarTitle",
+                --     text_align = "center",
+                --     separator = "🮈",
+                -- },
+                -- },
                 show_buffer_icons = true, -- disable filetype icons for buffers
                 show_buffer_close_icons = true,
                 show_close_icon = false,
@@ -287,17 +170,29 @@ return {
                             local is_even, side = (sb.bounds.width - #title) % 2 == 0, (sb.bounds.width - #title) / 2
                             local lpadding, rpadding = side, side
                             if not is_even then
-                                lpadding, rpadding = math.ceil(side), math.floor(side)
+                                lpadding, rpadding = math.ceil(side) + 1, math.floor(side) + 1
                             end
-                            title = string.rep(" ", lpadding + 1) .. title .. string.rep(" ", rpadding + 1)
-                            ret[pos] = "%#"
-                                .. hi
-                                .. "#"
-                                .. title
-                                .. "%*"
-                                .. "%#BufferLineOffsetSeparator#"
-                                .. sep
-                                .. "%*"
+                            lpadding = pos == "right" and lpadding + 2 or lpadding
+                            title = string.rep(" ", lpadding) .. title .. string.rep(" ", rpadding)
+                            if pos == "left" then
+                                ret[pos] = "%#"
+                                    .. hi
+                                    .. "#"
+                                    .. title
+                                    .. "%*"
+                                    .. "%#BufferLineOffsetSeparator#"
+                                    .. sep
+                                    .. "%*"
+                            else
+                                ret[pos] = "%#BufferLineOffsetSeparator#"
+                                    .. sep
+                                    .. "%*"
+                                    .. "%#"
+                                    .. hi
+                                    .. "#"
+                                    .. title
+                                    .. "%*"
+                            end
                             ret[pos .. "_size"] = sb.bounds.width
                         end
                     end
