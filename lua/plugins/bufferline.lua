@@ -236,17 +236,17 @@ return {
                         separator = "▍",
                         -- padding = 1,
                     },
-                    {
-                        filetype = "neo-tree",
-                        text = function()
-                            return "  Sidebar"
-                            -- return require("plugins.neo-tree.utils").get_active_source_label()
-                        end,
-                        highlight = "NvimTreeSidebarTitle",
-                        text_align = "center",
-                        separator = "▍",
-                        -- padding = 1,
-                    },
+                    -- {
+                    --     filetype = "neo-tree",
+                    --     text = function()
+                    --         return "  Sidebar"
+                    --         -- return require("plugins.neo-tree.utils").get_active_source_label()
+                    --     end,
+                    --     highlight = "NvimTreeSidebarTitle",
+                    --     text_align = "center",
+                    --     separator = "▍",
+                    --     -- padding = 1,
+                    -- },
                     {
                         filetype = "Outline",
                         text = " Outline",
@@ -271,36 +271,34 @@ return {
             highlights = require("themes.bufferline").highlights,
         })
 
-        -- local map = vim.keymap.set
+        local Offset = require("bufferline.offset")
+        if not Offset.edgy then
+            local get = Offset.get
+            Offset.get = function()
+                if package.loaded.edgy then
+                    local layout = require("edgy.config").layout
+                    local ret = { left = "", left_size = 0, right = "", right_size = 0 }
+                    -- for _, pos in ipairs({ "left" }) do
+                    local pos = "left"
+                    local sb = layout[pos]
+                    local title = "  Sidebar"
+                    if sb and #sb.wins > 0 then
+                        local padding = (sb.bounds.width - #title) / 2
+                        title = string.rep(" ", padding) .. title .. string.rep(" ", padding)
+                        -- title = " Sidebar" .. string.rep(" ", sb.bounds.width - 8)
+                        ret[pos] = "%#NvimTreeSidebarTitle#" .. title .. "%*" .. "%#WinSeparator#│%*"
+                        ret[pos .. "_size"] = sb.bounds.width
+                    end
+                    ret.total_size = ret.left_size + ret.right_size
+                    if ret.total_size > 0 then
+                        return ret
+                    end
+                end
+                return get()
+            end
+            Offset.edgy = true
+        end
 
-        -- local Offset = require("bufferline.offset")
-        -- if not Offset.edgy then
-        --     local get = Offset.get
-        --     Offset.get = function()
-        --         if package.loaded.edgy then
-        --             local layout = require("edgy.config").layout
-        --             local ret = { left = "", left_size = 0, right = "", right_size = 0 }
-        --             for _, pos in ipairs({ "left", "right" }) do
-        --                 local sb = layout[pos]
-        --                 if sb and #sb.wins > 0 then
-        --                     local title = " Sidebar" .. string.rep(" ", sb.bounds.width - 8)
-        --                     ret[pos] = "%#EdgyTitle#" .. title .. "%*" .. "%#WinSeparator#│%*"
-        --                     ret[pos .. "_size"] = sb.bounds.width
-        --                 end
-        --             end
-        --             ret.total_size = ret.left_size + ret.right_size
-        --             if ret.total_size > 0 then
-        --                 return ret
-        --             end
-        --         end
-        --         return get()
-        --     end
-        --     Offset.edgy = true
-        -- end
-
-        -- Move to previous/next
-        -- stylua: ignore
-        -- require("utils.keymap_tools").map(require("keymaps").bufferline)
         require("keymaps").bufferline.set()
     end,
 }
