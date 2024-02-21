@@ -247,13 +247,13 @@ return {
                     --     separator = "▍",
                     --     -- padding = 1,
                     -- },
-                    {
-                        filetype = "Outline",
-                        text = " Outline",
-                        highlight = "OutlineSidebarTitle",
-                        text_align = "center",
-                        separator = "🮈",
-                    },
+                    -- {
+                    --     filetype = "Outline",
+                    --     text = " Outline",
+                    --     highlight = "OutlineSidebarTitle",
+                    --     text_align = "center",
+                    --     separator = "🮈",
+                    -- },
                 },
                 show_buffer_icons = true, -- disable filetype icons for buffers
                 show_buffer_close_icons = true,
@@ -278,18 +278,28 @@ return {
                 if package.loaded.edgy then
                     local layout = require("edgy.config").layout
                     local ret = { left = "", left_size = 0, right = "", right_size = 0 }
-                    local pos = "left"
-                    local sb = layout[pos]
-                    local title = "  Sidebar"
-                    if sb and #sb.wins > 0 then
-                        local is_even, side = (sb.bounds.width - #title) % 2 == 0, (sb.bounds.width - #title) / 2
-                        local lpadding, rpadding = side, side
-                        if not is_even then
-                            lpadding, rpadding = math.ceil(side), math.floor(side)
+                    for _, pos in pairs({ "left", "right" }) do
+                        local sb = layout[pos]
+                        local title = pos == "left" and "  Sidebar" or " Outline"
+                        local sep = pos == "left" and "▍" or "🮈"
+                        local hi = pos == "left" and "NvimTreeSidebarTitle" or "OutlineSidebarTitle"
+                        if sb and #sb.wins > 0 then
+                            local is_even, side = (sb.bounds.width - #title) % 2 == 0, (sb.bounds.width - #title) / 2
+                            local lpadding, rpadding = side, side
+                            if not is_even then
+                                lpadding, rpadding = math.ceil(side), math.floor(side)
+                            end
+                            title = string.rep(" ", lpadding + 1) .. title .. string.rep(" ", rpadding + 1)
+                            ret[pos] = "%#"
+                                .. hi
+                                .. "#"
+                                .. title
+                                .. "%*"
+                                .. "%#BufferLineOffsetSeparator#"
+                                .. sep
+                                .. "%*"
+                            ret[pos .. "_size"] = sb.bounds.width
                         end
-                        title = string.rep(" ", lpadding + 1) .. title .. string.rep(" ", rpadding + 1)
-                        ret[pos] = "%#NvimTreeSidebarTitle#" .. title .. "%*" .. "%#BufferLineOffsetSeparator#▍%*"
-                        ret[pos .. "_size"] = sb.bounds.width
                     end
                     ret.total_size = ret.left_size + ret.right_size
                     if ret.total_size > 0 then
