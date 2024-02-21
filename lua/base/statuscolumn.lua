@@ -85,13 +85,15 @@ if vim.fn.has("nvim-0.9") == 1 then
             local filetype_tools = require("utils.filetype_tools")
             if filetype_tools.is_nonefiletype() then
                 if vim.bo.filetype == "spectre_panel" then
-                    vim.opt_local.statuscolumn = "   "
+                    vim.opt_local.statuscolumn = "       "
                     vim.opt_local.number = false
                 elseif vim.bo.filetype == "toggleterm" then
                     vim.opt_local.statuscolumn = " "
                 elseif vim.bo.filetype == "noice" then
-                    vim.opt_local.statuscolumn = ""
+                    vim.opt_local.statuscolumn = " "
                     vim.opt_local.number = false
+                elseif vim.bo.filetype == "help" then
+                    vim.opt_local.statuscolumn = "    "
                 else
                     vim.opt_local.statuscolumn = ""
                 end
