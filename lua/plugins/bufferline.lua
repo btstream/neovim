@@ -278,15 +278,17 @@ return {
                 if package.loaded.edgy then
                     local layout = require("edgy.config").layout
                     local ret = { left = "", left_size = 0, right = "", right_size = 0 }
-                    -- for _, pos in ipairs({ "left" }) do
                     local pos = "left"
                     local sb = layout[pos]
                     local title = "  Sidebar"
                     if sb and #sb.wins > 0 then
-                        local padding = (sb.bounds.width - #title) / 2
-                        title = string.rep(" ", padding) .. title .. string.rep(" ", padding)
-                        -- title = " Sidebar" .. string.rep(" ", sb.bounds.width - 8)
-                        ret[pos] = "%#NvimTreeSidebarTitle#" .. title .. "%*" .. "%#WinSeparator#│%*"
+                        local is_even, side = (sb.bounds.width - #title) % 2 == 0, (sb.bounds.width - #title) / 2
+                        local lpadding, rpadding = side, side
+                        if not is_even then
+                            lpadding, rpadding = math.ceil(side), math.floor(side)
+                        end
+                        title = string.rep(" ", lpadding + 1) .. title .. string.rep(" ", rpadding + 1)
+                        ret[pos] = "%#NvimTreeSidebarTitle#" .. title .. "%*" .. "%#BufferLineOffsetSeparator#▍%*"
                         ret[pos .. "_size"] = sb.bounds.width
                     end
                     ret.total_size = ret.left_size + ret.right_size
