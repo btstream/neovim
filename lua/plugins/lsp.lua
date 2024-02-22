@@ -75,6 +75,20 @@ return {
         end,
     },
 
+    {
+        "dnlhc/glance.nvim",
+        opts = {
+            border = {
+                enable = true, -- Show window borders. Only horizontal borders allowed
+                top_char = "―",
+                bottom_char = "―",
+            },
+            theme = {
+                enable = false,
+            },
+        },
+    },
+
     { -- null-ls
         -- "jose-elias-alvarez/null-ls.nvim",
         "nvimtools/none-ls.nvim",
