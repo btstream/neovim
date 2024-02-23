@@ -77,6 +77,7 @@ return {
 
     {
         "dnlhc/glance.nvim",
+        event = "LspAttach",
         opts = {
             preview_win_opts = {
                 foldcolumn = "0",
