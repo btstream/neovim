@@ -28,6 +28,7 @@ function M.hg()
     local dbg010 = darken(colors.base00, 0.10)
     local dbg015 = darken(colors.base00, 0.15)
     local dbg020 = darken(colors.base00, 0.20)
+    local dbg030 = darken(colors.base00, 0.30)
 
     --stylua: ignore
     return {
@@ -38,11 +39,13 @@ function M.hg()
         -- EndOfBuffer = { fg = colors.base00, bg              = colors.base00 },
         VertSplit      = { fg = dbg020 },
         WinSeparator   = "VertSplit",
-        CursorLineNr   = { fg = darken(colors.base0D, 0.1), bg = colors.base00 },
-        LineNr         = { fg = colors.base03 },
+        CursorLineNr   = { fg = darken(colors.base0D, 0.1), bg = "None" },
+        LineNr         = { fg = colors.base03, bg = "None" },
         SignColumn     = { bg = "None"},
+        ColorColumn    = { bg = "None"},
+        CursorColumn   = { bg = "None" },
         -- Folded      = { fg = darken(colors.base0A, 0.20) },
-        FoldColumn     = { fg = colors.base03, bg              = colors.base00 },
+        FoldColumn     = { fg = colors.base03, bg              = "None" },
         TabLineSel     = { bg = colors.base0D },
 
         ----------------------------------------------------------------------
@@ -295,7 +298,33 @@ function M.hg()
         ----------------------------------------------------------------------
         --                            ToggleTerm                            --
         ----------------------------------------------------------------------
-        ToggleTermTitle = { fg = colors.base04 }
+        ToggleTermTitle = { fg = colors.base04 },
+
+        ----------------------------------------------------------------------
+        --                              glance                              --
+        ----------------------------------------------------------------------
+        GlancePreviewNormal         = { bg = dbg010 },
+        GlancePreviewMatch          = "CursorLine",
+        -- GlancePreviewCursorLine  = "GlancePreviewNormal",
+        -- GlancePreviewSignColumn  = "GlancePreviewNormal",
+        -- GlancePreviewFoldColumn  = { bg = dbg020 },
+        -- GlancePreviewEndOfBuffer = "GlancePreviewNormal",
+        -- GlancePreviewLineNr      = "GlancePreviewNormal",
+        GlancePreviewBorderBottom   = { bg = colors.base00, fg = darken(colors.base0D, .20) },
+        GlanceWinBarFilename        = { bg = colors.base00 },
+        GlanceWinBarFilepath        = "GlanceWinBarFilename",
+        GlanceWinBarTitle           = "GlanceWinBarFilename",
+        -- GlanceListNormal
+        -- GlanceListFilename
+        -- GlanceListFilepath
+        -- GlanceListCount
+        GlanceListMatch             = { bg = darken(colors.base0D, .20), fg = colors.base00 },
+        -- GlanceListCursorLine        = { bg = darken(colors.base0D, .40), fg = colors.base00 },
+        -- GlanceListEndOfBuffer
+        GlanceListBorderBottom      = "GlancePreviewBorderBottom",
+        -- GlanceFoldIcon
+        -- GlanceIndent
+        GlanceBorderTop             = "GlancePreviewBorderBottom",
     }
 end
 

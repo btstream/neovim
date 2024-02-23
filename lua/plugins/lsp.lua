@@ -78,10 +78,15 @@ return {
     {
         "dnlhc/glance.nvim",
         opts = {
+            preview_win_opts = {
+                foldcolumn = "0",
+                cursorcolumn = false,
+                colorcolumn = "+1",
+            },
             border = {
                 enable = true, -- Show window borders. Only horizontal borders allowed
-                top_char = "―",
-                bottom_char = "―",
+                bottom_char = "▔",
+                top_char = "▁",
             },
             theme = {
                 enable = false,

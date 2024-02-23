@@ -1,24 +1,44 @@
 return {
+    -- {
+    --     "n",
+    --     "gd",
+    --     '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>',
+    --     { desc = "goto definitions" },
+    -- },
+    { "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "goto declaration" } },
+    -- {
+    --     "n",
+    --     "gi",
+    --     '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>',
+    --     { desc = "goto implementations" },
+    -- },
+    -- {
+    --     "n",
+    --     "gt",
+    --     '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>',
+    --     { desc = "goto type definitions" },
+    -- },
+    -- { "n", "gr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>', { desc = "get references" } },
     {
         "n",
         "gd",
-        '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>',
+        "<cmd>Glance definitions<cr>",
         { desc = "goto definitions" },
     },
-    { "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "goto declaration" } },
     {
         "n",
         "gi",
-        '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>',
+        "<cmd>Glance implementations<cr>",
         { desc = "goto implementations" },
     },
     {
         "n",
         "gt",
-        '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>',
+        "<cmd>Glance type_definitions<cr>",
         { desc = "goto type definitions" },
     },
-    { "n", "gr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>', { desc = "get references" } },
+    { "n", "gr", "<cmd>Glance references<cr>", { desc = "get references" } },
+
     -- buf_{"n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts},
     { "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "rename" } },
 
