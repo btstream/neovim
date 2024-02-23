@@ -48,7 +48,7 @@ require("noice").setup({
     },
     lsp = {
         progress = {
-            enabled = false,
+            enabled = true,
             format_done = {
                 { "󰄬 ", hl_group = "NoiceLspProgressSpinner" },
                 { "{data.progress.title} ", hl_group = "NoiceLspProgressTitle" },

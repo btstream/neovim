@@ -2,6 +2,7 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "User LazyVimStarted",
     -- priority = 65535,
+    enabled = false,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         "linrongbin16/lsp-progress.nvim",
