@@ -37,15 +37,22 @@ function M.quit(buf)
 
     -- if more than one window is opened, close current window first
     local opend_window = 0
+    local target_buf_attached_wins = 0
     for _, w in pairs(vim.api.nvim_tabpage_list_wins(0)) do
         local buf_in_w = vim.api.nvim_win_get_buf(w)
         if vim.fn.buflisted(buf_in_w) == 1 then
             opend_window = opend_window + 1
+            if buf_in_w == target_buf then
+                target_buf_attached_wins = target_buf_attached_wins + 1
+            end
         end
     end
     -- print(opend_window)
     if opend_window > 1 then
         vim.cmd.quit()
+        if target_buf_attached_wins == 1 then
+            vim.cmd("bdelete! " .. target_buf)
+        end
         return
     end
 
