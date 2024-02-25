@@ -75,12 +75,20 @@ local file_status = {
     end,
 }
 
-local update_count = 1
+local separator = require("plugins.heirline.components.separator")({
+    char = "",
+    block = true,
+})
+separator.condition = function()
+    local _, ft = is_nonefiletype()
+    print(ft)
+    return ft ~= "toggleterm"
+end
+
 return {
     init = function(self)
         self.filename = vim.api.nvim_buf_get_name(0)
         self.ft = vim.bo.filetype
-        update_count = update_count + 1
     end,
     hl = function()
         return { bg = get_color("grey") }
@@ -88,5 +96,6 @@ return {
     file_icons,
     file_name,
     file_status,
+    separator,
     update = { "WinEnter", "BufEnter", "BufAdd", "BufWinLeave", "WinClosed", "BufModifiedSet" },
 }
