@@ -43,6 +43,9 @@ return {
             direction = "horizontal",
             close_on_exit = true, -- close the terminal window when the process exits
             shell = (vim.fn.has("win32") == 1 and vim.fn.executable("xonsh")) and "xonsh" or vim.o.shell, -- change the default shell
+            highlights = {
+                StatusLine = { link = "StatusLine" },
+            },
             on_open = function(terminal)
                 -- if vim.g.loaded_neo_tree == 1 then
                 --     local active_source = require("plugins.neo-tree.utils").get_active_source()

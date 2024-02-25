@@ -1,42 +1,55 @@
 local nonefiletypes = require("utils.filetype_tools").get_nonfiletypes()
 
--- setup mode colors
-local function gen_mode_color()
-    local colors = require("themes.base16.colors").colors()
+-- stylua: ignore start
+local comman_color_base16_map = {
+    red                       = "base0F",
+    dark_red                  = "base08",
+    green                     = "base0B",
+    blue                      = "base0D",
+    gray                      = "base02",
+    grey                      = "base03",
+    white                     = "base07",
+    yellor                    = "base0A",
+    orange                    = "base09",
+    purple                    = "base0E",
+    cyan                      = "base0E",
+    black                     = "base00",
+}
 
-    -- stylua: ignore start
-    local mode_colors = {
-        n             = colors.base0D, --"red",
-        i             = colors.base0B, --"green",
-        v             = colors.base0E, --"cyan",
-        V             = colors.base0E, --("cyan"),
-        ["\22"]       = colors.base0E, --"cyan",
-        c             = colors.base0D, --"orange",
-        s             = colors.base0E, --"purple",
-        S             = colors.base0E, --"purple",
-        ["\19"]       = colors.base0E, --"purple",
-        R             = colors.base09, --"orange",
-        r             = colors.base09, --"orange",
-        ["!"]         = colors.base08, --"red",
-        t             = colors.base0B, --"red",
-    }
-    -- stylua: ignore end
-
-    return mode_colors
-end
-local mode_colors = gen_mode_color()
-vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = function()
-        mode_colors = gen_mode_color()
-    end,
-})
+local mode_colors_map = {
+    n                 = "blue",
+    i                 = "green",
+    v                 = "cyan",
+    V                 = "cyan",
+    ["\22"]           = "cyan",
+    c                 = "blue",
+    s                 = "purple",
+    S                 = "purple",
+    ["\19"]           = "purple",
+    R                 = "orange",
+    r                 = "orange",
+    ["!"]             = "dark_red",
+    t                 = "green",
+}
+-- stylua: ignore end
 
 local M = {}
+
+function M.get_color(name)
+    if comman_color_base16_map[name] then
+        return require("themes.base16.colors").colors()[comman_color_base16_map[name]]
+    end
+    return name
+end
 
 function M.mode_color(self)
     local mode = self.mode:sub(1, 1) -- get only the first mode character
     local colors = require("themes.base16.colors").colors()
-    return { bg = mode_colors[mode], fg = colors.base00 }
+    local bg, fg = mode_colors_map[mode], "black"
+    if colors then
+        bg, fg = colors[comman_color_base16_map[bg]], colors[comman_color_base16_map[fg]]
+    end
+    return { bg = bg, fg = fg }
 end
 
 function M.get_nonefiletype_icon()
