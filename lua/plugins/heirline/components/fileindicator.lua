@@ -81,7 +81,6 @@ local separator = require("plugins.heirline.components.separator")({
 })
 separator.condition = function()
     local _, ft = is_nonefiletype()
-    print(ft)
     return ft ~= "toggleterm"
 end
 
