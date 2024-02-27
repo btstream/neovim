@@ -1,4 +1,4 @@
-local mode_icons = require("themes.icons").mode_icons
+local icons = require("themes.icons").common_ui_icons
 local mode_color = require("plugins.heirline.util").mode_color
 local get_nonefiletype_icon = require("plugins.heirline.util").get_nonefiletype_icon
 
@@ -12,7 +12,7 @@ return {
         if icon ~= nil then
             return " " .. icon .. " "
         end
-        return "  %l:%2c "
+        return " " .. icons.line_number .. "%2l:%2c "
     end,
     hl = mode_color,
     update = { "ModeChanged", "WinEnter", "BufEnter", "BufWinLeave", "CursorMoved", "CursorMovedI" },
