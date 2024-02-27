@@ -1,6 +1,9 @@
 return function(opts)
     local separator = {
         provider = "",
+        hl = function()
+            return { fg = require("plugins.heirline.util").get_color("LightGray") }
+        end,
     }
 
     if opts then

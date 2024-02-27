@@ -1,4 +1,6 @@
 local icons = require("themes.icons")
+local is_nonefiletypes = require("utils.filetype_tools").is_nonefiletype
+
 local separator = require("plugins.heirline.components.separator")
 
 local git_branch = {
@@ -70,5 +72,8 @@ local git_diff = {
 return {
     git_branch,
     git_diff,
+    condition = function()
+        return not is_nonefiletypes()
+    end,
     update = { "User", pattern = "GitSignsUpdate" },
 }
