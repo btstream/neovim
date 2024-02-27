@@ -12,7 +12,7 @@ return {
         if icon ~= nil then
             return " " .. icon .. " "
         end
-        return " " .. icons.line_number .. "%2l:%2c "
+        return " " .. icons.line_number .. " %2l:%2c "
     end,
     hl = mode_color,
     update = { "ModeChanged", "WinEnter", "BufEnter", "BufWinLeave", "CursorMoved", "CursorMovedI" },
