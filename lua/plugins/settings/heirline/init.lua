@@ -8,6 +8,7 @@ local statusline = {
     require("plugins.heirline.components.mode"),
     require("plugins.heirline.components.fileindicator"),
     require("plugins.heirline.components.fill"),
+    require("plugins.heirline.components.lspservers"),
     require("plugins.heirline.components.location"),
 }
 heirline.setup({

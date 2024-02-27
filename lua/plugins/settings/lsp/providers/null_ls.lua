@@ -18,9 +18,9 @@ null_ls.setup({
                 return { "--indent-type", "Spaces", "--indent-width", "4" }
             end,
         }),
-        null_ls.builtins.formatting.jq.with({
-            extra_args = { "--indent", "4" },
-        }),
+        -- null_ls.builtins.formatting.jq.with({
+        --     extra_args = { "--indent", "4" },
+        -- }),
         null_ls.builtins.formatting.yapf,
         -- null_ls.builtins.code_actions.gitsigns,
         null_ls.builtins.code_actions.gitsigns.with({
