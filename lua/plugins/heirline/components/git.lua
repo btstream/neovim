@@ -53,7 +53,7 @@ local git_removed = {
     end,
 }
 
-local git_status = {
+local git_diff = {
     init = function(self)
         self.git_status = vim.b[0].gitsigns_status_dict
     end,
@@ -69,6 +69,6 @@ local git_status = {
 
 return {
     git_branch,
-    git_status,
+    git_diff,
     update = { "User", pattern = "GitSignsUpdate" },
 }
