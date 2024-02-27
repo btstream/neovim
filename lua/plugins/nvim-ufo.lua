@@ -7,7 +7,7 @@ return {
         ---@diagnostic disable-next-line: missing-fields
         require("ufo").setup({
             provider_selector = function(buf, filetype, buftype)
-                return { "treesitter", "indent" }
+                return { "lsp", "indent" }
             end,
         })
     end,
