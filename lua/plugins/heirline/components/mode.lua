@@ -53,7 +53,7 @@ return {
         return " " .. icon .. name .. " "
     end,
     hl = mode_color,
-    update = { "ModeChanged", "WinEnter", "BufEnter", "BufWinLeave" },
+    update = { "ModeChanged", "WinEnter", "BufEnter", "BufWinLeave", "BufAdd", "WinClosed", "WinLeave" },
     -- update = {
     --     { "ModeChanged", "WinEnter" },
     --     pattern = "*:*",
