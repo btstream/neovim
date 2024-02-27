@@ -9,7 +9,7 @@ local file_icons = {
         local filename = self.filename
         local ext = vim.fn.fnamemodify(filename, ":e")
         self.icon, self.icon_colors = devicons.get_icon_color(filename, ext)
-        self.icon = self.icon or " "
+        self.icon = self.icon or icons.file_common
         if filename == "" then
             self.icon = icons.file_new
         end
