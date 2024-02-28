@@ -38,75 +38,79 @@ return {
             desc = "open sidebar",
         },
     },
-    opts = {
-        use_popups_for_input = false,
-        enable_refresh_on_write = false,
-        default_component_configs = {
-            indent = {
-                indent_size = 2,
-                padding = 1, -- extra padding on left hand side
-                -- indent guides
-                with_markers = true,
-                indent_marker = "│",
-                last_indent_marker = "└",
-                highlight = "IndentBlanklineChar",
-                -- highlight = "NeoTreeIndentMarker",
-                -- expander config, needed for nesting files
-                with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-                expander_collapsed = "",
-                expander_expanded = "",
-                -- expander_highlight = "NeoTreeExpander",
+    opts = function()
+        -- ensure signs are defined
+        require("plugins.lsp.diagostics")
+        return {
+            use_popups_for_input = false,
+            enable_refresh_on_write = false,
+            default_component_configs = {
+                indent = {
+                    indent_size = 2,
+                    padding = 1, -- extra padding on left hand side
+                    -- indent guides
+                    with_markers = true,
+                    indent_marker = "│",
+                    last_indent_marker = "└",
+                    highlight = "IndentBlanklineChar",
+                    -- highlight = "NeoTreeIndentMarker",
+                    -- expander config, needed for nesting files
+                    with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+                    expander_collapsed = "",
+                    expander_expanded = "",
+                    -- expander_highlight = "NeoTreeExpander",
+                },
+                icon = {
+                    folder_closed = icons.folder_closed,
+                    folder_open = icons.folder_open,
+                    folder_empty = icons.folder_empty,
+                    folder_empty_open = icons.folder_empty_open,
+                },
+                modified = {
+                    symbol = "󰰏 ",
+                },
+                git_status = {
+                    symbols = require("themes.icons").gitstatus_icons,
+                    align = "right",
+                },
             },
-            icon = {
-                folder_closed = icons.folder_closed,
-                folder_open = icons.folder_open,
-                folder_empty = icons.folder_empty,
-                folder_empty_open = icons.folder_empty_open,
+            filesystem = {
+                use_libuv_file_watcher = true,
+                follow_current_file = { enabled = true },
+                hijack_netrw_behavior = "open_current",
+                display_name = icons.file_explorer .. " Files",
             },
-            modified = {
-                symbol = "󰰏 ",
+            buffers = {
+                display_name = icons.buffers .. " Buffers",
             },
             git_status = {
-                symbols = require("themes.icons").gitstatus_icons,
-                align = "right",
+                display_name = icons.git .. " Git",
             },
-        },
-        filesystem = {
-            use_libuv_file_watcher = true,
-            follow_current_file = { enabled = true },
-            hijack_netrw_behavior = "open_current",
-            display_name = icons.file_explorer .. " Files",
-        },
-        buffers = {
-            display_name = icons.buffers .. " Buffers",
-        },
-        git_status = {
-            display_name = icons.git .. " Git",
-        },
-        window = {
-            mappings = {
-                ["<space>"] = "none",
+            window = {
+                mappings = {
+                    ["<space>"] = "none",
+                },
             },
-        },
-        source_selector = {
-            winbar = false,
-            separator = nil,
-        },
-        -- event_handlers = {
-        --     {
-        --         event = "neo_tree_buffer_enter",
-        --         handler = function()
-        --             require("keymaps")["neo-tree"].set(nil, true)
-        --             -- vim.schedule(function() end)
-        --         end,
-        --     },
-        --     {
-        --         event = "neo_tree_buffer_leave",
-        --         handler = function()
-        --             require("keymaps").bufferline.set(nil, true)
-        --             -- require("utils.keymap_tools").map(require("keymaps").bufferline)
-        --         end,
-        --     },
-        -- },
-    },
+            source_selector = {
+                winbar = false,
+                separator = nil,
+            },
+            -- event_handlers = {
+            --     {
+            --         event = "neo_tree_buffer_enter",
+            --         handler = function()
+            --             require("keymaps")["neo-tree"].set(nil, true)
+            --             -- vim.schedule(function() end)
+            --         end,
+            --     },
+            --     {
+            --         event = "neo_tree_buffer_leave",
+            --         handler = function()
+            --             require("keymaps").bufferline.set(nil, true)
+            --             -- require("utils.keymap_tools").map(require("keymaps").bufferline)
+            --         end,
+            --     },
+            -- },
+        }
+    end,
 }
