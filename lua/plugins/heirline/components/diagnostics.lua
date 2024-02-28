@@ -63,7 +63,11 @@ local diagnostics_hint = {
 
 return {
     init = function(self) end,
-    separator(),
+    separator({
+        condition = function()
+            return require("heirline.conditions").is_git_repo()
+        end,
+    }),
     diagnostics_error,
     diagnostics_warn,
     diagnostics_info,

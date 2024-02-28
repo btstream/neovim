@@ -22,6 +22,10 @@ return function(opts)
                 }
             end
         end
+
+        if opts.condition then
+            separator.condition = opts.condition
+        end
     end
     return separator
 end

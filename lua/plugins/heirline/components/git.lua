@@ -72,6 +72,7 @@ local git_diff = {
 return {
     git_branch,
     git_diff,
+    { provider = " " },
     condition = function()
         return not is_nonefiletypes()
     end,
