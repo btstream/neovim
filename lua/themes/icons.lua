@@ -138,6 +138,7 @@ M.filetype_icons       = {
     DressingInput      = "󱓧 ",
     documentation      = "󰬋 ",
     dropbar_menu       = "󰮫 ",
+    Glance             = " ",
 }
 
 M.common_ui_icons     = {
