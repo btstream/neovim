@@ -27,7 +27,17 @@ return {
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
     },
-    keys = require("keymaps")["neo-tree"].lazy_keys(),
+    -- keys = require("keymaps")["neo-tree"].lazy_keys(),
+    keys = {
+        {
+            mode = { "n", "i" },
+            "<C-k>b",
+            function()
+                require("plugins.neo-tree.utils").toggle()
+            end,
+            desc = "open sidebar",
+        },
+    },
     opts = {
         use_popups_for_input = false,
         enable_refresh_on_write = false,
@@ -82,21 +92,21 @@ return {
             winbar = false,
             separator = nil,
         },
-        event_handlers = {
-            {
-                event = "neo_tree_buffer_enter",
-                handler = function()
-                    require("keymaps")["neo-tree"].set(nil, true)
-                    -- vim.schedule(function() end)
-                end,
-            },
-            {
-                event = "neo_tree_buffer_leave",
-                handler = function()
-                    require("keymaps").bufferline.set(nil, true)
-                    -- require("utils.keymap_tools").map(require("keymaps").bufferline)
-                end,
-            },
-        },
+        -- event_handlers = {
+        --     {
+        --         event = "neo_tree_buffer_enter",
+        --         handler = function()
+        --             require("keymaps")["neo-tree"].set(nil, true)
+        --             -- vim.schedule(function() end)
+        --         end,
+        --     },
+        --     {
+        --         event = "neo_tree_buffer_leave",
+        --         handler = function()
+        --             require("keymaps").bufferline.set(nil, true)
+        --             -- require("utils.keymap_tools").map(require("keymaps").bufferline)
+        --         end,
+        --     },
+        -- },
     },
 }

@@ -42,7 +42,8 @@ return {
             table.insert(ret, "")
             return ret
         end
-        local header = require("settings").banner and require("settings").banner or banner()
+        -- local header = require("settings").banner and require("settings").banner or banner()
+        local header = banner()
 
         -- generate footer info
         local lazy_stats = require("lazy").stats()
@@ -89,12 +90,12 @@ return {
                         action = "Telescope colorscheme",
                         key = "t",
                     },
-                    {
-                        desc = icons.update .. " Update",
-                        group = "DashboardActionUpdate",
-                        action = require("utils.lazy").update,
-                        key = "u",
-                    },
+                    -- {
+                    --     desc = icons.update .. " Update",
+                    --     group = "DashboardActionUpdate",
+                    --     action = require("utils.lazy").update,
+                    --     key = "u",
+                    -- },
                     {
                         desc = icons.settings .. " Settings",
                         group = "DashboardActionSettings",

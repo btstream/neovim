@@ -2,7 +2,7 @@ local jdtls = require("jdtls")
 
 local find_root = require("jdtls.setup").find_root
 -- local get_settings = require("nlspsettings").get_settings
-local get_lua_settings = require("plugins.settings.lsp.nlspsettings_lualoader").get_settings
+local get_lua_settings = require("plugins.lsp.nlspsettings_lualoader").get_settings
 
 local lombok_path =
     vim.fs.joinpath(require("mason.settings").current.install_root_dir, "packages", "jdtls", "lombok.jar")

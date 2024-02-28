@@ -1,13 +1,13 @@
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
-local inlay_hint = require("plugins.settings.lsp.utils").inlay_hint
+local inlay_hint = require("plugins.lsp.utils").inlay_hint
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local lsp_settings_path = vim.fn.stdpath("config") .. "/lsp-settings"
+local lsp_settings_path = require("utils.os.path").join(vim.fn.stdpath("config"), "lsp-settings")
 
-require("plugins.settings.lsp.ui").setup()
+require("plugins.lsp.ui").setup()
 -----------------------------------
 -- setup nlspsettings to load
 -- json and lua config for settings
@@ -23,9 +23,9 @@ require("nlspsettings").setup({
 
 -- lua config
 lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.default_config, {
-    on_attach = require("plugins.settings.lsp.utils").on_attach,
+    on_attach = require("plugins.lsp.utils").on_attach,
     capabilities = capabilities,
-    handlers = require("plugins.settings.lsp.handlers"),
+    handlers = require("plugins.lsp.handlers"),
     -- add_hook_after, has a much more priority than nlspsettings.nvim
     on_new_config = lspconfig_utils.add_hook_after(
         lspconfig_utils.default_config.on_new_config,
@@ -33,7 +33,7 @@ lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.de
             local name = new_config.name
             new_config.settings = vim.tbl_deep_extend(
                 "keep",
-                require("plugins.settings.lsp.nlspsettings_lualoader").get_settings(root_dir, name),
+                require("plugins.lsp.nlspsettings_lualoader").get_settings(root_dir, name),
                 new_config.settings
             )
         end
@@ -43,7 +43,7 @@ lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.de
 -----------------------------------
 -- setup lsp with mason
 -----------------------------------
-require("plugins.settings.lsp.mason")
+require("plugins.lsp.mason")
 local disabled_server = { "pylyzer" }
 require("mason-lspconfig").setup_handlers({
     function(server_name)
@@ -53,7 +53,7 @@ require("mason-lspconfig").setup_handlers({
         if vim.tbl_contains(disabled_server, server_name) then
             return
         end
-        if not pcall(require, "plugins.settings.lsp.providers." .. server_name) then
+        if not pcall(require, "plugins.lsp.providers." .. server_name) then
             lspconfig[server_name].setup({})
         end
     end,

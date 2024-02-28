@@ -11,7 +11,8 @@ return {
             "onsails/lspkind-nvim",
         },
         config = function()
-            require("plugins.settings.lsp")
+            require("plugins.lsp.base")
+            require("plugins.lsp.diagostics")
         end,
     },
 
@@ -20,10 +21,10 @@ return {
         event = "User VeryVeryLazy",
         dependencies = { "WhoIsSethDaniel/mason-tool-installer.nvim" },
         build = function()
-            require("plugins.settings.lsp.mason")
+            require("plugins.lsp.mason")
         end,
         config = function()
-            require("plugins.settings.lsp.mason")
+            require("plugins.lsp.mason")
         end,
     },
 
@@ -101,7 +102,7 @@ return {
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         event = { "User BufReadReadFilePostDefer" },
         config = function()
-            require("plugins.settings.lsp.providers.null_ls")
+            require("plugins.lsp.providers.null_ls")
         end,
     },
 

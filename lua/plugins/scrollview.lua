@@ -1,7 +1,7 @@
 return {
     "dstein64/nvim-scrollview",
     opts = {
-        excluded_filetypes = require("utils.filetype_tools").get_nonfiletypes(),
+        excluded_filetypes = require("utils.filetype").get_nonfiletypes(),
         current_only = true,
         -- base = "right",
         -- column = 80,

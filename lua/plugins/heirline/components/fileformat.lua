@@ -26,6 +26,6 @@ return {
         return { fg = require("plugins.heirline.util").get_color("LightGrey") }
     end,
     condition = function()
-        return not require("utils.filetype_tools").is_nonefiletype()
+        return not require("utils.filetype").is_nonefiletype()
     end,
 }

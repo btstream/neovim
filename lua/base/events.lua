@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNew", "BufNewFile" }, {
         end
 
         schedule(function()
-            if not require("utils.filetype_tools").is_nonefiletype() then
+            if not require("utils.filetype").is_nonefiletype() then
                 -- emit BufReadReadFile event first
                 vim.cmd([[do User BufReadRealFile]])
             end
@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
         end
         -- defering to next schedule cycle
         schedule(function()
-            if not require("utils.filetype_tools").is_nonefiletype() then
+            if not require("utils.filetype").is_nonefiletype() then
                 vim.schedule(function()
                     vim.cmd("do User BufReadRealFilePost")
                 end)

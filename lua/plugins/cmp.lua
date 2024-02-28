@@ -12,6 +12,15 @@ return {
         "hrsh7th/vim-vsnip",
         "windwp/nvim-autopairs",
         "rafamadriz/friendly-snippets",
+        "onsails/lspkind-nvim",
+    },
+    keys = {
+        -- stylua: ignore start
+        {  mode = { "i", "s" }, "<C-j>",   "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-j>'",   { expr = true } },
+        {  mode = { "i", "s" }, "<C-S-j>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-S-j>'", { expr = true } },
+        {  mode = { "i", "s" }, "<Tab>",   "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'",   { expr = true } },
+        {  mode = { "i", "s" }, "<S-Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<S-j>'",   { expr = true } },
+        -- stylua: ignore end
     },
     config = function()
         local cmp = require("cmp")
@@ -58,18 +67,20 @@ return {
                 }),
             },
             mapping = {
-                ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-                ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+                -- stylua: ignore start
+                ["<C-d>"]     = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+                ["<C-f>"]     = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
                 ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-                ["<C-y>"] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
-                ["<Esc>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-                ["<C-c>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-                ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i" }),
-                ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i" }),
-                ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-                ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-                ["<Tab>"] = cmp.mapping(function(fallback)
+                ["<C-y>"]     = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
+                ["<Esc>"]     = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+                ["<C-c>"]     = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+                ["<CR>"]      = cmp.mapping.confirm({ select = true }),
+                ["<Up>"]      = cmp.mapping(cmp.mapping.select_prev_item(), { "i" }),
+                ["<Down>"]    = cmp.mapping(cmp.mapping.select_next_item(), { "i" }),
+                ["<C-p>"]     = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+                ["<C-n>"]     = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+                ["<Tab>"]     = cmp.mapping(function(fallback)
+                    -- stylua: ignore end
                     if cmp.visible() then
                         cmp.select_next_item()
                     elseif vim.fn["vsnip#available"](1) == 1 then
@@ -151,6 +162,6 @@ return {
         --                           set keymaps                            --
         ----------------------------------------------------------------------
         --stylua: ignore
-        require("keymaps").cmp.set()
+        -- require("keymaps").cmp.set()
     end,
 }

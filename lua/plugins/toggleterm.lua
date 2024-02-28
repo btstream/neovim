@@ -47,20 +47,13 @@ return {
                 StatusLine = { link = "StatusLine" },
             },
             on_open = function(terminal)
-                -- if vim.g.loaded_neo_tree == 1 then
-                --     local active_source = require("plugins.neo-tree.utils").get_active_source()
-                --     if active_source ~= nil and terminal.direction == "horizontal" then
-                --         require("plugins.neo-tree.utils").toggle(false)
-                --         require("plugins.neo-tree.utils").toggle(false)
-                --     end
+                -- TODO: update lspconfig to find virtual env
+                -- local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
+                -- -- enter poetry virtual env
+                -- local path = find_pyproject_toml(vim.fn.getcwd())
+                -- if path and vim.fn.executable("poetry") == 1 then
+                --     terminal:send("poetry shell -q && exit")
                 -- end
-
-                local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
-                -- enter poetry virtual env
-                local path = find_pyproject_toml(vim.fn.getcwd())
-                if path and vim.fn.executable("poetry") == 1 then
-                    terminal:send("poetry shell -q && exit")
-                end
 
                 -- quirk to disable highlight of sidebars
                 -- vim.cmd("doautocmd BufEnter")

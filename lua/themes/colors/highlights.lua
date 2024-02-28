@@ -1,5 +1,5 @@
-local darken = require("themes.utils").darken
-local get_base16_colors = require("themes.base16.colors").colors
+local darken = require("themes.colors.manager").darken
+local get_colors = require("themes.colors.manager").colors
 
 local M = {}
 
@@ -22,8 +22,8 @@ local M = {}
 --   "base06": "#b6bdca",
 --   "base04": "#565c64"
 -- }
-function M.hg()
-    local colors = get_base16_colors()
+function M.define()
+    local colors = get_colors()
     -- print(vim.json.encode(colors))
     local dbg010 = darken(colors.base00, 0.10)
     local dbg015 = darken(colors.base00, 0.15)
@@ -326,6 +326,10 @@ function M.hg()
         -- GlanceIndent
         GlanceBorderTop             = "GlancePreviewBorderBottom",
     }
+end
+
+function M.set()
+    require("themes.colors.manager").set_hl(M.define())
 end
 
 return M

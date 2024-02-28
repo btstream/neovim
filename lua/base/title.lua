@@ -1,8 +1,8 @@
 local opt = vim.opt
-local filetype_tools = require("utils.filetype_tools")
+local filetype_utils = require("utils.filetype")
 
 _G.titlestring = function()
-    local s, filetype = filetype_tools.is_nonefiletype()
+    local s, filetype = filetype_utils.is_nonefiletype()
     if s then
         if filetype:upper() == "TOGGLETERM" then
             return "%F"

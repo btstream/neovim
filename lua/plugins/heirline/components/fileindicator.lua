@@ -1,7 +1,7 @@
 local devicons = require("nvim-web-devicons")
 
 local icons = require("themes.icons").common_ui_icons
-local is_nonefiletype = require("utils.filetype_tools").is_nonefiletype
+local is_nonefiletype = require("utils.filetype").is_nonefiletype
 local get_color = require("plugins.heirline.util").get_color
 
 local file_icons = {

@@ -82,8 +82,8 @@ if vim.fn.has("nvim-0.9") == 1 then
         pattern = "*",
         group = vim.api.nvim_create_augroup("ClearStatusColumn", { clear = true }),
         callback = function()
-            local filetype_tools = require("utils.filetype_tools")
-            if filetype_tools.is_nonefiletype() then
+            local filetype_utils = require("utils.filetype")
+            if filetype_utils.is_nonefiletype() then
                 if vim.bo.filetype == "spectre_panel" then
                     vim.opt_local.statuscolumn = "       "
                     vim.opt_local.number = false

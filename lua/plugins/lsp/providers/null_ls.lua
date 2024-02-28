@@ -1,6 +1,6 @@
 local null_ls = require("null-ls")
 null_ls.setup({
-    on_attach = require("plugins.settings.lsp.utils").on_attach,
+    on_attach = require("plugins.lsp.utils").on_attach,
     sources = {
         require("null-ls").builtins.formatting.stylua.with({
             extra_args = function(_)

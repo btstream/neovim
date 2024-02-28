@@ -10,7 +10,7 @@ return {
                 highlight = "IndentBlanklineContextChar",
             },
             exclude = {
-                filetypes = require("utils.filetype_tools").get_nonfiletypes(),
+                filetypes = require("utils.filetype").get_nonfiletypes(),
             },
         })
     end,

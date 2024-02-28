@@ -6,6 +6,21 @@ return {
         "rcarriga/nvim-dap-ui",
         "mfussenegger/nvim-dap-python",
     },
+    keys = {
+        { "<F6>", "<cmd>lua require'dap'.continue()<CR>" },
+        { "<F10>", "<cmd>lua require'dap'.step_over()<CR>" },
+        { "<F11>", "<cmd>lua require'dap'.step_into()<CR>" },
+        { "<F12>", "<cmd>lua require'dap'.step_out()<CR>" },
+        { "<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>" },
+        { "<leader>B", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>" },
+        {
+
+            "<leader>lp",
+            "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+        },
+        { "<leader>dr", "<cmd>lua require'dap'.repl.open()<CR>" },
+        { "<leader>dl", "<cmd>lua require'dap'.run_last()<CR>" },
+    },
     module = false,
     config = function()
         local dap = require("dap")
@@ -51,7 +66,5 @@ return {
             icons = { expanded = "", collapsed = "", current_frame = "" },
         })
         require("dap-python").setup()
-
-        require("keymaps").dap.set()
     end,
 }

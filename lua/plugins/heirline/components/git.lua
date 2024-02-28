@@ -1,5 +1,5 @@
 local icons = require("themes.icons")
-local is_nonefiletypes = require("utils.filetype_tools").is_nonefiletype
+local is_nonefiletypes = require("utils.filetype").is_nonefiletype
 
 local separator = require("plugins.heirline.components.separator")
 

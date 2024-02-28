@@ -3,7 +3,69 @@ return {
     name = "bufferline",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "User BufReadRealFile",
-    -- event = { "BufReadPre", "BufNew" },
+    keys = function()
+        local nonfiletypes = require("utils.filetype").get_nonfiletypes()
+        local function go_to_tab(index)
+            return function()
+                local config = require("bufferline.config")
+                local list = require("bufferline.state").visible_components
+                local element = list[index]
+                if index == -1 or not element then
+                    element = list[#list]
+                end
+
+                if vim.tbl_contains(nonfiletypes, vim.api.nvim_get_option_value("filetype", { buf = 0 })) then
+                    local windows = vim.api.nvim_tabpage_list_wins(0)
+                    for _, w in pairs(windows) do
+                        local buf_in_w = vim.api.nvim_win_get_buf(w)
+
+                        -- find first normal window contains a normal file
+                        if
+                            not vim.tbl_contains(
+                                nonfiletypes,
+                                vim.api.nvim_get_option_value("filetype", { buf = buf_in_w })
+                            )
+                        then
+                            if element then
+                                if config:is_tabline() and vim.api.nvim_tabpage_is_valid(element.id) then
+                                    vim.api.nvim_set_current_tabpage(element.id)
+                                elseif vim.api.nvim_buf_is_valid(element.id) then
+                                    vim.api.nvim_win_set_buf(w, element.id)
+                                end
+                            end
+                            return
+                        end
+                    end
+                else
+                    vim.api.nvim_win_set_buf(0, element.id)
+                end
+            end
+        end
+
+        return {
+            { "<A-,>", "<cmd>BufferLineCyclePrev<CR>" },
+            { "<A-.>", "<cmd>BufferLineCycleNext<CR>" },
+            { "<A-1>", go_to_tab(1) },
+            { "<A-2>", go_to_tab(2) },
+            { "<A-3>", go_to_tab(3) },
+            { "<A-4>", go_to_tab(4) },
+            { "<A-5>", go_to_tab(5) },
+            { "<A-6>", go_to_tab(6) },
+            { "<A-7>", go_to_tab(7) },
+            { "<A-8>", go_to_tab(8) },
+            { "<A-9>", go_to_tab(9) },
+            { "<Space>pp", "<cmd>BufferLinePick<CR>" },
+            { mode = { "n", "i" }, "<A-w>", require("base.quit-behave").quit },
+            {
+                mode = { "n", "i" },
+                "<C-k>b",
+                function()
+                    require("plugins.neo-tree.utils").toggle()
+                end,
+                desc = "open sidebar",
+            },
+        }
+    end,
     config = function()
         require("bufferline").setup({
             options = {
@@ -33,7 +95,7 @@ return {
                         end
                     end
 
-                    local nonfiletypes = require("utils.filetype_tools").get_nonfiletypes()
+                    local nonfiletypes = require("utils.filetype").get_nonfiletypes()
 
                     --- first of all, if current window is a normal window (contains normal buffer in it)
                     --- then set target buffer to current window
@@ -205,7 +267,5 @@ return {
             end
             Offset.edgy = true
         end
-
-        require("keymaps").bufferline.set()
     end,
 }

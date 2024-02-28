@@ -1,6 +1,6 @@
 local function gen_base16_hg()
-    local colors = require("themes.base16.colors").colors()
-    local dbg = require("themes.utils").darken(colors.base00, 0.15)
+    local colors = require("themes.colors.manager").colors()
+    local dbg = require("themes.colors.manager").darken(colors.base00, 0.15)
     -- local dbg020 = require("themes.utils").darken(colors.base00, 0.20)
 
     return {

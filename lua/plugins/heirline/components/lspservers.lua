@@ -1,5 +1,5 @@
 local icons = require("themes.icons").common_ui_icons
-local is_nonefiletype = require("utils.filetype_tools").is_nonefiletype
+local is_nonefiletype = require("utils.filetype").is_nonefiletype
 local separator = require("plugins.heirline.components.separator")
 
 local ft_indicator = {
@@ -15,7 +15,7 @@ local ft_indicator = {
 local lsp_indicator = {
     init = function(self)
         self.clients = {}
-        local clients = vim.lsp.get_clients({ bufnr = 0 })
+        local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = 0 }) or vim.lsp.get_active_clients()
         for _, client in pairs(clients) do
             if client.name == "null-ls" then
                 goto continue

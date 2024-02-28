@@ -1,6 +1,9 @@
 return {
     "Bekaboo/dropbar.nvim",
     event = "User BufReadRealFile",
+    enabled = function()
+        return vim.fn.has("nvim-0.10") == 1
+    end,
     config = function()
         -- need to add space for each symbols
         local symbols = {}

@@ -1,4 +1,4 @@
-local nonefiletypes = require("utils.filetype_tools").get_nonfiletypes()
+local nonefiletypes = require("utils.filetype").get_nonfiletypes()
 
 -- stylua: ignore start
 local comman_color_base16_map = {
@@ -41,14 +41,14 @@ local M = {}
 
 function M.get_color(name)
     if comman_color_base16_map[name] then
-        return require("themes.base16.colors").colors()[comman_color_base16_map[name]]
+        return require("themes.colors.manager").colors()[comman_color_base16_map[name]]
     end
     return name
 end
 
 function M.mode_color(self)
     local mode = self.mode:sub(1, 1) -- get only the first mode character
-    local colors = require("themes.base16.colors").colors()
+    local colors = require("themes.colors.manager").colors()
     local bg, fg = mode_colors_map[mode], "black"
     if colors then
         bg, fg = colors[comman_color_base16_map[bg]], colors[comman_color_base16_map[fg]]

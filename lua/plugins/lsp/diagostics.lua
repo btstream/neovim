@@ -1,4 +1,4 @@
-local signs = require("plugins.settings.lsp.ui").signs
+local signs = require("plugins.lsp.ui").signs
 
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
