@@ -1,6 +1,6 @@
 return {
     "rebelot/heirline.nvim",
-    dependencies = { "Zeioth/heirline-components.nvim" },
+    event = "User LazyVimStarted",
     opts = function()
         return {
             statusline = {
