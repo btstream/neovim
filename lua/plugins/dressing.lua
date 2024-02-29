@@ -2,6 +2,7 @@ return {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
     config = function()
+        local icons = require("themes.icons").filetype_icons
         require("dressing").setup({
             input = {
                 -- Set to false to disable the vim.ui.input implementation
@@ -72,7 +73,12 @@ return {
                         }
                     end
 
-                    -- print(vim.inspect(opts))
+                    if opts.prompt:match("^Neo%-tree Popup.*") then
+                        opts.prompt = opts.prompt:gsub("^Neo%-tree Popup\n(.*)\n", " " .. icons["neo-tree"] .. " %1 ")
+                        return {
+                            relative = "cursor",
+                        }
+                    end
                 end,
             },
             select = {
