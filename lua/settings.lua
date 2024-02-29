@@ -3,10 +3,10 @@
 --                  config, which is very personel                  --
 ----------------------------------------------------------------------
 
-local local_conf_file = vim.fn.expand(string.format("~/.config/wezterm/custom.lua"))
+local custom_wezterm_config = vim.fn.expand(string.format("~/.config/wezterm/custom.lua"))
 local custom_wezconfig = {}
-if vim.fn.filereadable(local_conf_file) == 1 then
-    custom_wezconfig = dofile(local_conf_file)
+if require("utils.os.path").exists(custom_wezterm_config) then
+    custom_wezconfig = dofile(custom_wezterm_config)
 end
 
 ----------------------------------------------------------------------
