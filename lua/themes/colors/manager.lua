@@ -135,8 +135,9 @@ function M.get_mode_color(self)
 end
 
 function M.get_named_color(name)
+    local colors = M.colors()
     if comman_color_base16_map[name] then
-        return require("themes.colors.manager").colors()[comman_color_base16_map[name]]
+        return colors[comman_color_base16_map[name]]
     end
     return name
 end
