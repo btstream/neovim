@@ -65,8 +65,8 @@ local git_diff = {
     git_changed,
     git_added,
     git_removed,
-    condition = function(self)
-        local git_status = self.git_status
+    condition = function()
+        local git_status = vim.b[0].gitsigns_status_dict
         return git_status and (git_status.added or 0) + (git_status.removed or 0) + (git_status.changed or 0) > 0
     end,
 }
@@ -74,14 +74,14 @@ local git_diff = {
 return {
     git_branch,
     git_diff,
-    -- {
-    --     provider = " ",
-    --     condition = function(self)
-    --         local git_status = self.git_status
-    --         return self.git_status == nil
-    --             or ((git_status.added or 0) + (git_status.removed or 0) + (git_status.changed or 0) > 0)
-    --     end,
-    -- },
+    {
+        provider = " ",
+        condition = function(self)
+            local git_status = self.git_status
+            return self.git_status == nil
+                or ((git_status.added or 0) + (git_status.removed or 0) + (git_status.changed or 0) > 0)
+        end,
+    },
     condition = function()
         return not is_nonefiletypes()
     end,
