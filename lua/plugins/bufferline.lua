@@ -213,7 +213,7 @@ return {
                 sort_by = "id",
                 -- themable = true,
             },
-            highlights = require("themes.bufferline").highlights,
+            highlights = require("themes.bufferline"),
         })
 
         local Offset = require("bufferline.offset")

@@ -7,7 +7,7 @@ local M = {}
 --- if it's a directory, load all modules in it. Only support modules in
 --- `vim.fn.stdpath("config") .. "/lua" folder`
 ---@param module
-M.require_all = function(module)
+function M.require_all(module)
     local module_path = path.join(vim.fn.stdpath("config"), "lua", unpack(vim.split(module, ".", { plain = true })))
     if path.isfile(module_path) then
         pcall(require, module)

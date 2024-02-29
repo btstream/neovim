@@ -237,18 +237,19 @@ local function gen_base16_hg()
     }
 end
 
-local function highlight()
-    local b = true
-    if vim.g.colors_name ~= nil then
-        b, _ = vim.g.colors_name:find("base16")
-        b = b or require("settings").theme.color == "base16"
-    end
-    -- if base16 color scheme
-    if b then
-        return gen_base16_hg()
-    end
-end
+return gen_base16_hg
 
-return {
-    highlights = highlight,
-}
+-- local M = {}
+-- function M.highlight()
+--     local b = true
+--     if vim.g.colors_name ~= nil then
+--         b, _ = vim.g.colors_name:find("base16")
+--         b = b or require("settings").theme.color == "base16"
+--     end
+--     -- if base16 color scheme
+--     if b then
+--         return gen_base16_hg()
+--     end
+-- end
+
+-- return M

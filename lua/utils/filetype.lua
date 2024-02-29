@@ -29,7 +29,6 @@ M._nonefiletypes = {
     "Glance",
 }
 
--- stylua: ignore
 M._icons = require("themes.icons").filetype_icons
 
 local function add_none_filetype(ft)
@@ -42,7 +41,7 @@ for key, _ in pairs(M._icons) do
     add_none_filetype(key)
 end
 
-M.add_none_filetypes = function(types)
+function M.add_none_filetypes(types)
     for _, value in ipairs(types) do
         if type(value) == "string" then
             if not vim.tbl_contains(M._nonefiletypes, value) then
@@ -57,35 +56,23 @@ M.add_none_filetypes = function(types)
     end
 end
 
-M.is_nonefiletype = function()
-    local filetype = vim.bo.filetype
+function M.is_nonefiletype()
+    local filetype = M.current_buf_type()
     local isdir = vim.fn.isdirectory(vim.fn.expand("%:p")) == 1
     return vim.tbl_contains(M._nonefiletypes, filetype) or M._icons[filetype] ~= nil or isdir, filetype
 end
 
-M.get_icon = function()
-    local filetype = vim.bo.filetype
+function M.get_icon()
+    local filetype = M.current_buf_type()
     return M._icons[filetype]
 end
 
-M.type = function()
-    local filetype = vim.bo.filetype
-    if filetype:upper() == "TOGGLETERM" then
-        return "terminal"
-    end
-
-    if filetype:upper() == "TELESCOPEPROMPT" then
-        return "telescope"
-    end
-
-    if filetype == "DressingInput" then
-        return "input"
-    end
-
+function M.current_buf_type()
+    local filetype = vim.bo[0].filetype
     return filetype
 end
 
-M.get_nonfiletypes = function()
+function M.get_nonfiletypes()
     -- local nft = {}
     -- for k, _ in pairs(M._icons) do
     --     table.insert(nft, k)

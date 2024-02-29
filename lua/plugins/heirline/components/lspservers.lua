@@ -1,5 +1,6 @@
 local icons = require("themes.icons").common_ui_icons
 local is_nonefiletype = require("utils.filetype").is_nonefiletype
+local current_buf_type = require("utils.filetype").current_buf_type
 local separator = require("plugins.heirline.components.separator")
 
 local ft_indicator = {
@@ -8,7 +9,7 @@ local ft_indicator = {
         return " " .. ft .. " "
     end,
     condition = function()
-        return is_nonefiletype()
+        return is_nonefiletype() and current_buf_type() ~= "toggleterm"
     end,
 }
 

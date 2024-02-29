@@ -30,7 +30,7 @@ local file_name = {
         local flag, ft = is_nonefiletype()
         if flag then
             -- do not show filetypename for terminal
-            if ft == "toggleterm" then
+            if ft == "toggleterm" or ft == "terminal" then
                 return ""
             end
             return " " .. ft .. " "

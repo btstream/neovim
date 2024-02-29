@@ -32,7 +32,7 @@ end
 
 local M = {}
 
-M.schedule = function(fn, opts)
+function M.schedule(fn, opts)
     local ordered = opts and opts.ordered or false
     local use_vim_schedule = opts and opts.use_vim_schedule or false
     local tasklist = ordered and ordered_task_queue or task_queue
@@ -46,7 +46,7 @@ M.schedule = function(fn, opts)
     -- end
 end
 
-M.defer = function(fn, delay, opts)
+function M.defer(fn, delay, opts)
     vim.defer_fn(function()
         M.schedule(fn, opts)
     end, delay)

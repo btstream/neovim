@@ -2,15 +2,15 @@ local uv = vim.uv or vim.loop
 
 local M = {}
 
-M.exists = function(path)
+function M.exists(path)
     return uv.fs_stat(path) ~= nil
 end
 
-M.isdir = function(path)
+function M.isdir(path)
     return vim.fn.isdirectory(path) == 1
 end
 
-M.isfile = function(path)
+function M.isfile(path)
     local st = uv.fs_stat(path)
     return st ~= nil and st.type == "file"
 end
@@ -20,22 +20,22 @@ end
 --     return st ~= nil and st.type == "link"
 -- end
 
-M.join = function(...)
+function M.join(...)
     if vim.fs.joinpath then
         return vim.fs.joinpath(...)
     end
     return (table.concat({ ... }, "/"):gsub("//+", "/"))
 end
 
-M.basename = function(path)
+function M.basename(path)
     return vim.fs.basename(path)
 end
 
-M.dirname = function(path)
+function M.dirname(path)
     return vim.fs.dirname(path)
 end
 
-M.extname = function(path)
+function M.extname(path)
     return vim.fn.fnamemodify(path, ":e")
 end
 
