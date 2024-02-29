@@ -8,17 +8,16 @@ return {
             mode = { "n", "i" },
             "<C-k>h",
             function()
-                if vim.g.spectre_opend then
-                    require("spectre").close()
-                    vim.g.spectre_opend = false
-                else
-                    require("spectre").open()
-                    vim.g.spectre_opend = true
-                end
+                require("spectre").toggle()
+                -- vim.defer_fn(function()
+                --     vim.fn.setpos(".", { 0, 3, 0, 0 })
+                -- end, 200)
             end,
         },
     },
     config = function()
-        require("spectre").setup()
+        require("spectre").setup({
+            open_cmd = "botright new",
+        })
     end,
 }

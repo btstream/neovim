@@ -148,7 +148,7 @@ return {
                 end,
                 custom_filter = function(buf_number)
                     -- do not display dap-repl buffers
-                    if vim.bo[buf_number].filetype ~= "dap-repl" then
+                    if vim.bo[buf_number].filetype ~= "dap-repl" and vim.bo[buf_number] ~= "spectre" then
                         return true
                     end
                 end,

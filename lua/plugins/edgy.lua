@@ -11,12 +11,13 @@ return {
         top = {
             {
                 ft = "help",
-                size = { height = 20 },
+                size = { height = 0.3 },
                 -- only show help buffers
                 filter = function(buf)
                     return vim.bo[buf].buftype == "help"
                 end,
             },
+            { ft = "spectre_panel", title = "Search and Replace", size = { height = 0.3 } },
         },
         bottom = {
             -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
@@ -39,7 +40,6 @@ return {
                     return not vim.b[buf].lazyterm_cmd
                 end,
             },
-            { ft = "spectre_panel", size = { height = 0.4 } },
         },
         left = {
             -- Neo-tree filesystem always takes half the screen height
