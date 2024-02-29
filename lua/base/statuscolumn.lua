@@ -72,7 +72,7 @@ if vim.fn.has("nvim-0.9") == 1 then
         end
     end
 
-    opt.statuscolumn = " %=%l %s"
+    opt.statuscolumn = "%s  %=%l "
         .. "%#FoldColumn#%@v:lua.on_fold_sign_click@%{%"
         .. "v:lua.get_foldsign()"
         .. "%}%T%* "
