@@ -2,7 +2,6 @@ return {
     "rebelot/heirline.nvim",
     dependencies = { "Zeioth/heirline-components.nvim" },
     opts = function()
-        local heirline = require("heirline")
         return {
             statusline = {
                 hl = function()

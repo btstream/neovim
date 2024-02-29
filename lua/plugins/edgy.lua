@@ -27,7 +27,7 @@ return {
                     .. icons.filetype_icons.toggleterm
                     .. "[%{b:toggle_number}]:%{b:term_title}",
                 -- exclude floating windows
-                filter = function(buf, win)
+                filter = function(_, win)
                     return vim.api.nvim_win_get_config(win).relative == ""
                 end,
             },
