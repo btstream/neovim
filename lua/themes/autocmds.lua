@@ -6,21 +6,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "Outline",
-    callback = function()
-        local opts = "Normal:OutlineNormal,"
-            .. "NormalNC:OutlineNormal,"
-            .. "EndOfBuffer:OutlineEndOfBuffer,"
-            .. "SignColumn:OutlineNormal,"
-            .. "LineNr:OutlineLineNr,"
-            .. "VertSplit:OutlineWinSeparator,"
-            .. "WinSeparator:OutlineWinSeparator,"
-        vim.wo.list = false
-        vim.cmd("setlocal winhighlight=" .. opts)
-    end,
-})
-
 vim.api.nvim_create_autocmd({ "WinEnter", "FileType" }, {
     -- pattern = "*",
     callback = function(event)

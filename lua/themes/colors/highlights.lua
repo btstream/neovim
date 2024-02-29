@@ -219,12 +219,13 @@ function M.define()
         ----------------------------------------------------------------------
         --                             Outline                              --
         ----------------------------------------------------------------------
-        OutlineSidebarTitle = { bg = dbg015, fg = colors.base03 },
-        OutlineNormal       = "Normal",
-        OutlineEndOfBuffer  = "NvimTreeEndOfBuffer",
-        OutlineSignColumn   = "OutlineNormal",
-        OutlineLineNr       = "OutlineNormal",
-        OutlineWinSeparator = "WinSeparator",
+        -- OutlineSidebarTitle = { bg = dbg015, fg = colors.base03 },
+        -- OutlineNormal       = "Normal",
+        -- OutlineEndOfBuffer  = "NvimTreeEndOfBuffer",
+        -- OutlineSignColumn   = "OutlineNormal",
+        -- OutlineLineNr       = "OutlineNormal",
+        -- OutlineWinSeparator = "WinSeparator",
+        OutlinePreviewNormal= { bg = dbg015, },
         FocusedSymbol       = { bg = colors.base01, fg = "None" }, -- gui = "None" },
 
 

@@ -69,6 +69,9 @@ return {
                 outline_window = {
                     width = 18,
                 },
+                preview_window = {
+                    winhl = "NormalFloat:OutlinePreviewNormal",
+                },
                 symbols = {
                     icons = symbol_icons,
                 },
