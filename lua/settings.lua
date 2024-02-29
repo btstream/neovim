@@ -15,9 +15,6 @@ end
 local settings = {}
 settings.theme = {
     color_scheme = custom_wezconfig.color_scheme and custom_wezconfig.color_scheme or "onedark",
-    statusline = {
-        theme = "base16",
-    },
 }
 
 return setmetatable({}, {
@@ -25,6 +22,7 @@ return setmetatable({}, {
         if key == "with" then
             return function(config)
                 settings = vim.tbl_deep_extend("force", settings, config)
+                print(vim.inspect(settings))
             end
         else
             return settings[key]
