@@ -28,5 +28,11 @@ return function(opts)
             separator.condition = opts.condition
         end
     end
+
+    -- do not use separators in terminals like konsole or iterm
+    if os.getenv("TERM_PROGRAM") ~= "WezTerm" and os.getenv("TERM") ~= "xterm-kitty" then
+        separator.provider = " "
+    end
+
     return separator
 end
