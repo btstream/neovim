@@ -23,7 +23,7 @@ return {
     separator({ char = "" }),
     file_format,
     hl = function()
-        return { fg = require("plugins.heirline.util").get_color("LightGrey") }
+        return { fg = require("themes.colors.manager").get_named_color("LightGrey") }
     end,
     condition = function()
         return not require("utils.filetype").is_nonefiletype()

@@ -1,4 +1,6 @@
 local icons = require("themes.icons")
+
+local get_named_color = require("themes.colors.manager").get_named_color
 local is_nonefiletypes = require("utils.filetype").is_nonefiletype
 
 local separator = require("plugins.heirline.components.separator")
@@ -8,7 +10,7 @@ local git_branch = {
         return "  " .. vim.b[0].gitsigns_head .. " "
     end,
     hl = function()
-        return { fg = require("plugins.heirline.util").get_color("LightGrey") }
+        return { fg = get_named_color("LightGrey") }
     end,
     condition = function()
         return vim.b[0].gitsigns_head or vim.b[0].gitsigns_status_dict
@@ -20,7 +22,7 @@ local git_changed = {
         return " " .. icons.gitstatus_icons.modified .. " " .. self.git_status.changed
     end,
     hl = function()
-        return { fg = require("plugins.heirline.util").get_color("cyan") }
+        return { fg = get_named_color("cyan") }
     end,
     condition = function(self)
         return self.git_status and self.git_status.changed > 0
@@ -33,7 +35,7 @@ local git_added = {
     end,
     hl = function()
         return {
-            fg = require("plugins.heirline.util").get_color("green"),
+            fg = get_named_color("green"),
         }
     end,
     condition = function(self)
@@ -47,7 +49,7 @@ local git_removed = {
     end,
     hl = function()
         return {
-            fg = require("plugins.heirline.util").get_color("DarkRed"),
+            fg = get_named_color("DarkRed"),
         }
     end,
     condition = function(self)

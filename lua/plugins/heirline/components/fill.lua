@@ -1,7 +1,7 @@
 return {
     provider = "%=",
     hl = function()
-        return { bg = require("plugins.heirline.util").get_color("gray") }
+        return { bg = require("themes.colors.manager").get_named_color("gray") }
     end,
     update = "ColorScheme",
 }

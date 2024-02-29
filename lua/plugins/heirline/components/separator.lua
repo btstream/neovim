@@ -1,8 +1,9 @@
+local get_named_color = require("themes.colors.manager").get_named_color
 return function(opts)
     local separator = {
         provider = "",
         hl = function()
-            return { fg = require("plugins.heirline.util").get_color("LightGray") }
+            return { fg = get_named_color("LightGray") }
         end,
     }
 
@@ -17,8 +18,8 @@ return function(opts)
             end
             separator.hl = function()
                 return {
-                    fg = require("plugins.heirline.util").get_color("grey"),
-                    bg = require("plugins.heirline.util").get_color("gray"),
+                    fg = get_named_color("grey"),
+                    bg = get_named_color("gray"),
                 }
             end
         end

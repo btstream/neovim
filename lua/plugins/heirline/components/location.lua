@@ -1,6 +1,6 @@
 local icons = require("themes.icons").common_ui_icons
-local mode_color = require("plugins.heirline.util").mode_color
-local get_nonefiletype_icon = require("plugins.heirline.util").get_nonefiletype_icon
+local get_nonefiletype_icon = require("utils.filetype").get_icon
+local get_mode_color = require("themes.colors.manager").get_mode_color
 
 return {
     init = function(self)
@@ -14,6 +14,6 @@ return {
         end
         return " " .. icons.line_number .. " %2l:%2c "
     end,
-    hl = mode_color,
+    hl = get_mode_color,
     update = { "ModeChanged", "WinEnter", "BufEnter", "BufWinLeave", "CursorMoved", "CursorMovedI" },
 }

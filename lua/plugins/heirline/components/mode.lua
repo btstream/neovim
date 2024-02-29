@@ -1,6 +1,6 @@
 local mode_icons = require("themes.icons").mode_icons
-local mode_color = require("plugins.heirline.util").mode_color
-local get_nonefiletype_icon = require("plugins.heirline.util").get_nonefiletype_icon
+local get_nonefiletype_icon = require("utils.filetype").get_icon
+local get_mode_color = require("themes.colors.manager").get_mode_color
 
 -- stylua: ignore start
 local mode_names = {
@@ -52,7 +52,7 @@ return {
         icon = icon and icon or mode_icons[self.mode]
         return " " .. icon .. name .. " "
     end,
-    hl = mode_color,
+    hl = get_mode_color,
     update = { "ModeChanged", "WinEnter", "BufEnter", "BufWinLeave", "BufAdd", "WinClosed", "WinLeave" },
     -- update = {
     --     { "ModeChanged", "WinEnter" },

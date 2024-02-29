@@ -1,4 +1,4 @@
-local function gen_base16_hg()
+local function gen_bufferline_colors()
     local colors = require("themes.colors.manager").colors()
     local dbg = require("themes.colors.manager").darken(colors.base00, 0.15)
     -- local dbg020 = require("themes.utils").darken(colors.base00, 0.20)
@@ -237,7 +237,7 @@ local function gen_base16_hg()
     }
 end
 
-return gen_base16_hg
+return gen_bufferline_colors
 
 -- local M = {}
 -- function M.highlight()

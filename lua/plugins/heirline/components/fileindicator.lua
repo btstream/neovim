@@ -2,7 +2,7 @@ local devicons = require("nvim-web-devicons")
 
 local icons = require("themes.icons").common_ui_icons
 local is_nonefiletype = require("utils.filetype").is_nonefiletype
-local get_color = require("plugins.heirline.util").get_color
+local get_named_color = require("themes.colors.manager").get_named_color
 
 local file_icons = {
     init = function(self)
@@ -62,15 +62,15 @@ local file_status = {
     end,
     hl = function(self)
         if vim.bo.modified then
-            return { fg = get_color("green") }
+            return { fg = get_named_color("green") }
         end
 
         if vim.bo.modifiable == false or vim.bo.readonly == true then
-            return { fg = get_color("orange") }
+            return { fg = get_named_color("orange") }
         end
 
         if self.filename:match("^suda://") then
-            return { fg = get_color("red") }
+            return { fg = get_named_color("red") }
         end
     end,
 }
@@ -90,7 +90,7 @@ return {
         self.ft = vim.bo.filetype
     end,
     hl = function()
-        return { bg = get_color("grey") }
+        return { bg = get_named_color("grey") }
     end,
     file_icons,
     file_name,
