@@ -14,14 +14,6 @@ return {
         "rafamadriz/friendly-snippets",
         "onsails/lspkind-nvim",
     },
-    keys = {
-        -- stylua: ignore start
-        {  mode = { "i", "s" }, "<C-j>",   "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-j>'",   { expr = true } },
-        {  mode = { "i", "s" }, "<C-S-j>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-S-j>'", { expr = true } },
-        {  mode = { "i", "s" }, "<Tab>",   "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'",   { expr = true } },
-        {  mode = { "i", "s" }, "<S-Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<S-j>'",   { expr = true } },
-        -- stylua: ignore end
-    },
     config = function()
         local cmp = require("cmp")
         local lspkind = require("lspkind")
@@ -161,7 +153,12 @@ return {
         ----------------------------------------------------------------------
         --                           set keymaps                            --
         ----------------------------------------------------------------------
-        --stylua: ignore
         -- require("keymaps").cmp.set()
+        require("utils.keymap").set({
+            { { "i", "s" }, "<C-j>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-j>'", { expr = true } },
+            { { "i", "s" }, "<C-S-j>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-S-j>'", { expr = true } },
+            { { "i", "s" }, "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'", { expr = true } },
+            { { "i", "s" }, "<S-Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<S-j>'", { expr = true } },
+        })
     end,
 }
