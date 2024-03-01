@@ -1,5 +1,6 @@
 return {
     "dstein64/nvim-scrollview",
+    event = "User BufReadRealFile",
     opts = {
         excluded_filetypes = require("utils.filetype").get_nonfiletypes(),
         current_only = true,
