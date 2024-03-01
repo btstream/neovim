@@ -39,4 +39,19 @@ function M.extname(path)
     return vim.fn.fnamemodify(path, ":e")
 end
 
+function M.ls(path, fn)
+    local handle = uv.fs_scandir(path)
+    local ret = {}
+    while handle do
+        local fname, _ = uv.fs_scandir_next(handle)
+        if not fname then
+            break
+        end
+        if fn(fname) then
+            table.insert(ret, fname)
+        end
+    end
+    return ret
+end
+
 return M

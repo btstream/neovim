@@ -12,7 +12,21 @@ if not path.exists(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins", { import = "users.plugins" }, {
+-- to inspect user's plugins specs
+local spec = { { import = "plugins" } }
+local user_spec_path = path.join(vim.fn.stdpath("config"), "lua", "users", "plugins")
+if
+    path.exists(user_spec_path)
+    and #path.ls(user_spec_path, function(fname)
+            return vim.fn.fnamemodify(fname, ":e") == "lua"
+        end)
+        > 0
+then
+    table.insert(spec, { import = "users.plugins" })
+end
+
+require("lazy").setup({
+    spec = spec,
     checker = {
         enabled = true,
         notify = false,

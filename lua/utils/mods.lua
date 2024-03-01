@@ -23,7 +23,6 @@ function M.require_all(module)
 
             local fname = path.join(module_path, name)
             t = t or uv.fs_stat(fname).type
-            print(name, t)
 
             if t == "file" and name:sub(-4) == ".lua" then
                 pcall(require, module .. "." .. name:sub(1, -5))
