@@ -49,6 +49,9 @@ return {
                     -- see :help autocmd-events
                     events = { "CursorHold", "CursorHoldI" },
                 },
+                ignore = {
+                    clients = { "null-ls" },
+                },
             })
         end,
     },
