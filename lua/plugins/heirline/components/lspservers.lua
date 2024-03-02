@@ -41,7 +41,7 @@ return {
     hl = function()
         return { bg = require("themes.colors.manager").get_named_color("grey") }
     end,
-    separator({ block = "true", char = "" }),
+    separator({ block = "true", char = separator.left_block }),
     ft_indicator,
     lsp_indicator,
     update = { "LspAttach", "LspDetach", "WinEnter", "BufEnter", "BufLeave", "WinLeave" },

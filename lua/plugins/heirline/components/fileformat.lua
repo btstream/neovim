@@ -20,7 +20,7 @@ local file_encoding = {
 
 return {
     file_encoding,
-    separator({ char = "" }),
+    separator({ char = separator.left }),
     file_format,
     hl = function()
         return { fg = require("themes.colors.manager").get_named_color("LightGrey") }

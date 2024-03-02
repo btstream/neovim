@@ -75,8 +75,9 @@ local file_status = {
     end,
 }
 
-local separator = require("plugins.heirline.components.separator")({
-    char = "",
+local sep = require("plugins.heirline.components.separator")
+local separator = sep({
+    char = sep.right_block,
     block = true,
 })
 separator.condition = function()
