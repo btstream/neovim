@@ -1,5 +1,5 @@
 local get_named_color = require("themes.colors.manager").get_named_color
-local termapp = require("utils.termapps")
+local termapp = require("utils.os.terminal")
 
 local chars = {
     right = function()
