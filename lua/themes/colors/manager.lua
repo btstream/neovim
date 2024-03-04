@@ -58,7 +58,7 @@ local mode_colors_map = {
     S                 = "yellow",
     ["\19"]           = "purple",
     R                 = "orange",
-    r                 = "orange",
+    r                 = "blue",
     ["!"]             = "DarkRed",
     t                 = "green",
 }
