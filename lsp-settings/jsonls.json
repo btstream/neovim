@@ -1,3 +1,4 @@
 {
     "json.format.enable": true,
+    "json.validate.enable": true
 }
