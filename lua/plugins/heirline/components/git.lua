@@ -1,4 +1,5 @@
 local icons = require("themes.icons")
+local path = require("utils.os.path")
 
 local get_named_color = require("themes.colors.manager").get_named_color
 local is_nonefiletypes = require("utils.filetype").is_nonefiletype
@@ -6,8 +7,24 @@ local is_nonefiletypes = require("utils.filetype").is_nonefiletype
 local separator = require("plugins.heirline.components.separator")
 
 local git_branch = {
-    provider = function()
-        return "  " .. vim.b[0].gitsigns_head .. " "
+    provider = function(self)
+        if self.icon == nil then
+            self.icon = ""
+
+            if self.git_root_dir then
+                local remote_info = vim.fn.system("cd " .. self.git_root_dir .. ";git remote -v")
+
+                if remote_info:match("gitlab") ~= nil then
+                    self.icon = ""
+                end
+
+                if remote_info:match("github%.com") ~= nil then
+                    self.icon = "󰊤"
+                end
+            end
+        end
+
+        return " " .. self.icon .. " " .. vim.b[0].gitsigns_head .. " "
     end,
     hl = function()
         return { fg = get_named_color("LightGrey") }
@@ -15,6 +32,12 @@ local git_branch = {
     condition = function()
         return vim.b[0].gitsigns_head or vim.b[0].gitsigns_status_dict
     end,
+    on_click = {
+        callback = function()
+            vim.cmd("Telescope git_branches")
+        end,
+        name = "statusline_git_branches",
+    },
 }
 
 local git_changed = {
@@ -72,6 +95,14 @@ local git_diff = {
 }
 
 return {
+    init = function(self)
+        for dir in vim.fs.parents(vim.fs.normalize(vim.api.nvim_buf_get_name(0))) do
+            if path.isdir(path.join(dir, ".git")) then
+                self.git_root_dir = dir
+                break
+            end
+        end
+    end,
     git_branch,
     git_diff,
     {
