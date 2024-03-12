@@ -64,8 +64,8 @@ local diagnostics_hint = {
 return {
     init = function(self) end,
     separator({
-        condition = function()
-            return require("heirline.conditions").is_git_repo()
+        condition = function(self)
+            return vim.b[0].gitsigns_head or vim.b[0].gitsigns_status_dict
         end,
     }),
     diagnostics_error,
