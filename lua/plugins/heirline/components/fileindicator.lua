@@ -91,7 +91,9 @@ return {
         self.ft = vim.bo.filetype
     end,
     hl = function()
-        return { bg = get_named_color("grey") }
+        if require("settings").theme.statusline.show_separators then
+            return { bg = get_named_color("grey") }
+        end
     end,
     file_icons,
     file_name,

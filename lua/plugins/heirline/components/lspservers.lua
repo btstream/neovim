@@ -39,7 +39,9 @@ local lsp_indicator = {
 
 return {
     hl = function()
-        return { bg = require("themes.colors.manager").get_named_color("grey") }
+        if require("settings").theme.statusline.show_separators then
+            return { bg = require("themes.colors.manager").get_named_color("grey") }
+        end
     end,
     separator({ block = "true", char = separator.left_block }),
     ft_indicator,

@@ -15,6 +15,9 @@ end
 local settings = {}
 settings.theme = {
     color_scheme = custom_wezconfig.color_scheme and custom_wezconfig.color_scheme or "onedark",
+    statusline = {
+        show_separators = true,
+    },
 }
 
 return setmetatable({}, {

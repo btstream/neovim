@@ -1,5 +1,6 @@
 local get_named_color = require("themes.colors.manager").get_named_color
 local termapp = require("utils.os.terminal")
+local settings = require("settings")
 
 local chars = {
     right = function()
@@ -60,6 +61,10 @@ local function make(opts)
         if opts.condition then
             separator.condition = opts.condition
         end
+    end
+
+    if settings.theme.statusline.show_separators == false then
+        separator.provider = " "
     end
 
     -- do not use separators in terminals like konsole or iterm
