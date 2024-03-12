@@ -24,7 +24,7 @@ local git_branch = {
             end
         end
 
-        return " " .. self.icon .. " " .. vim.b[0].gitsigns_head .. " "
+        return " " .. self.icon .. " " .. vim.b[0].gitsigns_head .. ""
     end,
     hl = function()
         return { fg = get_named_color("LightGrey") }
@@ -84,6 +84,9 @@ local git_diff = {
     init = function(self)
         self.git_status = vim.b[0].gitsigns_status_dict
     end,
+    {
+        provider = " ",
+    },
     separator(),
     git_changed,
     git_added,
@@ -96,23 +99,17 @@ local git_diff = {
 
 return {
     init = function(self)
+        self.git_root_dir = nil
         for dir in vim.fs.parents(vim.fs.normalize(vim.api.nvim_buf_get_name(0))) do
             if path.isdir(path.join(dir, ".git")) then
                 self.git_root_dir = dir
                 break
             end
         end
+        vim.g.in_git_repo = self.git_root_dir
     end,
     git_branch,
     git_diff,
-    {
-        provider = " ",
-        condition = function(self)
-            local git_status = self.git_status
-            return self.git_status == nil
-                or ((git_status.added or 0) + (git_status.removed or 0) + (git_status.changed or 0) > 0)
-        end,
-    },
     condition = function()
         return not is_nonefiletypes()
     end,

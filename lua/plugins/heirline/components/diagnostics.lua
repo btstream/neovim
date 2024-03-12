@@ -62,10 +62,12 @@ local diagnostics_hint = {
 }
 
 return {
-    init = function(self) end,
+    {
+        provider = " ",
+    },
     separator({
         condition = function(self)
-            return vim.b[0].gitsigns_head or vim.b[0].gitsigns_status_dict
+            return vim.g.in_git_repo ~= nil
         end,
     }),
     diagnostics_error,
