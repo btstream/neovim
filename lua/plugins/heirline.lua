@@ -7,7 +7,6 @@ return {
                 hl = function()
                     return {
                         bg = require("themes.colors.manager").get_named_color("gray"),
-                        fg = require("themes.colors.manager").get_named_color("LightGrey"),
                     }
                 end,
                 require("plugins.heirline.components.mode"),

@@ -23,7 +23,9 @@ return {
     separator({ char = separator.left }),
     file_format,
     hl = function()
-        return { fg = require("themes.colors.manager").get_named_color("LightGrey") }
+        if require("settings").theme.statusline.show_separators then
+            return { fg = require("themes.colors.manager").get_named_color("LightGrey") }
+        end
     end,
     condition = function()
         return not require("utils.filetype").is_nonefiletype()

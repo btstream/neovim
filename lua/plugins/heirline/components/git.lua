@@ -27,7 +27,9 @@ local git_branch = {
         return " " .. self.icon .. " " .. vim.b[0].gitsigns_head .. ""
     end,
     hl = function()
-        return { fg = get_named_color("LightGrey") }
+        if require("settings").theme.statusline.show_separators then
+            return { fg = get_named_color("LightGrey") }
+        end
     end,
     condition = function()
         return vim.b[0].gitsigns_head or vim.b[0].gitsigns_status_dict
