@@ -1,5 +1,0 @@
-{
-    "rust-analyzer.imports.prefix": "self",
-    "rust-analyzer.imports.granularity.group": "module",
-    "rust-analyzer.completion.autoimport.enable": true
-}

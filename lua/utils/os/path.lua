@@ -39,6 +39,32 @@ function M.extname(path)
     return vim.fn.fnamemodify(path, ":e")
 end
 
+function M.mkdir(path)
+    local p = vim.split(vim.fs.normalize(path), "/")
+    local i = 1
+    while i <= #p do
+        if p[i] == "" then
+            i = i + 1
+            goto continue
+        end
+
+        local s = {}
+        for j = 1, i, 1 do
+            table.insert(s, p[j])
+        end
+        local ss = M.join(unpack(s))
+        if M.exists(ss) and M.isdir(ss) then
+            i = i + 1
+            goto continue
+        elseif not M.exists(ss) then
+            uv.fs_mkdir(ss, 493)
+            i = i + 1
+        end
+
+        ::continue::
+    end
+end
+
 function M.ls(path, fn)
     local handle = uv.fs_scandir(path)
     local ret = {}

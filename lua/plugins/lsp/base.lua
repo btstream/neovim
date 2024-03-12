@@ -1,11 +1,15 @@
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 local inlay_hint = require("plugins.lsp.utils").inlay_hint
+local path = require("utils.os.path")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local lsp_settings_path = require("utils.os.path").join(vim.fn.stdpath("config"), "lsp-settings")
+local user_lsp_settings_path = path.join(vim.fn.stdpath("config"), "lua", "users", "lsp-settings")
+if not path.exists(user_lsp_settings_path) then
+    path.mkdir(user_lsp_settings_path)
+end
 
 require("plugins.lsp.ui").setup()
 -----------------------------------
@@ -14,7 +18,7 @@ require("plugins.lsp.ui").setup()
 -----------------------------------
 ---@diagnostic disable-next-line: missing-fields
 require("nlspsettings").setup({
-    config_home = lsp_settings_path,
+    config_home = user_lsp_settings_path,
     local_settings_dir = ".nvim",
     local_settings_root_markers = { ".git", ".nvim" },
     append_default_schemas = true,
@@ -31,6 +35,7 @@ lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.de
         lspconfig_utils.default_config.on_new_config,
         function(new_config, root_dir)
             local name = new_config.name
+            -- require("plugins.lsp.nlspsettings_lualoader").get_settings(_, name)
             new_config.settings = vim.tbl_deep_extend(
                 "keep",
                 require("plugins.lsp.nlspsettings_lualoader").get_settings(root_dir, name),

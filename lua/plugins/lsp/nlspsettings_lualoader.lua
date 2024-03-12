@@ -1,7 +1,8 @@
 local config = require("nlspsettings.config").get()
 local schemas = require("nlspsettings.schemas").get_base_schemas_data()
-local flatten = require("utils.flatten").flatten
-local deflatten = require("utils.flatten").deflatten
+local path = require("utils.os.path")
+local flatten = require("utils.table").flatten
+local deflatten = require("utils.table").deflatten
 
 local function validate_config(server_name, settings)
     vim.validate({
@@ -30,7 +31,10 @@ local function validate_config(server_name, settings)
     return error_key
 end
 
-local function get_settings(root_dir, server_name)
+local M = {}
+M.config_home = path.join(vim.fn.stdpath("config"), "lua", "plugins", "lsp", "servers-setting")
+
+function M.get_settings(root_dir, server_name)
     local local_settings_dir = config.local_settings_dir
     local global_settings_dir = config.config_home
 
@@ -47,6 +51,13 @@ local function get_settings(root_dir, server_name)
     local global_settings = {}
     if vim.fn.filereadable(global_conf_file) == 1 then
         global_settings = dofile(global_conf_file)
+    end
+
+    -- inner settings
+    local inner_conf_file = vim.fn.expand(path.join(M.config_home, server_name .. ".lua"))
+    local inner_settings = {}
+    if vim.fn.filereadable(inner_conf_file) == 1 then
+        inner_settings = dofile(inner_conf_file)
     end
 
     -- validate
@@ -70,10 +81,9 @@ local function get_settings(root_dir, server_name)
     if valid then
         settings = vim.tbl_deep_extend("keep", settings, local_settings)
         settings = vim.tbl_deep_extend("keep", settings, global_settings)
+        settings = vim.tbl_deep_extend("keep", settings, inner_settings)
     end
     return deflatten(settings)
 end
 
-return {
-    get_settings = get_settings,
-}
+return M
