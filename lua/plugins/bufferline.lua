@@ -48,7 +48,7 @@ return {
             { "<A-8>", go_to_tab(8) },
             { "<A-9>", go_to_tab(9) },
             { "<Space>pp", "<cmd>BufferLinePick<CR>" },
-            { mode = { "n", "i" }, "<A-w>", require("base.quit-behave").quit },
+            { mode = { "n", "i" }, "<A-w>", require("utils.window").quit },
         }
     end,
     config = function()
@@ -56,8 +56,8 @@ return {
         require("bufferline").setup({
             options = {
                 numbers = "ordinal",
-                close_command = 'lua require("base.quit-behave").quit(%d)',
-                right_mouse_command = 'lua require("base.quit-behave").quit(%d)',
+                close_command = 'lua require("utils.window").quit(%d)',
+                right_mouse_command = 'lua require("utils.window").quit(%d)',
                 left_mouse_command = function(buf)
                     local current_buf = vim.api.nvim_win_get_buf(0)
 
