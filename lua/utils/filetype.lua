@@ -57,7 +57,7 @@ function M.add_none_filetypes(types)
 end
 
 function M.is_nonefiletype(buf)
-    local filetype = buf and vim.bo[buf].filetype and M.current_buf_type()
+    local filetype = buf and vim.bo[buf].filetype or M.current_buf_type()
     local isdir = vim.fn.isdirectory(vim.fn.expand("%:p")) == 1
     return vim.tbl_contains(M._nonefiletypes, filetype) or M._icons[filetype] ~= nil or isdir, filetype
 end
