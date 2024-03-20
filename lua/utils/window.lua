@@ -1,6 +1,7 @@
+local filetype = require("utils.filetype")
 local M = {}
 
-local function get_buf_attached_wins(buf)
+function M.get_buf_attached_wins(buf)
     local attached_win = 0
     for _, w in pairs(vim.api.nvim_tabpage_list_wins(0)) do
         if vim.api.nvim_win_get_buf(w) == buf then
@@ -63,7 +64,7 @@ function M.quit(buf)
         if current_buf == target_buf then
             -- if target_buf attached to more than one window, such as in a split or
             -- vsplit window
-            if get_buf_attached_wins(target_buf) > 1 then
+            if M.get_buf_attached_wins(target_buf) > 1 then
                 vim.cmd.close()
                 return
             else
@@ -74,13 +75,26 @@ function M.quit(buf)
         vim.cmd("bdelete! " .. target_buf)
         return true
     elseif #listed_buffers == 1 then
-        if get_buf_attached_wins(listed_buffers[1]) > 1 then
+        if M.get_buf_attached_wins(listed_buffers[1]) > 1 then
             vim.cmd.close()
         else
             vim.cmd.quitall()
         end
     else
         vim.cmd.quit()
+    end
+end
+
+function M.get_first_normal_window()
+    local wins = vim.api.nvim_tabpage_list_wins(0)
+    for _, w in pairs(wins) do
+        local config = vim.api.nvim_win_get_config(w)
+        if not config.zindex then
+            local buf = vim.api.nvim_win_get_buf(w)
+            if vim.fn.buflisted(buf) == 1 and not filetype.is_nonefiletype(buf) then
+                return w
+            end
+        end
     end
 end
 
