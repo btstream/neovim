@@ -190,7 +190,7 @@ function M.define()
         LspWinCodeActionTitle   = { bg = colors.base00, fg = colors.base0D },
         LspWinCodeActionBorder  = { bg = colors.base00, fg = colors.base0D },
 
-        LspInlayHint            = { fg = colors.base04, blend = 50 },
+        LspInlayHint            = { fg = darken(colors.base04, .3), blend = 50 },
 
         ----------------------------------------------------------------------
         --                              Notify                              --
