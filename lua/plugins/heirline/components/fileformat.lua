@@ -1,8 +1,9 @@
 local separator = require("plugins.heirline.components.separator")
+local get_named_color = require("themes.colors.manager").get_named_color
 
 local format_icons = {
     dos = "",
-    unix = "",
+    unix = "",
     mac = "",
 }
 
