@@ -7,11 +7,11 @@ local get_named_color = require("themes.colors.manager").get_named_color
 
 local path_icon = {
     provider = function()
-        return " " .. icons.folder_closed .. ""
+        return " "
     end,
-    -- hl = function()
-    --     return { fg = get_named_color("blue") }
-    -- end,
+    hl = function()
+        return { fg = get_named_color("blue") }
+    end,
     condition = function()
         return not is_nonefiletype()
     end,
@@ -101,12 +101,7 @@ return {
     end,
     hl = function(self)
         if require("settings").theme.statusline.show_separators then
-            local c = { bg = get_named_color("grey") }
-            local mc = get_mode_color(self) 
-            if not is_nonefiletype() then
-               c.fg = mc.bg 
-            end
-            return c
+            return { bg = get_named_color("grey") }
         end
     end,
     path_icon,
