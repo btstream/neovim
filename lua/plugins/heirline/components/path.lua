@@ -113,5 +113,5 @@ return {
     path_name,
     file_status,
     separator,
-    update = {"ModeChanged", "WinEnter", "BufEnter", "BufAdd", "BufWinLeave", "WinClosed", "BufModifiedSet" },
+    update = {"ModeChanged", "WinEnter", "BufEnter", "BufAdd", "BufWinLeave", "WinClosed", "BufModifiedSet", "DirChanged" },
 }
