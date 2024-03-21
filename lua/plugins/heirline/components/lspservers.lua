@@ -1,3 +1,4 @@
+local devicons = require("nvim-web-devicons")
 local icons = require("themes.icons").common_ui_icons
 local is_nonefiletype = require("utils.filetype").is_nonefiletype
 local current_buf_type = require("utils.filetype").current_buf_type
@@ -10,6 +11,27 @@ local ft_indicator = {
     end,
     condition = function()
         return is_nonefiletype() and current_buf_type() ~= "toggleterm"
+    end,
+}
+
+local file_icons = {
+    init = function(self)
+        local filename = vim.api.nvim_buf_get_name(0)
+        local ext = vim.fn.fnamemodify(filename, ":e")
+        self.icon, self.icon_colors = devicons.get_icon_color(filename, ext)
+        self.icon = self.icon or icons.file_common
+        if filename == "" then
+            self.icon = icons.file_new
+        end
+    end,
+    provider = function(self)
+        return " " .. self.icon .. ""
+    end,
+    hl = function(self)
+        return { fg = self.icon_colors }
+    end,
+    condition = function()
+        return not is_nonefiletype()
     end,
 }
 
@@ -30,7 +52,7 @@ local lsp_indicator = {
         if #self.clients == 0 then
             servers = "NONE"
         end
-        return " " .. icons.lsp_server .. " " .. servers .. " "
+        return " " .. servers .. " "
     end,
     condition = function()
         return not is_nonefiletype()
@@ -45,6 +67,7 @@ return {
     end,
     separator({ block = "true", char = separator.left_block }),
     ft_indicator,
+    file_icons,
     lsp_indicator,
     update = { "LspAttach", "LspDetach", "WinEnter", "BufEnter", "BufLeave", "WinLeave" },
 }

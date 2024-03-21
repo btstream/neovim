@@ -10,7 +10,8 @@ return {
                     }
                 end,
                 require("plugins.heirline.components.mode"),
-                require("plugins.heirline.components.fileindicator"),
+                -- require("plugins.heirline.components.fileindicator"),
+                require("plugins.heirline.components.path"),
                 require("plugins.heirline.components.git"),
                 require("plugins.heirline.components.diagnostics"),
                 require("plugins.heirline.components.fill"),
