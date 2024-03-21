@@ -51,11 +51,35 @@ return {
             end,
         }
 
+        local function to_default_window(prompt_bufnr)
+            local action_set = require("telescope.actions.set")
+            local action_state = require("telescope.actions.state")
+
+            local picker = action_state.get_current_picker(prompt_bufnr)
+            picker.get_selection_window = function(picker, entry)
+                local picked_window_id = require("utils.window").get_first_normal_window()
+                    or vim.api.nvim_get_current_win()
+                -- Unbind after using so next instance of the picker acts normally
+                picker.get_selection_window = nil
+                return picked_window_id
+            end
+            action_set.select(prompt_bufnr, "default")
+            pcall(function()
+                if package.loaded.glance then
+                    require("glance").actions.close()
+                end
+            end)
+            -- return action_set.select(prompt_bufnr, "default")
+        end
+
         require("telescope").setup({
             defaults = {
                 sorting_strategy = "ascending",
                 layout_config = { prompt_position = "top" },
-                mappings = { i = { ["<esc>"] = actions.close }, n = { ["<esc>"] = actions.close } },
+                mappings = {
+                    i = { ["<esc>"] = actions.close, ["<cr>"] = to_default_window },
+                    n = { ["<esc>"] = actions.close, ["<cr>"] = to_default_window },
+                },
                 prompt_prefix = "     ",
                 selection_caret = "  ",
                 entry_prefix = "  ",

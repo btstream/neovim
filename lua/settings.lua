@@ -25,7 +25,6 @@ return setmetatable({}, {
         if key == "with" then
             return function(config)
                 settings = vim.tbl_deep_extend("force", settings, config)
-                print(vim.inspect(settings))
             end
         else
             return settings[key]

@@ -57,8 +57,8 @@ return {
     },
 
     {
-        -- "hedyhli/outline.nvim",
-        "btstream/outline.nvim",
+        "hedyhli/outline.nvim",
+        -- "btstream/outline.nvim",
         -- event = "LspAttach",
         cmd = { "Outline", "OutlineOpen" },
         keys = { -- Example mapping to toggle outline
