@@ -56,7 +56,14 @@ return {
             local action_state = require("telescope.actions.state")
 
             local picker = action_state.get_current_picker(prompt_bufnr)
+            local old_get_selection_window = picker.get_selection_window
             picker.get_selection_window = function(picker, entry)
+                local w = old_get_selection_window(picker, entry)
+                if not require("utils.filetype").is_nonefiletype(vim.api.nvim_win_get_buf(w)) then
+                    picker.get_selection_window = nil
+                    return w
+                end
+
                 local picked_window_id = require("utils.window").get_first_normal_window()
                     or vim.api.nvim_get_current_win()
                 -- Unbind after using so next instance of the picker acts normally
