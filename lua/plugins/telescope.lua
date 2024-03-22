@@ -36,56 +36,46 @@ return {
         { mode = { "n", "i" }, "<C-k>r", "<cmd>Telescope resume<cr>", desc = "resume last Telescope session" },
     },
     config = function()
-        -- require("plugins.settings.telescope")
         local actions = require("telescope.actions")
-        local telescope_actions = require("telescope.actions.set")
-        local fixfolds = {
-            hidden = false,
-            attach_mappings = function(_)
-                telescope_actions.select:enhance({
-                    post = function()
-                        vim.cmd(":normal! zx")
-                    end,
-                })
+        local action_set = require("telescope.actions.set")
+        local fix_win_hijack = {
+            attach_mappings = function()
+                action_set.select:replace(function(prompt_bufnr, type)
+                    local action_state = require("telescope.actions.state")
+
+                    local picker = action_state.get_current_picker(prompt_bufnr)
+                    local old_get_selection_window = picker.get_selection_window
+                    picker.get_selection_window = function(picker, entry)
+                        local w = old_get_selection_window(picker, entry)
+                        if not require("utils.filetype").is_nonefiletype(vim.api.nvim_win_get_buf(w)) then
+                            picker.get_selection_window = nil
+                            return w
+                        end
+
+                        local picked_window_id = require("utils.window").get_first_normal_window()
+                            or vim.api.nvim_get_current_win()
+                        -- Unbind after using so next instance of the picker acts normally
+                        picker.get_selection_window = nil
+                        return picked_window_id
+                    end
+                    action_set.edit(prompt_bufnr, action_state.select_key_to_edit_key(type))
+                    pcall(function()
+                        if package.loaded.glance then
+                            require("glance").actions.close()
+                        end
+                    end)
+                end)
                 return true
             end,
         }
-
-        local function to_default_window(prompt_bufnr)
-            local action_set = require("telescope.actions.set")
-            local action_state = require("telescope.actions.state")
-
-            local picker = action_state.get_current_picker(prompt_bufnr)
-            local old_get_selection_window = picker.get_selection_window
-            picker.get_selection_window = function(picker, entry)
-                local w = old_get_selection_window(picker, entry)
-                if not require("utils.filetype").is_nonefiletype(vim.api.nvim_win_get_buf(w)) then
-                    picker.get_selection_window = nil
-                    return w
-                end
-
-                local picked_window_id = require("utils.window").get_first_normal_window()
-                    or vim.api.nvim_get_current_win()
-                -- Unbind after using so next instance of the picker acts normally
-                picker.get_selection_window = nil
-                return picked_window_id
-            end
-            action_set.select(prompt_bufnr, "default")
-            pcall(function()
-                if package.loaded.glance then
-                    require("glance").actions.close()
-                end
-            end)
-            -- return action_set.select(prompt_bufnr, "default")
-        end
 
         require("telescope").setup({
             defaults = {
                 sorting_strategy = "ascending",
                 layout_config = { prompt_position = "top" },
                 mappings = {
-                    i = { ["<esc>"] = actions.close, ["<cr>"] = to_default_window },
-                    n = { ["<esc>"] = actions.close, ["<cr>"] = to_default_window },
+                    i = { ["<esc>"] = actions.close },
+                    n = { ["<esc>"] = actions.close },
                 },
                 prompt_prefix = "     ",
                 selection_caret = "  ",
@@ -95,12 +85,12 @@ return {
                 -- find_files = {
                 --     theme = "dropdown"
                 -- },
-                buffers = fixfolds,
-                find_files = fixfolds,
-                git_files = fixfolds,
-                grep_string = fixfolds,
-                live_grep = fixfolds,
-                oldfiles = fixfolds,
+                buffers = fix_win_hijack,
+                find_files = fix_win_hijack,
+                git_files = fix_win_hijack,
+                grep_string = fix_win_hijack,
+                live_grep = fix_win_hijack,
+                oldfiles = fix_win_hijack,
                 lsp_code_actions = { theme = "cursor" },
                 spell_suggest = { theme = "cursor" },
                 colorscheme = {
