@@ -78,7 +78,7 @@ local color_scheme = nil
 local function get_color_scheme(scheme)
     local style = scheme and scheme
     if scheme == nil then
-        if vim.g.colors_name == nil then
+        if vim.g.colors_name == nil or vim.g.colors_name == "default" then
             style = vim.tbl_get(require("settings"), "theme", "color_scheme")
         else
             local b, s = vim.g.colors_name:find("base16")
