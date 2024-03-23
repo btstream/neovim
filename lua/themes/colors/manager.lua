@@ -81,15 +81,15 @@ local function get_color_scheme(scheme)
         if vim.g.colors_name == nil or vim.g.colors_name == "default" then
             style = vim.tbl_get(require("settings"), "theme", "color_scheme")
         else
-            local b, s = vim.g.colors_name:find("base16")
-            if b then
-                style = vim.g.colors_name:sub(s + 2)
+            local s, i = vim.g.colors_name:gsub("base16%-", "")
+            if i ~= 0 then
+                style = s
             else
                 style = vim.tbl_get(require("settings"), "theme", "color_scheme") --require("settings").theme.color_scheme
             end
         end
     end
-    style = style and style:gsub("^(harmonic)-(.*)", "%116-%2") or "onedark"
+    style = style and style:gsub("^(harmonic)-(.*)", "%116-%2") or "material-darker"
     local ret = require("base16-colorscheme").colorschemes[style]
     return ret
 end
