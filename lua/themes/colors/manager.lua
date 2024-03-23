@@ -94,14 +94,11 @@ local function get_color_scheme(scheme)
     return ret
 end
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    callback = function()
-        color_scheme = get_color_scheme()
-    end,
-})
-
 local M = {}
+
+function M.update()
+    color_scheme = get_color_scheme()
+end
 
 function M.darken(hex, pct)
     pct = 1 - pct
@@ -135,8 +132,10 @@ function M.get_mode_color(self)
 end
 
 function M.get_named_color(name)
+    print(">>>>>>>>>>", vim.g.colors_name)
     local colors = M.colors()
     if comman_color_base16_map[name] then
+        print(name, colors[comman_color_base16_map[name]])
         return colors[comman_color_base16_map[name]]
     end
     return name

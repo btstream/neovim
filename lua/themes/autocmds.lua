@@ -2,6 +2,7 @@ local set_hl = require("themes.colors.manager").set_hl
 
 vim.api.nvim_create_autocmd("ColorScheme", {
     callback = function()
+        require("themes.colors.manager").update()
         require("themes.colors.highlights").set()
     end,
 })
