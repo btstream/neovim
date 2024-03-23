@@ -132,10 +132,8 @@ function M.get_mode_color(self)
 end
 
 function M.get_named_color(name)
-    print(">>>>>>>>>>", vim.g.colors_name)
     local colors = M.colors()
     if comman_color_base16_map[name] then
-        print(name, colors[comman_color_base16_map[name]])
         return colors[comman_color_base16_map[name]]
     end
     return name
