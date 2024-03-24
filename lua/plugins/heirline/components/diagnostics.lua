@@ -1,6 +1,5 @@
 local icons = require("themes.icons")
 
-local get_named_color = require("themes.colors.manager").get_named_color
 local separator = require("plugins.heirline.components.separator")
 
 local function diagnostics_count(severity)
@@ -20,9 +19,7 @@ local diagnostics_error = {
     condition = function(self)
         return self.error > 0
     end,
-    hl = function()
-        return { fg = get_named_color("DarkRed") }
-    end,
+    hl = { fg = "DarkRed" },
 }
 
 local diagnostics_warn = {
@@ -32,9 +29,7 @@ local diagnostics_warn = {
     condition = function(self)
         return self.warn > 0
     end,
-    hl = function()
-        return { fg = get_named_color("purple") }
-    end,
+    hl = { fg = "purple" },
 }
 
 local diagnostics_info = {
@@ -44,9 +39,7 @@ local diagnostics_info = {
     condition = function(self)
         return self.info > 0
     end,
-    hl = function()
-        return { fg = get_named_color("blue") }
-    end,
+    hl = { fg = "blue" },
 }
 
 local diagnostics_hint = {
@@ -56,9 +49,7 @@ local diagnostics_hint = {
     condition = function(self)
         return self.hint > 0
     end,
-    hl = function()
-        return { fg = get_named_color("cyan") }
-    end,
+    hl = { fg = "cyan" },
 }
 
 return {

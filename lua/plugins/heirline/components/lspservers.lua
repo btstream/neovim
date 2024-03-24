@@ -62,7 +62,7 @@ local lsp_indicator = {
 return {
     hl = function()
         if require("settings").theme.statusline.show_separators then
-            return { bg = require("themes.colors.manager").get_named_color("grey") }
+            return { bg = "grey" }
         end
     end,
     separator({ block = "true", char = separator.left_block }),

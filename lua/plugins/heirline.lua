@@ -4,11 +4,7 @@ return {
     opts = function()
         return {
             statusline = {
-                hl = function()
-                    return {
-                        bg = require("themes.colors.manager").get_named_color("gray"),
-                    }
-                end,
+                hl = { bg = "gray" },
                 require("plugins.heirline.components.mode"),
                 -- require("plugins.heirline.components.fileindicator"),
                 require("plugins.heirline.components.path"),
@@ -20,5 +16,18 @@ return {
                 require("plugins.heirline.components.location"),
             },
         }
+    end,
+    config = function(_, opts)
+        local get_heirline_color = require("themes.heirline").get_heirline_color
+        opts = vim.tbl_extend("keep", opts, {
+            opts = { colors = get_heirline_color() },
+        })
+
+        vim.api.nvim_create_autocmd("ColorScheme", {
+            callback = function()
+                require("heirline.utils").on_colorscheme(get_heirline_color)
+            end,
+        })
+        require("heirline").setup(opts)
     end,
 }

@@ -1,5 +1,4 @@
 local separator = require("plugins.heirline.components.separator")
-local get_named_color = require("themes.colors.manager").get_named_color
 
 local format_icons = {
     dos = "",
@@ -25,7 +24,7 @@ return {
     file_format,
     hl = function()
         if require("settings").theme.statusline.show_separators then
-            return { fg = require("themes.colors.manager").get_named_color("LightGrey") }
+            return { fg = "LightGrey" }
         end
     end,
     condition = function()

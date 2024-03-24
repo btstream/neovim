@@ -27,43 +27,6 @@ local HEX_DIGITS = {
     ["F"] = 15,
 }
 
--- stylua: ignore start
-local comman_color_base16_map = {
-    red                       = "base0F",
-    DarkRed                   = "base08",
-    green                     = "base0B",
-    blue                      = "base0D",
-    gray                      = "base01",
-    grey                      = "base02",
-    LightGray                 = "base03",
-    LightGrey                 = "base04",
-    white                     = "base07",
-    GhostWhite                = "base06",
-    WhiteSmoke                = "base05",
-    yellow                    = "base0A",
-    orange                    = "base09",
-    purple                    = "base0E",
-    cyan                      = "base0C",
-    black                     = "base00",
-}
-
-local mode_colors_map = {
-    n                 = "blue",
-    i                 = "green",
-    v                 = "purple",
-    V                 = "purple",
-    ["\22"]           = "cyan",
-    c                 = "blue",
-    s                 = "yellow",
-    S                 = "yellow",
-    ["\19"]           = "purple",
-    R                 = "orange",
-    r                 = "blue",
-    ["!"]             = "DarkRed",
-    t                 = "green",
-}
--- stylua: ignore end
-
 local function hex_to_rgb(hex)
     return HEX_DIGITS[string.sub(hex, 1, 1)] * 16 + HEX_DIGITS[string.sub(hex, 2, 2)],
         HEX_DIGITS[string.sub(hex, 3, 3)] * 16 + HEX_DIGITS[string.sub(hex, 4, 4)],
@@ -119,24 +82,6 @@ function M.set_hl(opts)
             vim.api.nvim_set_hl(0, hl_group, scheme)
         end
     end
-end
-
-function M.get_mode_color(self)
-    local mode = self.mode:sub(1, 1) -- get only the first mode character
-    local colors = require("themes.colors.manager").colors()
-    local bg, fg = mode_colors_map[mode], "black"
-    if colors then
-        bg, fg = colors[comman_color_base16_map[bg]], colors[comman_color_base16_map[fg]]
-    end
-    return { bg = bg, fg = fg }
-end
-
-function M.get_named_color(name)
-    local colors = M.colors()
-    if comman_color_base16_map[name] then
-        return colors[comman_color_base16_map[name]]
-    end
-    return name
 end
 
 function M.colors(scheme)

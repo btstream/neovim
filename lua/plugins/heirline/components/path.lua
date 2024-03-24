@@ -1,16 +1,12 @@
-local devicons = require("nvim-web-devicons")
-
 local icons = require("themes.icons").common_ui_icons
 local is_nonefiletype = require("utils.filetype").is_nonefiletype
-local get_mode_color = require("themes.colors.manager").get_mode_color
-local get_named_color = require("themes.colors.manager").get_named_color
 
 local path_icon = {
     provider = function()
         return " "
     end,
-    hl = function()
-        return { fg = get_named_color("blue") }
+    hl = function(self)
+        return { fg = require("themes.heirline").get_mode_color(self).bg }
     end,
     condition = function()
         return not is_nonefiletype()
@@ -70,15 +66,15 @@ local file_status = {
     end,
     hl = function(self)
         if vim.bo.modified then
-            return { fg = get_named_color("green") }
+            return { fg = "green" }
         end
 
         if vim.bo.modifiable == false or vim.bo.readonly == true then
-            return { fg = get_named_color("orange") }
+            return { fg = "orange" }
         end
 
         if self.filename:match("^suda://") then
-            return { fg = get_named_color("red") }
+            return { fg = "red" }
         end
     end,
 }
@@ -101,7 +97,7 @@ return {
     end,
     hl = function(self)
         if require("settings").theme.statusline.show_separators then
-            return { bg = get_named_color("grey") }
+            return { bg = "grey" }
         end
     end,
     path_icon,

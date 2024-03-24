@@ -1,4 +1,3 @@
-local get_named_color = require("themes.colors.manager").get_named_color
 local termapp = require("utils.os.terminal")
 local settings = require("settings")
 
@@ -36,9 +35,7 @@ local chars = {
 local function make(opts)
     local separator = {
         provider = chars.right(),
-        hl = function()
-            return { fg = get_named_color("LightGray") }
-        end,
+        hl = { fg = "LightGray" },
     }
 
     if opts then
@@ -50,12 +47,10 @@ local function make(opts)
             if not opts.char then
                 separator.provider = chars.right_block()
             end
-            separator.hl = function()
-                return {
-                    fg = get_named_color("grey"),
-                    bg = get_named_color("gray"),
-                }
-            end
+            separator.hl = {
+                fg = "grey",
+                bg = "gray",
+            }
         end
 
         if opts.condition then

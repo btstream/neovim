@@ -1,7 +1,6 @@
 local icons = require("themes.icons")
 local path = require("utils.os.path")
 
-local get_named_color = require("themes.colors.manager").get_named_color
 local is_nonefiletypes = require("utils.filetype").is_nonefiletype
 
 local separator = require("plugins.heirline.components.separator")
@@ -26,11 +25,7 @@ local git_branch = {
 
         return " " .. self.icon .. " " .. vim.b[0].gitsigns_head .. ""
     end,
-    hl = function()
-        if require("settings").theme.statusline.show_separators then
-            return { fg = get_named_color("LightGrey") }
-        end
-    end,
+    hl = { fg = "LightGrey" },
     condition = function()
         return vim.b[0].gitsigns_head or vim.b[0].gitsigns_status_dict
     end,
@@ -46,9 +41,7 @@ local git_changed = {
     provider = function(self)
         return " " .. icons.gitstatus_icons.modified .. " " .. self.git_status.changed
     end,
-    hl = function()
-        return { fg = get_named_color("cyan") }
-    end,
+    hl = { fg = "cyan" },
     condition = function(self)
         return self.git_status and self.git_status.changed > 0
     end,
@@ -58,11 +51,7 @@ local git_added = {
     provider = function(self)
         return " " .. icons.gitstatus_icons.added .. " " .. self.git_status.added
     end,
-    hl = function()
-        return {
-            fg = get_named_color("green"),
-        }
-    end,
+    hl = { fg = "green" },
     condition = function(self)
         return self.git_status and self.git_status.added > 0
     end,
@@ -72,11 +61,7 @@ local git_removed = {
     provider = function(self)
         return " " .. icons.gitstatus_icons.deleted .. " " .. self.git_status.removed
     end,
-    hl = function()
-        return {
-            fg = get_named_color("DarkRed"),
-        }
-    end,
+    hl = { fg = "DarkRed" },
     condition = function(self)
         return self.git_status and self.git_status.removed > 0
     end,

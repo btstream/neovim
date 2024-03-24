@@ -1,6 +1,5 @@
 local mode_icons = require("themes.icons").mode_icons
 local get_nonefiletype_icon = require("utils.filetype").get_icon
-local get_mode_color = require("themes.colors.manager").get_mode_color
 
 -- stylua: ignore start
 local mode_names = {
@@ -52,13 +51,6 @@ return {
         icon = icon and icon or mode_icons[self.mode]
         return " " .. icon .. name .. " "
     end,
-    hl = get_mode_color,
+    hl = require("themes.heirline").get_mode_color,
     update = { "ModeChanged", "WinEnter", "BufEnter", "BufWinLeave", "BufAdd", "WinClosed", "WinLeave" },
-    -- update = {
-    --     { "ModeChanged", "WinEnter" },
-    --     pattern = "*:*",
-    --     callback = vim.schedule_wrap(function()
-    --         vim.cmd("redrawstatus")
-    --     end),
-    -- },
 }
