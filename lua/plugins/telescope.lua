@@ -35,7 +35,7 @@ return {
         { mode = { "n", "i" }, "<C-b>", "<cmd>Telescope buffers<cr>", desc = "open buffers" },
         { mode = { "n", "i" }, "<C-k>r", "<cmd>Telescope resume<cr>", desc = "resume last Telescope session" },
     },
-    config = function()
+    config = function(_, opts)
         local actions = require("telescope.actions")
         local action_set = require("telescope.actions.set")
         local fix_win_hijack = {
@@ -69,7 +69,7 @@ return {
             end,
         }
 
-        require("telescope").setup({
+        require("telescope").setup(vim.tbl_extend("keep", opts, {
             defaults = {
                 sorting_strategy = "ascending",
                 layout_config = { prompt_position = "top" },
@@ -107,7 +107,7 @@ return {
                     -- the default case_mode is "smart_case"
                 },
             },
-        })
+        }))
 
         -- require("telescope").load_extension("ui-select")
         require("telescope").load_extension("fzf")

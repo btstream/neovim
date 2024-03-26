@@ -51,9 +51,9 @@ return {
             { mode = { "n", "i" }, "<A-w>", require("utils.window").quit },
         }
     end,
-    config = function()
+    config = function(_, opts)
         ---@diagnostic disable-next-line: undefined-field
-        require("bufferline").setup({
+        require("bufferline").setup(vim.tbl_extend("keep", opts, {
             options = {
                 numbers = "ordinal",
                 close_command = 'lua require("utils.window").quit(%d)',
@@ -171,7 +171,7 @@ return {
             },
             ---@diagnostic disable-next-line: different-requires
             highlights = require("themes.bufferline"),
-        })
+        }))
 
         local Offset = require("bufferline.offset")
         if not Offset.edgy then

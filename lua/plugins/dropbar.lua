@@ -4,13 +4,13 @@ return {
     enabled = function()
         return vim.fn.has("nvim-0.10") == 1
     end,
-    config = function()
+    config = function(_, opts)
         -- need to add space for each symbols
         local symbols = {}
         for key, value in pairs(require("themes.icons").lsp_symbols) do
             symbols[key] = string.format("%s ", value)
         end
-        require("dropbar").setup({
+        require("dropbar").setup(vim.tbl_extend("keep", opts, {
             general = {
                 enable = function(buf, win)
                     return not vim.api.nvim_win_get_config(win).zindex
@@ -25,6 +25,6 @@ return {
                     symbols = symbols,
                 },
             },
-        })
+        }))
     end,
 }

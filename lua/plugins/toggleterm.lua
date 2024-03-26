@@ -21,8 +21,8 @@ end
 -- TODO:fix keymap
 return {
     "akinsho/toggleterm.nvim",
-    config = function()
-        require("toggleterm").setup({
+    config = function(_, opts)
+        require("toggleterm").setup(vim.tbl_extend("keep", opts, {
             -- size can be a number or function which is passed the current terminal
             size = function(term)
                 if term.direction == "horizontal" then
@@ -72,7 +72,7 @@ return {
                     vim.keymap.set("t", string.format("<A-%d>", i), go_to_terminal(i), opts)
                 end
             end,
-        })
+        }))
 
         local Terminal = require("toggleterm.terminal").Terminal
         local lazygit = Terminal:new({

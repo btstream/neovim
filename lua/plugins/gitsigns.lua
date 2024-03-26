@@ -2,7 +2,7 @@ return {
     "lewis6991/gitsigns.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     event = "User BufReadRealFilePost",
-    config = function()
+    config = function(_, opts)
         local popup = require("gitsigns.popup")
         local orig_popup = popup.create
 
@@ -17,7 +17,7 @@ return {
             )
         end
 
-        require("gitsigns").setup({
+        require("gitsigns").setup(vim.tbl_extend("keep", opts, {
             signs = {
                 add = { text = "█" },
                 change = { text = "█" },
@@ -73,6 +73,6 @@ return {
                     end, { expr = true, buffer = buf })
                 end
             end,
-        })
+        }))
     end,
 }

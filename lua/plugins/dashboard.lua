@@ -4,7 +4,7 @@ return {
     -- make dashboard load earlier, to make bufferline loaded more lazily
     event = "User LazyVimStarted",
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
-    config = function()
+    config = function(_, opts)
         ----------------------------------------------------------------------
         --                        header and footer                         --
         ----------------------------------------------------------------------
@@ -115,7 +115,7 @@ return {
             },
         }
 
-        require("dashboard").setup(hyper)
+        require("dashboard").setup(vim.tbl_extend("keep", opts, hyper))
 
         if
             vim.fn.argc() == 0

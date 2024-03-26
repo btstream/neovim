@@ -1,9 +1,9 @@
 return {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
-    config = function()
+    config = function(_, opts)
         local icons = require("themes.icons").filetype_icons
-        require("dressing").setup({
+        require("dressing").setup(vim.tbl_extend("keep", opts, {
             input = {
                 -- Set to false to disable the vim.ui.input implementation
                 enabled = true,
@@ -146,6 +146,6 @@ return {
                     end
                 end,
             },
-        })
+        }))
     end,
 }
