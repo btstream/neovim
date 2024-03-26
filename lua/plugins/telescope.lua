@@ -9,6 +9,7 @@ return {
             build = vim.fn.executable("mingw32-make") == 1 and "mingw32-make" or "make",
             lazy = true,
         },
+        "polirritmico/telescope-lazy-plugins.nvim",
         "ahmedkhalf/project.nvim",
     },
     cmd = "Telescope",
@@ -114,5 +115,6 @@ return {
         require("telescope").load_extension("projects")
         require("telescope").load_extension("file_browser")
         require("telescope").load_extension("notify")
+        require("telescope").load_extension("lazy_plugins")
     end,
 }
