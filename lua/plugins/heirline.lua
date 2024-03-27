@@ -6,6 +6,7 @@ return {
             statusline = {
                 hl = { bg = "gray" },
                 require("plugins.heirline.components.mode"),
+                require("plugins.heirline.components.ssh"),
                 -- require("plugins.heirline.components.fileindicator"),
                 require("plugins.heirline.components.path"),
                 require("plugins.heirline.components.git"),

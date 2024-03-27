@@ -46,11 +46,10 @@ end
 
 function M.get_mode_color(self)
     local mode = self.mode:sub(1, 1) -- get only the first mode character
-    local colors = require("themes.colors.manager").colors()
     local bg, fg = mode_colors[mode], "black"
-    -- if colors then
-    --     bg, fg = colors[comman_color_base16_map[bg]], colors[comman_color_base16_map[fg]]
-    -- end
+    if require("utils.os.terminal").is_ssh_session() and require("utils.filetype").is_nonefiletype() then
+        bg = "orange"
+    end
     return { bg = bg, fg = fg }
 
 end
