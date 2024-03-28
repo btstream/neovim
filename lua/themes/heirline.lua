@@ -47,9 +47,6 @@ end
 function M.get_mode_color(self)
     local mode = self.mode:sub(1, 1) -- get only the first mode character
     local bg, fg = mode_colors[mode], "black"
-    if require("utils.os.terminal").is_ssh_session() and require("utils.filetype").is_nonefiletype() then
-        bg = "orange"
-    end
     return { bg = bg, fg = fg }
 
 end

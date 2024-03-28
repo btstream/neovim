@@ -47,7 +47,7 @@ local function make(opts)
             if not opts.char then
                 separator.provider = chars.right_block()
             end
-            separator.hl = {
+            separator.hl = opts.hl or {
                 fg = "grey",
                 bg = "gray",
             }
