@@ -10,9 +10,10 @@ return {
         end
         return " 󰢹 " .. self.host .. " "
     end,
-    -- condition = function()
-    --     return require("utils.os.terminal").is_ssh_session() and not require("utils.filetype").is_nonefiletype()
-    -- end,
+    condition = function()
+        return require("utils.os.terminal").is_ssh_session()
+        -- return require("utils.os.terminal").is_ssh_session() and not require("utils.filetype").is_nonefiletype()
+    end,
     hl = { fg = "black", bg = "orange" },
     update = { "ModeChanged", "WinEnter", "BufEnter", "BufWinLeave", "BufAdd", "WinClosed", "WinLeave" },
 }
