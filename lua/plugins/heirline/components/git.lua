@@ -11,7 +11,7 @@ local git_branch = {
             self.icon = ""
 
             if self.git_root_dir then
-                local remote_info = vim.fn.system("cd " .. self.git_root_dir .. ";git remote -v")
+                local remote_info = vim.fn.system("git -C " .. self.git_root_dir .. " remote -v")
 
                 if remote_info:match("gitlab") ~= nil then
                     self.icon = ""
