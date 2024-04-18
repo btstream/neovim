@@ -42,9 +42,18 @@ return {
             persist_size = true,
             direction = "horizontal",
             close_on_exit = true, -- close the terminal window when the process exits
-            shell = (vim.fn.has("win32") == 1 and (vim.fn.executable("xonsh")) == 1 and "xonsh" or vim.fn.executable(
-                "pwsh"
-            ) == 1 and "pwsh" or "powershell") or vim.o.shell, -- change the default shell
+            shell = function()
+                if require("utils.os").name() == "windows" then
+                    if vim.fn.executable("xonsh") == 1 then
+                        return "xonsh"
+                    end
+                    if vim.fn.executable("pwsh") == 1 then
+                        return "pwsh"
+                    end
+                    return "powershell"
+                end
+                return vim.o.shell
+            end, -- change the default shell
             highlights = {
                 StatusLine = { link = "StatusLine" },
             },
