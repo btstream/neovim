@@ -93,7 +93,9 @@ M.inlay_hint = function(buf, value)
         if value == nil then
             value = not ih.is_enabled(buf)
         end
-        ih.enable(buf, value)
+        if not pcall(ih.enable, value, { bufnr = buf }) then
+            ih.enable(buf, value)
+        end
     end
 end
 
