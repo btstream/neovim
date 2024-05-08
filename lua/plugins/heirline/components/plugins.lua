@@ -1,11 +1,11 @@
 return {
     hl = function()
         if require("settings").theme.statusline.show_separators then
-            return { bg = "grey" }
+            return { bg = "grey", fg = "blue" }
         end
     end,
     provider = function(self)
-        return " " .. require("lazy.status").updates()
+        return "  " .. #require("lazy.manage.checker").updated .. " "
     end,
     condition = require("lazy.status").has_updates,
     update = { "User", pattern = "LazyCheck" },
