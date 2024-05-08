@@ -28,6 +28,4 @@ require("mason-tool-installer").setup({
 })
 
 -- use a schedule to make task kwork in orders
-require("utils.task_scheduler").schedule(function()
-    require("mason-tool-installer").run_on_start()
-end, { ordered = true })
+require("mason-tool-installer").run_on_start()
