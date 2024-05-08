@@ -8,7 +8,7 @@ return {
         return " " .. require("lazy.status").updates()
     end,
     condition = require("lazy.status").has_updates,
-    update = "User LazyCheck",
+    update = { "User", pattern = "LazyCheck" },
     on_click = {
         callback = function()
             local plugins = require("lazy.core.config").plugins
