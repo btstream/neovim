@@ -16,6 +16,7 @@ return {
                 -- require("plugins.heirline.components.fill"),
                 require("plugins.heirline.components.fileformat"),
                 require("plugins.heirline.components.lspservers"),
+                require("plugins.heirline.components.plugins"),
                 require("plugins.heirline.components.location"),
             },
         }
