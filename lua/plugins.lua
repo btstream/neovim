@@ -25,6 +25,7 @@ then
     table.insert(spec, { import = "users.plugins" })
 end
 
+---@diagnostic disable-next-line: different-requires
 require("lazy").setup({
     spec = spec,
     checker = {
@@ -32,4 +33,9 @@ require("lazy").setup({
         notify = false,
     },
     concurrency = 5,
+})
+
+require("utils.keymap").set({
+    ---@diagnostic disable-next-line: different-requires
+    { "n", "<C-k>U", require("utils.lazy").update_outdated, { desc = "Update Outdated plugins" } },
 })
