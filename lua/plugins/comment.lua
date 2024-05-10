@@ -5,7 +5,7 @@ return {
     opts = {
         ignore = "^$",
     },
-    -- config = function()
-    --     require("Comment").setup()
-    -- end,
+    enabled = function()
+        return vim.fn.has("nvim-0.10") ~= 1
+    end,
 }
