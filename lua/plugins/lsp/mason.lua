@@ -1,3 +1,5 @@
+local os = require("utils.os")
+
 local _servers = {
     "bashls",
     "basedpyright",
@@ -10,11 +12,15 @@ local _servers = {
     "vimls",
     "lua-language-server",
     "fortls",
-    "lemminx",
-    "clangd",
     "codelldb",
     "java-debug-adapter",
 }
+
+-- lemminx and clangd is not avaiable on arm platform
+if os.arch() ~= "arm64" then
+    table.insert(_servers, "lemminx")
+    table.insert(_servers, "clangd")
+end
 
 if vim.fn.has("win32") == 1 then
     table.insert(_servers, "stylua")
