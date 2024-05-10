@@ -1,4 +1,5 @@
-return {
+local separator = require("plugins.heirline.components.separator")
+local updates = {
     hl = function()
         if require("settings").theme.statusline.show_separators then
             return { bg = "grey", fg = "blue" }
@@ -7,8 +8,7 @@ return {
     provider = function(self)
         return "  " .. #require("lazy.manage.checker").updated .. " "
     end,
-    condition = require("lazy.status").has_updates,
-    update = { "User", pattern = "LazyCheck" },
+    -- condition = require("lazy.status").has_updates,
     on_click = {
         callback = function()
             local plugins = require("lazy.core.config").plugins
@@ -30,4 +30,13 @@ return {
         name = "statusline_update_plugins",
     },
     -- update = { "LspAttach", "LspDetach", "WinEnter", "BufEnter", "BufLeave", "WinLeave" },
+}
+
+local sp = separator({ char = separator.left })
+sp.hl = { bg = "grey", fg = "LightGray" }
+return {
+    sp,
+    updates,
+    condition = require("lazy.status").has_updates,
+    update = { "User", pattern = "LazyCheck" },
 }
