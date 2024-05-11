@@ -1,0 +1,7 @@
+{
+    "diagnostics.disable": [
+        "unused-vararg",
+        "different-requires",
+        "redefined-local"
+    ]
+}
