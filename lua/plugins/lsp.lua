@@ -29,7 +29,8 @@ return {
     },
 
     {
-        "kosayoda/nvim-lightbulb",
+        -- "kosayoda/nvim-lightbulb",
+        "gh-liu/nvim-lightbulb",
         dependencies = "antoinemadec/FixCursorHold.nvim",
         event = "LspAttach",
         config = function()
