@@ -90,12 +90,12 @@ return {
                         action = "Telescope colorscheme",
                         key = "t",
                     },
-                    -- {
-                    --     desc = icons.update .. " Update",
-                    --     group = "DashboardActionUpdate",
-                    --     action = require("utils.lazy").update,
-                    --     key = "u",
-                    -- },
+                    {
+                        desc = icons.update .. " Update",
+                        group = "DashboardActionUpdate",
+                        action = require("utils.lazy").update_outdated,
+                        key = "u",
+                    },
                     {
                         desc = icons.settings .. " Settings",
                         group = "DashboardActionSettings",
