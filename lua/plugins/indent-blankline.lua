@@ -1,3 +1,5 @@
+local exclude_filetypes = require("utils.filetype").get_nonfiletypes()
+table.insert(exclude_filetypes, "fortran")
 return {
     "lukas-reineke/indent-blankline.nvim",
     event = "User BufReadRealFile",
@@ -9,9 +11,7 @@ return {
             show_end = false,
             highlight = "IndentBlanklineContextChar",
         },
-        exclude = {
-            filetypes = require("utils.filetype").get_nonfiletypes(),
-        },
+        exclude = exclude_filetypes,
     },
     config = function(_, opts)
         require("ibl").setup(opts)
