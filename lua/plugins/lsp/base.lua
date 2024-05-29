@@ -59,18 +59,7 @@ require("mason-lspconfig").setup_handlers({
             return
         end
         if not pcall(require, "plugins.lsp.providers." .. server_name) then
-            lspconfig[server_name].setup({
-                root_dir = function(fname)
-                    local success, config = pcall(require, "lspconfig.server_configurations." .. server_name)
-                    if success then
-                        local default_root_dir = config.default_config.root_dir
-                        if type(default_root_dir) == "function" then
-                            default_root_dir = default_root_dir(fname)
-                        end
-                        return default_root_dir or vim.fn.fnamemodify(fname, ":p:h")
-                    end
-                end,
-            })
+            lspconfig[server_name].setup({})
         end
     end,
 })
