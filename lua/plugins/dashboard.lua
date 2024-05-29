@@ -91,12 +91,6 @@ return {
                         key = "t",
                     },
                     {
-                        desc = icons.update .. " Update",
-                        group = "DashboardActionUpdate",
-                        action = require("utils.lazy").update_outdated,
-                        key = "u",
-                    },
-                    {
                         desc = icons.settings .. " Settings",
                         group = "DashboardActionSettings",
                         key = "s",
@@ -114,6 +108,15 @@ return {
                 footer = footer, -- footer
             },
         }
+
+        if require("lazy.status").has_updates() then
+            table.insert(hyper.config.shortcut, {
+                desc = icons.update .. " Update " .. #require("lazy.manage.checker").updated(" plugins"),
+                group = "DashboardActionUpdate",
+                action = require("utils.lazy").update_outdated,
+                key = "u",
+            })
+        end
 
         require("dashboard").setup(vim.tbl_extend("keep", opts, hyper))
 
