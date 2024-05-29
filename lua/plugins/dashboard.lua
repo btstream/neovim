@@ -1,6 +1,6 @@
 local icons = require("themes.icons").common_ui_icons
 return {
-    "glepnir/dashboard-nvim",
+    "nvimdev/dashboard-nvim",
     -- make dashboard load earlier, to make bufferline loaded more lazily
     event = "User LazyVimStarted",
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
