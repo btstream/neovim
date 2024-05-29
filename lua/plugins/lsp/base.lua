@@ -48,18 +48,36 @@ lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.de
 -----------------------------------
 -- setup lsp with mason
 -----------------------------------
-require("plugins.lsp.mason")
 local disabled_server = { "pylyzer" }
+local default_root_pattern = {
+    -- custom pattern
+    ".nvim",
+    ".neovim",
+
+    -- git
+    ".git",
+
+    -- for CMake managed projects
+    "CMakeLists.txt",
+
+    -- for python
+    "setup.py",
+    "tox.ini",
+    "requirements.txt",
+    "Pipfile",
+    "pyproject.toml",
+}
+
+require("plugins.lsp.mason")
 require("mason-lspconfig").setup_handlers({
     function(server_name)
-        -- if server_name == "pyright" then
-        --     return
-        -- end
         if vim.tbl_contains(disabled_server, server_name) then
             return
         end
-        if not pcall(require, "plugins.lsp.providers." .. server_name) then
-            lspconfig[server_name].setup({
+
+        local orig_setup = lspconfig[server_name].setup
+        lspconfig[server_name].setup = function(user_config)
+            local new_config = vim.tbl_deep_extend("keep", user_config, {
                 root_dir = function(fname)
                     local success, config = pcall(require, "lspconfig.server_configurations." .. server_name)
                     if success then
@@ -67,10 +85,31 @@ require("mason-lspconfig").setup_handlers({
                         if type(default_root_dir) == "function" then
                             default_root_dir = default_root_dir(fname)
                         end
-                        return default_root_dir or vim.fn.fnamemodify(fname, ":p:h")
+
+                        -- if default root_dir get nil
+                        -- find custom root_dirs
+                        if not default_root_dir then
+                            -- find git first
+                            local git_ancestor = lspconfig_utils.find_git_ancestor(fname)
+                            if git_ancestor then
+                                return git_ancestor
+                            end
+
+                            -- find root based on custom root pattern
+                            local pattern_root = lspconfig_utils.root_pattern(unpack(default_root_pattern))(fname)
+
+                            -- use file's folder as root for last fallback
+                            return pattern_root and pattern_root or vim.fn.fnamemodify(fname, ":p:h")
+                        end
+                        return default_root_dir
                     end
                 end,
             })
+            orig_setup(new_config)
+        end
+
+        if not pcall(require, "plugins.lsp.providers." .. server_name) then
+            lspconfig[server_name].setup({})
         end
     end,
 })
