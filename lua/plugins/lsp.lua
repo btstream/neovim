@@ -117,6 +117,10 @@ return {
     -- python-type-stubs
     {
         "microsoft/python-type-stubs",
-        cond = false,
+        cond = function()
+            local path = require("utils.os.path")
+            local lazypath = path.join(vim.fn.stdpath("data"), "lazy", "python-type-stubs")
+            return not path.exists(lazypath)
+        end,
     },
 }

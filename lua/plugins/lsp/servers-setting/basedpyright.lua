@@ -1,9 +1,9 @@
 local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
 local config = {
-    ["python.analysis.typeCheckingMode"] = "strict",
-    ["python.analysis.useLibraryCodeForTypes"] = true,
-    ["python.analysis.diagnosticMode"] = "workspace",
-    ["python.analysis.diagnosticSeverityOverrides"] = {
+    ["basedpyright.analysis.typeCheckingMode"] = "all",
+    ["basedpyright.analysis.useLibraryCodeForTypes"] = true,
+    ["basedpyright.analysis.diagnosticMode"] = "workspace",
+    ["basedpyright.analysis.diagnosticSeverityOverrides"] = {
         ["reportUnknownVariableType"] = "information",
         ["reportUnknownMemberType"] = "information",
         ["reportUnknownParameterType"] = "information",
