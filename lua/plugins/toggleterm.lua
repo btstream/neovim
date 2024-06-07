@@ -59,12 +59,12 @@ return {
             },
             on_open = function(terminal)
                 -- TODO: update lspconfig to find virtual env
-                -- local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
-                -- -- enter poetry virtual env
-                -- local path = find_pyproject_toml(vim.fn.getcwd())
-                -- if path and vim.fn.executable("poetry") == 1 then
-                --     terminal:send("poetry shell -q && exit")
-                -- end
+                local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
+                -- enter poetry virtual env
+                local path = find_pyproject_toml(vim.fn.getcwd())
+                if path and vim.fn.executable("poetry") == 1 then
+                    terminal:send("poetry shell -q && exit")
+                end
 
                 -- quirk to disable highlight of sidebars
                 -- vim.cmd("doautocmd BufEnter")

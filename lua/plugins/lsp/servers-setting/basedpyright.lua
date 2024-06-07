@@ -1,9 +1,8 @@
 local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
 local path = require("utils.os.path")
-local stub_path = path.join(vim.fn.stdpath("data"), "lazy", "python-type-stubs", "stubs")
 local config = {
     -- stylua: ignore start
-    ["basedpyright.analysis.typeCheckingMode"]            = "all",
+    ["basedpyright.analysis.typeCheckingMode"]            = "standard",
     ["basedpyright.analysis.useLibraryCodeForTypes"]      = true,
     ["basedpyright.analysis.diagnosticMode"]              = "workspace",
     ["basedpyright.analysis.diagnosticSeverityOverrides"] = {
@@ -14,9 +13,11 @@ local config = {
         ["reportUnknownArgumentType"]                     = "information",
         ["reportFunctionMemberAccess"]                    = "information",
         ["reportOptionalMemberAccess"]                    = "information",
+        ["reportAttributeAccessIssue"]                    = "information",
     },
     -- stylua: ignore end
 }
+local stub_path = path.join(vim.fn.stdpath("data"), "lazy", "python-type-stubs", "stubs")
 if path.exists(stub_path) then
     config["basedpyright.analysis.stubPath"] = stub_path
 end
