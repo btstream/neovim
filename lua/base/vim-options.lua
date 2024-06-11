@@ -124,3 +124,8 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI", "FocusGained", "BufEn
 ----------------------------------------------------------------------
 -- set leader char to space
 vim.g.mapleader = " "
+
+----------------------------------------------------------------------
+--                           local config                           --
+----------------------------------------------------------------------
+opt.exrc = true

@@ -59,6 +59,9 @@ M.on_attach = function(client, buf)
                 vim.lsp.buf.format({
                     bufnr = buf,
                     filter = function(client)
+                        if vim.g.autoformatting == false or vim.b.autoformatting == false then
+                            return false
+                        end
                         -- to check if null-ls has attached
                         -- local clients = vim.lsp.buf_get_clients(bufnr)
                         local ft = vim.fn.getbufvar(buf, "&filetype")
