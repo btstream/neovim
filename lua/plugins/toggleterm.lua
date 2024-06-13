@@ -57,16 +57,15 @@ return {
             highlights = {
                 StatusLine = { link = "StatusLine" },
             },
-            on_open = function(terminal)
-                -- TODO: update lspconfig to find virtual env
+            on_create = function(terminal)
                 local find_pyproject_toml = require("lspconfig.util").root_pattern("pyproject.toml")
                 -- enter poetry virtual env
                 local path = find_pyproject_toml(vim.fn.getcwd())
                 if path and vim.fn.executable("poetry") == 1 then
                     terminal:send("poetry shell -q && exit")
                 end
-
-                -- quirk to disable highlight of sidebars
+            end,
+            on_open = function(terminal)
                 -- vim.cmd("doautocmd BufEnter")
                 if not (vim.fn.has("win32") and vim.fn.executable("xonsh")) then
                     terminal:send("clear")
