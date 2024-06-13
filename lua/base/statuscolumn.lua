@@ -33,14 +33,14 @@ if vim.fn.has("nvim-0.9") == 1 then
             local current_fold_info = ffi.C.fold_info(wp, currentline)
 
             if fold_info.lines > 0 then
-                return ""
+                return ""
             end
 
             if current_fold_info.start == fold_info.start then
                 if fold_info.lines > 0 then
-                    return ""
+                    return ""
                 end
-                return ""
+                return ""
             else
                 return " "
             end
