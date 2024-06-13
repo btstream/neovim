@@ -13,6 +13,7 @@ return {
                 "bash",
                 "c",
                 "cpp",
+                "comment",
                 "diff",
                 "html",
                 "java",
