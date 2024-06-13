@@ -34,6 +34,7 @@ set("n", "<C-S-down>", "<cmd>resize -1<cr>")
 set("n", "bn", "<cmd>bnext<cr>", { desc = "goto next buffer" })
 set("n", "bN", "<cmd>bprevious<cr>", { desc = "goto previous buffer" })
 set("n", "bc", require("utils.window").quit, { desc = "close current buffer" })
+set("n", "<leader>q", require("utils.window").quit, { desc = "close current buffer" })
 
 -- move lines
 set("n", "<A-j>", "<cmd>m .+1<CR>==", { silent = true })
