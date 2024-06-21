@@ -25,10 +25,10 @@ return {
                 topdelete = { text = "▔" },
                 changedelete = { text = "↭" },
                 untracked = {
-                    hl = "GitSignsUntracked",
+                    -- hl = "GitSignsUntracked",
                     text = "█",
-                    numhl = "GitSignsUntrackedNr",
-                    linehl = "GitSignsUntrackedLn",
+                    -- numhl = "GitSignsUntrackedNr",
+                    -- linehl = "GitSignsUntrackedLn",
                 },
             },
             current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
