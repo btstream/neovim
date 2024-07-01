@@ -6,7 +6,7 @@
 local custom_wezterm_config = vim.fn.expand(string.format("~/.config/wezterm/custom.lua"))
 local custom_wezconfig = {}
 if require("utils.os.path").exists(custom_wezterm_config) then
-    custom_wezconfig = dofile(custom_wezterm_config)
+    custom_wezconfig = require("utils.mods").require_file(custom_wezterm_config)
 end
 
 ----------------------------------------------------------------------

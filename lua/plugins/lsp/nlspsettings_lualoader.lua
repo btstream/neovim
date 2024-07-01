@@ -3,6 +3,7 @@ local schemas = require("nlspsettings.schemas").get_base_schemas_data()
 local path = require("utils.os.path")
 local flatten = require("utils.table").flatten
 local deflatten = require("utils.table").deflatten
+local require_file = require("utils.mods").require_file
 
 local function validate_config(server_name, settings)
     vim.validate({
@@ -42,7 +43,7 @@ function M.get_settings(root_dir, server_name)
     local local_conf_file = vim.fn.expand(string.format("%s/%s/%s.lua", root_dir, local_settings_dir, server_name))
     local local_settings = {}
     if vim.fn.filereadable(local_conf_file) == 1 then
-        local_settings = dofile(local_conf_file)
+        local_settings = require_file(local_conf_file)
     end
     -- local local_settings = vim.fn.filereadable(local_conf_file) == 1 and dofile(local_conf_file) or {}
 
@@ -50,14 +51,14 @@ function M.get_settings(root_dir, server_name)
     local global_conf_file = vim.fn.expand(string.format("%s/%s.lua", global_settings_dir, server_name))
     local global_settings = {}
     if vim.fn.filereadable(global_conf_file) == 1 then
-        global_settings = dofile(global_conf_file)
+        global_settings = require_file(global_conf_file)
     end
 
     -- inner settings
     local inner_conf_file = vim.fn.expand(path.join(M.config_home, server_name .. ".lua"))
     local inner_settings = {}
     if vim.fn.filereadable(inner_conf_file) == 1 then
-        inner_settings = dofile(inner_conf_file)
+        inner_settings = require_file(inner_conf_file)
     end
 
     -- validate

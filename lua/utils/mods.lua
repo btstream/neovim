@@ -37,4 +37,14 @@ function M.require_all(module)
     end
 end
 
+--- load a lua file
+---@param file string full path of the file to load
+function M.require_file(file)
+    local s, r = pcall(dofile, file)
+    if s then
+        return r
+    end
+    vim.notify(r, vim.log.levels.WARN)
+end
+
 return M
