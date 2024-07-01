@@ -4,7 +4,7 @@ local config = {
     -- stylua: ignore start
     ["basedpyright.analysis.typeCheckingMode"]            = "standard",
     ["basedpyright.analysis.useLibraryCodeForTypes"]      = true,
-    ["basedpyright.analysis.diagnosticMode"]              = "workspace",
+    ["basedpyright.analysis.diagnosticMode"]              = "openFilesOnly",
     ["basedpyright.analysis.diagnosticSeverityOverrides"] = {
         ["reportUnknownVariableType"]                     = "information",
         ["reportUnknownMemberType"]                       = "information",
