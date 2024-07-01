@@ -50,9 +50,10 @@ local lsp_indicator = {
     provider = function(self)
         local servers = table.concat(self.clients, ",")
         if #self.clients == 0 then
-            servers = "NONE"
+            return " " .. vim.bo.filetype .. " "
         end
-        return " " .. servers .. " "
+        -- return " " .. servers .. " "
+        return " " .. vim.bo.filetype .. " [" .. servers .. "] "
     end,
     condition = function()
         return not is_nonefiletype()
