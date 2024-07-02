@@ -10,7 +10,7 @@ return {
             lazy = true,
         },
         "polirritmico/telescope-lazy-plugins.nvim",
-        "ahmedkhalf/project.nvim",
+        "DrKJeff16/project.nvim",
     },
     cmd = "Telescope",
     keys = {

@@ -1,5 +1,5 @@
 return {
-    "ahmedkhalf/project.nvim",
+    "DrKJeff16/project.nvim",
     event = { "User BufReadRealFilePost" },
     dependencies = "Shatur/neovim-session-manager",
     config = function()
