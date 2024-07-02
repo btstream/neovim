@@ -29,7 +29,7 @@ return {
     },
 
     {
-        -- "kosayoda/nvim-lightbulb",
+        -- TODO:waiting update for main repo "kosayoda/nvim-lightbulb",
         "gh-liu/nvim-lightbulb",
         dependencies = "antoinemadec/FixCursorHold.nvim",
         event = "LspAttach",
