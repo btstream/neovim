@@ -91,6 +91,7 @@ opt.spell = false
 --                            behavious                             --
 ----------------------------------------------------------------------
 opt.splitright = true
+opt.splitkeep = "screen"
 opt.autoread = true
 -- auto commands to reload buffer
 -- vim.cmd([[
