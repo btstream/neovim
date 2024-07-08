@@ -6,14 +6,14 @@ local config = {
     ["basedpyright.analysis.useLibraryCodeForTypes"]      = true,
     ["basedpyright.analysis.diagnosticMode"]              = "openFilesOnly",
     ["basedpyright.analysis.diagnosticSeverityOverrides"] = {
-        ["reportUnknownVariableType"]                     = "information",
-        ["reportUnknownMemberType"]                       = "information",
-        ["reportUnknownParameterType"]                    = "information",
-        ["reportUnknownLambdaType"]                       = "information",
-        ["reportUnknownArgumentType"]                     = "information",
-        ["reportFunctionMemberAccess"]                    = "information",
-        ["reportOptionalMemberAccess"]                    = "information",
-        ["reportAttributeAccessIssue"]                    = "information",
+        ["reportUnknownVariableType"]                     = "none",
+        ["reportUnknownMemberType"]                       = "none",
+        ["reportUnknownParameterType"]                    = "none",
+        ["reportUnknownLambdaType"]                       = "none",
+        ["reportUnknownArgumentType"]                     = "none",
+        ["reportFunctionMemberAccess"]                    = "none",
+        ["reportOptionalMemberAccess"]                    = "none",
+        ["reportAttributeAccessIssue"]                    = "none",
     },
     -- stylua: ignore end
 }
