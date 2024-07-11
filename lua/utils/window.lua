@@ -85,6 +85,20 @@ function M.quit(buf)
     end
 end
 
+function M.close_others()
+    local current_buf = vim.api.nvim_get_current_buf()
+    local current_win = vim.api.nvim_get_current_win()
+    local wins = vim.api.nvim_tabpage_list_wins(0)
+    for _, w in pairs(wins) do
+        local buf_in_w = vim.api.nvim_win_get_buf(w)
+        if vim.fn.buflisted(buf_in_w) and not filetype.is_nonefiletype(buf_in_w) then
+            if buf_in_w ~= current_buf or w ~= current_win then
+                vim.api.nvim_win_close(w, true)
+            end
+        end
+    end
+end
+
 function M.get_first_normal_window()
     local wins = vim.api.nvim_tabpage_list_wins(0)
     for _, w in pairs(wins) do
