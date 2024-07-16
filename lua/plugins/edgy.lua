@@ -117,9 +117,9 @@ return {
             table.insert(opts[pos], {
                 ft = "trouble",
                 filter = function(_buf, win)
-                    if vim.w[win].trouble then
-                        print(vim.inspect(vim.w[win].trouble))
-                    end
+                    -- if vim.w[win].trouble then
+                    --     print(vim.inspect(vim.w[win].trouble))
+                    -- end
 
                     return vim.w[win].trouble
                         and vim.w[win].trouble.position == pos
