@@ -40,7 +40,7 @@ return {
             },
             ignore_install = { "phpdoc" },
             highlight = { enable = true },
-            -- rainbow = { enable = true },
+            indent = { enable = true },
         })
         local rainbow_delimiters = require("rainbow-delimiters")
         require("rainbow-delimiters.setup").setup({
