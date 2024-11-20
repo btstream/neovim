@@ -6,9 +6,9 @@ local deflatten = require("utils.table").deflatten
 local require_file = require("utils.mods").require_file
 
 local function validate_config(server_name, settings)
-    vim.validate({
-        settings = { settings, "t" },
-    })
+    -- vim.validate({
+    --     settings = { settings, "t" },
+    -- })
 
     local error_key = {}
 

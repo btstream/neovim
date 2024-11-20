@@ -134,9 +134,9 @@ local function flatten(tbl, maxdepth, encoder, setter)
 end
 
 local function deflatten(tbl)
-    vim.validate({
-        tbl = { tbl, "table" },
-    })
+    -- vim.validate({
+    --     tbl = { tbl, "table" },
+    -- })
 
     local res = {}
 

@@ -36,6 +36,13 @@ return {
         { mode = { "n", "i" }, "<C-b>", "<cmd>Telescope buffers<cr>", desc = "open buffers" },
         { mode = { "n", "i" }, "<C-k>r", "<cmd>Telescope resume<cr>", desc = "resume last Telescope session" },
     },
+    opts = {
+        extensions = {
+            lazy_plugins = {
+                lazy_config = vim.fn.stdpath("config") .. "/lua/bootstrap.lua",
+            },
+        },
+    },
     config = function(_, opts)
         local actions = require("telescope.actions")
         local action_set = require("telescope.actions.set")
