@@ -52,13 +52,14 @@ M.on_attach = function(client, buf)
 
     -- formatting before save
     if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = buf })
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
             buffer = buf,
             callback = function()
                 vim.lsp.buf.format({
                     bufnr = buf,
-                    filter = function(client)
+                    filter = function(c)
                         if vim.g.autoformatting == false or vim.b.autoformatting == false then
                             return false
                         end
@@ -76,7 +77,7 @@ M.on_attach = function(client, buf)
                         -- use this client to format document
                         if null_ls_registered_fts == nil or not vim.tbl_contains(null_ls_registered_fts, ft) then
                             return true
-                        elseif client.name == "null-ls" and vim.tbl_contains(null_ls_registered_fts, ft) then
+                        elseif c.name == "null-ls" and vim.tbl_contains(null_ls_registered_fts, ft) then
                             return true
                         else
                             return false
