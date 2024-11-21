@@ -30,7 +30,7 @@ return {
 
     {
         -- TODO:waiting update for main repo "kosayoda/nvim-lightbulb",
-        "gh-liu/nvim-lightbulb",
+        "kosayoda/nvim-lightbulb",
         dependencies = "antoinemadec/FixCursorHold.nvim",
         event = "LspAttach",
         config = function()
