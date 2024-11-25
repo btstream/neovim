@@ -9,6 +9,7 @@ local ns_id = nil
 
 local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 
+-- to check if filetype is configured to format this filetype
 local function check_efm_formatter(filetype)
     local configured_ft = require("lspconfig").efm.manager.config.settings.languages[filetype]
     if configured_ft then
@@ -20,8 +21,6 @@ local function check_efm_formatter(filetype)
 end
 
 --- helper function for lsp server's on_attach callback
---- @param client lsp.Client
---- @param buf number buffer handler
 M.on_attach = function(client, buf)
     -- require("lsp-status").on_attach(client, bufnr)
     -- attach_keys(client, bufnr)
