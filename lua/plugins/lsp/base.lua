@@ -2,7 +2,6 @@ local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 local inlay_hint = require("plugins.lsp.utils").inlay_hint
 local path = require("utils.os.path")
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
@@ -75,6 +74,7 @@ require("mason-lspconfig").setup_handlers({
             return
         end
 
+        -- set up default root dir
         local orig_setup = lspconfig[server_name].setup
         lspconfig[server_name].setup = function(user_config)
             local new_config = vim.tbl_deep_extend("keep", user_config, {
@@ -108,7 +108,8 @@ require("mason-lspconfig").setup_handlers({
             orig_setup(new_config)
         end
 
-        if not pcall(require, "plugins.lsp.providers." .. server_name) then
+        local x, m = pcall(require, "plugins.lsp.providers." .. server_name)
+        if not x then
             lspconfig[server_name].setup({})
         end
     end,

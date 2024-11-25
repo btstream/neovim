@@ -5,6 +5,7 @@ return {
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
+            "creativenull/efmls-configs-nvim",
             "simrat39/rust-tools.nvim",
             "mfussenegger/nvim-jdtls",
             "tamago324/nlsp-settings.nvim",
@@ -104,15 +105,15 @@ return {
         },
     },
 
-    { -- null-ls
-        -- "jose-elias-alvarez/null-ls.nvim",
-        "nvimtools/none-ls.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        event = { "User BufReadReadFilePostDefer" },
-        config = function()
-            require("plugins.lsp.providers.null_ls")
-        end,
-    },
+    -- { -- null-ls
+    --     -- "jose-elias-alvarez/null-ls.nvim",
+    --     "nvimtools/none-ls.nvim",
+    --     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    --     event = { "User BufReadReadFilePostDefer" },
+    --     config = function()
+    --         require("plugins.lsp.providers.null_ls")
+    --     end,
+    -- },
 
     -- python-type-stubs
     {

@@ -14,6 +14,7 @@ local _servers = {
     "fortls",
     "codelldb",
     "java-debug-adapter",
+    "efm",
 }
 
 -- lemminx and clangd is not avaiable on arm platform

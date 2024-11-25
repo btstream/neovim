@@ -1,7 +1,4 @@
 -- local lsp_status = require("lsp-status")
-
-local null_ls_registered_fts = nil
-
 local M = {}
 
 -- used to indicate lsp diagnostic float window id
@@ -11,6 +8,17 @@ local dia_win = nil
 local ns_id = nil
 
 local augroup = vim.api.nvim_create_augroup("LspFormat", {})
+
+local function check_efm_formatter(filetype)
+    local configured_ft = require("lspconfig").efm.manager.config.settings.languages[filetype]
+    if configured_ft then
+        for _, c in pairs(configured_ft) do
+            return c.formatCommand ~= nil
+        end
+    end
+    return false
+end
+
 --- helper function for lsp server's on_attach callback
 --- @param client lsp.Client
 --- @param buf number buffer handler
@@ -19,14 +27,6 @@ M.on_attach = function(client, buf)
     -- attach_keys(client, bufnr)
     -- require("utils.keymap_tools").map(require("keymaps").lsp, bufnr)
     require("plugins.lsp.keymap")(buf)
-
-    if client.name == "null-ls" and null_ls_registered_fts == nil then
-        null_ls_registered_fts = require("null-ls.sources").get_filetypes()
-    end
-
-    -- if client.server_capabilities.documentSymbolProvider then
-    --     require("nvim-navic").attach(client, bufnr)
-    -- end -- save on formatting
 
     -- auto show diagnostics
     vim.api.nvim_create_autocmd({ "CursorHold" }, {
@@ -51,7 +51,7 @@ M.on_attach = function(client, buf)
     end
 
     -- formatting before save
-    if client.supports_method("textDocument/formatting") then
+    if client:supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = buf })
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
@@ -63,24 +63,21 @@ M.on_attach = function(client, buf)
                         if vim.g.autoformatting == false or vim.b.autoformatting == false then
                             return false
                         end
-                        -- to check if null-ls has attached
-                        -- local clients = vim.lsp.buf_get_clients(bufnr)
                         local ft = vim.fn.getbufvar(buf, "&filetype")
-                        -- local has_null_ls = false
-                        -- for _, c in pairs(clients) do
-                        --     if c.name == "null-ls" then
-                        --         has_null_ls = true
-                        --     end
-                        -- end
 
-                        -- if there is no null ls or not configured to format this kind of files, then
-                        -- use this client to format document
-                        if null_ls_registered_fts == nil or not vim.tbl_contains(null_ls_registered_fts, ft) then
-                            return true
-                        elseif c.name == "null-ls" and vim.tbl_contains(null_ls_registered_fts, ft) then
-                            return true
+                        -- if this file is configured with efm
+                        if check_efm_formatter(ft) then
+                            if c.name == "efm" then
+                                return true
+                            else
+                                return false
+                            end
                         else
-                            return false
+                            if c.name == "efm" then
+                                return false
+                            else
+                                return true
+                            end
                         end
                     end,
                 })
