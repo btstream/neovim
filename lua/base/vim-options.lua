@@ -26,8 +26,8 @@ local fillchars = {
 opt.fillchars = fillchars
 opt.list = true
 opt.listchars = {
-    lead = "",
-    space = "",
+    lead = " ",
+    space = " ",
     tab = "  ",
 }
 opt.termguicolors = true
