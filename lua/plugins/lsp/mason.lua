@@ -15,6 +15,7 @@ local _servers = {
     "codelldb",
     "java-debug-adapter",
     "efm",
+    "xmlformatter",
 }
 
 -- lemminx and clangd is not avaiable on arm platform

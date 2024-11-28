@@ -1,8 +1,10 @@
-local stylua = require("plugins.lsp.providers.efm.stylua")
 local yapf = require("efmls-configs.formatters.yapf")
+local stylua = require("plugins.lsp.providers.efm.stylua")
+local xmlformat = require("plugins.lsp.providers.efm.xmlformat")
 local languages = {
     lua = { stylua },
     python = { yapf },
+    xml = { xmlformat },
 }
 
 local default_root_pattern = {
