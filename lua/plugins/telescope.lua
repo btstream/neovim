@@ -31,7 +31,7 @@ return {
         },
         { mode = { "n", "i" }, "<C-k>f", "<cmd>Telescope live_grep<cr>", desc = "find word in workspace" },
         { mode = { "n", "i" }, '<C-k>"', "<cmd>Telescope registers<cr>", desc = "look up registers" },
-        { mode = { "n" }, "z=", "<cmd>Telescope spell_suggest<cr>", desc = "spell suggest" },
+        -- { mode = { "n" }, "z=", "<cmd>Telescope spell_suggest<cr>", desc = "spell suggest" },
         { mode = { "n", "i" }, "<C-k><C-o>", "<cmd>Telescope file_browser<cr>", desc = "open file browser" },
         { mode = { "n", "i" }, "<C-b>", "<cmd>Telescope buffers<cr>", desc = "open buffers" },
         { mode = { "n", "i" }, "<C-k>r", "<cmd>Telescope resume<cr>", desc = "resume last Telescope session" },
