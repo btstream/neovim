@@ -1,3 +1,3 @@
-require("lspconfig").bashls.setup({
+return {
     filetypes = { "sh", "bash", "zsh" },
-})
+}

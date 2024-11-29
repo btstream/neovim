@@ -35,9 +35,9 @@ local settings = {
         },
     },
 }
-require("lspconfig").lemminx.setup({
+return {
     settings = settings,
     init_options = {
         settings = settings,
     },
-})
+}

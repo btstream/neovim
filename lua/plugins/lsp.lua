@@ -8,7 +8,7 @@ return {
             "creativenull/efmls-configs-nvim",
             "simrat39/rust-tools.nvim",
             "mfussenegger/nvim-jdtls",
-            "tamago324/nlsp-settings.nvim",
+            -- "tamago324/nlsp-settings.nvim",
             "onsails/lspkind-nvim",
         },
         config = function()

@@ -1,6 +1,6 @@
 local yapf = require("efmls-configs.formatters.yapf")
-local stylua = require("plugins.lsp.providers.efm.stylua")
-local xmlformat = require("plugins.lsp.providers.efm.xmlformat")
+local stylua = require("plugins.lsp.servers.efm.stylua")
+local xmlformat = require("plugins.lsp.servers.efm.xmlformat")
 local languages = {
     lua = { stylua },
     python = { yapf },
@@ -36,6 +36,8 @@ local efmls_config = {
         documentRangeFormatting = true,
     },
 }
-require("lspconfig").efm.setup(vim.tbl_extend("force", efmls_config, {
-    on_attach = require("plugins.lsp.utils").on_attach,
-}))
+-- return vim.tbl_extend("force", efmls_config, {
+--     on_attach = require("plugins.lsp.utils").on_attach,
+-- })
+
+return efmls_config

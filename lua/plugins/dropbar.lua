@@ -11,7 +11,7 @@ return {
             symbols[key] = string.format("%s ", value)
         end
         require("dropbar").setup(vim.tbl_extend("keep", opts, {
-            general = {
+            bar = {
                 enable = function(buf, win)
                     return not vim.api.nvim_win_get_config(win).zindex
                         and vim.bo[buf].buftype == ""

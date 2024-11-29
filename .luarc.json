@@ -3,5 +3,8 @@
         "unused-vararg",
         "different-requires",
         "redefined-local"
+    ],
+    "diagnostics.globals": [
+        "vim"
     ]
 }

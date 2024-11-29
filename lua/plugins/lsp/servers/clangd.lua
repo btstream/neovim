@@ -1,6 +1,6 @@
 local lspconfig_utils = require("lspconfig.util")
 lspconfig_utils.default_config.capabilities.offsetEncoding = { "utf-16" }
-require("lspconfig").clangd.setup({
+return {
     cmd = {
         "clangd",
         "--background-index",
@@ -12,4 +12,4 @@ require("lspconfig").clangd.setup({
         "--log=verbose",
     },
     capabilities = lspconfig_utils.default_config.capabilities,
-})
+}
