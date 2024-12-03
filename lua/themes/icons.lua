@@ -1,7 +1,7 @@
-local M = {}
+local M                = {}
 
 -- stylua: ignore start
-M.lsp_symbols     = {
+M.lsp_symbols          = {
     Text          = "󰭸",
     Method        = "",
     Function      = "",
@@ -45,13 +45,13 @@ M.lsp_symbols     = {
 }
 
 M.lsp_diagnostic_signs = {
-    Error              = "",
-    Warn               = "",
-    Hint               = "",
-    Info               = "󰍪",
+    Error = "",
+    Warn  = "",
+    Hint  = "",
+    Info  = "󰍪",
 }
 
-M.dap_icons             = {
+M.dap_icons            = {
     BreakPoint          = "",
     BreakPointCondition = "",
     BreakLogPoint       = "",
@@ -59,7 +59,7 @@ M.dap_icons             = {
     BreakPointRejected  = "",
 }
 
-M.mode_icons  = {
+M.mode_icons           = {
     ["n"]     = "󰌌",
     ["no"]    = "󰌌",
     ["nov"]   = "󰌌",
@@ -97,18 +97,18 @@ M.mode_icons  = {
     ["t"]     = "",
 }
 
-M.gitstatus_icons = {
+M.gitstatus_icons      = {
     -- Change type
-    added          = "", -- NOTE: you can set any of these to an empty string to not show them
-    deleted        = "",
-    modified       = "",
-    renamed        = "",
+    added     = "", -- NOTE: you can set any of these to an empty string to not show them
+    deleted   = "",
+    modified  = "",
+    renamed   = "",
     -- Status type
-    untracked      = "󰒉",
-    ignored        = "",
-    unstaged       = "󱨈",
-    staged         = "󰄬",
-    conflict       = "",
+    untracked = "󰒉",
+    ignored   = "",
+    unstaged  = "󱨈",
+    staged    = "󰄬",
+    conflict  = "",
 }
 
 M.filetype_icons       = {
@@ -141,7 +141,7 @@ M.filetype_icons       = {
     Glance             = "",
 }
 
-M.common_ui_icons     = {
+M.common_ui_icons      = {
     folder            = "󰉋",
     folder_open       = "󰝰",
     folder_empty      = "󰉖",

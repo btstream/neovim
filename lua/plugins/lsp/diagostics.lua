@@ -13,7 +13,8 @@ local config = {
         title = " 󰩂 Diagnostics ",
         source = "always",
         max_width = 180,
-        winhighlight = "NormalFloat:LspWinDiagnosticsNormal,FloatBorder:LspWinDiagnosticsBorder,FloatTitle:LspWinDiagnosticsTitle",
+        winhighlight =
+        "NormalFloat:LspWinDiagnosticsNormal,FloatBorder:LspWinDiagnosticsBorder,FloatTitle:LspWinDiagnosticsTitle",
         prefix = function(d, i, _)
             local highlight = "Normal"
             if d.severity == vim.diagnostic.severity.ERROR then

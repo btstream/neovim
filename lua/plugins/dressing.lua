@@ -38,7 +38,8 @@ return {
                 win_options = {
                     winblend = 5,
                     -- Change default highlight groups (see :help winhl)
-                    winhighlight = "NormalFloat:InputUIFloatWinNormal,FloatBorder:InputUIFloatBorder,FloatTitle:InputUIFloatTitle",
+                    winhighlight =
+                    "NormalFloat:InputUIFloatWinNormal,FloatBorder:InputUIFloatBorder,FloatTitle:InputUIFloatTitle",
                 },
 
                 -- Set to `false` to disable
@@ -68,7 +69,8 @@ return {
                         return {
                             relative = "cursor",
                             win_options = {
-                                winhighlight = "NormalFloat:LspFloatWinNormal,FloatBorder:LspWinRenameBorder,FloatTitle:LspWinRenameTitle",
+                                winhighlight =
+                                "NormalFloat:LspFloatWinNormal,FloatBorder:LspWinRenameBorder,FloatTitle:LspWinRenameTitle",
                             },
                         }
                     end
@@ -114,7 +116,8 @@ return {
                     },
                     win_options = {
                         winblend = 5,
-                        winhighlight = "NormalFloat:SelectUIFloatWinNormal,FloatBorder:SelectUIFloatBorder,FloatTitle:SelectUIFloatTitle",
+                        winhighlight =
+                        "NormalFloat:SelectUIFloatWinNormal,FloatBorder:SelectUIFloatBorder,FloatTitle:SelectUIFloatTitle",
                     },
                     max_width = 320,
                     max_height = 40,
@@ -133,7 +136,8 @@ return {
                             nui = {
                                 relative = "cursor",
                                 win_options = {
-                                    winhighlight = "NormalFloat:LspFloatWinNormal,FloatBorder:LspWinCodeActionBorder,FloatTitle:LspWinCodeActionTitle",
+                                    winhighlight =
+                                    "NormalFloat:LspFloatWinNormal,FloatBorder:LspWinCodeActionBorder,FloatTitle:LspWinCodeActionTitle",
                                 },
                             },
                         }

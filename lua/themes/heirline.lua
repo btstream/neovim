@@ -3,25 +3,25 @@ local M = {}
 
 -- stylua: ignore start
 local mode_colors = {
-    n                 = "blue",
-    i                 = "green",
-    v                 = "purple",
-    V                 = "purple",
-    ["\22"]           = "cyan",
-    c                 = "blue",
-    s                 = "yellow",
-    S                 = "yellow",
-    ["\19"]           = "purple",
-    R                 = "orange",
-    r                 = "blue",
-    ["!"]             = "DarkRed",
-    t                 = "green",
+    n       = "blue",
+    i       = "green",
+    v       = "purple",
+    V       = "purple",
+    ["\22"] = "cyan",
+    c       = "blue",
+    s       = "yellow",
+    S       = "yellow",
+    ["\19"] = "purple",
+    R       = "orange",
+    r       = "blue",
+    ["!"]   = "DarkRed",
+    t       = "green",
 }
 -- style: ignore end
 
 function M.get_heirline_color()
     local colors = require("themes.colors.manager").colors()
-    
+
     -- stylua: ignore start
     return {
         red        = colors.base0F,
@@ -48,7 +48,6 @@ function M.get_mode_color(self)
     local mode = self.mode:sub(1, 1) -- get only the first mode character
     local bg, fg = mode_colors[mode], "black"
     return { bg = bg, fg = fg }
-
 end
 
 return M

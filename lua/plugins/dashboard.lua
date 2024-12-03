@@ -50,7 +50,7 @@ return {
         local footer = {
             "",
             string.format("🚀 started in %.2fms", lazy_stats.startuptime)
-                .. string.format(", with %s of %s plugins loaded", lazy_stats.loaded, lazy_stats.count),
+            .. string.format(", with %s of %s plugins loaded", lazy_stats.loaded, lazy_stats.count),
         }
 
         ----------------------------------------------------------------------
@@ -60,8 +60,8 @@ return {
             theme = "hyper",
             hide = {
                 statusline = false, -- hide statusline default is true
-                tabline = false, -- hide the tabline
-                winbar = true, -- hide winbar
+                tabline = false,    -- hide the tabline
+                winbar = true,      -- hide winbar
             },
             config = {
                 header = header,

@@ -8,10 +8,10 @@ return {
         "mfussenegger/nvim-dap-python",
     },
     keys = {
-        { "<F6>", "<cmd>lua require'dap'.continue()<CR>" },
-        { "<F10>", "<cmd>lua require'dap'.step_over()<CR>" },
-        { "<F11>", "<cmd>lua require'dap'.step_into()<CR>" },
-        { "<F12>", "<cmd>lua require'dap'.step_out()<CR>" },
+        { "<F6>",      "<cmd>lua require'dap'.continue()<CR>" },
+        { "<F10>",     "<cmd>lua require'dap'.step_over()<CR>" },
+        { "<F11>",     "<cmd>lua require'dap'.step_into()<CR>" },
+        { "<F12>",     "<cmd>lua require'dap'.step_out()<CR>" },
         { "<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>" },
         { "<leader>B", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>" },
         {

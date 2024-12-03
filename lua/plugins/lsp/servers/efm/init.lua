@@ -1,11 +1,16 @@
 local yapf = require("efmls-configs.formatters.yapf")
 local stylua = require("plugins.lsp.servers.efm.stylua")
 local xmlformat = require("plugins.lsp.servers.efm.xmlformat")
+
 local languages = {
-    lua = { stylua },
     python = { yapf },
     xml = { xmlformat },
 }
+
+-- only use stylua to format if stylua is set in project' dir
+if stylua ~= true then
+    languages.lua = { stylua }
+end
 
 local default_root_pattern = {
     -- custom pattern

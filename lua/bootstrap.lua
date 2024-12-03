@@ -18,9 +18,9 @@ local user_spec_path = path.join(vim.fn.stdpath("config"), "lua", "users", "plug
 if
     path.exists(user_spec_path)
     and #path.ls(user_spec_path, function(fname)
-            return vim.fn.fnamemodify(fname, ":e") == "lua"
-        end)
-        > 0
+        return vim.fn.fnamemodify(fname, ":e") == "lua"
+    end)
+    > 0
 then
     table.insert(spec, { import = "users.plugins" })
 end

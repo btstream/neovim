@@ -36,19 +36,19 @@ return {
         end
 
         return {
-            { "<A-,>", "<cmd>BufferLineCyclePrev<CR>" },
-            { "<A-.>", "<cmd>BufferLineCycleNext<CR>" },
-            { "<A-1>", go_to_tab(1) },
-            { "<A-2>", go_to_tab(2) },
-            { "<A-3>", go_to_tab(3) },
-            { "<A-4>", go_to_tab(4) },
-            { "<A-5>", go_to_tab(5) },
-            { "<A-6>", go_to_tab(6) },
-            { "<A-7>", go_to_tab(7) },
-            { "<A-8>", go_to_tab(8) },
-            { "<A-9>", go_to_tab(9) },
-            { "<Space>pp", "<cmd>BufferLinePick<CR>" },
-            { mode = { "n", "i" }, "<A-w>", require("utils.window").quit },
+            { "<A-,>",             "<cmd>BufferLineCyclePrev<CR>" },
+            { "<A-.>",             "<cmd>BufferLineCycleNext<CR>" },
+            { "<A-1>",             go_to_tab(1) },
+            { "<A-2>",             go_to_tab(2) },
+            { "<A-3>",             go_to_tab(3) },
+            { "<A-4>",             go_to_tab(4) },
+            { "<A-5>",             go_to_tab(5) },
+            { "<A-6>",             go_to_tab(6) },
+            { "<A-7>",             go_to_tab(7) },
+            { "<A-8>",             go_to_tab(8) },
+            { "<A-9>",             go_to_tab(9) },
+            { "<Space>pp",         "<cmd>BufferLinePick<CR>" },
+            { mode = { "n", "i" }, "<A-w>",                       require("utils.window").quit },
         }
     end,
     config = function(_, opts)
@@ -126,10 +126,10 @@ return {
                 middle_mouse_command = nil,
                 indicator = {
                     style = (
-                        (os.getenv("TERM_PROGRAM") == "WezTerm" or os.getenv("TERM") == "xterm-kitty")
-                        and (vim.fn.has("win32") ~= 1 and vim.fn.has("wsl") ~= 1)
-                    )
-                            and "underline"
+                            (os.getenv("TERM_PROGRAM") == "WezTerm" or os.getenv("TERM") == "xterm-kitty")
+                            and (vim.fn.has("win32") ~= 1 and vim.fn.has("wsl") ~= 1)
+                        )
+                        and "underline"
                         or "icon",
                     icon = "▎ ",
                     -- icon = "▍",

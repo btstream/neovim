@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
         -- as neo-tree registed a autocmd to hijack netrw
         local path = vim.fn.expand("%:p")
         if
-            -- vim.fn.isdirectory(vim.fn.expand("%:p")) == 1
+        -- vim.fn.isdirectory(vim.fn.expand("%:p")) == 1
             vim.fn.isdirectory(path) == 1
             and require("lazy.core.config").plugins["neo-tree.nvim"]._.loaded == nil
         then
