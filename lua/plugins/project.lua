@@ -34,5 +34,9 @@ return {
             autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
             max_path_length = 80,             -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
         })
+
+        -- a little trick to do an BufEnter event to update proejct's current dir
+        -- on first load
+        require("project_nvim.project").on_buf_enter()
     end,
 }
