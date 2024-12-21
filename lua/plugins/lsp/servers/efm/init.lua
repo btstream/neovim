@@ -1,10 +1,13 @@
 local yapf = require("efmls-configs.formatters.yapf")
-local stylua = require("plugins.lsp.servers.efm.stylua")
-local xmlformat = require("plugins.lsp.servers.efm.xmlformat")
+local stylua = require("plugins.lsp.servers.efm.formatter.stylua")
+local xmlformat = require("plugins.lsp.servers.efm.formatter.xmlformat")
+local prettierd = require("plugins.lsp.servers.efm.formatter.prettierd")
 
 local languages = {
     python = { yapf },
     xml = { xmlformat },
+    json = { prettierd },
+    jsonc = { prettierd }
 }
 
 -- only use stylua to format if stylua is set in project' dir

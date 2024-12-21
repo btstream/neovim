@@ -16,17 +16,13 @@ local _servers = {
     "java-debug-adapter",
     "efm",
     "xmlformatter",
+    "prettierd",
 }
 
 -- lemminx and clangd is not avaiable on arm platform
 if os.arch() ~= "arm64" then
     table.insert(_servers, "lemminx")
     table.insert(_servers, "clangd")
-end
-
-if vim.fn.has("win32") == 1 then
-    table.insert(_servers, "stylua")
-    table.insert(_servers, "jq")
 end
 
 require("mason").setup()
