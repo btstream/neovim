@@ -9,6 +9,9 @@ return {
     end,
     opts = function()
         local opts = {
+            animate = {
+                enabled = false,
+            },
             top = {
                 {
                     ft = "help",
@@ -63,7 +66,7 @@ return {
                     filter = function(buf)
                         return vim.b[buf].neo_tree_source == "buffers"
                     end,
-                    pinned = true,
+                    -- pinned = true,
                     open = "Neotree position=top buffers",
                 },
                 {
@@ -75,7 +78,7 @@ return {
                     wo = {
                         winhighlight = "EdgyTitle:EdgyTitleNeoTreeGit",
                     },
-                    pinned = true,
+                    -- pinned = true,
                     open = "Neotree position=right git_status",
                 },
             },
