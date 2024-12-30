@@ -196,6 +196,12 @@ function M.define()
         ----------------------------------------------------------------------
         --                              Notify                              --
         ----------------------------------------------------------------------
+        NotifyBackground                = { bg = colors.base00 },
+        NotifyERROR                     = { fg = colors.base08, bg = colors.base00 },
+        NotifyWARN                      = { fg = colors.base0E, bg = colors.base00 },
+        NotifyINFO                      = { fg = colors.base0B, bg = colors.base00 },
+        NotifyDEBUG                     = { fg = colors.base0C, bg = colors.base00 },
+        NotifyTRACE                     = { fg = colors.base0C, bg = colors.base00 },
         NotifyERRORBorder               = { fg = colors.base08, bg = colors.base00 },
         NotifyWARNBorder                = { fg = colors.base0E, bg = colors.base00 },
         NotifyINFOBorder                = { fg = colors.base0B, bg = colors.base00 },

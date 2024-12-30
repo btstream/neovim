@@ -109,7 +109,7 @@ return {
         -- ensure enter insert mode when terminal gained focus
         vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter" }, {
             callback = function()
-                if vim.bo.filetype:upper() == "TOGGLETERM" then
+                if vim.bo.filetype == "toggleterm" then
                     vim.cmd("startinsert")
                 end
             end,
