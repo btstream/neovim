@@ -79,7 +79,7 @@ return {
                 vim.keymap.set("t", "<C-w>l", [[<Cmd>wincmd l<CR>]], opts)
 
                 for i = 1, 10, 1 do
-                    vim.keymap.set("t", string.format("<A-%d>", i), go_to_terminal(i), opts)
+                    vim.keymap.set("t", string.format("<A-%d>", i), go_to_terminal(i))
                 end
             end,
         }))
@@ -110,7 +110,7 @@ return {
         vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter" }, {
             callback = function()
                 if vim.bo.filetype == "toggleterm" then
-                    vim.cmd("startinsert")
+                    vim.cmd("startinsert!")
                 end
             end,
         })
