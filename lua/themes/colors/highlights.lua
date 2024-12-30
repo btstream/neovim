@@ -135,6 +135,7 @@ function M.define()
         TelescopePreviewBorder          = { bg = dbg020, fg = dbg020 },
         TelescopePreviewTitle           = { bg = colors.base0B },
         TelescopeResultsLineNr          = { bg = "None" },
+        TelescopePromptCounter          = { fg = darken(colors.base05, .60) },
 
         ----------------------------------------------------------------------
         --                               CMP                                --
