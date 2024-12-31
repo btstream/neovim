@@ -1,3 +1,3 @@
 require("base")
-require("bootstrap")
+require("plugins-manager")
 require("themes")
