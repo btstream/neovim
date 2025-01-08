@@ -39,7 +39,7 @@ return {
     opts = {
         extensions = {
             lazy_plugins = {
-                lazy_config = vim.fn.stdpath("config") .. "/lua/bootstrap.lua",
+                lazy_config = vim.fn.stdpath("config") .. "/lua/plugins-manager.lua",
             },
         },
     },
