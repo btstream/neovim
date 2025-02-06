@@ -29,8 +29,11 @@ local M = {}
 --- if not, return nil
 ---@return table<string, number>
 function M.get_active_sources()
-    local sources = require("neo-tree").config.sources
     local active = {}
+    if not require("neo-tree").config then
+        return active
+    end
+    local sources = require("neo-tree").config.sources
     for i, s in pairs(sources) do
         if renderer.window_exists(manager.get_state(s)) then
             table.insert(active, s)
