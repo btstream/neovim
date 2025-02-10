@@ -126,7 +126,7 @@ return {
                 middle_mouse_command = nil,
                 indicator = {
                     style = (
-                            (os.getenv("TERM_PROGRAM") == "WezTerm" or os.getenv("TERM") == "xterm-kitty")
+                            (os.getenv("TERM_PROGRAM") == "WezTerm" or os.getenv("TERM") == "xterm-kitty" or os.getenv("TERM") == "xterm-ghostty")
                             and (vim.fn.has("win32") ~= 1 and vim.fn.has("wsl") ~= 1)
                         )
                         and "underline"

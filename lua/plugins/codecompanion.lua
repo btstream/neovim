@@ -7,6 +7,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
     },
     opts = {
+        log_level = "DEBUG",
         strategies = {
             chat = {
                 adapter = "deepseek",
@@ -20,6 +21,11 @@ return {
                 return require("codecompanion.adapters").extend("deepseek", {
                     env = {
                         api_key = "cmd: rbw get DeepSeek-API"
+                    },
+                    schema = {
+                        model = {
+                            default = "deepseek-chat",
+                        }
                     }
                 })
             end
