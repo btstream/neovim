@@ -52,6 +52,7 @@ return {
         }
     end,
     config = function(_, opts)
+        local termapp = require("utils.os.terminal")
         ---@diagnostic disable-next-line: undefined-field
         require("bufferline").setup(vim.tbl_extend("keep", opts, {
             options = {
@@ -126,7 +127,7 @@ return {
                 middle_mouse_command = nil,
                 indicator = {
                     style = (
-                            (os.getenv("TERM_PROGRAM") == "WezTerm" or os.getenv("TERM") == "xterm-kitty" or os.getenv("TERM") == "xterm-ghostty")
+                            termapp.is_fully_supported()
                             and (vim.fn.has("win32") ~= 1 and vim.fn.has("wsl") ~= 1)
                         )
                         and "underline"

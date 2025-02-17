@@ -1,11 +1,15 @@
 local M = {}
 
-function M.is_wezterm_or_kitty()
+function M.is_fully_supported()
     if os.getenv("TERM_PROGRAM") == "WezTerm" then
         return true
     end
 
     if os.getenv("TERM") == "xterm-kitty" then
+        return true
+    end
+
+    if os:getenv("TERM") == "xterm-ghostty" then
         return true
     end
 

@@ -6,7 +6,7 @@ local chars = {
         return "╲"
     end,
     right_block = function()
-        if termapp.is_wezterm_or_kitty() then
+        if termapp.is_fully_supported() then
             return ""
         end
 
@@ -20,7 +20,7 @@ local chars = {
         return "╱"
     end,
     left_block = function()
-        if termapp.is_wezterm_or_kitty() then
+        if termapp.is_fully_supported() then
             return ""
         end
 
