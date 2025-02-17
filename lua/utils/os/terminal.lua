@@ -9,7 +9,7 @@ function M.is_fully_supported()
         return true
     end
 
-    if os:getenv("TERM") == "xterm-ghostty" then
+    if os.getenv("TERM") == "xterm-ghostty" then
         return true
     end
 
