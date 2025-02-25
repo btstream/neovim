@@ -12,6 +12,7 @@ return {
         "polirritmico/telescope-lazy-plugins.nvim",
         "DrKJeff16/project.nvim",
     },
+    enabled = false,
     cmd = "Telescope",
     keys = {
         { mode = { "n" },      "<Leader>fh", "<cmd>Telescope oldfiles<CR>",                         desc = "Open file history" },

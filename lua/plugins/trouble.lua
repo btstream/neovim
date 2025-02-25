@@ -18,6 +18,7 @@ return {
         -- },
     }, -- for default options, refer to the configuration section for custom setup.
     cmd = "Trouble",
+    enabled = false,
     keys = {
         {
             "<leader>xx",

@@ -1,12 +1,13 @@
 return {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
+    enabled = false,
     config = function(_, opts)
         local icons = require("themes.icons").filetype_icons
         require("dressing").setup(vim.tbl_extend("keep", opts, {
             input = {
                 -- Set to false to disable the vim.ui.input implementation
-                enabled = true,
+                enabled = false,
 
                 -- Default prompt string
                 default_prompt = " Input: ",
