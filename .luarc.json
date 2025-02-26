@@ -5,6 +5,7 @@
         "redefined-local"
     ],
     "diagnostics.globals": [
-        "vim"
+        "vim",
+        "Snacks"
     ]
 }
