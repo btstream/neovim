@@ -1,5 +1,5 @@
 return {
-    prompt = "   ",
+    prompt = "    ",
     layout = {
         cycle = true,
         --- Use the default layout or vertical if the window is too narrow

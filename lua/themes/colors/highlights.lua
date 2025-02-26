@@ -147,7 +147,8 @@ function M.define()
         -- SnacksPickerInput               = { bg = dbg030 },
         -- SnacksPickerInputBorder         = { bg = dbg030, fg = dbg030 },
         -- SnacksPickerBorder              = { bg = dbg030, fg = dbg030 },
-        -- SnacksPickerList                = { bg = dbg030 },
+        SnacksPickerList                = { bg = dbg020 },
+        SnacksPickerListBorder          = { bg = dbg020, fg = dbg020 },
 
 
         ----------------------------------------------------------------------
