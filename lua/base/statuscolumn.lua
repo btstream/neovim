@@ -94,6 +94,8 @@ if vim.fn.has("nvim-0.9") == 1 then
                     vim.opt_local.number = false
                 elseif vim.bo.filetype == "help" then
                     vim.opt_local.statuscolumn = "    "
+                elseif string.match(vim.bo.filetype, "^snacks_.*") then
+                    return
                 else
                     vim.opt_local.statuscolumn = ""
                 end

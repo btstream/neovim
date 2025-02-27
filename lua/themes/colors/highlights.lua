@@ -144,11 +144,11 @@ function M.define()
         SnacksPickerPreviewTitle        = { bg = colors.base0B, fg = colors.base00 },
         SnacksPickerPreview             = { bg = dbg030 },
         SnacksPickerPreviewBorder       = { bg = dbg030, fg = dbg030 },
-        -- SnacksPickerInput               = { bg = dbg030 },
-        -- SnacksPickerInputBorder         = { bg = dbg030, fg = dbg030 },
+        SnacksPickerInput               = { bg = colors.base00 },
+        SnacksPickerInputBorder         = { bg = colors.base00, fg = colors.base00 },
         -- SnacksPickerBorder              = { bg = dbg030, fg = dbg030 },
-        SnacksPickerList                = { bg = dbg020 },
-        SnacksPickerListBorder          = { bg = dbg020, fg = dbg020 },
+        SnacksPickerList                = { bg = dbg010 },
+        SnacksPickerListBorder          = { bg = dbg010, fg = dbg010 },
 
 
         ----------------------------------------------------------------------

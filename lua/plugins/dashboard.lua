@@ -3,6 +3,7 @@ return {
     "nvimdev/dashboard-nvim",
     -- make dashboard load earlier, to make bufferline loaded more lazily
     event = "User LazyVimStarted",
+    enabled = false,
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
     config = function(_, opts)
         ----------------------------------------------------------------------

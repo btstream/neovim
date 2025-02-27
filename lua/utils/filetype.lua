@@ -3,6 +3,8 @@ local M = {}
 M._nonefiletypes = {
     "TelescopePrompt",
     "TelescopePreview",
+    "snacks_picker_input",
+    "snacks_dashboard",
     "dashboard",
     "lsp-installer",
     "lspinfo",
