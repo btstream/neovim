@@ -9,10 +9,10 @@ return {
             box = "horizontal",
             {
                 win = "list",
-                border = "right",
+                border = "single",
                 width = 0.4,
                 wo = {
-                    statuscolumn = "  "
+                    statuscolumn = " "
                 }
             },
             {
@@ -20,7 +20,7 @@ return {
                 border = "single",
                 wo = {
                     number = false,
-                    statuscolumn = "  "
+                    statuscolumn = "   "
                 }
             }
         }

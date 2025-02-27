@@ -144,11 +144,15 @@ function M.define()
         SnacksPickerPreviewTitle        = { bg = colors.base0B, fg = colors.base00 },
         SnacksPickerPreview             = { bg = dbg030 },
         SnacksPickerPreviewBorder       = { bg = dbg030, fg = dbg030 },
-        SnacksPickerInput               = { bg = colors.base00 },
-        SnacksPickerInputBorder         = { bg = colors.base00, fg = colors.base00 },
+        SnacksPickerInput               = { bg = darken(colors.base02, 0.1) },
+        SnacksPickerInputBorder         = { bg = darken(colors.base02, 0.1), fg = darken(colors.base02, 0.1) },
         -- SnacksPickerBorder              = { bg = dbg030, fg = dbg030 },
         SnacksPickerList                = { bg = dbg010 },
         SnacksPickerListBorder          = { bg = dbg010, fg = dbg010 },
+        SnacksPickerListCursorLine      = { bg = colors.base01, fg = colors.base06 },
+        SnacksPickerDir                 = { fg = darken(colors.base04, 0.1) },
+        SnacksPickerTotals              = { fg = darken(colors.base05, 0.6) },
+        SnacksPickerPrompt              = { fg = colors.base08 },
 
 
         ----------------------------------------------------------------------
