@@ -154,6 +154,10 @@ function M.define()
         SnacksPickerTotals              = { fg = darken(colors.base05, 0.6) },
         SnacksPickerPrompt              = { fg = colors.base08 },
 
+        SnacksDashBoardDesc             = { fg = darken(colors.base04, 0.3) },
+        SnacksDashBoardIcon             = { fg = colors.base0D },
+        SnacksDashBoardDir              = "SnacksDashBoardDesc",
+
 
         ----------------------------------------------------------------------
         --                               CMP                                --
