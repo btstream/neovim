@@ -149,7 +149,7 @@ function M.define()
         -- SnacksPickerBorder              = { bg = dbg030, fg = dbg030 },
         SnacksPickerList                = { bg = dbg010 },
         SnacksPickerListBorder          = { bg = dbg010, fg = dbg010 },
-        SnacksPickerListCursorLine      = { bg = colors.base01, fg = colors.base06 },
+        -- SnacksPickerListCursorLine      = { bg = colors.base01, fg = colors.base06 },
         SnacksPickerDir                 = { fg = darken(colors.base04, 0.1) },
         SnacksPickerTotals              = { fg = darken(colors.base05, 0.6) },
         SnacksPickerPrompt              = { fg = colors.base08 },
