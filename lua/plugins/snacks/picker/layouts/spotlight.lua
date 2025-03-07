@@ -20,7 +20,8 @@ return {
                 border = "single",
                 wo = {
                     number = false,
-                    statuscolumn = "   "
+                    statuscolumn = "   ",
+                    winbar = ""
                 }
             }
         }

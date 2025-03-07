@@ -13,6 +13,12 @@ return {
             layout = {
                 preset = "cursor_select",
             }
-        }
+        },
+        lsp_declarations = { layout = { preset = "lsp" } },
+        lsp_definitions = { layout = { preset = "lsp" } },
+        lsp_implementations = { layout = { preset = "lsp" } },
+        lsp_references = { layout = { preset = "lsp" } },
+        -- diagnostics = { layout = { preset = "lsp" } },
+        -- diagnostics_buffer = { layout = { preset = "lsp" } },
     }
 }

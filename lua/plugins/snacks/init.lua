@@ -4,6 +4,12 @@ return {
     lazy = false,
     -- dir = "/home/lzc/Development/projects_for_opensource/snacks.nvim",
     -- dev = true,
+    formatters = {
+        file = {
+            truncate = 25,
+            icon_width = 4,
+        },
+    },
     opts = {
         -- your configuration comes here
         -- or leave it empty to use the default settings
