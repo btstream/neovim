@@ -5,6 +5,7 @@ M._nonefiletypes = {
     "TelescopePreview",
     "snacks_picker_input",
     "snacks_dashboard",
+    "snacks_diagnostics",
     "dashboard",
     "lsp-installer",
     "lspinfo",

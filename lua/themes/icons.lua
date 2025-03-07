@@ -130,6 +130,7 @@ M.filetype_icons       = {
     TelescopePrompt     = "",
     snacks_picker_input = "",
     snacks_dashboard    = "󰨇",
+    snacks_diagnostics  = "",
     dashboard           = "󰨇",
     Lazygit             = "",
     mason               = "",

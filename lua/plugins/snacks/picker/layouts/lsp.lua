@@ -10,7 +10,10 @@ return {
         },
         {
             win = "preview",
-            width = .75
+            width = .75,
+            wo = {
+                winbar = ""
+            },
         },
         {
             box = "vertical",
