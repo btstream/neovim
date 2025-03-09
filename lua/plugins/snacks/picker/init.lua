@@ -3,7 +3,14 @@ return {
     layout = {
         cycle = true,
         --- Use the default layout or vertical if the window is too narrow
-        preset = function()
+        preset = function(source)
+            if string.match(source, "^diagnostics.*") then
+                return "diagnostics"
+            end
+            if string.match(source, "^lsp_.*") then
+                print(source)
+                return "diagnostics"
+            end
             return vim.o.columns >= 120 and "spotlight" or "vertical"
         end,
     },
@@ -14,11 +21,5 @@ return {
                 preset = "cursor_select",
             }
         },
-        lsp_declarations = { layout = { preset = "lsp" } },
-        lsp_definitions = { layout = { preset = "lsp" } },
-        lsp_implementations = { layout = { preset = "lsp" } },
-        lsp_references = { layout = { preset = "lsp" } },
-        diagnostics = { layout = { preset = "diagnostics" } },
-        diagnostics_buffer = { layout = { preset = "diagnostics" } },
     }
 }
