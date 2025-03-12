@@ -7,11 +7,19 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end,
 })
 
-vim.api.nvim_create_autocmd({ "WinEnter", "FileType" }, {
+vim.api.nvim_create_autocmd({ "WinEnter", "FileType", "BufEnter" }, {
     -- pattern = "*",
     callback = function(event)
         local colors = require("themes.colors.manager").colors()
         local filetype = vim.api.nvim_get_option_value("filetype", { buf = event.buf })
+
+        if require("utils.filetype").is_nonefiletype(event.buf)
+            or vim.fn.buflisted(event.buf) ~= 1
+        then
+            if filetype ~= "neo-tree" and filetype ~= "Outline" then
+                return
+            end
+        end
 
         if filetype == "neo-tree" then
             local highlights = {}
@@ -56,7 +64,7 @@ vim.api.nvim_create_autocmd({ "WinEnter", "FileType" }, {
                 EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
                 EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
             })
-        elseif filetype ~= "notify" then
+        else
             set_hl({
                 NvimTreeSidebarTitle = { bg = colors.base00, fg = colors.base03 },
                 OutlineSidebarTitle = { bg = colors.base00, fg = colors.base03 },
