@@ -21,6 +21,11 @@ return {
             wo = { winhighlight = "NormalFloat:Normal" },
             bo = { filetype = "snacks_diagnostics" },
         },
-        { win = "preview" }
+        {
+            win = "preview",
+            wo = {
+                winbar = ""
+            }
+        }
     },
 }

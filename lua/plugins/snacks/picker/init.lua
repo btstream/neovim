@@ -8,7 +8,7 @@ return {
                 return "diagnostics"
             end
             if string.match(source, "^lsp_.*") then
-                return "diagnostics"
+                return "lsp"
             end
             return vim.o.columns >= 120 and "spotlight" or "vertical"
         end,
