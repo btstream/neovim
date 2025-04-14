@@ -30,6 +30,7 @@ M._nonefiletypes = {
     "dropbar_menu",
     "edgy",
     "Glance",
+    "codecompanion"
 }
 
 M._icons = require("themes.icons").filetype_icons

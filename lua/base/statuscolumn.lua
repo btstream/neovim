@@ -89,7 +89,7 @@ if vim.fn.has("nvim-0.9") == 1 then
                     vim.opt_local.number = false
                 elseif vim.bo.filetype == "toggleterm" then
                     vim.opt_local.statuscolumn = " "
-                elseif vim.bo.filetype == "noice" then
+                elseif vim.bo.filetype == "noice" or vim.bo.filetype == "codecompanion" then
                     vim.opt_local.statuscolumn = " "
                     vim.opt_local.number = false
                 elseif vim.bo.filetype == "help" then

@@ -142,6 +142,7 @@ M.filetype_icons       = {
     documentation       = "󰬋",
     dropbar_menu        = "󰮫",
     Glance              = "",
+    codecompanion       = "󰍩",
 }
 
 M.common_ui_icons      = {
