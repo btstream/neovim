@@ -38,6 +38,7 @@ function M.common_settings()
             end
         ),
     })
+    vim.lsp.config("*", lspconfig_utils.default_config)
 end
 
 return M

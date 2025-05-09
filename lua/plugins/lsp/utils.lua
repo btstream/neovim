@@ -11,7 +11,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormat", {})
 
 -- to check if filetype is configured to format this filetype
 local function check_efm_formatter(filetype)
-    local configured_ft = require("lspconfig").efm.manager.config.settings.languages[filetype]
+    local configured_ft = vim.lsp.config["efm"].settings.languages[filetype]
     if configured_ft then
         for _, c in pairs(configured_ft) do
             return c.formatCommand ~= nil

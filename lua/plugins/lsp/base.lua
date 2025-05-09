@@ -10,21 +10,21 @@ require("plugins.lsp.servers").common_settings()
 local disabled_server = { "pylyzer" }
 
 require("plugins.lsp.mason")
-require("mason-lspconfig").setup_handlers({
-    function(server_name)
-        if vim.tbl_contains(disabled_server, server_name) then
-            return
-        end
+for _, server_name in ipairs(require("mason-lspconfig").get_installed_servers()) do
+    if vim.tbl_contains(disabled_server, server_name) then
+        goto continue
+    end
 
-        -- some of servers need to config manually, such as jdtls
-        local x, m = pcall(require, "plugins.lsp.without_lspconfig." .. server_name)
-        if not x then
-            local ss, config = pcall(require, "plugins.lsp.servers." .. server_name)
-            config = ss and config or {}
-            lspconfig[server_name].setup(config)
-        end
-    end,
-})
+    local x, _ = pcall(require, "plugins.lsp.without_lspconfig." .. server_name)
+    if not x then
+        local ss, config = pcall(require, "plugins.lsp.servers." .. server_name)
+        config = ss and config or {}
+        vim.lsp.enable(server_name)
+        vim.lsp.config(server_name, config)
+    end
+
+    ::continue::
+end
 
 ----------------------------------------------------------------------
 --                     settings for inlayHints                      --
