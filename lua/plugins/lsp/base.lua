@@ -1,4 +1,4 @@
-local lspconfig = require("lspconfig")
+-- local lspconfig = require("lspconfig")
 local inlay_hint = require("plugins.lsp.utils").inlay_hint
 
 require("plugins.lsp.ui").setup()
@@ -34,7 +34,7 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client.supports_method("textDocument/inlayHints") then
+        if client:supports_method("textDocument/inlayHints") then
             inlay_hint(args.buf, true)
             vim.api.nvim_create_autocmd("ModeChanged", {
                 buffer = args.buf,
