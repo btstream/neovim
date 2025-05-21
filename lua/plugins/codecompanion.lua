@@ -1,6 +1,7 @@
 return {
     "olimorris/codecompanion.nvim",
     event = { "User BufReadRealFile" },
+    enable = false,
     cmd = "CodeCompanion",
     dependencies = {
         "nvim-lua/plenary.nvim",
