@@ -10,6 +10,11 @@ return {
             hybrid_modes = { "i" },
             linewise_hybrid_mode = true
             -- hybrid_modes = { "i" }
+        },
+        markdown = {
+            horizontal_rules = {
+                enable = false
+            }
         }
     },
 }
