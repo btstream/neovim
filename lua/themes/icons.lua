@@ -143,6 +143,9 @@ M.filetype_icons       = {
     dropbar_menu        = "󰮫",
     Glance              = "",
     codecompanion       = "󰍩",
+    Avante              = "󰍩",
+    AvanteInput         = "󰍩",
+    AvanteSelectedFiles = "󰍩"
 }
 
 M.common_ui_icons      = {

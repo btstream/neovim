@@ -30,7 +30,10 @@ M._nonefiletypes = {
     "dropbar_menu",
     "edgy",
     "Glance",
-    "codecompanion"
+    "codecompanion",
+    "Avante",
+    "AvanteInput",
+    "AvanteSelectedFiles"
 }
 
 M._icons = require("themes.icons").filetype_icons

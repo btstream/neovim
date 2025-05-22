@@ -1,6 +1,6 @@
 return {
     "OXY2DEV/markview.nvim",
-    ft = { "markdown", "codecompanion", "Avante" },
+    ft = { "markdown", "codecompanion", "Avante", "AvanteInput" },
     -- enabled = false,
     opts = {
         preview = {
