@@ -33,30 +33,30 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "WinEnter", "BufEnter" 
                 if vim.g.sidebar_source == "filesystem" then
                     set_hl({
                         EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base0D },
-                        EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
-                        EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
-                        EdgyTitleOutline = { bg = colors.base00, fg = colors.base03 },
+                        EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base04 },
+                        EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base04 },
+                        EdgyTitleOutline = { bg = colors.base00, fg = colors.base04 },
                     })
                 elseif vim.g.sidebar_source == "outline" then
                     set_hl({
-                        EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base03 },
-                        EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
-                        EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
+                        EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base04 },
+                        EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base04 },
+                        EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base04 },
                         EdgyTitleOutline = { bg = colors.base00, fg = colors.base0D },
                     })
                 elseif vim.g.sidebar_source == "buffers" then
                     set_hl({
-                        EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base03 },
+                        EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base04 },
                         EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base0D },
-                        EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
-                        EdgyTitleOutline = { bg = colors.base00, fg = colors.base03 },
+                        EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base04 },
+                        EdgyTitleOutline = { bg = colors.base00, fg = colors.base04 },
                     })
                 elseif vim.g.sidebar_source == "git_status" then
                     set_hl({
-                        EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base03 },
-                        EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
+                        EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base04 },
+                        EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base04 },
                         EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base0D },
-                        EdgyTitleOutline = { bg = colors.base00, fg = colors.base03 },
+                        EdgyTitleOutline = { bg = colors.base00, fg = colors.base04 },
                     })
                 end
             else
