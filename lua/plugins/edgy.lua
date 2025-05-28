@@ -1,11 +1,121 @@
 local icons = require("themes.icons")
 
+local indicators = {
+    "%*%#EdgyTitleNeoTreeFilesystem#" .. icons.common_ui_icons.file_explorer .. " ",
+    "%*%#EdgyTitleOutline#" .. " ",
+    "%*%#EdgyTitleNeoTreeBuffers#" .. icons.common_ui_icons.buffers .. " ",
+    "%*%#EdgyTitleNeoTreeGit#" .. icons.common_ui_icons.git .. " "
+}
+
+vim.g.sidebar_source = ""
+vim.g.sidebar_type = ""
+vim.g.sidebar_title = ""
+
+local function update_sidebar_title()
+    local titles = vim.tbl_deep_extend("keep", {}, indicators)
+    local active_index = 1
+
+    local title_length = 8 + #vim.g.sidebar_source
+    if vim.g.sidebar_source == "filesystem" then
+        titles[1] = indicators[1] .. "Filesystem"
+        active_index = 1
+    elseif vim.g.sidebar_source == "outline" then
+        titles[2] = indicators[2] .. "Outline"
+        active_index = 2
+    elseif vim.g.sidebar_source == "buffers" then
+        titles[3] = indicators[3] .. "Buffers"
+        active_index = 3
+    elseif vim.g.sidebar_source == "git_status" then
+        titles[4] = indicators[4] .. "Git Status"
+        active_index = 4
+    end
+
+
+    local padding = ""
+    if package.loaded.edgy then
+        local sb = require("edgy.config").layout.left
+        if sb and #sb.wins > 0 then
+            padding = string.rep(" ", sb.bounds.width - title_length - 1)
+        end
+    end
+
+    local active_indicator = table.remove(titles, active_index)
+    table.insert(titles, 1, active_indicator)
+    table.insert(titles, 2, padding)
+
+    -- return table.concat(titles)
+    vim.g.sidebar_title = table.concat(titles)
+end
+
+local function get_title()
+    return vim.g.sidebar_title
+end
+
 return {
     "folke/edgy.nvim",
     event = "VeryLazy",
     init = function()
-        vim.opt.laststatus = 3
         vim.opt.splitkeep = "screen"
+        local siderbar_types = { "neo-tree", "Outline" }
+
+        -- add auto command to allow only one window is opened on sidebar
+        -- listen on BufWinEnter only
+        vim.api.nvim_create_autocmd("BufWinEnter", {
+            pattern = "*",
+            callback = function(event)
+                -- ensure edgy is loaded
+                if package.loaded.edgy then
+                    vim.schedule(function()
+                        local current_ft = vim.fn.getbufvar(event.buf, "&filetype")
+                        if vim.tbl_contains(siderbar_types, current_ft) then
+                            local sidebar = require("edgy.config").layout.left
+                            for _, win in ipairs(sidebar.wins) do
+                                if current_ft == "Outline" and current_ft ~= win.view.ft then
+                                    win:close()
+                                end
+
+                                if current_ft == "neo-tree" then
+                                    local current_source = vim.api.nvim_buf_get_var(
+                                        event.buf,
+                                        "neo_tree_source"
+                                    )
+                                    if win.view.ft ~= current_ft then
+                                        win:close()
+                                    else
+                                        local win_source = vim.api.nvim_buf_get_var(
+                                            vim.api.nvim_win_get_buf(win.win),
+                                            "neo_tree_source"
+                                        )
+                                        if current_source ~= win_source then
+                                            win:close()
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end)
+                end
+            end
+        })
+
+        vim.api.nvim_create_autocmd("BufEnter", {
+            callback = vim.schedule_wrap(function(event)
+                local ft = vim.fn.getbufvar(event.buf, "&filetype")
+                if vim.tbl_contains(siderbar_types, ft) then
+                    if ft == "Outline" then
+                        vim.g.sidebar_source = "outline"
+                        vim.g.sidebar_type = "Outline"
+                    end
+
+                    if ft == "neo-tree" then
+                        vim.g.sidebar_type = "neo-tree"
+                        vim.g.sidebar_source = vim.api.nvim_buf_get_var(event.buf, "neo_tree_source")
+                    end
+
+                    update_sidebar_title()
+                end
+            end)
+        })
     end,
     opts = function()
         local opts = {
@@ -49,19 +159,23 @@ return {
             left = {
                 -- Neo-tree filesystem always takes half the screen height
                 {
-                    -- reset title highlight group, as edgy use title in winbar, maybe reset to edgytitle after winbar update
-                    title = "%*%#EdgyTitleNeoTreeFilesystem#" .. icons.common_ui_icons.file_explorer .. "  Filesystem",
+                    title = get_title,
                     ft = "neo-tree",
                     filter = function(buf)
                         -- filter out filesystem's source for current position, which is uesed for hijack netrw
                         return vim.b[buf].neo_tree_source == "filesystem" and vim.b[buf].neo_tree_position ~= "current"
                     end,
-                    pinned = true,
                     open = "Neotree position=left filesystem",
                     size = { height = 0.5 },
                 },
                 {
-                    title = "%*%#EdgyTitleNeoTreeBuffers#" .. icons.common_ui_icons.buffers .. "  Buffers",
+                    title = get_title,
+                    ft = "Outline",
+                    -- pinned = true,
+                    open = "Outline",
+                },
+                {
+                    title = get_title,
                     ft = "neo-tree",
                     filter = function(buf)
                         return vim.b[buf].neo_tree_source == "buffers"
@@ -70,7 +184,7 @@ return {
                     open = "Neotree position=top buffers",
                 },
                 {
-                    title = "%*%#EdgyTitleNeoTreeGit#" .. icons.common_ui_icons.git .. "  Git",
+                    title = get_title,
                     ft = "neo-tree",
                     filter = function(buf)
                         return vim.b[buf].neo_tree_source == "git_status"
@@ -83,15 +197,6 @@ return {
                 },
             },
             right = {
-                {
-                    title = "Outline",
-                    ft = "Outline",
-                    pinned = true,
-                    open = "Outline",
-                    wo = {
-                        winbar = false,
-                    },
-                },
             },
 
             ----------------------------------------------------------------------
@@ -114,24 +219,6 @@ return {
                 winhighlight = "WinBar:EdgyWinBar,Normal:Normal",
             },
         }
-
-        -- for _, pos in ipairs({ "top", "bottom", "left", "right" }) do
-        --     opts[pos] = opts[pos] or {}
-        --     table.insert(opts[pos], {
-        --         ft = "trouble",
-        --         filter = function(_buf, win)
-        --             -- if vim.w[win].trouble then
-        --             --     print(vim.inspect(vim.w[win].trouble))
-        --             -- end
-        --
-        --             return vim.w[win].trouble
-        --                 and vim.w[win].trouble.position == pos
-        --                 and vim.w[win].trouble.type == "split"
-        --                 and vim.w[win].trouble.relative == "editor"
-        --                 and not vim.w[win].trouble_preview
-        --         end,
-        --     })
-        -- end
 
         return opts
     end,
