@@ -43,7 +43,8 @@ return {
         windows = {
             input = {
                 prefix = "  "
-            }
+            },
+            width = 25,
         },
         provider = "siliconflow",
         vendors = {
