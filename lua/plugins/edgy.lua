@@ -2,7 +2,7 @@ local icons = require("themes.icons")
 
 local indicators = {
     "%*%#EdgyTitleNeoTreeFilesystem#" .. icons.common_ui_icons.file_explorer .. " ",
-    "%*%#EdgyTitleOutline#" .. " ",
+    "%*%#EdgyTitleOutline#" .. icons.common_ui_icons.symbols_outlne .. " ",
     "%*%#EdgyTitleNeoTreeBuffers#" .. icons.common_ui_icons.buffers .. " ",
     "%*%#EdgyTitleNeoTreeGit#" .. icons.common_ui_icons.git .. " "
 }

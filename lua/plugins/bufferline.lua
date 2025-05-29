@@ -1,3 +1,5 @@
+local icons = require("themes.icons")
+
 return {
     "akinsho/bufferline.nvim",
     name = "bufferline",
@@ -183,7 +185,8 @@ return {
                     local ret = { left = "", left_size = 0, right = "", right_size = 0 }
                     for _, pos in pairs({ "left", "right" }) do
                         local sb = layout[pos]
-                        local title = "  Sidebar"
+                        local title = (pos == "left" and icons.common_ui_icons.sidebar_left or icons.common_ui_icons.sidebar_right)
+                            .. " Sidebar"
                         local sep = pos == "left" and "▍" or "🮈"
                         local hi = pos == "left" and "EdgySidebarLeftTitle" or "EdgySidebarRightTitle"
                         if sb and #sb.wins > 0 then

@@ -142,10 +142,10 @@ M.filetype_icons       = {
     documentation       = "󰬋",
     dropbar_menu        = "󰮫",
     Glance              = "",
-    codecompanion       = "󰍩",
-    Avante              = "󰍩",
-    AvanteInput         = "󰍩",
-    AvanteSelectedFiles = "󰍩"
+    codecompanion       = "󱙺",
+    Avante              = "󱙺",
+    AvanteInput         = "󱙺",
+    AvanteSelectedFiles = "󱙺"
 }
 
 M.common_ui_icons      = {
@@ -156,7 +156,7 @@ M.common_ui_icons      = {
     folder_empty_open = "󰷏",
     buffers           = "󰈢",
     project           = "",
-    git               = "󰊢",
+    git               = "",
     history           = "󰋚",
     search_result     = "󰱼",
     file_explorer     = "󰙅",
@@ -170,6 +170,9 @@ M.common_ui_icons      = {
     settings          = "",
     lsp_server        = "",
     lsp_server_null   = "󰛄",
+    sidebar_left      = "",
+    sidebar_right     = "",
+    symbols_outlne    = "",
 }
 -- stylua: ignore end
 
