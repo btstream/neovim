@@ -31,6 +31,7 @@ opt.listchars = {
     tab = "  ",
 }
 opt.termguicolors = true
+opt.pumheight = 10
 
 ----------------------------------------------------------------------
 --                              indent                              --
