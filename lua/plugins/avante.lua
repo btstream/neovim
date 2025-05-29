@@ -1,5 +1,6 @@
 return {
     "btstream/avante.nvim",
+    -- "yetone/avante.nvim",
     -- dir = "~/Development/projects_for_opensource/avante.nvim/",
     -- dev = true,
     event = { "User BufReadRealFile" },
