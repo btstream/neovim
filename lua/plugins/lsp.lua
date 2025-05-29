@@ -62,6 +62,9 @@ return {
         "hedyhli/outline.nvim",
         -- "btstream/outline.nvim",
         -- event = "LspAttach",
+        dependencies = {
+            'epheien/outline-treesitter-provider.nvim'
+        },
         cmd = { "Outline", "OutlineOpen" },
         keys = { -- Example mapping to toggle outline
             { "<C-k>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
@@ -72,6 +75,9 @@ return {
                 symbol_icons[k] = { icon = v }
             end
             require("outline").setup({
+                providers = {
+                    priority = { 'lsp', 'treesitter' },
+                },
                 outline_window = {
                     width = 18,
                 },
