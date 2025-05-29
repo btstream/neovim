@@ -84,9 +84,9 @@ function M.define()
         --                          NvimTreeNormal                          --
         ----------------------------------------------------------------------
         -- NvimTreeNormal       = { bg = dbg015 },
-        NvimTreeSidebarTitle            = { bg = dbg015, fg = colors.base03 },
-        NvimTreeFolderIcon              = { fg = colors.base0D },
-        NvimTreeIndentrker              = { fg = colors.base01 },
+        -- NvimTreeSidebarTitle            = { bg = dbg015, fg = colors.base03 },
+        -- NvimTreeFolderIcon              = { fg = colors.base0D },
+        -- NvimTreeIndentrker              = { fg = colors.base01 },
         -- NvimTreeEndOfBuffer  = { bg = dbg015, fg        = dbg015 },
         -- NvimTreeVertSplit    = { bg = colors.base00, fg = colors.base00 },
         -- NvimTreeWinSeparator = { bg = colors.base00, fg = colors.base00 },
