@@ -3,8 +3,8 @@ return {
         "neovim/nvim-lspconfig",
         event = { "User BufReadReadFilePostDefer" },
         dependencies = {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
+            "mason-org/mason.nvim",
+            "mason-org/mason-lspconfig.nvim",
             "creativenull/efmls-configs-nvim",
             "simrat39/rust-tools.nvim",
             "mfussenegger/nvim-jdtls",
@@ -18,7 +18,7 @@ return {
     },
 
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         event = "User VeryVeryLazy",
         dependencies = { "WhoIsSethDaniel/mason-tool-installer.nvim" },
         build = function()
