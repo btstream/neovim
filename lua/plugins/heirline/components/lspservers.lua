@@ -70,5 +70,5 @@ return {
     ft_indicator,
     file_icons,
     lsp_indicator,
-    update = { "LspAttach", "LspDetach", "WinEnter", "BufEnter", "BufLeave", "WinLeave" },
+    update = { "LspAttach", "LspDetach", "WinEnter", "BufEnter", "BufLeave", "WinLeave", "BufWinEnter", "BufWinLeave" },
 }

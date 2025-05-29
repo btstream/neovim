@@ -183,9 +183,9 @@ return {
                     local ret = { left = "", left_size = 0, right = "", right_size = 0 }
                     for _, pos in pairs({ "left", "right" }) do
                         local sb = layout[pos]
-                        local title = pos == "left" and "  Sidebar" or " Outline"
+                        local title = "  Sidebar"
                         local sep = pos == "left" and "▍" or "🮈"
-                        local hi = pos == "left" and "NvimTreeSidebarTitle" or "OutlineSidebarTitle"
+                        local hi = pos == "left" and "EdgySidebarLeftTitle" or "EdgySidebarRightTitle"
                         if sb and #sb.wins > 0 then
                             local is_even, side = (sb.bounds.width - #title) % 2 == 0, (sb.bounds.width - #title) / 2
                             local lpadding, rpadding = side, side
