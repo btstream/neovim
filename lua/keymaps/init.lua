@@ -14,6 +14,9 @@ function M.switch_tabs()
             local is_nft, ft = is_nonefiletype()
             -- if sidebar
             if ft == "Outline" or ft == "neo-tree" then
+                if index > 4 then
+                    return
+                end
                 vim.cmd(SIDE_BAR_OPEN_CMD[index])
                 return
             end
