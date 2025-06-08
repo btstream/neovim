@@ -48,7 +48,7 @@ return {
             width = 25,
         },
         provider = "siliconflow",
-        vendors = {
+        providers = {
             siliconflow = {
                 __inherited_from = 'openai',
                 endpoint = 'https://api.siliconflow.cn/v1',
