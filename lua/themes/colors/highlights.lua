@@ -60,7 +60,7 @@ function M.define()
         ----------------------------------------------------------------------
         NonText                     = "IndentBlanklineChar",
         IndentLine                  = { fg = colors.base03 },
-        IndentLineCurrent           = { fg = colors.base04 },
+        IndentLineCurrent           = { fg = darken(colors.base04, .35) },
 
         ----------------------------------------------------------------------
         --                             Whichkey                             --
