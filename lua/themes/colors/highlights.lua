@@ -37,48 +37,46 @@ function M.define()
         --                           Vim Commons                            --
         ----------------------------------------------------------------------
         -- EndOfBuffer = { fg = colors.base00, bg              = colors.base00 },
-        VertSplit                       = { fg = dbg020 },
-        WinSeparator                    = "VertSplit",
-        CursorLineNr                    = { fg = darken(colors.base0D, 0.1), bg = "None" },
-        LineNr                          = { fg = colors.base03, bg = "None" },
-        SignColumn                      = { bg = "None" },
-        ColorColumn                     = { bg = "None" },
-        CursorColumn                    = { bg = "None" },
+        VertSplit                   = { fg = dbg020 },
+        WinSeparator                = "VertSplit",
+        CursorLineNr                = { fg = darken(colors.base0D, 0.1), bg = "None" },
+        LineNr                      = { fg = colors.base03, bg = "None" },
+        SignColumn                  = { bg = "None" },
+        ColorColumn                 = { bg = "None" },
+        CursorColumn                = { bg = "None" },
         -- Folded      = { fg = darken(colors.base0A, 0.20) },
-        FoldColumn                      = { fg = colors.base03, bg = "None" },
-        TabLineSel                      = { bg = colors.base0D },
+        FoldColumn                  = { fg = colors.base03, bg = "None" },
+        TabLineSel                  = { bg = colors.base0D },
 
         ----------------------------------------------------------------------
         --                           NormalFloat                            --
         ----------------------------------------------------------------------
-        NormalFloat                     = { bg = dbg015 },
-        FloatBorder                     = { bg = dbg015, fg = dbg015 },
-        FloatTitle                      = { bg = colors.base00, fg = colors.base05 },
+        NormalFloat                 = { bg = dbg015 },
+        FloatBorder                 = { bg = dbg015, fg = dbg015 },
+        FloatTitle                  = { bg = colors.base00, fg = colors.base05 },
 
         ----------------------------------------------------------------------
         --                        indent blank line                         --
         ----------------------------------------------------------------------
-        -- IndentBlanklineChar          = { fg = darken(colors.base03, 0.35) },
-        IndentBlanklineSpaceChar        = "IndentBlanklineChar",
-        IndentBlanklineContextChar      = { fg = colors.base0E },
-        IndentBlanklineContextSpaceChar = "IndentBlanklineChar",
-        NonText                         = "IndentBlanklineChar",
+        NonText                     = "IndentBlanklineChar",
+        IndentLine                  = { fg = colors.base03 },
+        IndentLineCurrent           = { fg = colors.base04 },
 
         ----------------------------------------------------------------------
         --                             Whichkey                             --
         ----------------------------------------------------------------------
-        WhichKeyFloat                   = { bg = dbg015 },
+        WhichKeyFloat               = { bg = dbg015 },
 
         ----------------------------------------------------------------------
         --                               git                                --
         ----------------------------------------------------------------------
-        GitSignsCurrentLineBlame        = { fg = colors.base03, bg = dbg010 },
-        GitSignHunkPreviewNormal        = "Normal",
-        GitSignHunkPreviewBorder        = { fg = colors.base02 },
-        GitSignsChange                  = { fg = colors.base0C },
-        GitSignsUntracked               = { fg = colors.base0A },
-        GitSignsUntrackedLn             = "GitSignsUntracked",
-        GitSignsUntrackedNr             = "GitSignsUntracked",
+        GitSignsCurrentLineBlame    = { fg = colors.base03, bg = dbg010 },
+        GitSignHunkPreviewNormal    = "Normal",
+        GitSignHunkPreviewBorder    = { fg = colors.base02 },
+        GitSignsChange              = { fg = colors.base0C },
+        GitSignsUntracked           = { fg = colors.base0A },
+        GitSignsUntrackedLn         = "GitSignsUntracked",
+        GitSignsUntrackedNr         = "GitSignsUntracked",
 
         ----------------------------------------------------------------------
         --                          NvimTreeNormal                          --
@@ -94,69 +92,69 @@ function M.define()
         ----------------------------------------------------------------------
         --                             NeoTree                              --
         ----------------------------------------------------------------------
-        NeoTreeModified                 = { fg = colors.base09 },
+        NeoTreeModified             = { fg = colors.base09 },
 
         -- NeoTree git signs
-        NeoTreeGitAdded                 = "GitSignsAdd",
-        NeoTreeGitConflict              = { fg = colors.base0E },
-        NeoTreeGitDeleted               = "GitSignsDelete",
-        NeoTreeGitIgnored               = { fg = colors.base04 },
-        NeoTreeGitModified              = "GitSignsChange",
-        NeoTreeGitUnstaged              = { fg = colors.base09 },
-        NeoTreeGitUntracked             = "GitSignsUntracked",
-        NeoTreeGitStaged                = { fg = colors.base0B },
+        NeoTreeGitAdded             = "GitSignsAdd",
+        NeoTreeGitConflict          = { fg = colors.base0E },
+        NeoTreeGitDeleted           = "GitSignsDelete",
+        NeoTreeGitIgnored           = { fg = colors.base04 },
+        NeoTreeGitModified          = "GitSignsChange",
+        NeoTreeGitUnstaged          = { fg = colors.base09 },
+        NeoTreeGitUntracked         = "GitSignsUntracked",
+        NeoTreeGitStaged            = { fg = colors.base0B },
 
         -- inactive buffer
-        NeoTreeTabInactive              = { fg = colors.base03, bg = dbg015 },
-        NeoTreeTabSeparatorInactive     = { fg = dbg015, bg = dbg015 },
-        NeoTreeTabSeparatorActive       = { bg = colors.base00, fg = colors.base00 },
+        NeoTreeTabInactive          = { fg = colors.base03, bg = dbg015 },
+        NeoTreeTabSeparatorInactive = { fg = dbg015, bg = dbg015 },
+        NeoTreeTabSeparatorActive   = { bg = colors.base00, fg = colors.base00 },
 
         ----------------------------------------------------------------------
         --                            for vim.ui                            --
         ----------------------------------------------------------------------
-        InputUIFloatWinNormal           = { bg = colors.base00 },
-        InputUIFloatBorder              = { fg = colors.base0D, bg = colors.base00 },
-        InputUIFloatTitle               = { fg = colors.base0D, bg = colors.base00 },
+        InputUIFloatWinNormal       = { bg = colors.base00 },
+        InputUIFloatBorder          = { fg = colors.base0D, bg = colors.base00 },
+        InputUIFloatTitle           = { fg = colors.base0D, bg = colors.base00 },
 
-        SelectUIFloatWinNormal          = { bg = colors.base00 },
-        SelectUIFloatBorder             = { fg = colors.base0D, bg = colors.base00 },
-        SelectUIFloatTitle              = { fg = colors.base0D, bg = colors.base00 },
+        SelectUIFloatWinNormal      = { bg = colors.base00 },
+        SelectUIFloatBorder         = { fg = colors.base0D, bg = colors.base00 },
+        SelectUIFloatTitle          = { fg = colors.base0D, bg = colors.base00 },
 
         ----------------------------------------------------------------------
         --                              Packer                               --
         ----------------------------------------------------------------------
-        PackerFloatNormal               = { bg = dbg015 },
-        PackerFloatBorder               = { bg = dbg015, fg = dbg015 },
+        PackerFloatNormal           = { bg = dbg015 },
+        PackerFloatBorder           = { bg = dbg015, fg = dbg015 },
 
         ----------------------------------------------------------------------
         --                            Telescope                             --
         ----------------------------------------------------------------------
-        TelescopePreviewNormal          = { bg = dbg020 },
-        TelescopePreviewBorder          = { bg = dbg020, fg = dbg020 },
-        TelescopePreviewTitle           = { bg = colors.base0B },
-        TelescopeResultsLineNr          = { bg = "None" },
-        TelescopePromptCounter          = { fg = darken(colors.base05, .60) },
+        TelescopePreviewNormal      = { bg = dbg020 },
+        TelescopePreviewBorder      = { bg = dbg020, fg = dbg020 },
+        TelescopePreviewTitle       = { bg = colors.base0B },
+        TelescopeResultsLineNr      = { bg = "None" },
+        TelescopePromptCounter      = { fg = darken(colors.base05, .60) },
 
         ----------------------------------------------------------------------
         --                          Snacks.picker                           --
         ----------------------------------------------------------------------
-        SnacksPickerTitle               = { bg = colors.base08, fg = colors.base00 },
-        SnacksPickerPreviewTitle        = { bg = colors.base0B, fg = colors.base00 },
-        SnacksPickerPreview             = { bg = dbg030 },
-        SnacksPickerPreviewBorder       = { bg = dbg030, fg = dbg030 },
-        SnacksPickerInput               = { bg = darken(colors.base02, 0.1) },
-        SnacksPickerInputBorder         = { bg = darken(colors.base02, 0.1), fg = darken(colors.base02, 0.1) },
+        SnacksPickerTitle           = { bg = colors.base08, fg = colors.base00 },
+        SnacksPickerPreviewTitle    = { bg = colors.base0B, fg = colors.base00 },
+        SnacksPickerPreview         = { bg = dbg030 },
+        SnacksPickerPreviewBorder   = { bg = dbg030, fg = dbg030 },
+        SnacksPickerInput           = { bg = darken(colors.base02, 0.1) },
+        SnacksPickerInputBorder     = { bg = darken(colors.base02, 0.1), fg = darken(colors.base02, 0.1) },
         -- SnacksPickerBorder              = { bg = dbg030, fg = dbg030 },
-        SnacksPickerList                = { bg = dbg010 },
-        SnacksPickerListBorder          = { bg = dbg010, fg = dbg010 },
+        SnacksPickerList            = { bg = dbg010 },
+        SnacksPickerListBorder      = { bg = dbg010, fg = dbg010 },
         -- SnacksPickerListCursorLine      = { bg = colors.base01, fg = colors.base06 },
-        SnacksPickerDir                 = { fg = darken(colors.base04, 0.1) },
-        SnacksPickerTotals              = { fg = darken(colors.base05, 0.6) },
-        SnacksPickerPrompt              = { fg = colors.base08 },
+        SnacksPickerDir             = { fg = darken(colors.base04, 0.1) },
+        SnacksPickerTotals          = { fg = darken(colors.base05, 0.6) },
+        SnacksPickerPrompt          = { fg = colors.base08 },
 
-        SnacksDashBoardDesc             = { fg = darken(colors.base04, 0.3) },
-        SnacksDashBoardIcon             = { fg = colors.base0D },
-        SnacksDashBoardDir              = "SnacksDashBoardDesc",
+        SnacksDashBoardDesc         = { fg = darken(colors.base04, 0.3) },
+        SnacksDashBoardIcon         = { fg = colors.base0D },
+        SnacksDashBoardDir          = "SnacksDashBoardDesc",
 
 
         ----------------------------------------------------------------------
