@@ -10,7 +10,8 @@ function terminal.toggle(opts)
         "--watch-files",
         "--openai-api-base https://llm.chutes.ai/v1",
         "--model openai/deepseek-ai/DeepSeek-V3-0324",
-        "--no-show-model-warnings"
+        "--no-show-model-warnings",
+        "--code-theme one-dark"
     }
 
     -- save chat history and cache in a seprated folder
