@@ -80,4 +80,41 @@ function M.ls(path, fn)
     return ret
 end
 
+function M.find_root(markers, start)
+    -- 定义各种项目类型的标识文件
+    local root_markers = markers ~= nil and markers or {
+        -- Git 仓库
+        '.git',
+        -- Node.js
+        'package.json', 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml',
+        -- Python
+        'pyproject.toml', 'setup.py', 'requirements.txt', 'Pipfile',
+        -- Rust
+        'Cargo.toml',
+        -- Go
+        'go.mod',
+        -- Java
+        'pom.xml', 'build.gradle', 'settings.gradle',
+        -- C/C++
+        'CMakeLists.txt', 'Makefile',
+        -- 其他
+        '.project', '.root'
+    }
+
+    local current_file = vim.api.nvim_buf_get_name(0)
+    local current_dir = start ~= nil and start or vim.fn.fnamemodify(current_file, ':h')
+
+    local root_file = vim.fs.find(root_markers, {
+        upward = true,
+        path = current_dir,
+    })[1]
+
+    if root_file then
+        return vim.fs.dirname(root_file)
+    end
+
+    -- 如果没找到，返回当前工作目录
+    return vim.fn.getcwd()
+end
+
 return M

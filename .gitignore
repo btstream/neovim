@@ -6,3 +6,4 @@ lazy-lock.json
 custom.lua
 lua/users/
 lua/plugins/dev.lua
+.aider*
