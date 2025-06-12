@@ -69,7 +69,11 @@ return {
                 gui = { nerdFontsVersion = "3" },
             },
             win = {
-                wo = { winbar = "Aider" },
+                wo = {
+                    winbar = "",
+                    winhighlight = "NormalFloat:Normal",
+                    statuscolumn = "  ",
+                },
                 style = "nvim_aider",
                 position = "right",
             },
