@@ -1,7 +1,6 @@
 local terminal = require("nvim_aider.terminal")
 local path = require("utils.os.path")
 local orig_toggle = terminal.toggle
-print(vim.inspect(terminal))
 
 function terminal.toggle(opts)
     local args = {
