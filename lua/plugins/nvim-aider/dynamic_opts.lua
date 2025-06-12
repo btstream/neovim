@@ -9,7 +9,7 @@ function terminal.toggle(opts)
         "--stream",
         "--watch-files",
         "--openai-api-base https://llm.chutes.ai/v1",
-        "--model openai/deepseek-ai/DeepSeek-V3-0324",
+        "--model openai/deepseek-ai/DeepSeek-R1-0528",
         "--no-show-model-warnings"
     }
 

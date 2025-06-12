@@ -46,7 +46,7 @@ return {
             --     "--stream",
             -- },
             -- Automatically reload buffers changed by Aider (requires vim.o.autoread = true)
-            auto_reload = false,
+            auto_reload = true,
             -- Theme colors (automatically uses Catppuccin flavor if available)
             theme = {
                 user_input_color = "#a6da95",
@@ -76,6 +76,7 @@ return {
                 },
                 style = "nvim_aider",
                 position = "right",
+                bo = { ft = "aider" }
             },
         })
     end,
