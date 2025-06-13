@@ -33,7 +33,8 @@ M._nonefiletypes = {
     "codecompanion",
     "Avante",
     "AvanteInput",
-    "AvanteSelectedFiles"
+    "AvanteSelectedFiles",
+    "aider"
 }
 
 M._icons = require("themes.icons").filetype_icons

@@ -145,7 +145,8 @@ M.filetype_icons       = {
     codecompanion       = "󱙺",
     Avante              = "󱙺",
     AvanteInput         = "󱙺",
-    AvanteSelectedFiles = "󱙺"
+    AvanteSelectedFiles = "󱙺",
+    aider               = "󱙺"
 }
 
 M.common_ui_icons      = {

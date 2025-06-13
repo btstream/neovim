@@ -36,6 +36,11 @@ return {
     config = function()
         -- this is a custom hack, to dynamicly config parameter of aiders
         require("plugins.nvim-aider.dynamic_opts")
+        Snacks.config.style("aider", {
+            bo = {
+                filetype = "aider"
+            }
+        })
         require("nvim_aider").setup({
             -- Command that executes Aider
             aider_cmd = "aider",
@@ -74,9 +79,8 @@ return {
                     winhighlight = "NormalFloat:Normal",
                     statuscolumn = "  ",
                 },
-                style = "nvim_aider",
+                style = "aider",
                 position = "right",
-                bo = { ft = "aider" }
             },
         })
     end,

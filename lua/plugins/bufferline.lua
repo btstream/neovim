@@ -139,7 +139,7 @@ return {
                     for _, pos in pairs({ "left", "right" }) do
                         local sb = layout[pos]
                         local title = (pos == "left" and icons.common_ui_icons.sidebar_left or icons.common_ui_icons.sidebar_right)
-                            .. " Sidebar "
+                            .. (pos == "left" and " Sidebar " or " Aider")
                         local sep = pos == "left" and "▍" or "🮈"
                         local hi = pos == "left" and "EdgySidebarLeftTitle" or "EdgySidebarRightTitle"
                         if sb and #sb.wins > 0 then

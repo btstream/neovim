@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "WinEnter", "BufEnter" 
         if require("utils.filetype").is_nonefiletype(event.buf)
             or vim.fn.buflisted(event.buf) ~= 1
         then
-            if filetype ~= "neo-tree" and filetype ~= "Outline" then
+            if filetype ~= "neo-tree" and filetype ~= "Outline" and filetype ~= "aider" then
                 return
             end
         end
@@ -59,6 +59,16 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "WinEnter", "BufEnter" 
                     EdgyTitleOutline = { bg = colors.base00, fg = colors.base04 },
                 })
             end
+        elseif filetype == "aider" then
+            set_hl({
+                EdgySidebarLeftTitle = { bg = colors.base00, fg = colors.base03 },
+                EdgySidebarRightTitle = { bg = colors.base00, fg = colors.base0D },
+                NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
+                EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base03 },
+                EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
+                EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
+                EdgyTitleOutline = { bg = colors.base00, fg = colors.base03 },
+            })
         else
             set_hl({
                 EdgySidebarLeftTitle = { bg = colors.base00, fg = colors.base03 },
