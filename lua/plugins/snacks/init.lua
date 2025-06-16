@@ -18,7 +18,7 @@ return {
         input = { enabled = true },
         dashboard = require("plugins.snacks.dashboard"),
         -- explorer = { enabled = true },
-        -- indent = { enabled = true },
+        indent = require("plugins.snacks.indent"),
         -- input = { enabled = true },
         picker = require("plugins.snacks.picker"),
         notifier = { enabled = true },
