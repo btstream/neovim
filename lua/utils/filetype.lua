@@ -6,6 +6,7 @@ M._nonefiletypes = {
     "snacks_picker_input",
     "snacks_dashboard",
     "snacks_diagnostics",
+    "snacks_terminal",
     "dashboard",
     "lsp-installer",
     "lspinfo",
@@ -30,10 +31,6 @@ M._nonefiletypes = {
     "dropbar_menu",
     "edgy",
     "Glance",
-    "codecompanion",
-    "Avante",
-    "AvanteInput",
-    "AvanteSelectedFiles",
     "aider"
 }
 

@@ -139,7 +139,7 @@ return {
                     size = { height = 0.25 },
                     title = "%*%#ToggleTermTitle#"
                         .. icons.filetype_icons.toggleterm
-                        .. "[%{b:snacks_terminal.id}: %{b:term_title}",
+                        .. " %{b:snacks_terminal.id}: %{b:term_title}",
                     -- exclude floating windows
                     filter = function(_, win)
                         return vim.w[win].snacks_win

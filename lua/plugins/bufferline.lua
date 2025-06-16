@@ -27,18 +27,18 @@ return {
                     --                       handle single click                        --
                     ----------------------------------------------------------------------
                     --- to prevent open buffer in terminal window
-                    if require("lazy.core.config").plugins["toggleterm.nvim"]._.loaded then
-                        local terms = require("toggleterm.terminal").get_all()
-
-                        for _, t in pairs(terms) do
-                            if t.bufnr == current_buf then
-                                if t.direction == "float" then -- if float window, close it
-                                    t:close()
-                                    break
-                                end
-                            end
-                        end
-                    end
+                    -- if require("lazy.core.config").plugins["toggleterm.nvim"]._.loaded then
+                    --     local terms = require("toggleterm.terminal").get_all()
+                    --
+                    --     for _, t in pairs(terms) do
+                    --         if t.bufnr == current_buf then
+                    --             if t.direction == "float" then -- if float window, close it
+                    --                 t:close()
+                    --                 break
+                    --             end
+                    --         end
+                    --     end
+                    -- end
 
                     local nonfiletypes = require("utils.filetype").get_nonfiletypes()
 

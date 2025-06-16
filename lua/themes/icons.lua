@@ -117,6 +117,7 @@ M.filetype_icons       = {
     ["neo-tree-popup"]  = "󰙅",
     help                = "󰞋",
     toggleterm          = "",
+    snacks_terminal     = "",
     Outline             = "󰫦",
     lazy                = "󰐱",
     dapui_watches       = "",
