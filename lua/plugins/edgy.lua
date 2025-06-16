@@ -134,27 +134,20 @@ return {
                 { ft = "spectre_panel", title = "Search and Replace", size = { height = 0.3 } },
             },
             bottom = {
-                -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
                 {
-                    ft = "toggleterm",
+                    ft = "snacks_terminal",
                     size = { height = 0.25 },
                     title = "%*%#ToggleTermTitle#"
                         .. icons.filetype_icons.toggleterm
-                        .. "[%{b:toggle_number}]:%{b:term_title}",
+                        .. "[%{b:snacks_terminal.id}: %{b:term_title}",
                     -- exclude floating windows
                     filter = function(_, win)
-                        return vim.api.nvim_win_get_config(win).relative == ""
+                        return vim.w[win].snacks_win
+                            and vim.w[win].snacks_win.position == "bottom"
+                            and vim.w[win].snacks_win.relative == "editor"
+                            and not vim.w[win].trouble_preview
                     end,
-                },
-                "Trouble",
-                {
-                    ft = "lazyterm",
-                    title = "LazyTerm",
-                    size = { height = 0.4 },
-                    filter = function(buf)
-                        return not vim.b[buf].lazyterm_cmd
-                    end,
-                },
+                }
             },
             left = {
                 -- Neo-tree filesystem always takes half the screen height

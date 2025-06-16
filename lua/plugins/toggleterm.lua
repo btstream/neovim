@@ -21,6 +21,7 @@ end
 -- TODO:fix keymap
 return {
     "akinsho/toggleterm.nvim",
+    enabled = false,
     config = function(_, opts)
         require("toggleterm").setup(vim.tbl_extend("keep", opts, {
             -- size can be a number or function which is passed the current terminal

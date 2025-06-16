@@ -21,6 +21,7 @@ return {
         indent = require("plugins.snacks.indent"),
         -- input = { enabled = true },
         picker = require("plugins.snacks.picker"),
+        terminal = require("plugins.snacks.terminal"),
         notifier = { enabled = true },
         quickfile = { enabled = true },
         scope = { enabled = true },

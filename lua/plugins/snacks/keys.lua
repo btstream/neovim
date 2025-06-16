@@ -56,5 +56,17 @@ return {
     { "gy",         function() Snacks.picker.lsp_type_definitions({ prompt = " > " }) end, desc = "Goto T[y]pe Definition" },
 
     { "<leader>xX", function() Snacks.picker.diagnostics({ prompt = " > " }) end,          desc = "Get Diagnostics of Workspace" },
-    { "<leader>xx", function() Snacks.picker.diagnostics_buffer({ prompt = " > " }) end,   desc = "Get diagnostics of buffer" }
+    { "<leader>xx", function() Snacks.picker.diagnostics_buffer({ prompt = " > " }) end,   desc = "Get diagnostics of buffer" },
+
+
+    -- terminal
+    {
+        mode = { "n", "i", "t" },
+        "<C-k>t",
+        function()
+            Snacks.terminal()
+        end,
+        desc = "Open terminal"
+    }
+
 }
