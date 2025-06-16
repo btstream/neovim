@@ -67,6 +67,14 @@ return {
             Snacks.terminal()
         end,
         desc = "Open terminal"
-    }
+    },
 
+    {
+        mode = { "n", "i", "t" },
+        "<C-k>g",
+        function()
+            Snacks.lazygit()
+        end,
+        desc = "Open Lazygit"
+    }
 }
