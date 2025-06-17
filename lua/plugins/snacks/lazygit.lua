@@ -19,6 +19,7 @@ return {
     },
     win = {
         style = "lazygit",
+        bo = { filetype = "Lazygit" },
         on_close = function()
             require("neo-tree.events").fire_event("git_event")
         end
