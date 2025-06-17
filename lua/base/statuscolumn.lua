@@ -87,15 +87,10 @@ if vim.fn.has("nvim-0.9") == 1 then
                 if vim.bo.filetype == "spectre_panel" then
                     vim.opt_local.statuscolumn = "       "
                     vim.opt_local.number = false
-                elseif vim.bo.filetype == "snacks_terminal" then
-                    vim.opt_local.statuscolumn = " "
-                elseif vim.bo.filetype == "noice"
-                    or vim.bo.filetype == "codecompanion"
-                then
+                elseif vim.bo.filetype == "noice" then
                     vim.opt_local.statuscolumn = " "
                     vim.opt_local.number = false
-                elseif vim.bo.filetype == "help"
-                then
+                elseif vim.bo.filetype == "help" then
                     vim.opt_local.statuscolumn = "    "
                 elseif string.match(vim.bo.filetype, "^snacks_.*") then
                     return
