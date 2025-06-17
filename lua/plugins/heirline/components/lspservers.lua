@@ -10,7 +10,7 @@ local ft_indicator = {
         return " " .. ft .. " "
     end,
     condition = function()
-        return is_nonefiletype() and current_buf_type() ~= "toggleterm"
+        return is_nonefiletype() and current_buf_type() ~= "snacks_terminal"
     end,
 }
 

@@ -18,7 +18,7 @@ local path_name = {
         local flag, ft = is_nonefiletype()
         if flag then
             -- do not show filetypename for terminal
-            if ft == "toggleterm" or ft == "terminal" then
+            if ft == "snacks_terminal" or ft == "terminal" then
                 return ""
             end
             return " " .. ft .. " "
@@ -86,7 +86,7 @@ local separator = sep({
 })
 separator.condition = function()
     local _, ft = is_nonefiletype()
-    return ft ~= "toggleterm"
+    return ft ~= "snacks_terminal"
 end
 
 return {
@@ -104,5 +104,5 @@ return {
     path_name,
     file_status,
     separator,
-    update = {"ModeChanged", "WinEnter", "BufEnter", "BufAdd", "BufWinLeave", "WinClosed", "BufModifiedSet", "DirChanged" },
+    update = { "ModeChanged", "WinEnter", "BufEnter", "BufAdd", "BufWinLeave", "WinClosed", "BufModifiedSet", "DirChanged" },
 }
