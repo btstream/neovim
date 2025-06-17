@@ -259,108 +259,113 @@ function M.define()
         ----------------------------------------------------------------------
         --                            Dashboard                             --
         ----------------------------------------------------------------------
-        DashboardHeader                     = { fg = colors.base0D },
-        DashboardShortCut                   = { fg = colors.base0E },
-        DashboardFooter                     = { fg = colors.base02 },
-        DashboardKey                        = { fg = colors.base0E },
+        DashboardHeader                   = { fg = colors.base0D },
+        DashboardShortCut                 = { fg = colors.base0E },
+        DashboardFooter                   = { fg = colors.base02 },
+        DashboardKey                      = { fg = colors.base0E },
 
-        DashboardProjectTitle               = { fg = colors.base0D },
-        DashboardProjectTitleIcon           = "DashboardProjectTitle",
-        DashboardProjectIcon                = { fg = colors.base0A },
-        DashboardMruTitle                   = { fg = colors.base0D },
-        DashboardMruIcon                    = "DashboardMruTitle",
-        DashboardFiles                      = { fg = colors.base03 },
+        DashboardProjectTitle             = { fg = colors.base0D },
+        DashboardProjectTitleIcon         = "DashboardProjectTitle",
+        DashboardProjectIcon              = { fg = colors.base0A },
+        DashboardMruTitle                 = { fg = colors.base0D },
+        DashboardMruIcon                  = "DashboardMruTitle",
+        DashboardFiles                    = { fg = colors.base03 },
 
-        DashboardActionFiles                = { fg = colors.base0A },
-        DashboardActionNew                  = { fg = colors.base0B },
-        DashboardActionColors               = { fg = colors.base0E },
-        DashboardActionUpdate               = { fg = colors.base0C },
-        DashboardActionSettings             = { fg = colors.base08 },
+        DashboardActionFiles              = { fg = colors.base0A },
+        DashboardActionNew                = { fg = colors.base0B },
+        DashboardActionColors             = { fg = colors.base0E },
+        DashboardActionUpdate             = { fg = colors.base0C },
+        DashboardActionSettings           = { fg = colors.base08 },
 
         ----------------------------------------------------------------------
         --                             Trouble                              --
         ----------------------------------------------------------------------
-        TroubleCount                        = { bg = "None", fg = colors.base0B },
-        TroubleFoldIcon                     = "None",
-        TroubleIndent                       = "None",
-        TroubleLocation                     = { bg = "None", fg = colors.base03 },
-        TroubleText                         = "None",
+        TroubleCount                      = { bg = "None", fg = colors.base0B },
+        TroubleFoldIcon                   = "None",
+        TroubleIndent                     = "None",
+        TroubleLocation                   = { bg = "None", fg = colors.base03 },
+        TroubleText                       = "None",
 
         ----------------------------------------------------------------------
         --                              Noice                               --
         ----------------------------------------------------------------------
         -- NoiceCmdlinePopup  = "TelescopePromptNormal",
-        NoiceCmdlinePopup                   = { bg = darken(colors.base02, .1) },
-        NoiceCmdlinePopupBorder             = { bg = darken(colors.base02, .1), fg = darken(colors.base02, .1) },
-        NoiceCmdlinePopupTitle              = { bg = colors.base0D, fg = colors.base00 },
-        NoiceCmdlineIcon                    = { fg = colors.base0D, bg = darken(colors.base02, 0.1) },
-        NoiceConfirmBorder                  = { fg = colors.base0B },
-        NoiceConfirmTitle                   = { fg = colors.base0B },
-        NoiceSplit                          = "Normal",
-        NoiceVirtualText                    = { fg = darken(colors.base09, .25) },
+        NoiceCmdlinePopup                 = { bg = darken(colors.base02, .1) },
+        NoiceCmdlinePopupBorder           = { bg = darken(colors.base02, .1), fg = darken(colors.base02, .1) },
+        NoiceCmdlinePopupTitle            = { bg = colors.base0D, fg = colors.base00 },
+        NoiceCmdlineIcon                  = { fg = colors.base0D, bg = darken(colors.base02, 0.1) },
+        NoiceConfirmBorder                = { fg = colors.base0B },
+        NoiceConfirmTitle                 = { fg = colors.base0B },
+        NoiceSplit                        = "Normal",
+        NoiceVirtualText                  = { fg = darken(colors.base09, .25) },
 
         ----------------------------------------------------------------------
         --                         Rainbow delemers                         --
         ----------------------------------------------------------------------
-        RainbowDelimiterRed                 = { fg = colors.base08 },
-        RainbowDelimiterYellow              = { fg = colors.base0A },
-        RainbowDelimiterBlue                = { fg = colors.base0D },
-        RainbowDelimiterOrange              = { fg = colors.base09 },
-        RainbowDelimiterGreen               = { fg = colors.base0B },
-        RainbowDelimiterViolet              = { fg = colors.base0E },
-        RainbowDelimiterCyan                = { fg = colors.base0C },
+        RainbowDelimiterRed               = { fg = colors.base08 },
+        RainbowDelimiterYellow            = { fg = colors.base0A },
+        RainbowDelimiterBlue              = { fg = colors.base0D },
+        RainbowDelimiterOrange            = { fg = colors.base09 },
+        RainbowDelimiterGreen             = { fg = colors.base0B },
+        RainbowDelimiterViolet            = { fg = colors.base0E },
+        RainbowDelimiterCyan              = { fg = colors.base0C },
 
         ----------------------------------------------------------------------
         --                        winbar and dropbar                        --
         ----------------------------------------------------------------------
-        WinBar                              = { fg = darken(colors.base05, 0.25) },
-        DropBarIconUISeparator              = "WinBar",
-        DropBarIconUIIndicator              = "DropBarIconUISeparator",
-        DropBarMenuHoverIcon                = "WinBar",
+        WinBar                            = { fg = darken(colors.base05, 0.25) },
+        DropBarIconUISeparator            = "WinBar",
+        DropBarIconUIIndicator            = "DropBarIconUISeparator",
+        DropBarMenuHoverIcon              = "WinBar",
 
         ----------------------------------------------------------------------
         --                          LightBulbSign                           --
         ----------------------------------------------------------------------
-        LightBulbSign                       = { fg = colors.base0A },
+        LightBulbSign                     = { fg = colors.base0A },
 
         ----------------------------------------------------------------------
         --                            ToggleTerm                            --
         ----------------------------------------------------------------------
-        ToggleTermTitle                     = { fg = colors.base04 },
+        ToggleTermTitle                   = { fg = colors.base04 },
 
         ----------------------------------------------------------------------
         --                              glance                              --
         ----------------------------------------------------------------------
-        GlancePreviewNormal                 = { bg = dbg010 },
-        GlancePreviewMatch                  = "CursorLine",
+        GlancePreviewNormal               = { bg = dbg010 },
+        GlancePreviewMatch                = "CursorLine",
         -- GlancePreviewCursorLine  = "GlancePreviewNormal",
         -- GlancePreviewSignColumn  = "GlancePreviewNormal",
         -- GlancePreviewFoldColumn  = { bg = dbg020 },
         -- GlancePreviewEndOfBuffer = "GlancePreviewNormal",
         -- GlancePreviewLineNr      = "GlancePreviewNormal",
-        GlancePreviewBorderBottom           = { bg = colors.base00, fg = darken(colors.base0D, .20) },
-        GlanceWinBarFilename                = { bg = colors.base00 },
-        GlanceWinBarFilepath                = "GlanceWinBarFilename",
-        GlanceWinBarTitle                   = "GlanceWinBarFilename",
+        GlancePreviewBorderBottom         = { bg = colors.base00, fg = darken(colors.base0D, .20) },
+        GlanceWinBarFilename              = { bg = colors.base00 },
+        GlanceWinBarFilepath              = "GlanceWinBarFilename",
+        GlanceWinBarTitle                 = "GlanceWinBarFilename",
         -- GlanceListNormal
         -- GlanceListFilename
         -- GlanceListFilepath
         -- GlanceListCount
-        GlanceListMatch                     = { bg = darken(colors.base0D, .20), fg = colors.base00 },
+        GlanceListMatch                   = { bg = darken(colors.base0D, .20), fg = colors.base00 },
         -- GlanceListCursorLine        = { bg = darken(colors.base0D, .40), fg = colors.base00 },
         -- GlanceListEndOfBuffer
-        GlanceListBorderBottom              = "GlancePreviewBorderBottom",
+        GlanceListBorderBottom            = "GlancePreviewBorderBottom",
         -- GlanceFoldIcon
         -- GlanceIndent
-        GlanceBorderTop                     = "GlancePreviewBorderBottom",
+        GlanceBorderTop                   = "GlancePreviewBorderBottom",
 
         ----------------------------------------------------------------------
-        --                              Avante                              --
+        --                             Lazygit                              --
         ----------------------------------------------------------------------
-        AvanteSidebarNormal                 = "Normal",
-        AvanteSidebarWinSeparator           = "WinSeparator",
-        AvanteSidebarWinHorizontalSeparator = { bg = colors.base00, fg = colors.base00 }
-
+        LazygitActiveBorderColor          = { fg = colors.base0B },
+        lazygitCherryPickedCommitBgColor  = { fg = colors.base00 },
+        LazygitCherryPickedCommitFgColor  = { fg = colors.base0B },
+        LazygitDefaultFgColor             = { fg = colors.base06 },
+        LazygitInactiveBorderColor        = { fg = colors.base04 },
+        LazygitOptionsTextColor           = { fg = colors.base0D },
+        LazygitSearchingActiveBorderColor = { fg = colors.base0D },
+        LazygitSelectedLineBgColor        = { bg = colors.base0D }, -- set to `default` to have no background colour
+        LazygitUnstagedChangesColor       = { fg = colors.base08 },
     }
 end
 

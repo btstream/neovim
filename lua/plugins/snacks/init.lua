@@ -26,6 +26,7 @@ return {
         quickfile = { enabled = true },
         scope = { enabled = true },
         scroll = { enabled = true },
+        lazygit = require("plugins.snacks.lazygit")
         -- statuscolumn = { enabled = true },
         -- words = { enabled = true },
     },
