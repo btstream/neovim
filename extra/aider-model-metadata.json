@@ -1,0 +1,16 @@
+{
+    "openai/deepseek-ai/DeepSeek-V3-0324": {
+        "max_tokens": 167936
+        // "max_input_tokens": 32000,
+        // "max_output_tokens": 4096
+        // "litellm_provider": "deepseek",
+        // "mode": "chat"
+    },
+    "openai/deepseek-ai/DeepSeek-R1-0528": {
+        "max_tokens": 167936
+        // "max_input_tokens": 32000,
+        // "max_output_tokens": 4096
+        // "litellm_provider": "deepseek",
+        // "mode": "chat"
+    }
+}
