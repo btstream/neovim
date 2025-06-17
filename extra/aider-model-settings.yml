@@ -1,0 +1,21 @@
+- name: openai/deepseek-ai/DeepSeek-V3-0324
+  edit_format: diff
+  weak_model_name: openai/deepseek-ai/DeepSeek-V3-0324
+  use_repo_map: true
+  examples_as_sys_msg: true
+  caches_by_default: true
+  use_temperature: false
+  editor_model_name: openai/deepseek-ai/DeepSeek-V3-0324
+  editor_edit_format: editor-diff
+
+- name: openai/deepseek-ai/DeepSeek-R1-0528
+  edit_format: diff
+  weak_model_name: openai/deepseek-ai/DeepSeek-R1-0528 
+  use_repo_map: true
+  examples_as_sys_msg: true
+  extra_params:
+    max_tokens: 8192
+    include_reasoning: true
+  caches_by_default: true
+  editor_model_name: openai/deepseek-ai/DeepSeek-R1-0528
+  editor_edit_format: editor-diff

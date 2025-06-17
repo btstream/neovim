@@ -12,6 +12,7 @@ function terminal.toggle(opts)
         "--editor-model openai/deepseek-ai/DeepSeek-V3-0324",
         "--model openai/deepseek-ai/DeepSeek-R1-0528",
         "--model-metadata-file " .. path.join(vim.fn.stdpath("config"), "extra", "aider-model-metadata.json"),
+        "--model-settings-file " .. path.join(vim.fn.stdpath("config"), "extra", "aider-model-settings.yml"),
         "--architect",
         -- "--no-show-model-warnings",
         "--code-theme one-dark"
