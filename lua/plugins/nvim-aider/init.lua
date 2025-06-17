@@ -77,7 +77,7 @@ return {
                 wo = {
                     winbar = "",
                     winhighlight = "NormalFloat:Normal",
-                    statuscolumn = "  ",
+                    -- statuscolumn = "  ",
                 },
                 style = "aider",
                 position = "right",

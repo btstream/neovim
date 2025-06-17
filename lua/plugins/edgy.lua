@@ -135,7 +135,7 @@ return {
             },
             bottom = {
                 {
-                    ft = "terminal",
+                    ft = "snacks_terminal",
                     size = { height = 0.25 },
                     title = "%*%#ToggleTermTitle#"
                         .. icons.filetype_icons.terminal
