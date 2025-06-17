@@ -30,7 +30,7 @@ return {
     -- keys = require("keymaps")["neo-tree"].lazy_keys(),
     keys = {
         {
-            mode = { "n", "i" },
+            mode = { "n", "i", "t" },
             "<C-k>b",
             function()
                 require("plugins.neo-tree.utils").toggle()

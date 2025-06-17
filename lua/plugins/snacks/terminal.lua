@@ -1,5 +1,8 @@
 return {
     win = {
+        bo = {
+            filetype = "terminal",
+        },
         wo = {
             winhighlight = "NormalFloat:Normal"
         },
@@ -16,10 +19,31 @@ return {
                     end)
                 end
             end,
-            wincmd_up = {
+            wincmd_k = {
                 "<C-w>k",
                 function()
                     vim.cmd('wincmd k')
+                end,
+                mode = "t",
+            },
+            wincmd_w = {
+                "<C-w>w",
+                function()
+                    vim.cmd('wincmd w')
+                end,
+                mode = "t",
+            },
+            wincmd_h = {
+                "<C-w>h",
+                function()
+                    vim.cmd('wincmd h')
+                end,
+                mode = "t",
+            },
+            wincmd_l = {
+                "<C-w>l",
+                function()
+                    vim.cmd('wincmd l')
                 end,
                 mode = "t",
             },

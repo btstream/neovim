@@ -7,6 +7,7 @@ M._nonefiletypes = {
     "snacks_dashboard",
     "snacks_diagnostics",
     "snacks_terminal",
+    "terminal",
     "dashboard",
     "lsp-installer",
     "lspinfo",

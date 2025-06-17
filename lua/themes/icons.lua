@@ -116,8 +116,8 @@ M.filetype_icons       = {
     ["neo-tree"]        = "󰙅",
     ["neo-tree-popup"]  = "󰙅",
     help                = "󰞋",
-    toggleterm          = "",
     snacks_terminal     = "",
+    terminal            = "",
     Outline             = "󰫦",
     lazy                = "󰐱",
     dapui_watches       = "",
@@ -143,10 +143,6 @@ M.filetype_icons       = {
     documentation       = "󰬋",
     dropbar_menu        = "󰮫",
     Glance              = "",
-    codecompanion       = "󱙺",
-    Avante              = "󱙺",
-    AvanteInput         = "󱙺",
-    AvanteSelectedFiles = "󱙺",
     aider               = "󱙺"
 }
 

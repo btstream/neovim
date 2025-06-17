@@ -135,10 +135,10 @@ return {
             },
             bottom = {
                 {
-                    ft = "snacks_terminal",
+                    ft = "terminal",
                     size = { height = 0.25 },
                     title = "%*%#ToggleTermTitle#"
-                        .. icons.filetype_icons.toggleterm
+                        .. icons.filetype_icons.terminal
                         .. " %{b:snacks_terminal.id}: %{b:term_title}",
                     -- exclude floating windows
                     filter = function(_, win)

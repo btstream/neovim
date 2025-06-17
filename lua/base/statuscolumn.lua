@@ -95,9 +95,6 @@ if vim.fn.has("nvim-0.9") == 1 then
                     vim.opt_local.statuscolumn = " "
                     vim.opt_local.number = false
                 elseif vim.bo.filetype == "help"
-                    or vim.bo.filetype == "Avante"
-                    or vim.bo.filetype == "AvanteSelectedFiles"
-                    or vim.bo.filetype == "AvanteInput"
                 then
                     vim.opt_local.statuscolumn = "    "
                 elseif string.match(vim.bo.filetype, "^snacks_.*") then
