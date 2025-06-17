@@ -98,23 +98,10 @@ function M.find_root(markers, start)
         -- C/C++
         'CMakeLists.txt', 'Makefile',
         -- 其他
-        '.project', '.root'
+        '.project', '.root', ".nvim"
     }
 
-    local current_file = vim.api.nvim_buf_get_name(0)
-    local current_dir = start ~= nil and start or vim.fn.fnamemodify(current_file, ':h')
-
-    local root_file = vim.fs.find(root_markers, {
-        upward = true,
-        path = current_dir,
-    })[1]
-
-    if root_file then
-        return vim.fs.dirname(root_file)
-    end
-
-    -- 如果没找到，返回当前工作目录
-    return vim.fn.getcwd()
+    return vim.fs.root(start and start or 0, root_markers) or vim.fn.getcwd()
 end
 
 return M
