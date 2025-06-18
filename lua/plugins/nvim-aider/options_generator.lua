@@ -1,7 +1,6 @@
 local terminal = require("nvim_aider.terminal")
 local path = require("utils.os.path")
 
-
 -- Function to generate a 16-digit random password
 local function generate_random_password(length)
     length = length or 16
@@ -70,7 +69,7 @@ function terminal.toggle(opts)
             aider_encrypt_key_file, tmpfile }
         local ok, e = pcall(vim.fn.system, gpg_encrypt_cmd)
         if not ok then
-            print("Saving api key error", e)
+            vim.notify("Saving api key to file error: " .. e, vim.log.levels.ERROR)
         end
     end
 
@@ -113,7 +112,7 @@ function terminal.toggle(opts)
 
     -- local ok, openai_api_key = pcall(vim.fn.system, { "rbw", "get", "chutes-api" })
     if not ok then
-        print("Failed to get credentials:", api_key)
+        vim.notify("Failed to get credentials:" .. api_key, vim.log.levels.ERROR)
         return
     end
     table.insert(args, "--openai-api-key " .. string.gsub(api_key, "\n", ""))
