@@ -35,7 +35,7 @@ return {
     },
     config = function()
         -- this is a custom hack, to dynamicly config parameter of aiders
-        require("plugins.nvim-aider.dynamic_opts")
+        require("plugins.nvim-aider.options_generator")
         Snacks.config.style("aider", {
             bo = {
                 filetype = "aider"
