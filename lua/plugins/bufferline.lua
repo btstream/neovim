@@ -17,12 +17,12 @@ return {
                 left_mouse_command = function(buf)
                     local current_buf = vim.api.nvim_win_get_buf(0)
 
-                    pcall(function()
-                        if package.loaded.glance then
-                            require("glance").actions.close()
-                        end
-                    end)
-
+                    -- pcall(function()
+                    --     if package.loaded.glance then
+                    --         require("glance").actions.close()
+                    --     end
+                    -- end)
+                    --
                     ----------------------------------------------------------------------
                     --                       handle single click                        --
                     ----------------------------------------------------------------------
