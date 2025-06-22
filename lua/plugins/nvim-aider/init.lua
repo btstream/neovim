@@ -21,14 +21,6 @@ return {
         {
             "nvim-neo-tree/neo-tree.nvim",
             opts = function(_, opts)
-                -- Example mapping configuration (already set by default)
-                -- opts.window = {
-                --   mappings = {
-                --     ["+"] = { "nvim_aider_add", desc = "add to aider" },
-                --     ["-"] = { "nvim_aider_drop", desc = "drop from aider" }
-                --     ["="] = { "nvim_aider_add_read_only", desc = "add read-only to aider" }
-                --   }
-                -- }
                 require("nvim_aider.neo_tree").setup(opts)
             end,
         },
@@ -44,12 +36,6 @@ return {
         require("nvim_aider").setup({
             -- Command that executes Aider
             aider_cmd = "aider",
-            -- Command line arguments passed to aider
-            -- args = {
-            --     "--no-auto-commits",
-            --     "--pretty",
-            --     "--stream",
-            -- },
             -- Automatically reload buffers changed by Aider (requires vim.o.autoread = true)
             auto_reload = true,
             -- Theme colors (automatically uses Catppuccin flavor if available)

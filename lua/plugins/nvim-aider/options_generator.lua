@@ -1,5 +1,21 @@
 local terminal = require("nvim_aider.terminal")
 local path = require("utils.os.path")
+local get_colors = require("themes.colors.manager").colors
+
+local function gen_color_scheme()
+    local colors = get_colors()
+    return {
+        user_input_color = colors.base0B,
+        tool_output_color = colors.base0D,
+        tool_error_color = colors.base08,
+        tool_warning_color = colors.base0A,
+        assistant_output_color = colors.base0E,
+        completion_menu_color = colors.base07,
+        completion_menu_bg_color = colors.base02,
+        completion_menu_current_color = colors.base01,
+        completion_menu_current_bg_color = colors.base03,
+    }
+end
 
 -- Function to generate a 16-digit random password
 local function generate_random_password(length)
@@ -46,6 +62,7 @@ end
 -- override snacks terminal's toggle function
 local orig_toggle = terminal.toggle
 function terminal.toggle(opts)
+    opts.theme = gen_color_scheme()
     local args = {
         "--no-auto-commits",
         "--pretty",
