@@ -91,36 +91,6 @@ return {
         end,
     },
 
-    {
-        "dnlhc/glance.nvim",
-        event = "LspAttach",
-        opts = {
-            preview_win_opts = {
-                foldcolumn = "0",
-                cursorcolumn = false,
-                colorcolumn = "+1",
-            },
-            border = {
-                enable = true, -- Show window borders. Only horizontal borders allowed
-                bottom_char = "▔",
-                top_char = "▁",
-            },
-            theme = {
-                enable = false,
-            },
-        },
-    },
-
-    -- { -- null-ls
-    --     -- "jose-elias-alvarez/null-ls.nvim",
-    --     "nvimtools/none-ls.nvim",
-    --     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    --     event = { "User BufReadReadFilePostDefer" },
-    --     config = function()
-    --         require("plugins.lsp.providers.null_ls")
-    --     end,
-    -- },
-
     -- python-type-stubs
     {
         "microsoft/python-type-stubs",
