@@ -17,29 +17,9 @@ return {
                 left_mouse_command = function(buf)
                     local current_buf = vim.api.nvim_win_get_buf(0)
 
-                    -- pcall(function()
-                    --     if package.loaded.glance then
-                    --         require("glance").actions.close()
-                    --     end
-                    -- end)
-                    --
                     ----------------------------------------------------------------------
                     --                       handle single click                        --
                     ----------------------------------------------------------------------
-                    --- to prevent open buffer in terminal window
-                    -- if require("lazy.core.config").plugins["toggleterm.nvim"]._.loaded then
-                    --     local terms = require("toggleterm.terminal").get_all()
-                    --
-                    --     for _, t in pairs(terms) do
-                    --         if t.bufnr == current_buf then
-                    --             if t.direction == "float" then -- if float window, close it
-                    --                 t:close()
-                    --                 break
-                    --             end
-                    --         end
-                    --     end
-                    -- end
-
                     local nonfiletypes = require("utils.filetype").get_nonfiletypes()
 
                     --- first of all, if current window is a normal window (contains normal buffer in it)
