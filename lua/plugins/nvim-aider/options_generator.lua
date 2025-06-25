@@ -2,6 +2,10 @@ local terminal = require("nvim_aider.terminal")
 local path = require("utils.os.path")
 local get_colors = require("themes.colors.manager").colors
 
+----------------------------------------------------------------------
+--                          util functions                          --
+----------------------------------------------------------------------
+-- color scheme
 local function gen_color_scheme()
     local colors = get_colors()
     return {
@@ -9,7 +13,7 @@ local function gen_color_scheme()
         tool_output_color = colors.base0D,
         tool_error_color = colors.base08,
         tool_warning_color = colors.base0A,
-        assistant_output_color = colors.base0E,
+        assistant_output_color = colors.base05,
         completion_menu_color = colors.base07,
         completion_menu_bg_color = colors.base02,
         completion_menu_current_color = colors.base01,
@@ -50,7 +54,6 @@ end
 
 -- use gpg to add
 local aider_key_encrypt_passfile = path.join(vim.fn.stdpath("state"), "aider", "encrypt_pass")
-local aider_encrypt_key_file = path.join(vim.fn.stdpath("state"), "aider", "api_key.asc")
 if not path.exists(vim.fn.fnamemodify(aider_key_encrypt_passfile, ":p:h")) then
     path.mkdir(vim.fn.fnamemodify(aider_key_encrypt_passfile, ":p:h"))
 end
@@ -59,24 +62,44 @@ if not path.exists(aider_key_encrypt_passfile) then
 end
 
 
+----------------------------------------------------------------------
+--                         config of models                         --
+----------------------------------------------------------------------
+local model_providers = {
+    chutes = {
+        api_base = "https://llm.chutes.ai/v1",
+        model = "openai/deepseek-ai/DeepSeek-R1-0528",
+        editor_model = "openai/deepseek-ai/DeepSeek-V3-0324"
+    },
+    cstcloud = {
+        api_base = "https://uni-api.cstcloud.cn/v1",
+        model = "openai/deepseek-r1:671b-0528",
+        editor_model = "openai/deepseek-v3:671b"
+    }
+}
+----------------------------------------------------------------------
+--          functions to generate aider execute parameters          --
+----------------------------------------------------------------------
 -- override snacks terminal's toggle function
 local orig_toggle = terminal.toggle
 function terminal.toggle(opts)
     opts.theme = gen_color_scheme()
+    local provider = "chutes"
     local args = {
         "--no-auto-commits",
         "--pretty",
         "--stream",
         "--watch-files",
         "--architect",
-        "--openai-api-base https://llm.chutes.ai/v1",
-        "--model openai/deepseek-ai/DeepSeek-R1-0528",
-        "--editor-model openai/deepseek-ai/DeepSeek-V3-0324",
+        "--openai-api-base " .. model_providers[provider]["api_base"],
+        "--model " .. model_providers[provider]["model"],
+        "--editor-model " .. model_providers[provider]["editor_model"],
         "--editor-edit-format editor-diff",
         "--model-metadata-file " .. path.join(vim.fn.stdpath("config"), "extra", "aider-model-metadata.json"),
         "--code-theme one-dark"
     }
 
+    local aider_encrypt_key_file = path.join(vim.fn.stdpath("state"), "aider", provider .. "-api_key.asc")
     if not path.exists(aider_encrypt_key_file) then
         local key = vim.fn.input("Please input api key to continue use aider")
         local tmpfile = vim.fn.tempname()
