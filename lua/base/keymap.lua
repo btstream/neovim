@@ -7,7 +7,17 @@ set({ "n", "i" }, "<C-s>", function()
         return
     end
 
-    vim.cmd("write")
+    -- if an new buffer, ask for saving name
+    local filename = vim.api.nvim_buf_get_name(0)
+    if filename == "" then
+        filename = vim.fn.input("Save As: ")
+        if vim.trim(filename) == "" then
+            vim.notify("filename can not be empty", vim.log.levels.ERROR)
+            return
+        end
+    end
+
+    vim.cmd("write " .. filename)
     vim.cmd("stopinsert")
 end)
 set("n", "<SPACEE>", "<Nop>")
