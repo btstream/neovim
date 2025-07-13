@@ -75,6 +75,10 @@ local model_providers = {
         api_base = "https://uni-api.cstcloud.cn/v1",
         model = "openai/deepseek-r1:671b-0528",
         editor_model = "openai/deepseek-v3:671b"
+    },
+    openrouter = {
+        model = "openrouter/deepseek/deepseek-r1-0528:free",
+        editor_model = "openrouter/deepseek/deepseek-chat-v3-0324:free"
     }
 }
 ----------------------------------------------------------------------
@@ -84,20 +88,23 @@ local model_providers = {
 local orig_toggle = terminal.toggle
 function terminal.toggle(opts)
     opts.theme = gen_color_scheme()
-    local provider = "chutes"
+    local provider = "openrouter"
     local args = {
         "--no-auto-commits",
         "--pretty",
         "--stream",
         "--watch-files",
         "--architect",
-        "--openai-api-base " .. model_providers[provider]["api_base"],
         "--model " .. model_providers[provider]["model"],
         "--editor-model " .. model_providers[provider]["editor_model"],
         "--editor-edit-format editor-diff",
         "--model-metadata-file " .. path.join(vim.fn.stdpath("config"), "extra", "aider-model-metadata.json"),
         "--code-theme one-dark"
     }
+    if model_providers[provider]["api_base"] then
+        table.insert(args, "--openai-api-base " .. model_providers[provider]["api_base"])
+    end
+
 
     local aider_encrypt_key_file = path.join(vim.fn.stdpath("state"), "aider", provider .. "-api_key.asc")
     if not path.exists(aider_encrypt_key_file) then
@@ -154,7 +161,12 @@ function terminal.toggle(opts)
         vim.notify("Failed to get credentials:" .. api_key, vim.log.levels.ERROR)
         return
     end
-    table.insert(args, "--openai-api-key " .. string.gsub(api_key, "\n", ""))
+    if provider == "openrouter" then
+        table.insert(args, "--set-env " .. " OPENROUTER_API_KEY=" .. string.gsub(api_key, "\n", ""))
+    else
+        table.insert(args, "--openai-api-key " .. string.gsub(api_key, "\n", ""))
+    end
+
 
     opts.args = args
     orig_toggle(opts)
