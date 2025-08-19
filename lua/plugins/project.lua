@@ -19,7 +19,7 @@ return {
         --     end
         -- end
 
-        require("project_nvim").setup({})
+        require("project").setup({})
         local config = require("session_manager.config")
         require("session_manager").setup({
             autoload_mode = config.AutoloadMode.Disabled,
@@ -37,6 +37,6 @@ return {
 
         -- a little trick to do an BufEnter event to update proejct's current dir
         -- on first load
-        require("project_nvim.api").on_buf_enter()
+        require("project.api").on_buf_enter()
     end,
 }
