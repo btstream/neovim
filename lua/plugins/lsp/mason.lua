@@ -17,6 +17,7 @@ local _servers = {
     "efm",
     "xmlformatter",
     "prettierd",
+    "texlab"
 }
 
 -- lemminx and clangd is not avaiable on arm platform
