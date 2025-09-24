@@ -120,7 +120,7 @@ function terminal.toggle(opts)
     end
 
     -- save chat history and cache in a seprated folder
-    local project_root = path.find_root()
+    local project_root = path.find_root() or vim.fn.getcwd()
     if not path.exists(path.join(project_root, ".git")) then
         table.insert(args, "--no-git")
     end

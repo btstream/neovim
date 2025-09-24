@@ -101,7 +101,7 @@ function M.find_root(markers, start)
         '.project', '.root', ".nvim"
     }
 
-    return vim.fs.root(start and start or 0, root_markers) or vim.fn.getcwd()
+    return vim.fs.root(start and start or 0, root_markers)
 end
 
 return M
