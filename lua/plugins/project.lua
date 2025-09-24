@@ -3,6 +3,7 @@ return {
     "DrKJeff16/project.nvim",
     event = { "User BufReadRealFilePost" },
     dependencies = "Shatur/neovim-session-manager",
+    enabled = false,
     config = function()
         -- local project_nvim_project = require("project_nvim.project")
         -- local origi_set_pwd = project_nvim_project.set_pwd
@@ -19,7 +20,11 @@ return {
         --     end
         -- end
 
-        require("project").setup({})
+        require("project").setup({
+            fzf_lua = {
+                enabled = false
+            }
+        })
         local config = require("session_manager.config")
         require("session_manager").setup({
             autoload_mode = config.AutoloadMode.Disabled,
