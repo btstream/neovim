@@ -95,6 +95,8 @@ function M.find_root(markers, start)
         'go.mod',
         -- Java
         'pom.xml', 'build.gradle', 'settings.gradle',
+        -- Tectonic
+        "Tectonic.toml",
         -- C/C++
         'CMakeLists.txt', 'Makefile',
         -- 其他
