@@ -137,6 +137,7 @@ M.filetype_icons       = {
     mason               = "",
     spectre             = "",
     spectre_panel       = "",
+    ["grug-far"]        = "",
     cmdline             = "󰋚",
     noice               = "󱥁",
     DressingInput       = "󱓧",

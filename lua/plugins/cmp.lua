@@ -38,6 +38,10 @@ return {
         ---@diagnostic disable-next-line: redundant-parameter
         cmp.setup({
             enabled = function()
+                if vim.bo.filetype == "grug-far" then
+                    return false
+                end
+
                 -- disable completion in comments
                 local context = require("cmp.config.context")
                 -- keep command mode completion enabled when cursor is in a comment
