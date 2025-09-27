@@ -77,8 +77,8 @@ local model_providers = {
         editor_model = "openai/deepseek-v3:671b"
     },
     openrouter = {
-        model = "openrouter/deepseek/deepseek-r1-0528:free",
-        editor_model = "openrouter/deepseek/deepseek-chat-v3-0324:free"
+        model = "openrouter/microsoft/mai-ds-r1:free",
+        editor_model = "openrouter/qwen/qwen3-coder:free"
     }
 }
 ----------------------------------------------------------------------
