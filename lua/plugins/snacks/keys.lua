@@ -24,7 +24,7 @@ return {
         mode = { "n", "i" },
         "<C-k>S",
         function()
-            Snacks.pickers
+            Snacks.picker
                 .lsp_workspace_symbols()
         end,
         desc = "show workspace symboles"
