@@ -19,8 +19,8 @@ for _, server_name in ipairs(require("mason-lspconfig").get_installed_servers())
     if not x then
         local ss, config = pcall(require, "plugins.lsp.servers." .. server_name)
         config = ss and config or {}
-        vim.lsp.enable(server_name)
         vim.lsp.config(server_name, config)
+        vim.lsp.enable(server_name)
     end
 
     ::continue::
