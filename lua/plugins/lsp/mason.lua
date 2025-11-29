@@ -14,10 +14,13 @@ local _servers = {
     "fortls",
     "codelldb",
     "java-debug-adapter",
+    "texlab",
     "efm",
+
+    --formatter
     "xmlformatter",
     "prettierd",
-    "texlab"
+    "yapf"
 }
 
 -- lemminx and clangd is not avaiable on arm platform
