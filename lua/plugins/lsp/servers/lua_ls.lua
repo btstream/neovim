@@ -1,4 +1,14 @@
+local os = require("utils.os")
+local path = require("utils.os.path")
+local cmd = { "lua-language-server" }
+
+-- use system
+if os.name() == "linux" and path.exists("/usr/bin/lua-language-server") then
+    cmd = { "/usr/bin/lua-language-server" }
+end
+
 return {
+    cmd = cmd,
     settings = {
         Lua = {
             format = {
