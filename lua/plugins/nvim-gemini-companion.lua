@@ -4,7 +4,21 @@ return {
     event = "VeryLazy",
     config = function()
         require("gemini").setup({
-            cmds = { "qwen" }
+            cmds = { "qwen" },
+            win = {
+                highlights = {
+                    NGCNormal = { link = 'Normal' },
+                    NGCNormalMC = { link = 'Normal' },
+                    NGCFloatBorder = { link = 'VertSplit' },
+                },
+            },
+        })
+
+        vim.api.nvim_create_autocmd({ "Filetype" }, {
+            pattern = "terminalGemini",
+            callback = vim.schedule_wrap(function()
+                vim.opt_local.winbar = ""
+            end)
         })
     end,
     cond = function()

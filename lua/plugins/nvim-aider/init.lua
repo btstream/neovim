@@ -1,7 +1,8 @@
 return {
     "GeorgesAlkhouri/nvim-aider",
     cmd = "Aider",
-    enabled = vim.fn.executable("aider") == 1,
+    -- enabled = vim.fn.executable("aider") == 1,
+    enabled = false,
     keys = {
         { "<leader>a/", "<cmd>Aider toggle<cr>",       desc = "Toggle Aider" },
         { "<leader>as", "<cmd>Aider send<cr>",         desc = "Send to Aider",                  mode = { "n", "v" } },

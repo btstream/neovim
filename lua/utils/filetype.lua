@@ -33,6 +33,7 @@ M._nonefiletypes = {
     "edgy",
     "Glance",
     "aider",
+    "terminalGemini",
     "grug-far"
 }
 

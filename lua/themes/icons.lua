@@ -144,7 +144,8 @@ M.filetype_icons       = {
     documentation       = "󰬋",
     dropbar_menu        = "󰮫",
     Glance              = "",
-    aider               = "󱙺"
+    aider               = "󱙺",
+    terminalGemini      = ""
 }
 
 M.common_ui_icons      = {

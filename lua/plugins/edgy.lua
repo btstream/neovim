@@ -193,6 +193,10 @@ return {
                 {
                     title = "Aider",
                     ft = "aider"
+                },
+                {
+                    title = "Qwen",
+                    ft = "terminalGemini"
                 }
             },
 
@@ -202,7 +206,7 @@ return {
             options = {
                 left = { size = 45 },
                 bottom = { size = 10 },
-                right = { size = 55 },
+                right = { size = 75 },
                 top = { size = 10 },
             },
             close_when_all_hidden = false,

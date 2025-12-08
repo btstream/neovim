@@ -21,6 +21,11 @@ local path_name = {
             if ft == "snacks_terminal" or ft == "terminal" then
                 return ""
             end
+
+            if ft == "terminalGemini" then
+                ft = "AI Agent"
+            end
+
             return " " .. ft .. " "
         elseif #self.filename == 0 then
             return " [No Name]"
