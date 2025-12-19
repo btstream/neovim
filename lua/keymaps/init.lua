@@ -11,6 +11,8 @@ local M = {}
 function M.switch_tabs()
     local function go_to_tab(index)
         return function()
+            vim.cmd.stopinsert()
+
             local is_nft, ft = is_nonefiletype()
             -- if sidebar
             if ft == "Outline" or ft == "neo-tree" then
@@ -53,8 +55,8 @@ function M.switch_tabs()
     end
 
     return {
-        { mode = { "n", "i" }, "<A-,>",     "<cmd>BufferLineCyclePrev<CR>" },
-        { mode = { "n", "i" }, "<A-.>",     "<cmd>BufferLineCycleNext<CR>" },
+        { mode = { "n", "i" }, "<A-,>",     "<esc><cmd>BufferLineCyclePrev<CR>" },
+        { mode = { "n", "i" }, "<A-.>",     "<esc><cmd>BufferLineCycleNext<CR>" },
         { mode = { "n", "i" }, "<A-1>",     go_to_tab(1) },
         { mode = { "n", "i" }, "<A-2>",     go_to_tab(2) },
         { mode = { "n", "i" }, "<A-3>",     go_to_tab(3) },
@@ -64,7 +66,7 @@ function M.switch_tabs()
         { mode = { "n", "i" }, "<A-7>",     go_to_tab(7) },
         { mode = { "n", "i" }, "<A-8>",     go_to_tab(8) },
         { mode = { "n", "i" }, "<A-9>",     go_to_tab(9) },
-        { mode = { "n", "i" }, "<Space>pp", "<cmd>BufferLinePick<CR>" },
+        { mode = { "n", "i" }, "<Space>pp", "<esc><cmd>BufferLinePick<CR>" },
         { mode = { "n", "i" }, "<A-w>",     require("utils.window").quit },
     }
 end

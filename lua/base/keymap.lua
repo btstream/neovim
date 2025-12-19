@@ -2,7 +2,7 @@ local set = vim.keymap.set
 
 local m = { "i", "n", "v" }
 set({ "n", "i" }, "<C-s>", function()
-    if not vim.api.nvim_buf_get_option(0, "modifiable") then
+    if not vim.api.nvim_get_option_value("modifiable", { buf = 0 }) then
         -- vim.notify("Buf is not modifiable", vim.log.levels.INFO)
         return
     end
