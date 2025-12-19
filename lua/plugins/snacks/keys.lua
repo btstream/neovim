@@ -58,6 +58,23 @@ return {
     { "<leader>xX", function() Snacks.picker.diagnostics({ prompt = " > " }) end,          desc = "Get Diagnostics of Workspace" },
     { "<leader>xx", function() Snacks.picker.diagnostics_buffer({ prompt = " > " }) end,   desc = "Get diagnostics of buffer" },
 
+    -- search word
+    {
+        mode = { "n", "i" },
+        "<C-k>f",
+        function()
+            Snacks.picker.grep()
+        end,
+        desc = "Search in workspace"
+    },
+    {
+        mode = { "n", "i" },
+        "<C-k>W",
+        function()
+            Snacks.picker.grep_word()
+        end,
+        desc = "Search current word in workspace"
+    },
 
     -- terminal
     {
