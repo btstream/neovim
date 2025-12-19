@@ -158,41 +158,13 @@ function M.define()
 
 
         ----------------------------------------------------------------------
-        --                               CMP                                --
+        --                               Blink                              --
         ----------------------------------------------------------------------
         PmenuSel                  = { bg = colors.base02, fg = nil },
         Pmenu                     = { bg = dbg015 },
         PmenuSbar                 = { bg = darken(colors.base03, .60) },
         PmenuThumb                = { bg = darken(colors.base03, .30) },
-        CmpItemAbbr               = { bg = nil },
-        CmpItemAbbrMatch          = { fg = colors.base0D },
-        CmpItemAbbrtMatchFuzzy    = { fg = colors.base0D },
-        CmpItemnu                 = { fg = colors.base03 },
-        CmpItemKindText           = { fg = colors.base09 },
-        CmpItemKindthod           = { fg = colors.base0D },
-        CmpItemKindFunction       = { fg = colors.base0D },
-        CmpItemKindConstructor    = { fg = colors.base0A },
-        CmpItemKindField          = { fg = colors.base0D },
-        CmpItemKindClass          = { fg = colors.base0A },
-        CmpItemKindInterface      = { fg = colors.base0A },
-        CmpItemKindModule         = { fg = colors.base0D },
-        CmpItemKindProperty       = { fg = colors.base0D },
-        CmpItemKindValue          = { fg = colors.base09 },
-        CmpItemKindEnum           = { fg = colors.base0A },
-        CmpItemKindKeyword        = { fg = colors.base0E },
-        CmpItemKindSnippet        = { fg = colors.base0B },
-        CmpItemKindFile           = { fg = colors.base0D },
-        CmpItemKindEnummber       = { fg = colors.base0C },
-        CmpItemKindConstant       = { fg = colors.base09 },
-        CmpItemKindStruct         = { fg = colors.base0A },
-        CmpItemKindTypeParameter  = { fg = colors.base0A },
-        CmpDocumentation          = { bg = dbg015 },
-        CmpDocumentationBorder    = { fg = dbg015, bg = dbg015 },
-        CmpItemKindCodeium        = { fg = colors.base0C },
 
-        --------------------------------------------------------------------j--
-        --                            Blink cmp                             --
-        ----------------------------------------------------------------------
         BlinkCmpKind              = { fg = colors.base0D },
         BlinkCmpKindVariable      = { fg = colors.base08 },
         BlinkCmpKindText          = { fg = colors.base09 },
@@ -216,6 +188,8 @@ function M.define()
         BlinkCmpKindCodeium       = { fg = colors.base0C },
         BlinkCmpKindCodeiumItem   = { fg = colors.base0C },
 
+
+        -- for something like atom
         -- BlinkCmpKind              = { bg = colors.base0D, fg = colors.base00 },
         -- BlinkCmpKindVariable      = { bg = colors.base08, fg = colors.base00 },
         -- BlinkCmpKindText          = { bg = colors.base09, fg = colors.base00 },
@@ -239,6 +213,10 @@ function M.define()
         -- BlinkCmpKindCodeium       = { bg = colors.base0C, fg = colors.base00 },
         -- BlinkCmpKindCodeiumItem   = { fg = colors.base0C },
 
+        ----------------------------------------------------------------------
+        --                             sidekick                             --
+        ----------------------------------------------------------------------
+        SidekickChat = "Normal",
 
 
         ----------------------------------------------------------------------
