@@ -21,10 +21,10 @@ end
 
 function M.common_settings()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
     lspconfig_utils.default_config = vim.tbl_deep_extend("force", lspconfig_utils.default_config, {
         on_attach = require("plugins.lsp.utils").on_attach,
-        capabilities = capabilities,
+        -- capabilities = capabilities,
         handlers = require("plugins.lsp.handlers"),
         single_file_support = true,
         offset_encoding = "utf-16",

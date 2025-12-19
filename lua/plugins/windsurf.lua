@@ -2,6 +2,8 @@ return {
     "Exafunction/windsurf.nvim",
     event = { "User BufReadRealFile" },
     config = function(_, opts)
-        require("codeium").setup(vim.tbl_deep_extend("keep", opts, {}))
+        require("codeium").setup(vim.tbl_deep_extend("keep", opts, {
+            enable_cmp_source = false,
+        }))
     end,
 }
