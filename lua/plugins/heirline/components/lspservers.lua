@@ -7,7 +7,7 @@ local separator = require("plugins.heirline.components.separator")
 local ft_indicator = {
     provider = function()
         local _, ft = is_nonefiletype()
-        if ft == "terminalGemini" then
+        if ft == "sidekick_terminal" then
             ft = "AI Agent"
         end
         return " " .. ft .. " "

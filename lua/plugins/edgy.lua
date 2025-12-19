@@ -195,8 +195,12 @@ return {
                     ft = "aider"
                 },
                 {
-                    title = "Qwen",
+                    title = "AI Agent",
                     ft = "terminalGemini"
+                },
+                {
+                    title = "AI Agent",
+                    ft = "sidekick_terminal"
                 }
             },
 

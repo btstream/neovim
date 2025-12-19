@@ -22,7 +22,7 @@ local path_name = {
                 return ""
             end
 
-            if ft == "terminalGemini" then
+            if ft == "sidekick_terminal" then
                 ft = "AI Agent"
             end
 
