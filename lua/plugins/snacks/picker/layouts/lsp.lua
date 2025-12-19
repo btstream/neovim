@@ -6,7 +6,7 @@ return {
         height = 0.5,
         border = { "▁", "▁", "▁", "", "▔", "▔", "▔", "" },
         wo = {
-            winhighlight = "FloatBorder:GlancePreviewBorderBottom",
+            winhighlight = "FloatBorder:LspRefDefPreviewBorder",
         },
         {
             win = "preview",

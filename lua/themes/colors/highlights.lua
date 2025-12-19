@@ -242,35 +242,39 @@ function M.define()
 
         LspInlayHint            = { fg = darken(colors.base04, .3), blend = 50 },
 
+        -- this is used in Snacks picker
+        LspRefDefPreviewBorder  = { bg = colors.base00, fg = darken(colors.base0D, .20) },
+
+
         ----------------------------------------------------------------------
         --                              Notify                              --
         ----------------------------------------------------------------------
-        NotifyBackground        = { bg = colors.base00 },
-        NotifyERROR             = { fg = colors.base08, bg = colors.base00 },
-        NotifyWARN              = { fg = colors.base0E, bg = colors.base00 },
-        NotifyINFO              = { fg = colors.base0B, bg = colors.base00 },
-        NotifyDEBUG             = { fg = colors.base0C, bg = colors.base00 },
-        NotifyTRACE             = { fg = colors.base0C, bg = colors.base00 },
-        NotifyERRORBorder       = { fg = colors.base08, bg = colors.base00 },
-        NotifyWARNBorder        = { fg = colors.base0E, bg = colors.base00 },
-        NotifyINFOBorder        = { fg = colors.base0B, bg = colors.base00 },
-        NotifyDEBUGBorder       = { fg = colors.base0C, bg = colors.base00 },
-        NotifyTRACEBorder       = { fg = colors.base0C, bg = colors.base00 },
-        NotifyERRORIcon         = { fg = colors.base08, bg = colors.base00 },
-        NotifyWARNIcon          = { fg = colors.base0E, bg = colors.base00 },
-        NotifyINFOIcon          = { fg = colors.base0B, bg = colors.base00 },
-        NotifyDEBUGIcon         = { fg = colors.base0C, bg = colors.base00 },
-        NotifyTRACEIcon         = { fg = colors.base0C, bg = colors.base00 },
-        NotifyERRORTitle        = { fg = colors.base08, bg = colors.base00 },
-        NotifyWARNTitle         = { fg = colors.base0E, bg = colors.base00 },
-        NotifyINFOTitle         = { fg = colors.base0B, bg = colors.base00 },
-        NotifyDEBUGTitle        = { fg = colors.base0C, bg = colors.base00 },
-        NotifyTRACETitle        = { fg = colors.base0C, bg = colors.base00 },
-        NotifyERRORBody         = 'Normal',
-        NotifyWARNBody          = 'Normal',
-        NotifyINFOBody          = 'Normal',
-        NotifyDEBUGBody         = 'Normal',
-        NotifyTRACEBody         = 'Normal',
+        NotifyBackground     = { bg = colors.base00 },
+        NotifyERROR          = { fg = colors.base08, bg = colors.base00 },
+        NotifyWARN           = { fg = colors.base0E, bg = colors.base00 },
+        NotifyINFO           = { fg = colors.base0B, bg = colors.base00 },
+        NotifyDEBUG          = { fg = colors.base0C, bg = colors.base00 },
+        NotifyTRACE          = { fg = colors.base0C, bg = colors.base00 },
+        NotifyERRORBorder    = { fg = colors.base08, bg = colors.base00 },
+        NotifyWARNBorder     = { fg = colors.base0E, bg = colors.base00 },
+        NotifyINFOBorder     = { fg = colors.base0B, bg = colors.base00 },
+        NotifyDEBUGBorder    = { fg = colors.base0C, bg = colors.base00 },
+        NotifyTRACEBorder    = { fg = colors.base0C, bg = colors.base00 },
+        NotifyERRORIcon      = { fg = colors.base08, bg = colors.base00 },
+        NotifyWARNIcon       = { fg = colors.base0E, bg = colors.base00 },
+        NotifyINFOIcon       = { fg = colors.base0B, bg = colors.base00 },
+        NotifyDEBUGIcon      = { fg = colors.base0C, bg = colors.base00 },
+        NotifyTRACEIcon      = { fg = colors.base0C, bg = colors.base00 },
+        NotifyERRORTitle     = { fg = colors.base08, bg = colors.base00 },
+        NotifyWARNTitle      = { fg = colors.base0E, bg = colors.base00 },
+        NotifyINFOTitle      = { fg = colors.base0B, bg = colors.base00 },
+        NotifyDEBUGTitle     = { fg = colors.base0C, bg = colors.base00 },
+        NotifyTRACETitle     = { fg = colors.base0C, bg = colors.base00 },
+        NotifyERRORBody      = 'Normal',
+        NotifyWARNBody       = 'Normal',
+        NotifyINFOBody       = 'Normal',
+        NotifyDEBUGBody      = 'Normal',
+        NotifyTRACEBody      = 'Normal',
 
         ----------------------------------------------------------------------
         --                             Outline                              --
@@ -281,8 +285,8 @@ function M.define()
         -- OutlineSignColumn   = "OutlineNormal",
         -- OutlineLineNr       = "OutlineNormal",
         -- OutlineWinSeparator = "WinSeparator",
-        OutlinePreviewNormal    = { bg = dbg015, },
-        FocusedSymbol           = { bg = colors.base01, fg = "None" }, -- gui = "None" },
+        OutlinePreviewNormal = { bg = dbg015, },
+        FocusedSymbol        = { bg = colors.base01, fg = "None" }, -- gui = "None" },
 
 
         ----------------------------------------------------------------------
@@ -305,15 +309,6 @@ function M.define()
         DashboardActionColors             = { fg = colors.base0E },
         DashboardActionUpdate             = { fg = colors.base0C },
         DashboardActionSettings           = { fg = colors.base08 },
-
-        ----------------------------------------------------------------------
-        --                             Trouble                              --
-        ----------------------------------------------------------------------
-        TroubleCount                      = { bg = "None", fg = colors.base0B },
-        TroubleFoldIcon                   = "None",
-        TroubleIndent                     = "None",
-        TroubleLocation                   = { bg = "None", fg = colors.base03 },
-        TroubleText                       = "None",
 
         ----------------------------------------------------------------------
         --                              Noice                               --
@@ -356,32 +351,6 @@ function M.define()
         --                            ToggleTerm                            --
         ----------------------------------------------------------------------
         ToggleTermTitle                   = { fg = colors.base04 },
-
-        ----------------------------------------------------------------------
-        --                              glance                              --
-        ----------------------------------------------------------------------
-        GlancePreviewNormal               = { bg = dbg010 },
-        GlancePreviewMatch                = "CursorLine",
-        -- GlancePreviewCursorLine  = "GlancePreviewNormal",
-        -- GlancePreviewSignColumn  = "GlancePreviewNormal",
-        -- GlancePreviewFoldColumn  = { bg = dbg020 },
-        -- GlancePreviewEndOfBuffer = "GlancePreviewNormal",
-        -- GlancePreviewLineNr      = "GlancePreviewNormal",
-        GlancePreviewBorderBottom         = { bg = colors.base00, fg = darken(colors.base0D, .20) },
-        GlanceWinBarFilename              = { bg = colors.base00 },
-        GlanceWinBarFilepath              = "GlanceWinBarFilename",
-        GlanceWinBarTitle                 = "GlanceWinBarFilename",
-        -- GlanceListNormal
-        -- GlanceListFilename
-        -- GlanceListFilepath
-        -- GlanceListCount
-        GlanceListMatch                   = { bg = darken(colors.base0D, .20), fg = colors.base00 },
-        -- GlanceListCursorLine        = { bg = darken(colors.base0D, .40), fg = colors.base00 },
-        -- GlanceListEndOfBuffer
-        GlanceListBorderBottom            = "GlancePreviewBorderBottom",
-        -- GlanceFoldIcon
-        -- GlanceIndent
-        GlanceBorderTop                   = "GlancePreviewBorderBottom",
 
         ----------------------------------------------------------------------
         --                             Lazygit                              --
