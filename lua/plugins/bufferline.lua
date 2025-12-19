@@ -34,7 +34,6 @@ return {
                             current_buf_ft
                         ) or (current_buf_ft == "grug-far")
                     then
-                        print(current_buf_ft)
                         vim.api.nvim_set_current_win(current_win)
                         vim.api.nvim_win_set_buf(current_win, buf)
                         return
