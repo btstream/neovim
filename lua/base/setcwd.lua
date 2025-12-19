@@ -1,5 +1,6 @@
 local is_nonefiletype = require("utils.filetype").is_nonefiletype
 local find_root = require("utils.os.path").find_root
+local os = require("utils.os").name()
 
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*",
@@ -37,6 +38,22 @@ vim.api.nvim_create_autocmd("BufEnter", {
                 if client.config.root_dir then
                     pwd = client.config.root_dir
                     break
+                end
+            end
+        end
+
+        -- if file is under XDG_CONFIG_HOME/~/.config on Linux, set cwd to that subdir
+        if os == "linux" or os == "macos" then
+            local config_home = vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")
+            config_home = vim.fs.normalize(config_home)
+            local norm_buf_path = vim.fs.normalize(cur_buf_path)
+            if norm_buf_path == config_home or vim.startswith(norm_buf_path, config_home .. "/") then
+                local rel = norm_buf_path:sub(#config_home + 2)
+                local first = rel:match("([^/]+)")
+                if first == nil or first == "" or not rel:find("/") then
+                    pwd = config_home
+                else
+                    pwd = config_home .. "/" .. first
                 end
             end
         end
