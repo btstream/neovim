@@ -26,12 +26,15 @@ return {
                     --- then set target buffer to current window
                     local current_win = vim.api.nvim_get_current_win()
                     local current_win_buf = vim.api.nvim_win_get_buf(current_win)
+                    local current_buf_ft = vim.api.nvim_get_option_value("filetype", { buf = current_win_buf })
+
                     if
                         not vim.tbl_contains(
                             nonfiletypes,
-                            vim.api.nvim_get_option_value("filetype", { buf = current_win_buf })
-                        )
+                            current_buf_ft
+                        ) or (current_buf_ft == "grug-far")
                     then
+                        print(current_buf_ft)
                         vim.api.nvim_set_current_win(current_win)
                         vim.api.nvim_win_set_buf(current_win, buf)
                         return
@@ -90,9 +93,18 @@ return {
                 end,
                 custom_filter = function(buf_number)
                     -- do not display dap-repl buffers
-                    if vim.bo[buf_number].filetype ~= "dap-repl" and vim.bo[buf_number] ~= "spectre" and vim.bo[buf_number].filetype ~= "grug-far" then
+                    if vim.bo[buf_number].filetype ~= "dap-repl" then
                         return true
                     end
+                end,
+                get_element_icon = function(element)
+                    -- show search icon
+                    if element.filetype == "grug-far" then
+                        return icons.filetype_icons["grug-far"], "DevIconDefault"
+                    end
+                    local icon, hl = require('nvim-web-devicons').get_icon_by_filetype(element.filetype,
+                        { default = false })
+                    return icon, hl
                 end,
                 show_buffer_icons = true, -- disable filetype icons for buffers
                 show_buffer_close_icons = true,
