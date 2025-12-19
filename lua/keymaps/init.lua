@@ -31,7 +31,7 @@ function M.switch_tabs()
                 element = list[#list]
             end
 
-            if is_nft then
+            if ft ~= "grug-far" and is_nft then
                 local windows = vim.api.nvim_tabpage_list_wins(0)
                 for _, w in pairs(windows) do
                     -- find first normal window contains a normal file
@@ -53,19 +53,19 @@ function M.switch_tabs()
     end
 
     return {
-        { "<A-,>",             "<cmd>BufferLineCyclePrev<CR>" },
-        { "<A-.>",             "<cmd>BufferLineCycleNext<CR>" },
-        { "<A-1>",             go_to_tab(1) },
-        { "<A-2>",             go_to_tab(2) },
-        { "<A-3>",             go_to_tab(3) },
-        { "<A-4>",             go_to_tab(4) },
-        { "<A-5>",             go_to_tab(5) },
-        { "<A-6>",             go_to_tab(6) },
-        { "<A-7>",             go_to_tab(7) },
-        { "<A-8>",             go_to_tab(8) },
-        { "<A-9>",             go_to_tab(9) },
-        { "<Space>pp",         "<cmd>BufferLinePick<CR>" },
-        { mode = { "n", "i" }, "<A-w>",                       require("utils.window").quit },
+        { mode = { "n", "i" }, "<A-,>",     "<cmd>BufferLineCyclePrev<CR>" },
+        { mode = { "n", "i" }, "<A-.>",     "<cmd>BufferLineCycleNext<CR>" },
+        { mode = { "n", "i" }, "<A-1>",     go_to_tab(1) },
+        { mode = { "n", "i" }, "<A-2>",     go_to_tab(2) },
+        { mode = { "n", "i" }, "<A-3>",     go_to_tab(3) },
+        { mode = { "n", "i" }, "<A-4>",     go_to_tab(4) },
+        { mode = { "n", "i" }, "<A-5>",     go_to_tab(5) },
+        { mode = { "n", "i" }, "<A-6>",     go_to_tab(6) },
+        { mode = { "n", "i" }, "<A-7>",     go_to_tab(7) },
+        { mode = { "n", "i" }, "<A-8>",     go_to_tab(8) },
+        { mode = { "n", "i" }, "<A-9>",     go_to_tab(9) },
+        { mode = { "n", "i" }, "<Space>pp", "<cmd>BufferLinePick<CR>" },
+        { mode = { "n", "i" }, "<A-w>",     require("utils.window").quit },
     }
 end
 
