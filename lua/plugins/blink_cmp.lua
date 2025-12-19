@@ -34,22 +34,28 @@ return {
             completion = {
                 documentation = { auto_show = true },
                 menu = {
-                    -- padding = { 0, 1 },
                     draw = {
-                        columns = { { "kind_icon", gap = 1 }, { "label", gap = 1 } },
+                        padding = 0,
+                        columns = { { "kind_icon" }, { "label", gap = 1 } },
                         components = {
                             kind_icon = {
                                 ellipsis = false,
                                 text = function(ctx)
-                                    return require('lspkind').symbolic(ctx.kind, {
+                                    if ctx.source_id == "spell" then
+                                        return "  "
+                                    end
+                                    return " " .. require('lspkind').symbolic(ctx.kind, {
                                         mode = 'symbol',
-                                    })
+                                    }) .. " "
                                 end,
                                 highlight = function(ctx)
+                                    local group = ctx.kind_hl
                                     if ctx.kind == "Codeium" then
-                                        return "BlinkCmpKindCodeium"
+                                        group = "BlinkCmpKindCodeium"
+                                    elseif ctx.source_id == "spell" then
+                                        group = "BlinkCmpKind"
                                     end
-                                    return ctx.kind_hl
+                                    return { { group = group, priority = 20000 } }
                                 end,
                             },
                             label = {
@@ -59,7 +65,7 @@ return {
                                 end,
                                 highlight = function(ctx)
                                     if ctx.kind == "Codeium" then
-                                        return "BlinkCmpKindCodeium"
+                                        return "BlinkCmpKindCodeiumItem"
                                     end
                                     return require("colorful-menu").blink_components_highlight(ctx)
                                 end,
@@ -70,8 +76,9 @@ return {
             },
 
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer', "spell", "codeium" },
+                default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', "spell", "codeium" },
                 providers = {
+                    -- spell source
                     spell = {
                         name = 'Spell',
                         module = 'blink-cmp-spell',
@@ -97,6 +104,14 @@ return {
                             end,
                         },
                     },
+
+                    lazydev = {
+                        name = "LazyDev",
+                        module = "lazydev.integrations.blink",
+                        -- make lazydev completions top priority (see `:h blink.cmp`)
+                        score_offset = 100,
+                    },
+
                     codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
                 },
             },
