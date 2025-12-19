@@ -3,7 +3,6 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = {
         'rafamadriz/friendly-snippets',
-        "onsails/lspkind-nvim",
         "xzbdmw/colorful-menu.nvim",
         'ribru17/blink-cmp-spell',
         'Exafunction/windsurf.nvim',
@@ -19,16 +18,13 @@ return {
     -- build = 'nix run .#build-plugin',
 
     config = function()
-        require("colorful-menu").setup()
-        require("lspkind").init({
-            symbol_map = require("themes.icons").lsp_symbols
-        })
+        local symbol_maps = require("themes.icons").lsp_symbols
+        require("colorful-menu").setup({})
         require("blink.cmp").setup({
             keymap = { preset = 'enter' },
 
             appearance = {
                 nerd_font_variant = 'mono',
-                kind_icons = require("themes.icons").lsp_symbols
             },
 
             completion = {
@@ -44,9 +40,7 @@ return {
                                     if ctx.source_id == "spell" then
                                         return "  "
                                     end
-                                    return " " .. require('lspkind').symbolic(ctx.kind, {
-                                        mode = 'symbol',
-                                    }) .. " "
+                                    return " " .. symbol_maps[ctx.kind] .. " "
                                 end,
                                 highlight = function(ctx)
                                     local group = ctx.kind_hl

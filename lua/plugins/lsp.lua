@@ -9,7 +9,7 @@ return {
             "simrat39/rust-tools.nvim",
             "mfussenegger/nvim-jdtls",
             -- "tamago324/nlsp-settings.nvim",
-            "onsails/lspkind-nvim",
+            -- "onsails/lspkind-nvim",
         },
         config = function()
             require("plugins.lsp.base")
