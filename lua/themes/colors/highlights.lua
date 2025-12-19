@@ -213,6 +213,7 @@ function M.define()
         BlinkCmpKindConstant      = { fg = colors.base09 },
         BlinkCmpKindStruct        = { fg = colors.base0A },
         BlinkCmpKindTypeParameter = { fg = colors.base0A },
+        BlinkCmpKindCodeium       = { fg = colors.base0C },
 
         ----------------------------------------------------------------------
         --                            LSP COnfig                            --

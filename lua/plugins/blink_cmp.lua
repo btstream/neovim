@@ -3,10 +3,13 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = {
         'rafamadriz/friendly-snippets',
-        -- "onsails/lspkind-nvim",
+        "onsails/lspkind-nvim",
         "xzbdmw/colorful-menu.nvim",
-        'ribru17/blink-cmp-spell'
+        'ribru17/blink-cmp-spell',
+        'Exafunction/windsurf.nvim',
     },
+
+    event = { "InsertEnter", "CmdlineEnter" },
 
     -- use a release tag to download pre-built binaries
     version = '1.*',
@@ -17,9 +20,9 @@ return {
 
     config = function()
         require("colorful-menu").setup()
-        -- require("lspkind").init({
-        --     symbol_map = require("themes.icons").lsp_symbols
-        -- })
+        require("lspkind").init({
+            symbol_map = require("themes.icons").lsp_symbols
+        })
         require("blink.cmp").setup({
             keymap = { preset = 'enter' },
 
@@ -31,16 +34,33 @@ return {
             completion = {
                 documentation = { auto_show = true },
                 menu = {
-                    padding = { 0, 1 },
+                    -- padding = { 0, 1 },
                     draw = {
                         columns = { { "kind_icon", gap = 1 }, { "label", gap = 1 } },
                         components = {
+                            kind_icon = {
+                                ellipsis = false,
+                                text = function(ctx)
+                                    return require('lspkind').symbolic(ctx.kind, {
+                                        mode = 'symbol',
+                                    })
+                                end,
+                                highlight = function(ctx)
+                                    if ctx.kind == "Codeium" then
+                                        return "BlinkCmpKindCodeium"
+                                    end
+                                    return ctx.kind_hl
+                                end,
+                            },
                             label = {
                                 width = { min = 30, max = 60 },
                                 text = function(ctx)
                                     return require("colorful-menu").blink_components_text(ctx)
                                 end,
                                 highlight = function(ctx)
+                                    if ctx.kind == "Codeium" then
+                                        return "BlinkCmpKindCodeium"
+                                    end
                                     return require("colorful-menu").blink_components_highlight(ctx)
                                 end,
                             },
@@ -50,9 +70,8 @@ return {
             },
 
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer', "spell" },
+                default = { 'lsp', 'path', 'snippets', 'buffer', "spell", "codeium" },
                 providers = {
-                    -- ...
                     spell = {
                         name = 'Spell',
                         module = 'blink-cmp-spell',
@@ -78,6 +97,7 @@ return {
                             end,
                         },
                     },
+                    codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
                 },
             },
 
