@@ -2,11 +2,21 @@
 local inlay_hint = require("plugins.lsp.utils").inlay_hint
 
 require("plugins.lsp.ui").setup()
-require("plugins.lsp.servers").common_settings()
 
------------------------------------
--- setup lsp with mason
------------------------------------
+----------------------------------------------------------------------
+--                         common-settings                          --
+----------------------------------------------------------------------
+local lspconfig_utils = require("lspconfig.util")
+local common_settings = vim.tbl_deep_extend("force", lspconfig_utils.default_config, {
+    on_attach = require("plugins.lsp.utils").on_attach,
+    single_file_support = true,
+    offset_encoding = "utf-16",
+})
+vim.lsp.config("*", common_settings)
+
+----------------------------------------------------------------------
+--                     setup servers with mason                     --
+----------------------------------------------------------------------
 local disabled_server = { "pylyzer" }
 
 require("plugins.lsp.mason")
