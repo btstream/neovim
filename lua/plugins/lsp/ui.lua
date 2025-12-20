@@ -3,6 +3,7 @@ local M = {}
 M.signs = require("themes.icons").lsp_diagnostic_signs
 
 local function extend_open_floating_perview()
+    -- override this function will give a fast rendering speed for winhighlight for float window
     local original = vim.lsp.util.open_floating_preview
     vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
         opts = opts or {}
