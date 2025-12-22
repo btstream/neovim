@@ -323,6 +323,11 @@ function M.define()
         NoiceSplit                        = "Normal",
         NoiceVirtualText                  = { fg = darken(colors.base09, .25) },
 
+        -- for cmdlineview
+        NoiceCmdlineIconCmdline           = { fg = colors.base0D, bg = darken(colors.base02, .1) },
+        NoiceCmdlineIconLua               = "NoiceCmdlineIconCmdline",
+        NoiceCmdlineIconHelp              = "NoiceCmdlineIconCmdline",
+
         ----------------------------------------------------------------------
         --                         Rainbow delemers                         --
         ----------------------------------------------------------------------
