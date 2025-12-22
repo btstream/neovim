@@ -31,6 +31,9 @@ return {
             },
         },
         views = {
+            notify = {
+                replace = true
+            },
             confirm = {
                 border = {
                     text = { top = " 󰬚 Confirm ", top_align = "center" },
