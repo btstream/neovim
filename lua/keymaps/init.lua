@@ -55,19 +55,20 @@ function M.switch_tabs()
     end
 
     return {
-        { mode = { "n", "i" }, "<A-,>",     "<esc><cmd>BufferLineCyclePrev<CR>" },
-        { mode = { "n", "i" }, "<A-.>",     "<esc><cmd>BufferLineCycleNext<CR>" },
-        { mode = { "n", "i" }, "<A-1>",     go_to_tab(1) },
-        { mode = { "n", "i" }, "<A-2>",     go_to_tab(2) },
-        { mode = { "n", "i" }, "<A-3>",     go_to_tab(3) },
-        { mode = { "n", "i" }, "<A-4>",     go_to_tab(4) },
-        { mode = { "n", "i" }, "<A-5>",     go_to_tab(5) },
-        { mode = { "n", "i" }, "<A-6>",     go_to_tab(6) },
-        { mode = { "n", "i" }, "<A-7>",     go_to_tab(7) },
-        { mode = { "n", "i" }, "<A-8>",     go_to_tab(8) },
-        { mode = { "n", "i" }, "<A-9>",     go_to_tab(9) },
-        { mode = { "n", "i" }, "<Space>pp", "<esc><cmd>BufferLinePick<CR>" },
-        { mode = { "n", "i" }, "<A-w>",     require("utils.window").quit },
+        { mode = { "n", "i" }, "<A-,>",                       "<esc><cmd>BufferLineCyclePrev<CR>" },
+        { mode = { "n", "i" }, "<A-.>",                       "<esc><cmd>BufferLineCycleNext<CR>" },
+        { mode = { "n", "i" }, "<A-1>",                       go_to_tab(1) },
+        { mode = { "n", "i" }, "<A-2>",                       go_to_tab(2) },
+        { mode = { "n", "i" }, "<A-3>",                       go_to_tab(3) },
+        { mode = { "n", "i" }, "<A-4>",                       go_to_tab(4) },
+        { mode = { "n", "i" }, "<A-5>",                       go_to_tab(5) },
+        { mode = { "n", "i" }, "<A-6>",                       go_to_tab(6) },
+        { mode = { "n", "i" }, "<A-7>",                       go_to_tab(7) },
+        { mode = { "n", "i" }, "<A-8>",                       go_to_tab(8) },
+        { mode = { "n", "i" }, "<A-9>",                       go_to_tab(9) },
+        { mode = { "n", "i" }, "<A-w>",                       require("utils.window").quit },
+
+        { "<Space>pp",         "<esc><cmd>BufferLinePick<CR>" },
     }
 end
 
