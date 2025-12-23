@@ -10,6 +10,8 @@ return {
         for key, value in pairs(require("themes.icons").lsp_symbols) do
             symbols[key] = string.format("%s ", value)
         end
+        local sources = require('dropbar.sources')
+        local utils = require('dropbar.utils')
         require("dropbar").setup(vim.tbl_extend("keep", opts, {
             bar = {
                 enable = function(buf, win)
@@ -19,6 +21,10 @@ return {
                         and not vim.wo[win].diff
                         and vim.api.nvim_get_option_value("filetype", { buf = buf }) ~= "terminal"
                 end,
+                sources = utils.source.fallback({
+                    sources.treesitter,
+                    sources.lsp
+                })
             },
             icons = {
                 kinds = {
