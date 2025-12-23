@@ -8,7 +8,7 @@ return {
             disable_filetype = require("utils.filetype").get_nonfiletypes(),
             -- enable_check_bracket_line = false,
             fast_wrap = {
-                map = '<C-S-e>',
+                map = "<C-'>",
                 chars = { '{', '[', '(', '"', "'" },
                 pattern = [=[[%'%"%>%]%)%}%,]]=],
                 end_key = '$',
