@@ -176,6 +176,9 @@ local function gen_bufferline_colors()
         --     fg = "<colour-value-here>",
         --     bg = "<colour-value-here>",
         -- },
+        modified = {
+            bg = dbg,
+        },
         modified_visible = {
             bg = dbg,
         },
