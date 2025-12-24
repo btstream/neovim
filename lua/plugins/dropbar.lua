@@ -21,9 +21,6 @@ return {
                         and not vim.wo[win].diff
                         and vim.api.nvim_get_option_value("filetype", { buf = buf }) ~= "terminal"
                 end,
-                sources = {
-                    sources.treesitter,
-                }
             },
             icons = {
                 kinds = {
