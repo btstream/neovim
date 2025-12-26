@@ -40,7 +40,9 @@ return {
     },
     opts = function()
         -- ensure signs are defined
-        require("plugins.lsp.diagostics")
+        if not package.preload["plugins.lsp.diagnostics"] then
+            require("plugins.lsp.diagnostics")
+        end
         return {
             use_popups_for_input = false,
             enable_refresh_on_write = false,

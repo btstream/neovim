@@ -13,7 +13,7 @@ return {
         },
         config = function()
             require("plugins.lsp.base")
-            require("plugins.lsp.diagostics")
+            require("plugins.lsp.diagnostics")
         end,
     },
 

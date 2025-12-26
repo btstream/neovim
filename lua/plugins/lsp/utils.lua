@@ -31,11 +31,7 @@ M.on_attach = function(client, buf)
     vim.api.nvim_create_autocmd({ "CursorHold" }, {
         buffer = buf,
         callback = function()
-            _, dia_win = vim.diagnostic.open_float(nil, {
-                focus = false,
-                scope = "cursor",
-                -- close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-            })
+            vim.diagnostic.open_float()
         end,
     })
 

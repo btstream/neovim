@@ -1,7 +1,6 @@
 -- local lspconfig = require("lspconfig")
 local inlay_hint = require("plugins.lsp.utils").inlay_hint
-
-require("plugins.lsp.ui").setup()
+-- require("plugins.lsp.diagnostics.ui").setup()
 
 ----------------------------------------------------------------------
 --                         common-settings                          --
