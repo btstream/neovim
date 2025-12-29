@@ -8,6 +8,7 @@ return {
             "creativenull/efmls-configs-nvim",
             "simrat39/rust-tools.nvim",
             "mfussenegger/nvim-jdtls",
+            "OXY2DEV/markview.nvim" -- for diagnostics's preview
             -- "tamago324/nlsp-settings.nvim",
             -- "onsails/lspkind-nvim",
         },

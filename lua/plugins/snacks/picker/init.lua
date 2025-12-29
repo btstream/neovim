@@ -1,3 +1,4 @@
+local lsp_icons = require("themes.icons").lsp_diagnostic_signs
 return {
     prompt = "    ",
     layout = {
@@ -19,6 +20,14 @@ return {
             layout = {
                 preset = "cursor_select",
             }
+        },
+    },
+    icons = {
+        diagnostics = {
+            Error = lsp_icons.Error .. " ",
+            Warn  = lsp_icons.Warn .. " ",
+            Hint  = lsp_icons.Hint .. " ",
+            Info  = lsp_icons.Info .. " ",
         },
     }
 }
