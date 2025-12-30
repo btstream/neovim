@@ -1,8 +1,14 @@
 return {
     "lewis6991/gitsigns.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvimtools/none-ls.nvim" },
     event = "User BufReadRealFilePost",
     config = function(_, opts)
+        local nonels = require("null-ls")
+        nonels.setup({
+            sources = {
+                nonels.builtins.code_actions.gitsigns
+            }
+        })
         local popup = require("gitsigns.popup")
         local orig_popup = popup.create
 

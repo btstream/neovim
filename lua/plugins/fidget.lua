@@ -7,7 +7,7 @@ return {
             poll_rate = 1,
             ignore_done_already = true,
             suppress_on_insert = true,
-            ignore = { "efm" },
+            ignore = { "efm", "null-ls" },
             display = {
                 render_limit = 5,
                 done_icon = "󰄬"
