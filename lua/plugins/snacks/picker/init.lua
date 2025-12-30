@@ -18,7 +18,7 @@ return {
     sources = {
         select = {
             layout = {
-                preset = "cursor_select",
+                preset = "custom_select",
             }
         },
     },
