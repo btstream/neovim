@@ -90,6 +90,14 @@ return {
             end
         end
 
+        -- hooks
+        config.hooks = {
+            on_response_complete = function()
+                vim.cmd("checktime") -- update buffer content
+                require("agentic").open()
+            end
+        }
+
         return config
     end
 
