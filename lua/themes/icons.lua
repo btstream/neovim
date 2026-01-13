@@ -144,9 +144,9 @@ M.filetype_icons       = {
     documentation       = "󰬋",
     dropbar_menu        = "󰮫",
     Glance              = "",
-    aider               = "󱙺",
-    terminalGemini      = "",
-    sidekick_terminal   = "",
+    AgenticChat         = "",
+    AgenticFiles        = "",
+    AgenticInput        = ""
 }
 
 M.common_ui_icons      = {

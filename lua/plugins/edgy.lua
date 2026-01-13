@@ -191,16 +191,18 @@ return {
             },
             right = {
                 {
-                    title = "Aider",
-                    ft = "aider"
+                    title = "Chat",
+                    ft = "AgenticChat",
                 },
                 {
-                    title = "AI Agent",
-                    ft = "terminalGemini"
+                    title = "files",
+                    ft = "AgenticFiles",
+                    size = { height = 0.2 }
                 },
                 {
-                    title = "AI Agent",
-                    ft = "sidekick_terminal"
+                    title = "Input",
+                    ft = "AgenticInput",
+                    size = { height = 0.15 }
                 }
             },
 

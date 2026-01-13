@@ -32,9 +32,10 @@ M._nonefiletypes = {
     "dropbar_menu",
     "edgy",
     "Glance",
-    "terminalGemini",
     "grug-far",
-    "sidekick_terminal"
+    "AgenticChat",
+    "AgenticFiles",
+    "AgenticInput"
 }
 
 M._icons = require("themes.icons").filetype_icons
