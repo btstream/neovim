@@ -214,9 +214,10 @@ function M.define()
         -- BlinkCmpKindCodeiumItem   = { fg = colors.base0C },
 
         ----------------------------------------------------------------------
-        --                             sidekick                             --
+        --                             Agentic                              --
         ----------------------------------------------------------------------
-        SidekickChat = "Normal",
+        AgenticTitle = { bg = darken(colors.base0D, .1), fg = colors.base00 },
+        -- SidekickChat = "Normal",
 
 
         ----------------------------------------------------------------------
