@@ -1,10 +1,10 @@
 return {
     "OXY2DEV/markview.nvim",
-    ft = { "markdown", "codecompanion", "Avante", "AvanteInput" },
+    ft = { "markdown", "AgenticChat" },
     -- enabled = false,
     opts = {
         preview = {
-            filetypes = { "markdown", "codecompanion", "Avante" },
+            filetypes = { "markdown", "AgenticChat" },
             ignore_buftypes = {},
             modes = { "n", "no", "c", "i" },
             hybrid_modes = { "i" },
