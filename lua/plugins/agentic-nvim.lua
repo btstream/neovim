@@ -56,11 +56,11 @@ return {
             -- provider = "opencode-acp", -- setting the name here is all you need to get started
             windows = {
                 width = "32%",
-                chat = { win_opts = {} },
-                input = { height = 10, win_opts = {} },
-                code = { win_opts = {} },
-                files = { win_opts = {} },
-                todos = { display = true, max_height = 10, win_opts = {} },
+                chat = { win_opts = { statuscolumn = "  " } },
+                input = { height = 10, win_opts = { statuscolumn = "  " } },
+                code = { win_opts = { statuscolumn = "  " } },
+                files = { win_opts = { statuscolumn = "  " } },
+                todos = { display = true, max_height = 10, win_opts = { statuscolumn = "  " } },
             },
         }
         local acp_providers = {}
