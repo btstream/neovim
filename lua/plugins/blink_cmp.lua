@@ -19,6 +19,17 @@ return {
 
     config = function()
         local symbol_maps = require("themes.icons").lsp_symbols
+
+        local source_priority = {
+            ["spell"] = 255,
+            ['path'] = 254,
+            ['lsp'] = 253,
+            ['snippets'] = 252,
+            ['lazydev'] = 251,
+            ["codeium"] = 250,
+            ['buffer'] = 249,
+        }
+
         require("colorful-menu").setup({})
         require("blink.cmp").setup({
             keymap = { preset = 'enter' },
@@ -115,6 +126,11 @@ return {
             fuzzy = {
                 implementation = "prefer_rust_with_warning",
                 sorts = {
+                    function(a, b)
+                        local a_priority = source_priority[a.source_id]
+                        local b_priority = source_priority[b.source_id]
+                        if a_priority ~= b_priority then return a_priority > b_priority end
+                    end,
                     function(a, b)
                         local sort = require('blink.cmp.fuzzy.sort')
                         if a.source_id == 'spell' and b.source_id == 'spell' then
