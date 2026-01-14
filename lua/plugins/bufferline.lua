@@ -139,7 +139,7 @@ return {
                             if not is_even then
                                 lpadding, rpadding = math.ceil(side) + 1, math.floor(side) + 1
                             end
-                            lpadding = pos == "right" and lpadding + 2 or lpadding
+                            -- lpadding = pos == "right" and lpadding + 2 or lpadding
                             title = string.rep(" ", lpadding) .. title .. string.rep(" ", rpadding)
                             if pos == "left" then
                                 ret[pos] = "%#"
