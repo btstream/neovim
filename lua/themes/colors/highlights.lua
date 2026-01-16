@@ -216,8 +216,10 @@ function M.define()
         ----------------------------------------------------------------------
         --                             Agentic                              --
         ----------------------------------------------------------------------
-        AgenticTitle            = { bg = darken(colors.base0D, .1), fg = colors.base00 },
         OpencodeFloatBorder     = { bg = colors.base00, fg = colors.base0C },
+        MiniPickNormal          = "Normal",
+        MiniPickBorder          = { bg = colors.base00, fg = colors.base0D },
+        MiniPickBorderText      = "MiniPickBorder",
 
         ----------------------------------------------------------------------
         --                            LSP COnfig                            --

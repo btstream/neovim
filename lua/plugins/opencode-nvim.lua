@@ -15,10 +15,11 @@ return {
         -- 'hrsh7th/nvim-cmp',
 
         -- Optional, for file mentions picker, pick only one
-        'folke/snacks.nvim',
+        -- 'folke/snacks.nvim',
         -- 'nvim-telescope/telescope.nvim',
         -- 'ibhagwan/fzf-lua',
         -- 'nvim_mini/mini.nvim',
+        { 'nvim-mini/mini.pick', version = false },
     },
     config = function()
         -- override create_float
@@ -42,6 +43,10 @@ return {
             vim.api.nvim_set_option_value('wrap', false, { win = self.float_win })
         end
 
-        require("opencode").setup({})
+        require("mini.pick").setup({
+        })
+        require("opencode").setup({
+            preferred_completion = "blink"
+        })
     end,
 }
