@@ -21,6 +21,27 @@ return {
         -- 'nvim_mini/mini.nvim',
     },
     config = function()
+        -- override create_float
+        local CursorSpinner = require("opencode.quick_chat.spinner")
+        function CursorSpinner:create_float()
+            if not self.active or not vim.api.nvim_buf_is_valid(self.buf) then
+                return
+            end
+            self.float_buf = vim.api.nvim_create_buf(false, true)
+            local win_config = self:get_float_config()
+            win_config.title = "  opencode "
+            win_config.title_pos = "left"
+            self.float_win = vim.api.nvim_open_win(self.float_buf, false, win_config)
+
+            -- custom part
+            vim.api.nvim_set_option_value(
+                'winhl',
+                'Normal:Normal,FloatBorder:OpencodeFloatBorder,FloatTitle:OpencodeFloatBorder',
+                { win = self.float_win }
+            )
+            vim.api.nvim_set_option_value('wrap', false, { win = self.float_win })
+        end
+
         require("opencode").setup({})
     end,
 }
