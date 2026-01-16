@@ -27,7 +27,8 @@ end
 return {
     "carlos-algms/agentic.nvim",
     enabled = function()
-        return #existed_acps
+        return false
+        -- return #existed_acps
     end,
     keys = {
         {

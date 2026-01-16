@@ -35,7 +35,9 @@ M._nonefiletypes = {
     "grug-far",
     "AgenticChat",
     "AgenticFiles",
-    "AgenticInput"
+    "AgenticInput",
+    "opencode_input",
+    "opencode"
 }
 
 M._icons = require("themes.icons").filetype_icons

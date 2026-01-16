@@ -146,7 +146,9 @@ M.filetype_icons       = {
     Glance              = "",
     AgenticChat         = "",
     AgenticFiles        = "",
-    AgenticInput        = ""
+    AgenticInput        = "",
+    opencode            = "",
+    opencode_input      = ""
 }
 
 M.common_ui_icons      = {

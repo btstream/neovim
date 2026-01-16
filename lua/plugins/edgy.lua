@@ -192,18 +192,29 @@ return {
             right = {
                 {
                     title = "Chat",
-                    ft = "AgenticChat",
+                    ft = "opencode_output",
                 },
                 {
-                    title = "files",
-                    ft = "AgenticFiles",
-                    size = { height = 0.2 }
-                },
-                {
-                    title = "Input",
-                    ft = "AgenticInput",
-                    size = { height = 0.15 }
+                    title = "Conversation",
+                    ft = "opencode",
+                    size = {
+                        height = 0.2
+                    }
                 }
+                -- {
+                --     title = "Chat",
+                --     ft = "AgenticChat",
+                -- },
+                -- {
+                --     title = "files",
+                --     ft = "AgenticFiles",
+                --     size = { height = 0.2 }
+                -- },
+                -- {
+                --     title = "Input",
+                --     ft = "AgenticInput",
+                --     size = { height = 0.15 }
+                -- }
             },
 
             ----------------------------------------------------------------------
