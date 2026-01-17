@@ -3,14 +3,12 @@ local icons = require("themes.icons").common_ui_icons
 local is_nonefiletype = require("utils.filetype").is_nonefiletype
 local current_buf_type = require("utils.filetype").current_buf_type
 local separator = require("plugins.heirline.components.separator")
+local ft_namemapper = require("plugins.heirline.ft-namemapper")
 
 local ft_indicator = {
     provider = function()
         local _, ft = is_nonefiletype()
-        if ft == "sidekick_terminal" then
-            ft = "AI Agent"
-        end
-        return " " .. ft .. " "
+        return " " .. ft_namemapper[ft] .. " "
     end,
     condition = function()
         return is_nonefiletype() and current_buf_type() ~= "snacks_terminal"

@@ -1,5 +1,6 @@
 local icons = require("themes.icons").common_ui_icons
 local is_nonefiletype = require("utils.filetype").is_nonefiletype
+local ft_namemapper = require("plugins.heirline.ft-namemapper")
 
 local path_icon = {
     provider = function()
@@ -22,11 +23,7 @@ local path_name = {
                 return ""
             end
 
-            if ft == "sidekick_terminal" then
-                ft = "AI Agent"
-            end
-
-            return " " .. ft .. " "
+            return " " .. ft_namemapper[ft] .. " "
         elseif #self.filename == 0 then
             return " [No Name]"
         else
