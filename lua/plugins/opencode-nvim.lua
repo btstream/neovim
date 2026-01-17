@@ -9,27 +9,23 @@ return {
     keys = {
         {
             mode = { "n", "x" },
-            "<C-a>",
+            "<C-k>aa",
             function() require("opencode").ask("@this: ", { submit = true }) end,
-            { desc = "Ask opencode…" }
+            desc = "Ask opencode…"
         },
         {
             mode = { "n", "x" },
-            "<C-x>",
+            "<C-k>ax",
             function() require("opencode").select() end,
-            { desc = "Execute opencode action…" }
+            desc = "Execute opencode action…"
         },
-        { mode = { "n", "t" }, "<C-\\>", function() require("opencode").toggle() end, { desc = "Toggle opencode" } },
-        {
-            mode = { "n", "x" },
-            "go",
-            function() return require("opencode").operator("@this ") end,
-            { desc = "Add range to opencode", expr = true }
-        },
-        { "n", "goo", function() return require("opencode").operator("@this ") .. "_" end,
-            { desc = "Add line to opencode", expr = true } },
+        { mode = { "n", "t" }, "<C-|>", function() require("opencode").toggle() end, desc = "Toggle opencode" },
     },
     config = function()
         vim.o.autoread = true
+        vim.keymap.set({ "n", "x" }, "<C-k>a=", function() return require("opencode").operator("@this ") end,
+            { desc = "Add range to opencode", expr = true })
+        vim.keymap.set("n", "<C-k>a-", function() return require("opencode").operator("@this ") .. "_" end,
+            { desc = "Add line to opencode", expr = true })
     end,
 }
