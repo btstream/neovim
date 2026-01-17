@@ -192,6 +192,10 @@ return {
             right = {
                 {
                     title = "Chat",
+                    ft = "opencode_terminal",
+                },
+                {
+                    title = "Chat",
                     ft = "opencode_output",
                 },
                 {
@@ -201,20 +205,6 @@ return {
                         height = 0.2
                     }
                 }
-                -- {
-                --     title = "Chat",
-                --     ft = "AgenticChat",
-                -- },
-                -- {
-                --     title = "files",
-                --     ft = "AgenticFiles",
-                --     size = { height = 0.2 }
-                -- },
-                -- {
-                --     title = "Input",
-                --     ft = "AgenticInput",
-                --     size = { height = 0.15 }
-                -- }
             },
 
             ----------------------------------------------------------------------
@@ -223,7 +213,7 @@ return {
             options = {
                 left = { size = 45 },
                 bottom = { size = 10 },
-                right = { size = 75 },
+                right = { size = 65 },
                 top = { size = 10 },
             },
             close_when_all_hidden = false,

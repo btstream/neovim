@@ -33,11 +33,8 @@ M._nonefiletypes = {
     "edgy",
     "Glance",
     "grug-far",
-    "AgenticChat",
-    "AgenticFiles",
-    "AgenticInput",
-    "opencode_input",
-    "opencode"
+    "opencode_terminal",
+    "opencode_ask"
 }
 
 M._icons = require("themes.icons").filetype_icons

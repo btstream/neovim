@@ -1,52 +1,35 @@
 return {
-    "sudo-tee/opencode.nvim",
+    "NickvanDyke/opencode.nvim",
     dependencies = {
-        "nvim-lua/plenary.nvim",
-        -- {
-        --     "MeanderingProgrammer/render-markdown.nvim",
-        --     opts = {
-        --         anti_conceal = { enabled = false },
-        --         file_types = { 'markdown', 'opencode_output' },
-        --     },
-        --     ft = { 'markdown', 'Avante', 'copilot-chat', 'opencode_output' },
-        -- },
-        -- Optional, for file mentions and commands completion, pick only one
-        'saghen/blink.cmp',
-        -- 'hrsh7th/nvim-cmp',
-
-        -- Optional, for file mentions picker, pick only one
-        -- 'folke/snacks.nvim',
-        -- 'nvim-telescope/telescope.nvim',
-        -- 'ibhagwan/fzf-lua',
-        -- 'nvim_mini/mini.nvim',
-        { 'nvim-mini/mini.pick', version = false },
+        -- Recommended for `ask()` and `select()`.
+        -- Required for `snacks` provider.
+        ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
+        "folke/snacks.nvim",
+    },
+    keys = {
+        {
+            mode = { "n", "x" },
+            "<C-a>",
+            function() require("opencode").ask("@this: ", { submit = true }) end,
+            { desc = "Ask opencode…" }
+        },
+        {
+            mode = { "n", "x" },
+            "<C-x>",
+            function() require("opencode").select() end,
+            { desc = "Execute opencode action…" }
+        },
+        { mode = { "n", "t" }, "<C-\\>", function() require("opencode").toggle() end, { desc = "Toggle opencode" } },
+        {
+            mode = { "n", "x" },
+            "go",
+            function() return require("opencode").operator("@this ") end,
+            { desc = "Add range to opencode", expr = true }
+        },
+        { "n", "goo", function() return require("opencode").operator("@this ") .. "_" end,
+            { desc = "Add line to opencode", expr = true } },
     },
     config = function()
-        -- override create_float
-        local CursorSpinner = require("opencode.quick_chat.spinner")
-        function CursorSpinner:create_float()
-            if not self.active or not vim.api.nvim_buf_is_valid(self.buf) then
-                return
-            end
-            self.float_buf = vim.api.nvim_create_buf(false, true)
-            local win_config = self:get_float_config()
-            win_config.title = "  opencode "
-            win_config.title_pos = "left"
-            self.float_win = vim.api.nvim_open_win(self.float_buf, false, win_config)
-
-            -- custom part
-            vim.api.nvim_set_option_value(
-                'winhl',
-                'Normal:Normal,FloatBorder:OpencodeFloatBorder,FloatTitle:OpencodeFloatBorder',
-                { win = self.float_win }
-            )
-            vim.api.nvim_set_option_value('wrap', false, { win = self.float_win })
-        end
-
-        require("mini.pick").setup({
-        })
-        require("opencode").setup({
-            preferred_completion = "blink"
-        })
+        vim.o.autoread = true
     end,
 }

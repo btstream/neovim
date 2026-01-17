@@ -144,11 +144,8 @@ M.filetype_icons       = {
     documentation       = "󰬋",
     dropbar_menu        = "󰮫",
     Glance              = "",
-    AgenticChat         = "",
-    AgenticFiles        = "",
-    AgenticInput        = "",
-    opencode            = "",
-    opencode_input      = ""
+    opencode_terminal   = "",
+    opencode_ask        = ""
 }
 
 M.common_ui_icons      = {
