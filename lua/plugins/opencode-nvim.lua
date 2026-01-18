@@ -6,6 +6,9 @@ return {
         ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
         "folke/snacks.nvim",
     },
+    enabled = function()
+        return vim.fn.executable("opencode") == 1
+    end,
     keys = {
         {
             mode = { "n", "x" },
