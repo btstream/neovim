@@ -97,22 +97,14 @@ return {
                 winbar = false,
                 separator = nil,
             },
-            -- event_handlers = {
-            --     {
-            --         event = "neo_tree_buffer_enter",
-            --         handler = function()
-            --             require("keymaps")["neo-tree"].set(nil, true)
-            --             -- vim.schedule(function() end)
-            --         end,
-            --     },
-            --     {
-            --         event = "neo_tree_buffer_leave",
-            --         handler = function()
-            --             require("keymaps").bufferline.set(nil, true)
-            --             -- require("utils.keymap_tools").map(require("keymaps").bufferline)
-            --         end,
-            --     },
-            -- },
+            event_handlers = {
+                {
+                    event = "file_added",
+                    handler = function(file)
+                        vim.cmd("e " .. file)
+                    end
+                }
+            },
         }
     end,
 }
