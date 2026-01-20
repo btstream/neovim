@@ -4,5 +4,6 @@ return {
     opts = {
         "*",
         "!packer",
+        "!snacks_terminal"
     },
 }
