@@ -23,8 +23,8 @@ return {
         local source_priority = {
             ["spell"] = 255,
             ['path'] = 254,
-            ['lsp'] = 253,
-            ['snippets'] = 252,
+            ['snippets'] = 253,
+            ['lsp'] = 252,
             ['lazydev'] = 251,
             ["codeium"] = 250,
             ['buffer'] = 249,
