@@ -73,9 +73,8 @@ function M.ls(path, fn)
         if not fname then
             break
         end
-        if fn(fname) then
-            table.insert(ret, fname)
-        end
+        fname = fn and fn(fname) or fname
+        table.insert(ret, fname)
     end
     return ret
 end
