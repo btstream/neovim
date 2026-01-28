@@ -1,4 +1,6 @@
 local icons = require("themes.icons").common_ui_icons
+
+local os_path = require("utils.os.path")
 -- to fix does not follow cwd, when in some situations for lazy loading
 -- TODO: inspect neo-tree's source, to make it work more effective
 -- vim.api.nvim_create_autocmd("User", {
@@ -101,6 +103,9 @@ return {
                 {
                     event = "file_added",
                     handler = function(file)
+                        if os_path.isdir(file) then
+                            return
+                        end
                         vim.cmd("e " .. file)
                     end
                 }
