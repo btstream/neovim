@@ -3,6 +3,7 @@ return {
     build = ":TSUpdate",
     -- event = "User BufReadRealFile",
     event = "BufReadPre",
+    branch = "master",
     -- dependencies = { "mrjones2014/nvim-ts-rainbow" },
     dependencies = { "HiPhish/rainbow-delimiters.nvim" },
     module = false,
