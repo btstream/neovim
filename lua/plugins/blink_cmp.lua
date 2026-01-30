@@ -146,14 +146,14 @@ return {
         })
         -- ensure cmp window is closed
         vim.api.nvim_create_autocmd("ModeChanged", {
-            callback = function(ev)
+            callback = vim.schedule_wrap(function(ev)
                 local cmp = require("blink.cmp")
                 if ev.match == "i:n" then
                     if cmp.is_menu_visible() then
                         cmp.cancel()
                     end
                 end
-            end
+            end)
         })
     end,
     opts_extend = { "sources.default" }

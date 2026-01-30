@@ -45,6 +45,13 @@ function M.save_file()
         return
     end
 
+    -- if blink's menu is on, close it
+    if package.loaded("blink.cmp") then
+        local cmp = require("blink.cmp")
+        if cmp.is_menu_visible() then
+            cmp.cancel()
+        end
+    end
 
     -- only if file exist, and now owned by current user, save it with sudo, only on linux and mac
     if filename ~= "" and os_utils.name() ~= "windows" and path.exists(filename) then
@@ -59,7 +66,6 @@ function M.save_file()
             return
         end
     end
-
 
     -- if an new buffer, ask for saving name
     -- local filename = vim.api.nvim_buf_get_name(0)

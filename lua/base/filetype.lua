@@ -1,5 +1,6 @@
 vim.filetype.add({
     extension = {
+        zsh = "bash",
         json = "jsonc",
     },
     pattern = {
