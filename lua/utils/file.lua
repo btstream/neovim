@@ -46,7 +46,7 @@ function M.save_file()
     end
 
     -- if blink's menu is on, close it
-    if package.loaded("blink.cmp") then
+    if package.loaded["blink.cmp"] then
         local cmp = require("blink.cmp")
         if cmp.is_menu_visible() then
             cmp.cancel()
