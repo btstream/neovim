@@ -52,18 +52,6 @@ return {
             ts.install(need_install)
         end
 
-        -- auto cmd to enable nvim-treesitter
-        vim.api.nvim_create_autocmd("FileType", {
-            callback = vim.schedule_wrap(function(ev)
-                local ft = ev.match
-                if vim.tbl_contains(ensure_installed, ft) or ft == "jsonc" then
-                    -- using jsonc for filetype and set syntax to json5
-                    ft = ft == "jsonc" and "json5" or ft
-                    vim.treesitter.start(0, ft)
-                end
-            end)
-        })
-
         -- rainbow-delimiters
         local rainbow_delimiters = require("rainbow-delimiters")
         require("rainbow-delimiters.setup").setup({
@@ -85,6 +73,17 @@ return {
                 "RainbowDelimiterRed",
             },
             blacklist = { "c", "cpp" },
+        })
+
+        -- auto cmd to enable nvim-treesitter
+        vim.api.nvim_create_autocmd("BufEnter", {
+            callback = vim.schedule_wrap(function(ev)
+                local ft = vim.bo[ev.buf].filetype
+                ft = ft == "jsonc" and "json5" or ft
+                if vim.tbl_contains(ensure_installed, ft) then
+                    vim.treesitter.start(ev.buf, ft)
+                end
+            end)
         })
     end,
 }
