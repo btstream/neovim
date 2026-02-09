@@ -20,6 +20,7 @@ return {
             "javascript",
             "jsdoc",
             "json",
+            "json5",
             "lua",
             "luadoc",
             "luap",
@@ -38,6 +39,8 @@ return {
             "yaml",
         }
         ts.setup()
+
+        -- ensure all parsers are installed
         local installed = ts.get_installed()
         local need_install = {}
         for _, v in pairs(ensure_installed) do
@@ -49,6 +52,19 @@ return {
             ts.install(need_install)
         end
 
+        -- auto cmd to enable nvim-treesitter
+        vim.api.nvim_create_autocmd("FileType", {
+            callback = vim.schedule_wrap(function(ev)
+                local ft = ev.match
+                if vim.tbl_contains(ensure_installed, ft) or ft == "jsonc" then
+                    -- using jsonc for filetype and set syntax to json5
+                    ft = ft == "jsonc" and "json5" or ft
+                    vim.treesitter.start(0, ft)
+                end
+            end)
+        })
+
+        -- rainbow-delimiters
         local rainbow_delimiters = require("rainbow-delimiters")
         require("rainbow-delimiters.setup").setup({
             strategy = {

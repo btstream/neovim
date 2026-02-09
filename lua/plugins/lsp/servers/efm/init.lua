@@ -7,7 +7,8 @@ local languages = {
     python = { yapf },
     xml = { xmlformat },
     json = { prettierd },
-    jsonc = { prettierd }
+    jsonc = { prettierd },
+    json5 = { prettierd }
 }
 
 -- only use stylua to format if stylua is set in project' dir
