@@ -1,6 +1,6 @@
 local os_utils         = require("utils.os")
 local is_none_filetype = require("utils.filetype").is_nonefiletype
-local path             = require("utils.os.path")
+local os_path          = require("utils.os.path")
 
 local M                = {}
 local function sudo_write(filepath)
@@ -54,11 +54,13 @@ function M.save_file()
     end
 
     -- only if file exist, and now owned by current user, save it with sudo, only on linux and mac
-    if filename ~= "" and os_utils.name() ~= "windows" and path.exists(filename) then
+    if filename ~= "" and os_utils.name() ~= "windows" then
+        local forp_name = os_path.exists(filename) and filename or os_path.dirname(filename)
+
         local current_user = os.getenv("USER") or os.getenv("USER") or io.popen("id -un"):read("*l")
         local get_file_owner_cmd = os_utils.name() == "linux" and "stat -c %U " or "stat -f %Su"
 
-        local f = io.popen(get_file_owner_cmd .. filename)
+        local f = io.popen(get_file_owner_cmd .. forp_name)
         local owner = f:read("*l")
 
         if current_user ~= owner then
