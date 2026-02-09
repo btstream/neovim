@@ -40,4 +40,12 @@ return {
         },
     },
     -- keys = require("keymaps")["nvim-comment-frame"].lazy_keys(),
+    opts = {
+        languages = {
+            json = {
+                start_str = '//',
+                end_str = '//',
+            }
+        }
+    }
 }
