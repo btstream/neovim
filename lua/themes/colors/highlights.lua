@@ -214,12 +214,17 @@ function M.define()
         -- BlinkCmpKindCodeiumItem   = { fg = colors.base0C },
 
         ----------------------------------------------------------------------
+        --                             sidekick                             --
+        ----------------------------------------------------------------------
+        SidekickChat            = "Normal",
+
+        ----------------------------------------------------------------------
         --                             Agentic                              --
         ----------------------------------------------------------------------
-        OpencodeFloatBorder     = { bg = colors.base00, fg = colors.base0C },
-        MiniPickNormal          = "Normal",
-        MiniPickBorder          = { bg = colors.base00, fg = colors.base0D },
-        MiniPickBorderText      = "MiniPickBorder",
+        -- OpencodeFloatBorder     = { bg = colors.base00, fg = colors.base0C },
+        -- MiniPickNormal          = "Normal",
+        -- MiniPickBorder          = { bg = colors.base00, fg = colors.base0D },
+        -- MiniPickBorderText      = "MiniPickBorder",
 
         ----------------------------------------------------------------------
         --                            LSP COnfig                            --

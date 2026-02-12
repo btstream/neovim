@@ -145,7 +145,8 @@ M.filetype_icons       = {
     dropbar_menu        = "󰮫",
     Glance              = "",
     opencode_terminal   = "",
-    opencode_ask        = ""
+    opencode_ask        = "",
+    sidekick_terminal   = ""
 }
 
 M.common_ui_icons      = {

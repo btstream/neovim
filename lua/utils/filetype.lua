@@ -34,7 +34,8 @@ M._nonefiletypes = {
     "Glance",
     "grug-far",
     "opencode_terminal",
-    "opencode_ask"
+    "opencode_ask",
+    "sidekick_terminal"
 }
 
 M._icons = require("themes.icons").filetype_icons
