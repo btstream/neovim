@@ -185,8 +185,8 @@ function M.define()
         BlinkCmpKindConstant      = { fg = colors.base09 },
         BlinkCmpKindStruct        = { fg = colors.base0A },
         BlinkCmpKindTypeParameter = { fg = colors.base0A },
-        BlinkCmpKindCodeium       = { fg = colors.base0C },
-        BlinkCmpKindCodeiumItem   = { fg = colors.base0C },
+        BlinkCmpKindCopilot       = { fg = colors.base0C },
+        BlinkCmpKindCopilotItem   = { fg = colors.base0C },
 
 
         -- for something like atom
@@ -210,8 +210,8 @@ function M.define()
         -- BlinkCmpKindConstant      = { bg = colors.base09, fg = colors.base00 },
         -- BlinkCmpKindStruct        = { bg = colors.base0A, fg = colors.base00 },
         -- BlinkCmpKindTypeParameter = { bg = colors.base0A, fg = colors.base00 },
-        -- BlinkCmpKindCodeium       = { bg = colors.base0C, fg = colors.base00 },
-        -- BlinkCmpKindCodeiumItem   = { fg = colors.base0C },
+        -- BlinkCmpKindCopilot       = { bg = colors.base0C, fg = colors.base00 },
+        -- BlinkCmpKindCopilotItem   = { fg = colors.base0C },
 
         ----------------------------------------------------------------------
         --                             sidekick                             --

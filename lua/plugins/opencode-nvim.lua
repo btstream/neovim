@@ -7,7 +7,8 @@ return {
         "folke/snacks.nvim",
     },
     enabled = function()
-        return vim.fn.executable("opencode") == 1
+        -- return vim.fn.executable("opencode") == 1
+        return false
     end,
     keys = {
         {

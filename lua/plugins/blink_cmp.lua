@@ -5,7 +5,8 @@ return {
         'rafamadriz/friendly-snippets',
         "xzbdmw/colorful-menu.nvim",
         'ribru17/blink-cmp-spell',
-        'Exafunction/windsurf.nvim',
+        "folke/sidekick.nvim",
+        "fang2hou/blink-copilot",
     },
 
     event = { "InsertEnter", "CmdlineEnter" },
@@ -21,12 +22,12 @@ return {
         local symbol_maps = require("themes.icons").lsp_symbols
 
         local source_priority = {
-            ["spell"] = 255,
-            ['path'] = 254,
-            ['snippets'] = 253,
+            ["spell"] = 256,
+            ['path'] = 255,
+            ['snippets'] = 254,
+            ["copilot"] = 253,
             ['lsp'] = 252,
             ['lazydev'] = 251,
-            ["codeium"] = 250,
             ['buffer'] = 249,
         }
 
@@ -55,8 +56,8 @@ return {
                                 end,
                                 highlight = function(ctx)
                                     local group = ctx.kind_hl
-                                    if ctx.kind == "Codeium" then
-                                        group = "BlinkCmpKindCodeium"
+                                    if ctx.kind == "Copilot" then
+                                        group = "BlinkCmpKindCopilot"
                                     elseif ctx.source_id == "spell" then
                                         group = "BlinkCmpKind"
                                     end
@@ -69,8 +70,8 @@ return {
                                     return require("colorful-menu").blink_components_text(ctx)
                                 end,
                                 highlight = function(ctx)
-                                    if ctx.kind == "Codeium" then
-                                        return "BlinkCmpKindCodeiumItem"
+                                    if ctx.kind == "Copilot" then
+                                        return "BlinkCmpKindCopilotItem"
                                     end
                                     return require("colorful-menu").blink_components_highlight(ctx)
                                 end,
@@ -80,8 +81,14 @@ return {
                 },
             },
 
+            cmdline = {
+                enabled = true,
+                keymap = { preset = 'inherit' },
+                completion = { menu = { auto_show = true } },
+            },
+
             sources = {
-                default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', "spell", "codeium" },
+                default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', "spell", "copilot" },
                 providers = {
                     -- spell source
                     spell = {
@@ -117,7 +124,12 @@ return {
                         score_offset = 100,
                     },
 
-                    codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
+                    copilot = {
+                        name = "copilot",
+                        module = "blink-copilot",
+                        async = true,
+                    },
+                    -- codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
                 },
             },
 

@@ -1,9 +1,9 @@
 return {
     "folke/sidekick.nvim",
     opts = {
-        nes = {
-            enabled = false
-        },
+        -- nes = {
+        --     enabled = true
+        -- },
         -- add any options here
         cli = {
             mux = {
@@ -12,21 +12,33 @@ return {
             },
         },
     },
+
     keys = {
-        -- { -- this is to disable blink
-        --     "<tab>",
-        --     function()
-        --         -- if there is a next edit, jump to it, otherwise apply it if any
-        --         if not require("sidekick").nes_jump_or_apply() then
-        --             return "<Tab>" -- fallback to normal tab
-        --         end
-        --     end,
-        --     expr = true,
-        --     desc = "Goto/Apply Next Edit Suggestion",
-        -- },
+        {
+            "<C-g>",
+            function()
+                -- if there is a next edit, jump to it, otherwise apply it if any
+                if require("sidekick").nes_jump_or_apply() then
+                    return -- jumped or applied
+                end
+
+                -- if you are using Neovim's native inline completions
+                if vim.lsp.inline_completion.get() then
+                    return
+                end
+
+                -- any other things (like snippets) you want to do on <tab> go here.
+
+                -- fall back to normal tab
+                return "<C-g>"
+            end,
+            mode = { "i", "n" },
+            expr = true,
+            desc = "Goto/Apply Next Edit Suggestion",
+        },
         {
             "<c-k>a",
-            function() require("sidekick.cli").toggle("qwen") end,
+            function() require("sidekick.cli").toggle("opencode") end,
             desc = "Sidekick Toggle",
             mode = { "n", "t", "i", "x" },
         },

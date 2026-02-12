@@ -42,6 +42,7 @@ M.lsp_symbols          = {
     -- for dropbar
     Identifier    = "󰬐",
     Codeium       = "",
+    Copilot       = ""
 }
 
 M.lsp_diagnostic_signs = {
