@@ -6,6 +6,7 @@ return {
         ignore = "^$",
     },
     enabled = function()
-        return vim.fn.has("nvim-0.10") ~= 1
+        return false
+        -- return vim.fn.has("nvim-0.10") ~= 1
     end,
 }
