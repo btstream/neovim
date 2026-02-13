@@ -1,3 +1,16 @@
+local ft_ts_parser_map = setmetatable({
+    jsonc = "json5",
+    sshconfig = "ssh_config"
+}, {
+    __index = function(t, k)
+        if t[k] then
+            return t[k]
+        end
+        return k
+    end
+})
+
+
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -37,6 +50,7 @@ return {
             "vimdoc",
             "xml",
             "yaml",
+            "ssh_config"
         }
         ts.setup()
 
@@ -79,9 +93,9 @@ return {
         vim.api.nvim_create_autocmd("BufEnter", {
             callback = vim.schedule_wrap(function(ev)
                 local ft = vim.bo[ev.buf].filetype
-                ft = ft == "jsonc" and "json5" or ft
-                if vim.tbl_contains(ensure_installed, ft) then
-                    vim.treesitter.start(ev.buf, ft)
+                local ts_parser = ft_ts_parser_map[ft]
+                if vim.tbl_contains(ensure_installed, ts_parser) then
+                    vim.treesitter.start(ev.buf, ts_parser)
                 end
             end)
         })

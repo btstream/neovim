@@ -45,6 +45,10 @@ return {
             json = {
                 start_str = '//',
                 end_str = '//',
+            },
+            ssh_config = {
+                start_str = "#",
+                end_str = "#"
             }
         }
     }
