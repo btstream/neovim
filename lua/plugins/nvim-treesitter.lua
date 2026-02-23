@@ -2,10 +2,7 @@ local ft_ts_parser_map = setmetatable({
     jsonc = "json5",
     sshconfig = "ssh_config"
 }, {
-    __index = function(t, k)
-        if t[k] then
-            return t[k]
-        end
+    __index = function(_, k)
         return k
     end
 })
@@ -90,10 +87,10 @@ return {
         })
 
         -- auto cmd to enable nvim-treesitter
-        vim.api.nvim_create_autocmd("BufEnter", {
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "*",
             callback = vim.schedule_wrap(function(ev)
-                local ft = vim.bo[ev.buf].filetype
-                local ts_parser = ft_ts_parser_map[ft]
+                local ts_parser = ft_ts_parser_map[ev.match]
                 if vim.tbl_contains(ensure_installed, ts_parser) then
                     vim.treesitter.start(ev.buf, ts_parser)
                 end
