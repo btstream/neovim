@@ -82,7 +82,7 @@ return {
             },
 
             cmdline = {
-                enabled = true,
+                enabled = false,
                 keymap = { preset = 'inherit' },
                 completion = { menu = { auto_show = true } },
             },
