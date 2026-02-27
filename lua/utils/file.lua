@@ -60,7 +60,7 @@ function M.save_file()
         local current_user = os.getenv("USER") or os.getenv("USER") or io.popen("id -un"):read("*l")
         local get_file_owner_cmd = os_utils.name() == "linux" and "stat -c %U " or "stat -f %Su "
 
-        local f = io.popen(get_file_owner_cmd .. forp_name)
+        local f = io.popen(get_file_owner_cmd .. "\"" .. forp_name .. "\"")
         local owner = f:read("*l")
 
         if current_user ~= owner then
