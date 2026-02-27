@@ -2,6 +2,9 @@ local set = vim.keymap.set
 local m = { "i", "n", "v" }
 
 set({ "n", "i" }, "<C-s>", require("utils.file").save_file)
+if require("utils.os").name() == "macos" then
+    set({ "n", "i" }, "<D-s>", require("utils.file").save_file)
+end
 set("n", "<SPACEE>", "<Nop>")
 set("i", "<S-Tab>", "<C-d>")
 set("n", "<SPACEE>", "<Nop>")
