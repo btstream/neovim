@@ -8,7 +8,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 -- change colors when focus or lose focus on sidebar
-vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "WinEnter", "BufEnter", "ModeChanged" }, {
+-- vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "WinEnter", "BufEnter", "ModeChanged" }, {
+vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
     callback = vim.schedule_wrap(function(event)
         local colors = require("themes.colors.manager").colors()
         local s, filetype = pcall(vim.api.nvim_get_option_value, "filetype", { buf = event.buf })
