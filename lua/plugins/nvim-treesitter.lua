@@ -86,6 +86,11 @@ return {
             blacklist = { "c", "cpp" },
         })
 
+
+        -- disable rainbow-delimiters' autocmd, as we need to enabled it manually
+        -- to maed lazy load work
+        vim.api.nvim_del_augroup_by_name("TSRainbowDelimits")
+
         -- auto cmd to enable nvim-treesitter
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "*",
@@ -93,6 +98,15 @@ return {
                 local ts_parser = ft_ts_parser_map[ev.match]
                 if vim.tbl_contains(ensure_installed, ts_parser) then
                     vim.treesitter.start(ev.buf, ts_parser)
+
+                    -- set rainbow-delimiters, code from rainbow-delimiters
+                    local config = require('rainbow-delimiters.config')
+                    local lib    = require('rainbow-delimiters.lib')
+                    local lang   = vim.treesitter.language.get_lang(ev.match)
+                    local bufnr  = ev.buf
+                    if not config.enabled_for(lang) then return end
+                    if not config.enabled_when(bufnr) then return end
+                    lib.attach(bufnr)
                 end
             end)
         })
