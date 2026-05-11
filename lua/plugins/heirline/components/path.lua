@@ -91,6 +91,12 @@ separator.condition = function()
     return ft ~= "snacks_terminal"
 end
 
+
+local option_set_event = "BufModifiedSet"
+if vim.fn.has("nvim-0.13") == 1 then
+    option_set_event = "OptionSet"
+end
+
 return {
     init = function(self)
         self.mode = vim.fn.mode(1) -- :h mode()
@@ -106,5 +112,5 @@ return {
     path_name,
     file_status,
     separator,
-    update = { "ModeChanged", "WinEnter", "BufEnter", "BufAdd", "BufWinLeave", "WinClosed", "BufModifiedSet", "DirChanged" },
+    update = { "ModeChanged", "WinEnter", "BufEnter", "BufAdd", "BufWinLeave", "WinClosed", option_set_event, "DirChanged" },
 }
