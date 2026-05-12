@@ -20,6 +20,10 @@ local git_branch = {
                 if remote_info:match("github%.com") ~= nil then
                     self.icon = "󰊤"
                 end
+
+                if remote_info:match("codeberg%.org") ~= nil then
+                    self.icon = ""
+                end
             end
         end
 
