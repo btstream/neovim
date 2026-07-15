@@ -1,14 +1,6 @@
-local repo = "Bekaboo/dropbar.nvim"
-local branch = "main"
-
-if vim.fn.has("nvim-0.13") == 1 then
-    repo = "cubewhy/dropbar.nvim"
-    branch = "fix-event"
-end
-
 return {
-    -- "Bekaboo/dropbar.nvim",
-    repo,
+    "Bekaboo/dropbar.nvim",
+    -- repo,
     branch = branch,
     event = "User BufReadRealFile",
     enabled = function()
