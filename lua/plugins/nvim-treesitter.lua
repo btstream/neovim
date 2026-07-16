@@ -9,8 +9,9 @@ local ft_ts_parser_map = setmetatable({
 
 
 return {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    -- "nvim-treesitter/nvim-treesitter",
+    "romus204/tree-sitter-manager.nvim",
+    -- build = ":TSUpdate",
     -- event = "User BufReadRealFile",
     event = "BufReadPre",
     branch = "main",
@@ -18,7 +19,7 @@ return {
     dependencies = { "HiPhish/rainbow-delimiters.nvim" },
     module = false,
     config = function()
-        local ts = require("nvim-treesitter")
+        local ts = require("tree-sitter-manager")
         local ensure_installed = {
             "bash",
             "c",
@@ -49,19 +50,11 @@ return {
             "yaml",
             "ssh_config"
         }
-        ts.setup()
+        ts.setup({
+            ensure_installed = ensure_installed,
+            highlight = false
+        })
 
-        -- ensure all parsers are installed
-        local installed = ts.get_installed()
-        local need_install = {}
-        for _, v in pairs(ensure_installed) do
-            if not vim.tbl_contains(installed, v) then
-                need_install[#need_install + 1] = v
-            end
-        end
-        if #need_install > 0 then
-            ts.install(need_install)
-        end
 
         -- rainbow-delimiters
         local rainbow_delimiters = require("rainbow-delimiters")
