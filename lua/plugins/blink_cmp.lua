@@ -138,6 +138,8 @@ return {
             fuzzy = {
                 implementation = "prefer_rust_with_warning",
                 sorts = {
+                    'exact',
+                    'score',
                     function(a, b)
                         local a_priority = source_priority[a.source_id]
                         local b_priority = source_priority[b.source_id]
@@ -150,7 +152,6 @@ return {
                         end
                     end,
                     -- This is the normal default order, which we fall back to
-                    'score',
                     'kind',
                     'label',
                 },
