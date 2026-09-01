@@ -1,6 +1,7 @@
 local ft_ts_parser_map = setmetatable({
     jsonc = "json5",
-    sshconfig = "ssh_config"
+    sshconfig = "ssh_config",
+    tex = "latex"
 }, {
     __index = function(_, k)
         return k
@@ -48,7 +49,8 @@ return {
             "vimdoc",
             "xml",
             "yaml",
-            "ssh_config"
+            "ssh_config",
+            "latex"
         }
         ts.setup({
             ensure_installed = ensure_installed,
