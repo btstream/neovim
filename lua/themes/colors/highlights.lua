@@ -187,6 +187,7 @@ function M.define()
         BlinkCmpKindTypeParameter = { fg = colors.base0A },
         BlinkCmpKindCopilot       = { fg = colors.base0C },
         BlinkCmpKindCopilotItem   = { fg = colors.base0C },
+        BlinkCmpMenuSelection     = "PmenuSel",
 
 
         -- for something like atom

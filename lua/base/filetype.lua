@@ -2,6 +2,7 @@ vim.filetype.add({
     extension = {
         zsh = "bash",
         json = "jsonc",
+        tex = "tex"
     },
     pattern = {
         ["[Command Line]"] = "cmdline",
