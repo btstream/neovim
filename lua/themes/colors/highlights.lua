@@ -160,7 +160,7 @@ function M.define()
         ----------------------------------------------------------------------
         --                               Blink                              --
         ----------------------------------------------------------------------
-        PmenuSel                  = { bg = colors.base02, fg = nil },
+        PmenuSel                  = { bg = colors.base03, fg = nil },
         Pmenu                     = { bg = dbg015 },
         PmenuSbar                 = { bg = darken(colors.base03, .60) },
         PmenuThumb                = { bg = darken(colors.base03, .30) },
