@@ -10,6 +10,14 @@ return {
                 backend = "zellij",
                 enabled = true,
             },
+            prompts = {
+                Writing = "{file} 采用学术化的表述优化{this}之后的这一段文字的英语表述",
+                Translate = "{file} 将{this}之后的这一段文字翻译成英语，要采用正式的学术风格",
+                custom = function(ctx)
+                    return "当前文件: " .. ctx.buf .. " 当前行 " .. ctx.row
+                end,
+            },
+
         },
     },
 
@@ -77,9 +85,9 @@ return {
             desc = "Send Visual Selection",
         },
         {
-            "<leader>ap",
+            "<C-k>ap",
             function() require("sidekick.cli").prompt() end,
-            mode = { "n", "x" },
+            mode = { "n", "i", "x" },
             desc = "Sidekick Select Prompt",
         },
     },
