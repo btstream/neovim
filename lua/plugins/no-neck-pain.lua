@@ -5,7 +5,7 @@ return {
     } },
     config = function()
         require("no-neck-pain").setup({
-            width = 80,
+            width = 60,
             buffers = {
                 left = {
                     enabled = false,
