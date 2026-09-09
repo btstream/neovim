@@ -21,7 +21,8 @@ local _servers = {
     --formatter
     "xmlformatter",
     "prettierd",
-    "yapf"
+    "yapf",
+    "latexindent"
 }
 
 -- lemminx and clangd is not avaiable on arm platform
