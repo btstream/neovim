@@ -4,7 +4,7 @@ local fs = require('efmls-configs.fs')
 
 local formatter = 'latexindent'
 local command = string.format(
-    "%s --local=.indentconfig.yaml -m '${INPUT}'",
+    "%s --local=.indentconfig.yaml -m -",
     fs.executable(formatter, fs.Scope.NODE)
 )
 
