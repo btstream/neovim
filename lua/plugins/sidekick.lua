@@ -1,3 +1,12 @@
+local default_agent = "pi"
+for _, i in pairs({ "pi", "opencode", "codex", "claude" }) do
+    if vim.fn.executable(i) then
+        default_agent = i
+        break
+    end
+end
+
+
 return {
     "folke/sidekick.nvim",
     opts = {
@@ -46,7 +55,7 @@ return {
         },
         {
             "<c-k>a",
-            function() require("sidekick.cli").toggle("opencode") end,
+            function() require("sidekick.cli").toggle(default_agent) end,
             desc = "Sidekick Toggle",
             mode = { "n", "t", "i", "x" },
         },
