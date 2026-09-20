@@ -50,7 +50,8 @@ return {
             "xml",
             "yaml",
             "ssh_config",
-            "latex"
+            "latex",
+            "css"
         }
         ts.setup({
             ensure_installed = ensure_installed,
