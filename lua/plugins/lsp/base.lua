@@ -42,6 +42,12 @@ end
 ---- enable inlayHints ----
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
+        -- disable inlay_hint for some of filetypes
+        local ft = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
+        if ft == "tex" then
+            return
+        end
+
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client:supports_method("textDocument/inlayHints") then
             inlay_hint(args.buf, true)
