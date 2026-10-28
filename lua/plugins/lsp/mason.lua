@@ -2,7 +2,8 @@ local os = require("utils.os")
 
 local _servers = {
     "bashls",
-    "basedpyright",
+    "ty",
+    -- "basedpyright",
     "jdtls",
     "rust_analyzer",
     "jsonls",

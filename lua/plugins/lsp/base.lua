@@ -16,7 +16,7 @@ vim.lsp.config("*", common_settings)
 ----------------------------------------------------------------------
 --                     setup servers with mason                     --
 ----------------------------------------------------------------------
-local disabled_server = { "pylyzer" }
+local disabled_server = { "pylyzer", "basedpyright" }
 
 require("plugins.lsp.mason")
 for _, server_name in ipairs(require("mason-lspconfig").get_installed_servers()) do
