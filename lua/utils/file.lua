@@ -3,6 +3,7 @@ local is_none_filetype = require("utils.filetype").is_nonefiletype
 local os_path          = require("utils.os.path")
 
 local M                = {}
+
 local function sudo_write(filepath)
     if filepath == "" then
         vim.notify("E32: No file name", vim.log.levels.ERROR)
@@ -12,36 +13,41 @@ local function sudo_write(filepath)
     local tmpfile = vim.fn.tempname()
     vim.cmd("write! " .. tmpfile)
     -- Prompt for password
-    vim.fn.inputsave()
-    local password = vim.fn.inputsecret("Password: ")
-    vim.fn.inputrestore()
-    if password == "" then
-        vim.notify("Invalid password, sudo aborted", vim.log.levels.WARN)
-        return
-    end
-    -- Use sudo to move the file
-    local cmd = string.format("sudo -p '' -S dd if=%s of=%s bs=1048576",
-        vim.fn.shellescape(tmpfile), vim.fn.shellescape(filepath)
-    )
-    local proc = vim.system({ "sh", "-c", string.format("echo %q | %s", password, cmd) }):wait()
-    -- Handle result
-    if proc.code == 0 then
-        vim.bo.modified = false
-        vim.cmd.checktime()
-        vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes("<ESC>", true, false, true), "n", true
+    require("utils.input").secret("Please input password: ", function(password)
+        if password == nil or password == "" then
+            vim.notify("Invalid password, sudo aborted", vim.log.levels.WARN)
+            vim.fn.delete(tmpfile)
+            return
+        end
+        -- Use sudo to move the file
+        local cmd = string.format("sudo -p '' -S dd if=%s of=%s bs=1048576",
+            vim.fn.shellescape(tmpfile), vim.fn.shellescape(filepath)
         )
-    else
-        vim.notify(proc.stderr, vim.log.levels.ERROR)
-    end
+        local proc = vim.system({ "sh", "-c", string.format("echo %q | %s", password, cmd) }):wait()
+        -- Handle result
+        if proc.code == 0 then
+            vim.bo.modified = false
+            vim.cmd.checktime()
+            vim.api.nvim_feedkeys(
+                vim.api.nvim_replace_termcodes("<ESC>", true, false, true), "n", true
+            )
+        else
+            vim.notify(proc.stderr, vim.log.levels.ERROR)
+        end
 
-    vim.fn.delete(tmpfile)
+        vim.fn.delete(tmpfile)
+    end)
 end
 
 function M.save_file()
     local filename = vim.fn.expand("%:p")
 
     if is_none_filetype() then
+        return
+    end
+
+    -- nothing to do when the buffer has no unsaved changes
+    if not vim.bo.modified then
         return
     end
 
