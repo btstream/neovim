@@ -5,7 +5,12 @@ vim.filetype.add({
         tex = "tex"
     },
     pattern = {
-        ["[Command Line]"] = "cmdline",
+        -- The command-line window buffer is named "[Command Line]".
+        -- The pattern is a Lua pattern, so the brackets must be escaped;
+        -- unescaped they form a character class and make any single-char
+        -- file name built from one of those letters (a, e, m, d, ...)
+        -- resolve to this filetype.
+        ["%[Command Line%]"] = "cmdline",
     },
 })
 
