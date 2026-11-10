@@ -32,7 +32,7 @@ function M.quit(buf)
 
     -- if command line window, close directly
     if vim.fn.expand("%f") == "[Command Line]" then
-        vim.cmd("")
+        vim.cmd.close()
         return
     end
 
@@ -51,8 +51,9 @@ function M.quit(buf)
     -- print(opend_window)
     if opend_window > 1 then
         vim.cmd.quit()
-        if target_buf_attached_wins == 1 then
-            vim.cmd("bdelete! " .. target_buf)
+        -- Never force-delete: a modified buffer must survive (confirm handles it).
+        if target_buf_attached_wins == 1 and not vim.bo[target_buf].modified then
+            vim.cmd.bdelete(target_buf)
         end
         return
     end
@@ -72,13 +73,16 @@ function M.quit(buf)
             end
         end
 
-        vim.cmd("bdelete! " .. target_buf)
+        vim.cmd.bdelete(target_buf)
         return true
     elseif #listed_buffers == 1 then
         if M.get_buf_attached_wins(listed_buffers[1]) > 1 then
             vim.cmd.close()
         else
-            vim.cmd.quitall()
+            -- `bdelete` on the last buffer leaves an empty buffer behind and
+            -- lets `confirm` prompt for unsaved changes. It never quits nvim,
+            -- and never force-discards a modified buffer.
+            vim.cmd.bdelete(listed_buffers[1])
         end
     else
         vim.cmd.quit()
@@ -91,7 +95,7 @@ function M.close_others()
     local wins = vim.api.nvim_tabpage_list_wins(0)
     for _, w in pairs(wins) do
         local buf_in_w = vim.api.nvim_win_get_buf(w)
-        if vim.fn.buflisted(buf_in_w) and not filetype.is_nonefiletype(buf_in_w) then
+        if vim.fn.buflisted(buf_in_w) == 1 and not filetype.is_nonefiletype(buf_in_w) then
             if buf_in_w ~= current_buf or w ~= current_win then
                 vim.api.nvim_win_close(w, true)
             end

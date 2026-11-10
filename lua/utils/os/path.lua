@@ -2,16 +2,40 @@ local uv = vim.uv or vim.loop
 
 local M = {}
 
+--- Expand leading ~ only. Full vim.fn.expand() would also mangle
+--- %, # in filenames (same class of bug as :write with raw names).
+local function expand_home(path)
+    if type(path) == "string" and vim.startswith(path, "~") then
+        return vim.fn.expand(path)
+    end
+    return path
+end
+
+---@param path string|nil
+---@return boolean
 function M.exists(path)
-    return uv.fs_stat(path) ~= nil
+    if type(path) ~= "string" then
+        return false
+    end
+    return uv.fs_stat(expand_home(path)) ~= nil
 end
 
+---@param path string|nil
+---@return boolean
 function M.isdir(path)
-    return vim.fn.isdirectory(path) == 1
+    if type(path) ~= "string" then
+        return false
+    end
+    return vim.fn.isdirectory(expand_home(path)) == 1
 end
 
+---@param path string|nil
+---@return boolean
 function M.isfile(path)
-    local st = uv.fs_stat(path)
+    if type(path) ~= "string" then
+        return false
+    end
+    local st = uv.fs_stat(expand_home(path))
     return st ~= nil and st.type == "file"
 end
 
@@ -39,42 +63,45 @@ function M.extname(path)
     return vim.fn.fnamemodify(path, ":e")
 end
 
+--- Create a directory and all missing parents.
+--- Never loops: delegates to vim.fn.mkdir(path, "p").
+---@param path string
+---@return boolean ok, string|nil err
 function M.mkdir(path)
-    local p = vim.split(vim.fs.normalize(path), "/")
-    local i = 1
-    while i <= #p do
-        if p[i] == "" then
-            i = i + 1
-            goto continue
-        end
-
-        local s = {}
-        for j = 1, i, 1 do
-            table.insert(s, p[j])
-        end
-        local ss = M.join(unpack(s))
-        if M.exists(ss) and M.isdir(ss) then
-            i = i + 1
-            goto continue
-        elseif not M.exists(ss) then
-            uv.fs_mkdir(ss, 493)
-            i = i + 1
-        end
-
-        ::continue::
+    -- vim.fn.mkdir(nil) turns nil into the string "v:null" and happily
+    -- creates such a directory, so validate the argument first.
+    if type(path) ~= "string" or path == "" then
+        return false, "mkdir: path must be a non-empty string"
     end
+
+    local ok, result = pcall(vim.fn.mkdir, expand_home(path), "p")
+    if not ok then
+        return false, tostring(result)
+    end
+    if result == 0 then
+        return false, "mkdir failed: " .. path
+    end
+    return true, nil
 end
 
-function M.ls(path, fn)
-    local handle = uv.fs_scandir(path)
+--- List entries of a directory.
+--- @param path string
+--- @param filter? fun(name: string): boolean keep the entry only when true
+---@return string[]
+function M.ls(path, filter)
+    if type(path) ~= "string" then
+        return {}
+    end
+    local handle = uv.fs_scandir(expand_home(path))
     local ret = {}
     while handle do
         local fname, _ = uv.fs_scandir_next(handle)
         if not fname then
             break
         end
-        fname = fn and fn(fname) or fname
-        table.insert(ret, fname)
+        if filter == nil or filter(fname) then
+            table.insert(ret, fname)
+        end
     end
     return ret
 end

@@ -57,17 +57,24 @@ function M.add_none_filetypes(types)
                 table.insert(M._nonefiletypes, value)
             end
         elseif type(value) == "table" then
-            assert(#value ~= 2, "Format error, must in format of {'filetype', icon = ''}")
-            assert(type(value.icon) ~= "string", "Format error, icon key must be a string")
+            assert(#value == 1, "Format error, must in format of {'filetype', icon = ''}")
+            assert(type(value.icon) == "string", "Format error, icon key must be a string")
             M._icons[value[1]] = value.icon
-            table.insert(M._nonefiletypes, value[1])
+            if not vim.tbl_contains(M._nonefiletypes, value[1]) then
+                table.insert(M._nonefiletypes, value[1])
+            end
         end
     end
 end
 
 function M.is_nonefiletype(buf)
+    local valid = buf == nil or vim.api.nvim_buf_is_valid(buf)
+    if not valid then
+        return false, ""
+    end
     local filetype = buf and vim.bo[buf].filetype or M.current_buf_type()
-    local isdir = vim.fn.isdirectory(vim.fn.expand("%:p")) == 1
+    local bufname = buf and vim.api.nvim_buf_get_name(buf) or vim.fn.expand("%:p")
+    local isdir = bufname ~= "" and vim.fn.isdirectory(bufname) == 1
     return vim.tbl_contains(M._nonefiletypes, filetype) or M._icons[filetype] ~= nil or isdir, filetype
 end
 

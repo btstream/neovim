@@ -1,6 +1,7 @@
 local os_utils         = require("utils.os")
 local is_none_filetype = require("utils.filetype").is_nonefiletype
 local os_path          = require("utils.os.path")
+local uv               = vim.uv or vim.loop
 
 local M                = {}
 
@@ -11,7 +12,7 @@ local function sudo_write(filepath)
     end
     -- Save buffer to a temporary file
     local tmpfile = vim.fn.tempname()
-    vim.cmd("write! " .. tmpfile)
+    vim.cmd.write({ args = { tmpfile }, bang = true })
     -- Prompt for password
     require("utils.input").secret("Please input password: ", function(password)
         if password == nil or password == "" then
@@ -19,11 +20,14 @@ local function sudo_write(filepath)
             vim.fn.delete(tmpfile)
             return
         end
-        -- Use sudo to move the file
-        local cmd = string.format("sudo -p '' -S dd if=%s of=%s bs=1048576",
-            vim.fn.shellescape(tmpfile), vim.fn.shellescape(filepath)
-        )
-        local proc = vim.system({ "sh", "-c", string.format("echo %q | %s", password, cmd) }):wait()
+        -- Use sudo to move the file.
+        -- NOTE: never pass the password through "sh -c" (Lua's %q is NOT
+        -- shell quoting: $, `...` and $(...) would be expanded/executed).
+        -- Feed it via stdin instead.
+        local proc = vim.system({
+            "sudo", "-p", "", "-S",
+            "dd", "if=" .. tmpfile, "of=" .. filepath, "bs=1048576",
+        }, { stdin = password .. "\n" }):wait()
         -- Handle result
         if proc.code == 0 then
             vim.bo.modified = false
@@ -59,17 +63,14 @@ function M.save_file()
         end
     end
 
-    -- only if file exist, and now owned by current user, save it with sudo, only on linux and mac
+    -- only if file exist, and now owned by current user, save it with sudo, only on linux and mac.
+    -- Owner check uses libuv stat, no shell involved (filenames with
+    -- $/`/$( ) must not be passed to io.popen or sh -c).
     if filename ~= "" and os_utils.name() ~= "windows" then
-        local forp_name = os_path.exists(filename) and filename or os_path.dirname(filename)
+        local fpath_name = os_path.exists(filename) and filename or os_path.dirname(filename)
 
-        local current_user = os.getenv("USER") or os.getenv("USER") or io.popen("id -un"):read("*l")
-        local get_file_owner_cmd = os_utils.name() == "linux" and "stat -c %U " or "stat -f %Su "
-
-        local f = io.popen(get_file_owner_cmd .. "\"" .. forp_name .. "\"")
-        local owner = f:read("*l")
-
-        if current_user ~= owner then
+        local stat = uv.fs_stat(fpath_name)
+        if stat and stat.uid ~= uv.getuid() then
             sudo_write(filename)
             return
         end
@@ -85,7 +86,7 @@ function M.save_file()
         end
     end
 
-    vim.cmd("write " .. filename)
+    vim.cmd.write({ args = { filename }, magic = { file = false } })
     vim.cmd("stopinsert")
 end
 
