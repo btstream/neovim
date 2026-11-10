@@ -17,7 +17,6 @@ local _servers = {
     "java-debug-adapter",
     "texlab",
     "efm",
-    "copilot",
 
     --formatter
     "xmlformatter",

@@ -7,7 +7,6 @@ return {
         "xzbdmw/colorful-menu.nvim",
         'ribru17/blink-cmp-spell',
         "folke/sidekick.nvim",
-        "fang2hou/blink-copilot",
     },
 
     event = { "InsertEnter", "CmdlineEnter" },
@@ -31,7 +30,6 @@ return {
             ["spell"] = 256,
             ['path'] = 255,
             ['snippets'] = 254,
-            ["copilot"] = 253,
             ['lsp'] = 252,
             ['lazydev'] = 251,
             ['buffer'] = 249,
@@ -62,9 +60,7 @@ return {
                                 end,
                                 highlight = function(ctx)
                                     local group = ctx.kind_hl
-                                    if ctx.kind == "Copilot" then
-                                        group = "BlinkCmpKindCopilot"
-                                    elseif ctx.source_id == "spell" then
+                                    if ctx.source_id == "spell" then
                                         group = "BlinkCmpKind"
                                     end
                                     return { { group = group, priority = 20000 } }
@@ -76,9 +72,6 @@ return {
                                     return require("colorful-menu").blink_components_text(ctx)
                                 end,
                                 highlight = function(ctx)
-                                    if ctx.kind == "Copilot" then
-                                        return "BlinkCmpKindCopilotItem"
-                                    end
                                     return require("colorful-menu").blink_components_highlight(ctx)
                                 end,
                             },
@@ -94,7 +87,7 @@ return {
             },
 
             sources = {
-                default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', "spell", "copilot" },
+                default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', "spell" },
                 providers = {
                     -- spell source
                     spell = {
@@ -130,11 +123,6 @@ return {
                         score_offset = 100,
                     },
 
-                    copilot = {
-                        name = "copilot",
-                        module = "blink-copilot",
-                        async = true,
-                    },
                     -- codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
                 },
             },
