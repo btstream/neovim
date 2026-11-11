@@ -21,11 +21,15 @@ function M.name()
     return "linux"
 end
 
+--- get the CPU architecture, normalised to "arm64" or "x64"
+---@return string "arm64" for 64-bit ARM | "x64" for everything else
 function M.arch()
     os_uname = os_uname or uv.os_uname()
-    local machine = os_uname.machine
+    -- uname returns "arm64" on Apple Silicon, but "aarch64" on Linux and
+    -- "ARM64"/"AMD64" on Windows, so compare case-insensitively.
+    local machine = tostring(os_uname.machine or ""):lower()
 
-    if machine == "aarch64" then
+    if machine == "arm64" or machine == "aarch64" or machine:match("^arm") then
         return "arm64"
     end
 
