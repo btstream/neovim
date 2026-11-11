@@ -133,30 +133,59 @@ local function flatten(tbl, maxdepth, encoder, setter)
     }, setter)
 end
 
+--- Expand dotted keys back into nested tables:
+--- { ["a.b"] = 2, c = 3 } -> { a = { b = 2 }, c = 3 }
+---
+--- Conflicting paths such as { a = 1, ["a.b"] = 2 } are reported as an
+--- error instead of crashing with "attempt to index a number value", and
+--- the result no longer depends on the order pairs() yields entries in.
+---@param tbl table<string, any> flat table whose keys are dot separated paths
+---@return table nested table
 local function deflatten(tbl)
-    -- vim.validate({
-    --     tbl = { tbl, "table" },
-    -- })
+    vim.validate({ tbl = { tbl, "table" } })
 
     local res = {}
 
     for key, value in pairs(tbl) do
-        local key_list = {}
-
-        for k in string.gmatch(key, "([^.]+)") do
-            table.insert(key_list, k)
+        if type(key) ~= "string" then
+            error(string.format("deflatten: key must be a string, got %s", type(key)), 0)
+        end
+        -- a leading, trailing or doubled dot would silently drop a path
+        -- segment; reject it instead of guessing what was meant
+        if key == "" or key:match("^%.") or key:match("%.$") or key:match("%.%.") then
+            error(string.format("deflatten: malformed key %q", key), 0)
         end
 
-        local t = res
-        for i, k in ipairs(key_list) do
-            if i == #key_list then
-                t[k] = value
-            end
-            if t[k] == nil then
-                t[k] = {}
-            end
-            t = t[k]
+        local keys = {}
+        for k in key:gmatch("([^.]+)") do
+            table.insert(keys, k)
         end
+
+        -- walk/create every intermediate table
+        local node = res
+        for i = 1, #keys - 1 do
+            local k = keys[i]
+            local child = node[k]
+            if child == nil then
+                child = {}
+                node[k] = child
+            elseif type(child) ~= "table" then
+                error(string.format(
+                    "deflatten: conflicting keys, %q is a %s but %q needs a table",
+                    table.concat(keys, ".", 1, i), type(child), key
+                ), 0)
+            end
+            node = child
+        end
+
+        -- assign the leaf, refusing to overwrite an existing value
+        local leaf = keys[#keys]
+        if node[leaf] ~= nil then
+            error(string.format(
+                "deflatten: conflicting keys, %q is defined more than once", key
+            ), 0)
+        end
+        node[leaf] = value
     end
 
     return res
