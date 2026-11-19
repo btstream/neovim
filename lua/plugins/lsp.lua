@@ -68,7 +68,7 @@ return {
         },
         cmd = { "Outline", "OutlineOpen" },
         keys = { -- Example mapping to toggle outline
-            { "<C-k>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+            { mode = { "n", "i" }, "<C-k>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
         },
         config = function()
             local symbol_icons = {}
