@@ -213,7 +213,7 @@ return {
             options = {
                 left = { size = 45 },
                 bottom = { size = 10 },
-                right = { size = 65 },
+                right = { size = 55 },
                 top = { size = 10 },
             },
             close_when_all_hidden = false,
@@ -224,10 +224,11 @@ return {
                 open = "",
             },
             wo = {
+                winfixwidth = false,
                 winhighlight = "WinBar:EdgyWinBar,Normal:Normal",
             },
         }
-
+        require("ade.integrations.edgy").extend(opts)
         return opts
     end,
 }

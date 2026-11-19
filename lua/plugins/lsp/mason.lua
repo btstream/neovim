@@ -13,7 +13,6 @@ local _servers = {
     "vimls",
     "lua-language-server",
     "fortls",
-    "codelldb",
     "java-debug-adapter",
     "texlab",
     "efm",

@@ -88,6 +88,11 @@ return {
 
             sources = {
                 default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', "spell" },
+
+                per_filetype = {
+                    ade_input = { "ade" }
+                },
+
                 providers = {
                     -- spell source
                     spell = {
@@ -122,6 +127,8 @@ return {
                         -- make lazydev completions top priority (see `:h blink.cmp`)
                         score_offset = 100,
                     },
+
+                    ade = { name = "ADE", module = "ade.completion.blink" },
 
                     -- codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
                 },
