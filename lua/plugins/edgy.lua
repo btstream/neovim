@@ -238,19 +238,19 @@ return {
                 ["<c-w>+"] = false,
                 ["<c-w>-"] = false,
                 -- increase width
-                ["<C-S-Right>"] = function(win)
+                ["<C-M-Right>"] = function(win)
                     win:resize("width", 2)
                 end,
                 -- decrease width
-                ["<C-S-Left>"] = function(win)
+                ["<C-M-Left>"] = function(win)
                     win:resize("width", -2)
                 end,
                 -- increase height
-                ["<C-S-Up>"] = function(win)
+                ["<C-M-Up>"] = function(win)
                     win:resize("height", 2)
                 end,
                 -- decrease height
-                ["<C-S-Down>"] = function(win)
+                ["<C-M-Down>"] = function(win)
                     win:resize("height", -2)
                 end,
                 -- reset all custom sizing

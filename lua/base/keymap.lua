@@ -35,10 +35,10 @@ set(m, "<C-e>", "<end>")
 -- map("n", "<Esc><Esc>", "<cmd>nohl<cr>")
 
 -- resize window
-set("n", "<C-S-right>", "<cmd>vertical resize +1<cr>", { desc = "Widen window" })
-set("n", "<C-S-left>", "<cmd>vertical resize -1<cr>", { desc = "Narrow window" })
-set("n", "<C-S-up>", "<cmd>resize +1<cr>", { desc = "Increase height" })
-set("n", "<C-S-down>", "<cmd>resize -1<cr>", { desc = "Decrease height" })
+set("n", "<C-M-right>", "<cmd>vertical resize +1<cr>", { desc = "Widen window" })
+set("n", "<C-M-left>", "<cmd>vertical resize -1<cr>", { desc = "Narrow window" })
+set("n", "<C-M-up>", "<cmd>resize +1<cr>", { desc = "Increase height" })
+set("n", "<C-M-down>", "<cmd>resize -1<cr>", { desc = "Decrease height" })
 
 -- bufer
 -- NOTE: `bn`/`bN`/`bc` were removed: a bare `b` would then wait for `timeoutlen`
