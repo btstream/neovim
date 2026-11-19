@@ -227,6 +227,37 @@ return {
                 winfixwidth = false,
                 winhighlight = "WinBar:EdgyWinBar,Normal:Normal",
             },
+            -- Resize keys, aligned with the global <C-S-Arrow> mappings in
+            -- lua/base/keymap.lua so the same keys resize a window everywhere.
+            -- edgy deep-merges this table with its defaults, so the old
+            -- <C-w>> / <C-w>< / <C-w>+ / <C-w>- bindings must be set to false
+            -- explicitly to turn them off.
+            keys = {
+                ["<c-w>>"] = false,
+                ["<c-w><lt>"] = false,
+                ["<c-w>+"] = false,
+                ["<c-w>-"] = false,
+                -- increase width
+                ["<C-S-Right>"] = function(win)
+                    win:resize("width", 2)
+                end,
+                -- decrease width
+                ["<C-S-Left>"] = function(win)
+                    win:resize("width", -2)
+                end,
+                -- increase height
+                ["<C-S-Up>"] = function(win)
+                    win:resize("height", 2)
+                end,
+                -- decrease height
+                ["<C-S-Down>"] = function(win)
+                    win:resize("height", -2)
+                end,
+                -- reset all custom sizing
+                ["<C-w>="] = function(win)
+                    win.view.edgebar:equalize()
+                end,
+            },
         }
         require("ade.integrations.edgy").extend(opts)
         return opts
