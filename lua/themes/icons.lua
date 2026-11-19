@@ -146,7 +146,9 @@ M.filetype_icons       = {
     Glance              = "",
     opencode_terminal   = "",
     opencode_ask        = "",
-    sidekick_terminal   = ""
+    sidekick_terminal   = "",
+    ade_input           = "󰵰",
+    ade_chat            = "󰵰"
 }
 
 M.common_ui_icons      = {

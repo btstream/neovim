@@ -84,7 +84,7 @@ if vim.fn.has("nvim-0.9") == 1 then
         callback = function()
             local filetype_utils = require("utils.filetype")
             if filetype_utils.is_nonefiletype() then
-                if vim.startswith(vim.bo.filetype, "Agentic") then
+                if vim.startswith(vim.bo.filetype, "ade") then
                     return
                 end
                 if vim.bo.filetype == "noice" then
