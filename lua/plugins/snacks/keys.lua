@@ -1,8 +1,7 @@
 return {
-    { mode = { "n" },      "<Leader>fh", function() Snacks.picker.recent() end,                 desc = "Open file history" },
-    { mode = { "n" },      "<Leader>ff", function() Snacks.picker.files() end,                  desc = "Find files in cwd" },
-    { mode = { "n" },      "<Leader>ss", "e " .. vim.fn.stdpath("config") .. "/" .. "init.lua", desc = "Open Settings" },
-    { mode = { "n", "i" }, "<C-k>p",     function() Snacks.picker.files() end,                  desc = "find file" },
+    { mode = { "n" },      "<Leader>fh", function() Snacks.picker.recent() end,                                  desc = "Open file history" },
+    { mode = { "n" },      "<Leader>ss", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Search config files" },
+    { mode = { "n", "i" }, "<C-k>p",     function() Snacks.picker.files() end,                                   desc = "find file" },
     {
         mode = { "n", "i" },
         "<C-k><C-p>",
@@ -40,8 +39,17 @@ return {
         desc = "Resume"
     },
     {
-        mode = { "n", "i" },
+        mode = { "n", "i", "v" },
         "<C-b>",
+        function()
+            Snacks.picker
+                .buffers()
+        end,
+        desc = "List all openned buffers"
+    },
+    {
+        mode = { "n" },
+        "<leader>bb",
         function()
             Snacks.picker
                 .buffers()
@@ -51,6 +59,8 @@ return {
 
     { "gd",         function() Snacks.picker.lsp_definitions({ prompt = " > " }) end,      desc = "Goto Definition" },
     { "gD",         function() Snacks.picker.lsp_declarations({ prompt = " > " }) end,     desc = "Goto Declaration" },
+    -- NOTE: `nowait` is safe here: the builtin gr* defaults (grn/gra/grr/gri/grt/grx)
+    -- are deleted in lua/base/keymap.lua, so `gr` no longer waits for a longer match.
     { "gr",         function() Snacks.picker.lsp_references({ prompt = " > " }) end,       nowait = true,                        desc = "References" },
     { "gI",         function() Snacks.picker.lsp_implementations({ prompt = " > " }) end,  desc = "Goto Implementation" },
     { "gy",         function() Snacks.picker.lsp_type_definitions({ prompt = " > " }) end, desc = "Goto T[y]pe Definition" },
@@ -69,7 +79,7 @@ return {
     },
     {
         mode = { "n", "i" },
-        "<C-k>W",
+        "<C-k>w",
         function()
             Snacks.picker.grep_word()
         end,

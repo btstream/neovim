@@ -17,6 +17,8 @@ return {
         return {
             -- Refer to the configuration section below
             -- or leave empty for defaults
+            -- Use an uppercase prefix so the lowercase `<leader>m` stays free
+            lead_prefix = "<leader>M",
             connections = {
                 ssh_configs = ssh_configs, -- SSHFS mount options (table of key-value pairs converted to sshfs -o arguments)
                 -- Boolean flags: set to true to include, false/nil to omit
