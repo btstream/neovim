@@ -1,6 +1,7 @@
 -- local lspconfig = require("lspconfig")
 local inlay_hint = require("plugins.lsp.utils").inlay_hint
 -- require("plugins.lsp.diagnostics.ui").setup()
+local startup_buf = vim.api.nvim_get_current_buf()
 
 ----------------------------------------------------------------------
 --                         common-settings                          --
@@ -66,9 +67,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
--- a little trick for packer to load lspconfig lazily, which
--- is to call a BufRead autocmd to make current buffer attach
--- to lsp server
+-- The startup file was read before lazy LSP setup registered its handlers.
+-- Replay BufRead after setup, using the original buffer even if focus moved.
 vim.schedule(function()
-    vim.cmd("doautocmd BufRead")
+    if vim.api.nvim_buf_is_loaded(startup_buf) then
+        vim.api.nvim_buf_call(startup_buf, function()
+            vim.api.nvim_exec_autocmds("BufRead", { buffer = startup_buf, modeline = false })
+        end)
+    end
 end)
