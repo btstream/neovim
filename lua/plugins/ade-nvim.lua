@@ -5,6 +5,20 @@ return {
         require("ade.service.install").run()
     end,
     cmd = { "Ade", "AdeLog", "AdeDebug" },
+    keys = {
+        {
+            mode = { "n" },
+            "<leader>ac",
+            "<cmd>Ade<CR>",
+            desc = "open sidebar",
+        },
+        {
+            mode = { "n", "i" },
+            "<C-k><C-a>",
+            "<cmd>Ade<CR>",
+            desc = "open ADE sidebar",
+        },
+    },
     opts = {
         backend = "service",
         transport = {
