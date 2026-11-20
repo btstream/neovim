@@ -101,6 +101,14 @@ return {
             },
             event_handlers = {
                 {
+                    event = "neo_tree_buffer_enter",
+                    handler = function()
+                        if vim.api.nvim_get_mode().mode:match("^[iR]") then
+                            vim.cmd.stopinsert()
+                        end
+                    end,
+                },
+                {
                     event = "file_added",
                     handler = function(file)
                         if os_path.isdir(file) then

@@ -62,6 +62,9 @@ return {
         end
 
         local function enter_insert(win)
+            if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "neo-tree" then
+                return
+            end
             local saved = vim.w[win].im_select_insert_state
             if saved then
                 switch_to(saved)
@@ -69,6 +72,9 @@ return {
         end
 
         local function leave_insert(win)
+            if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "neo-tree" then
+                return
+            end
             local state = run(backend.query)
             if not state or state == "" or (backend.switch_args and not backend.switch_args[state]) then
                 return
