@@ -48,6 +48,21 @@ return {
         return {
             use_popups_for_input = false,
             enable_refresh_on_write = false,
+            open_files_do_not_replace_types = {
+                -- Neo-tree matches both buftype and filetype. Keep its defaults
+                -- and exclude special buffers even when their filetype varies.
+                "terminal", "Trouble", "qf", "edgy",
+                "nofile", "nowrite", "prompt", "quickfix", "help",
+                -- Persistent panels, including ones that can use a normal buftype.
+                "Outline", "ade_chat", "ade_input", "ade_team_input", "ade_team_watch",
+                "gitsigns-blame", "gitsigns-diff", "dropbar_menu",
+                "OverseerList", "OverseerOutput", "OverseerForm",
+                "dap-repl", "dapui_console", "dapui_scopes", "dapui_watches",
+                "dapui_stacks", "dapui_breakpoints",
+                "snacks_terminal", "snacks_diagnostics", "snacks_dashboard",
+                "opencode", "opencode_terminal", "opencode_output", "opencode_ask", "sidekick_terminal",
+                "neo-tree-popup", "netrw", "grug-far", "spectre_panel", "lazy", "mason", "noice",
+            },
             default_component_configs = {
                 indent = {
                     indent_size = 2,
