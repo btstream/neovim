@@ -10,8 +10,15 @@ return function(buf)
     set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "rename", buffer = buf })
 
     -- diagnostic
-    set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "goto prev diagnostic", buffer = buf })
-    set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "goto next diagnostic", buffer = buf })
+    local function open_diagnostic_float(_, bufnr)
+        vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+    end
+    set("n", "[d", function()
+        vim.diagnostic.jump({ count = -1, on_jump = open_diagnostic_float })
+    end, { desc = "goto prev diagnostic", buffer = buf })
+    set("n", "]d", function()
+        vim.diagnostic.jump({ count = 1, on_jump = open_diagnostic_float })
+    end, { desc = "goto next diagnostic", buffer = buf })
     -- set(
     --     "n",
     --     "ge",

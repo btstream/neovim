@@ -9,77 +9,48 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 -- change colors when focus or lose focus on sidebar
 -- vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "WinEnter", "BufEnter", "ModeChanged" }, {
+local sidebar_title_groups = {
+    filesystem = "EdgyTitleNeoTreeFilesystem",
+    buffers = "EdgyTitleNeoTreeBuffers",
+    git_status = "EdgyTitleNeoTreeGit",
+    outline = "EdgyTitleOutline",
+}
+
 vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
     callback = vim.schedule_wrap(function(event)
-        local colors = require("themes.colors.manager").colors()
-        local s, filetype = pcall(vim.api.nvim_get_option_value, "filetype", { buf = event.buf })
-        if not s then
+        local ok, filetype = pcall(vim.api.nvim_get_option_value, "filetype", { buf = event.buf })
+        if not ok then
             return
         end
 
-        if require("utils.filetype").is_nonefiletype(event.buf)
-            or vim.fn.buflisted(event.buf) ~= 1
+        local sidebar_focused = filetype == "Outline" or filetype == "neo-tree"
+        local ai_sidebar_focused = vim.startswith(filetype, "ade")
+        if not sidebar_focused and not ai_sidebar_focused
+            and (require("utils.filetype").is_nonefiletype(event.buf) or vim.fn.buflisted(event.buf) ~= 1)
         then
-            if filetype ~= "neo-tree" and filetype ~= "Outline" and not vim.startswith(filetype, "opencode_terminal") then
-                return
+            return
+        end
+
+        local colors = require("themes.colors.manager").colors()
+        local left_fg = sidebar_focused and colors.base0D or colors.base03
+        local right_fg = ai_sidebar_focused and colors.base0D or colors.base03
+        local highlights = {
+            EdgySidebarLeftTitle = { bg = colors.base00, fg = left_fg },
+            EdgySidebarRightTitle = { bg = colors.base00, fg = right_fg },
+            NeoTreeTabActive = { bg = colors.base00, fg = left_fg },
+        }
+
+        local active_group = sidebar_focused and sidebar_title_groups[vim.g.sidebar_source]
+        if not sidebar_focused or active_group then
+            local inactive_fg = sidebar_focused and colors.base04 or colors.base03
+            for _, group in pairs(sidebar_title_groups) do
+                highlights[group] = {
+                    bg = colors.base00,
+                    fg = group == active_group and colors.base0D or inactive_fg,
+                }
             end
         end
 
-        if filetype == "Outline" or filetype == "neo-tree" then
-            set_hl({
-                EdgySidebarLeftTitle = { bg = colors.base00, fg = colors.base0D },
-                EdgySidebarRightTitle = { bg = colors.base00, fg = colors.base03 },
-                NeoTreeTabActive = { bg = colors.base00, fg = colors.base0D },
-            })
-            if vim.g.sidebar_source == "filesystem" then
-                set_hl({
-                    EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base0D },
-                    EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base04 },
-                    EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base04 },
-                    EdgyTitleOutline = { bg = colors.base00, fg = colors.base04 },
-                })
-            elseif vim.g.sidebar_source == "outline" then
-                set_hl({
-                    EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base04 },
-                    EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base04 },
-                    EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base04 },
-                    EdgyTitleOutline = { bg = colors.base00, fg = colors.base0D },
-                })
-            elseif vim.g.sidebar_source == "buffers" then
-                set_hl({
-                    EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base04 },
-                    EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base0D },
-                    EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base04 },
-                    EdgyTitleOutline = { bg = colors.base00, fg = colors.base04 },
-                })
-            elseif vim.g.sidebar_source == "git_status" then
-                set_hl({
-                    EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base04 },
-                    EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base04 },
-                    EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base0D },
-                    EdgyTitleOutline = { bg = colors.base00, fg = colors.base04 },
-                })
-            end
-        elseif vim.startswith(filetype, "opencode_terminal") then
-            set_hl({
-                EdgySidebarLeftTitle = { bg = colors.base00, fg = colors.base03 },
-                EdgySidebarRightTitle = { bg = colors.base00, fg = colors.base0D },
-                NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
-                EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base03 },
-                EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
-                EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
-                EdgyTitleOutline = { bg = colors.base00, fg = colors.base03 },
-            })
-        else
-            set_hl({
-                EdgySidebarLeftTitle = { bg = colors.base00, fg = colors.base03 },
-                EdgySidebarRightTitle = { bg = colors.base00, fg = colors.base03 },
-                NeoTreeTabActive = { bg = colors.base00, fg = colors.base03 },
-                EdgyTitleNeoTreeFilesystem = { bg = colors.base00, fg = colors.base03 },
-                EdgyTitleNeoTreeBuffers = { bg = colors.base00, fg = colors.base03 },
-                EdgyTitleNeoTreeGit = { bg = colors.base00, fg = colors.base03 },
-                EdgyTitleOutline = { bg = colors.base00, fg = colors.base03 },
-            })
-        end
+        set_hl(highlights)
     end)
 })

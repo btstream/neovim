@@ -103,6 +103,7 @@ local function open_float(_)
     end
 
     if dia_win then
+        vim.wo[dia_win].spell = false
         vim.api.nvim_set_option_value("winhighlight", float_opts.winhighlight, { win = dia_win })
     end
 end
