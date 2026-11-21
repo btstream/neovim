@@ -6,7 +6,6 @@ return {
         'rafamadriz/friendly-snippets',
         "xzbdmw/colorful-menu.nvim",
         'ribru17/blink-cmp-spell',
-        "folke/sidekick.nvim",
     },
 
     event = { "InsertEnter", "CmdlineEnter" },
