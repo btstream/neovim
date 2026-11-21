@@ -91,6 +91,13 @@ return {
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "*",
             callback = vim.schedule_wrap(function(ev)
+                -- Floating preview buffers (hover, diagnostics popups) are
+                -- wiped when closed; skip them if the deferred callback runs
+                -- after the buffer is already gone.
+                if not vim.api.nvim_buf_is_valid(ev.buf) then
+                    return
+                end
+
                 local ts_parser = ft_ts_parser_map[ev.match]
                 if vim.tbl_contains(ensure_installed, ts_parser) then
                     vim.treesitter.start(ev.buf, ts_parser)
