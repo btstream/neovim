@@ -186,6 +186,8 @@ function M.define()
         BlinkCmpKindStruct        = { fg = colors.base0A },
         BlinkCmpKindTypeParameter = { fg = colors.base0A },
         BlinkCmpMenuSelection     = "PmenuSel",
+        BlinkCmpDoc               = { bg = darken(colors.base01, .1) },
+        BlinkCmpDocBorder         = { bg = darken(colors.base01, .1) },
 
 
         -- for something like atom
