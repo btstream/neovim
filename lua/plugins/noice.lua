@@ -8,7 +8,7 @@ return {
     },
     opts = {
         cmdline = {
-            view = "cmdline",
+            view = "cmdline_input",
             format = {
                 cmdline = { pattern = "^:", icon = "  ", lang = "vim" },
                 search_down = {
@@ -29,7 +29,7 @@ return {
                     pattern = "^:%s*he?l?p?%s+",
                     icon = " " .. require("themes.icons").filetype_icons.help .. " ",
                 },
-                input = { view = "cmdline" }
+                input = { view = "cmdline_input" }
             },
         },
         views = {
