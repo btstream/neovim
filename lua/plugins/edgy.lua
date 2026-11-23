@@ -125,7 +125,7 @@ return {
             top = {
                 {
                     ft = "help",
-                    size = { height = 0.3 },
+                    size = { height = 0.5 },
                     -- only show help buffers
                     filter = function(buf)
                         return vim.bo[buf].buftype == "help"
