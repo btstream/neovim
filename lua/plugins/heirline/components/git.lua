@@ -150,5 +150,10 @@ return {
     condition = function()
         return not shared.is_nonefiletype()
     end,
-    update = { "User", pattern = "GitSignsUpdate," .. REFRESH_EVENT },
+    -- No `pattern`: a pattern would also filter the events by buffer name.
+    -- BufEnter/WinEnter matter because the repository root is per buffer, and
+    -- heirline freezes this subtree while it has an `update` (init included),
+    -- so without them the statusline kept the previous buffer's root icon.
+    -- "User" covers GitSignsUpdate (branch changes) and the remote icon probe.
+    update = { "BufEnter", "WinEnter", "BufWinEnter", "User" },
 }

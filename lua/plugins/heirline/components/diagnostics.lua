@@ -68,5 +68,11 @@ return {
         self.hint = diagnostics_count("HINT")
         return self.error + self.warn + self.info + self.hint > 0
     end,
-    update = { "DiagnosticChanged", "BufEnter" },
+    -- GitSignsUpdate is here for the separator above: its visibility follows
+    -- gitsigns' buffer state, which is set asynchronously after the buffer is
+    -- shown. Heirline freezes this whole group while it has an `update`, so
+    -- without this the separator would stay hidden until the next BufEnter.
+    -- No `pattern` here on purpose: a pattern would also filter
+    -- DiagnosticChanged/BufEnter by buffer name and silently disable them.
+    update = { "DiagnosticChanged", "BufEnter", "User" },
 }
