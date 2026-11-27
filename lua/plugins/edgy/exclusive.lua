@@ -2,11 +2,16 @@
 ---
 --- Which panes exist is read from edgy's own config (each view's `ft` and
 --- `filter`), so a pane added to `plugins.edgy.views` takes part automatically
---- and nothing here knows about specific plugins. A view can opt out with
---- `exclusive = false` in its own opts.
+--- and nothing here knows about specific plugins. Views sharing the same
+--- `group` value are the exception: they may be visible together, and the
+--- group as a whole is exclusive against every other pane in the region.
+--- Groups are declared in `plugins.edgy.views` (`COEXIST_GROUPS`, or a plain
+--- `group` field on a view). A view can opt out entirely with
+--- `exclusive = false`: it never triggers enforcement and is never closed by
+--- it.
 local title = require("plugins.edgy.title")
 
--- Regions that show at most one edgy view at a time.
+-- Regions that show at most one pane (or group of panes) at a time.
 local REGIONS = { "left", "bottom" }
 
 -- The edgebar for a position, or nil when edgy has not built it yet.
@@ -59,15 +64,26 @@ local function candidate(buf)
     return false
 end
 
--- Close every other window in `pos`, keeping only `keep_win`. The region is
--- exclusive regardless of which view a window belongs to, so two windows of
--- the same view (e.g. two terminals) also collapse to one.
-local function keep_only(pos, keep_win)
+-- Close the other windows in `pos`: the entered window stays, views that opted
+-- out with `exclusive = false` are never touched, and different views sharing
+-- the entered view's `group` stay with it. Windows of the same view still
+-- collapse to one (two terminals never stack), so a group never shows
+-- duplicates of itself. Without any `group` configured this reduces to
+-- "keep only the entered window", the behaviour before groups existed.
+local function keep_only(pos, keep_win, keep_view)
     local eb = edgebar(pos)
+    local keep_group = keep_view.group
     -- iterate a copy: Win:close() removes itself from `eb.wins`, and mutating
     -- the list mid-loop would skip entries
     for _, entry in ipairs(vim.list_extend({}, eb and eb.wins or {})) do
-        if entry.win ~= keep_win and vim.api.nvim_win_is_valid(entry.win) then
+        local spared = entry.view.exclusive == false
+        local grouped = keep_group ~= nil
+            and entry.view.group == keep_group
+            and entry.view ~= keep_view
+        if not spared and not grouped
+            and entry.win ~= keep_win
+            and vim.api.nvim_win_is_valid(entry.win)
+        then
             entry:close()
         end
     end
@@ -85,9 +101,10 @@ local function enforce(win, buf)
     end
 
     for _, pos in ipairs(REGIONS) do
-        if view_for(pos, buf, win) then
+        local view = view_for(pos, buf, win)
+        if view then
             handled[pos] = true
-            keep_only(pos, win)
+            keep_only(pos, win, view)
         end
     end
     return handled

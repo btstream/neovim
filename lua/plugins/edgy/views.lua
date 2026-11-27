@@ -8,7 +8,31 @@ local title = require("plugins.edgy.title")
 local get_title = title.get_title
 local pane = title.pane
 
+-- Views that may be visible together: views listed under the same group name
+-- coexist inside a region, and the group as a whole is exclusive against
+-- every other pane there (plugins.edgy.exclusive). Views defined in `opts`
+-- below can simply carry a `group = "<name>"` field; views appended by an
+-- integration (ade_chat / ade_input below) cannot be annotated where they
+-- are defined, so they are matched by filetype after `extend` ran.
+local COEXIST_GROUPS = {
+    ade = { "ade_chat", "ade_input" },
+}
+
 local M = {}
+
+--- Attach the coexist-group marks from COEXIST_GROUPS onto the built views.
+---@param opts table
+local function apply_groups(opts)
+    for _, side in ipairs({ "left", "right", "bottom", "top" }) do
+        for _, view in ipairs(opts[side] or {}) do
+            for name, fts in pairs(COEXIST_GROUPS) do
+                if vim.tbl_contains(fts, view.ft) then
+                    view.group = name
+                end
+            end
+        end
+    end
+end
 
 ---@return table edgy opts
 function M.build()
@@ -165,6 +189,7 @@ function M.build()
     require("ade.integrations.edgy").extend(opts, {
         team = { tree = "left", members = "left", board = "bottom" },
     })
+    apply_groups(opts)
     return opts
 end
 
