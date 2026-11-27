@@ -1,5 +1,6 @@
 local mode_icons = require("themes.icons").mode_icons
-local get_nonefiletype_icon = require("utils.filetype").get_icon
+local get_mode_color = require("themes.heirline").get_mode_color
+local shared = require("plugins.heirline.components.shared")
 
 -- stylua: ignore start
 local mode_names = {
@@ -46,11 +47,11 @@ return {
         self.mode = vim.fn.mode(1) -- :h mode()
     end,
     provider = function(self)
-        local icon = get_nonefiletype_icon()
+        local icon = shared.get_nonefiletype_icon()
         local name = icon == nil and " " .. mode_names[self.mode] or ""
         icon = icon and icon or mode_icons[self.mode]
         return " " .. icon .. name .. " "
     end,
-    hl = require("themes.heirline").get_mode_color,
-    update = { "ModeChanged", "WinEnter", "BufEnter", "BufWinLeave", "BufAdd", "WinClosed", "WinLeave" },
+    hl = get_mode_color,
+    update = shared.update.mode,
 }
