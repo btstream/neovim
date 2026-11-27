@@ -6,6 +6,11 @@ return {
     build = function()
         require("ade.service.install").run()
     end,
+    enabled = function()
+        return vim.fn.executable("opencode") == 1 or
+            vim.fn.executable("claude") == 1 or
+            vim.fn.executable("pi")
+    end,
     cmd = { "Ade", "AdeLog", "AdeDebug" },
     keys = {
         {
