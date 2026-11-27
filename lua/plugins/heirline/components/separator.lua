@@ -1,5 +1,5 @@
 local termapp = require("utils.os.terminal")
-local settings = require("settings")
+local shared = require("plugins.heirline.components.shared")
 
 local chars = {
     right = function()
@@ -58,14 +58,10 @@ local function make(opts)
         end
     end
 
-    if settings.theme.statusline.show_separators == false then
+    -- only an explicit `false` blanks the separator, as before the refactor
+    if shared.show_separators() == false then
         separator.provider = " "
     end
-
-    -- do not use separators in terminals like konsole or iterm
-    -- if os.getenv("TERM_PROGRAM") ~= "WezTerm" and os.getenv("TERM") ~= "xterm-kitty" then
-    --     separator.provider = " "
-    -- end
 
     return separator
 end

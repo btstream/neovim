@@ -3,13 +3,7 @@ local icons = require("themes.icons")
 local separator = require("plugins.heirline.components.separator")
 
 local function diagnostics_count(severity)
-    local count
-    if vim.diagnostic.count then
-        count = vim.diagnostic.count(0)[vim.diagnostic.severity[severity]] or 0
-    else -- TODO: remove when dropping support for neovim 0.9
-        count = #vim.diagnostic.get(0, severity and { severity = vim.diagnostic.severity[severity] })
-    end
-    return count
+    return vim.diagnostic.count(0)[vim.diagnostic.severity[severity]] or 0
 end
 
 local diagnostics_error = {

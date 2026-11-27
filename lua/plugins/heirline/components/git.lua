@@ -1,9 +1,7 @@
 local icons = require("themes.icons")
 local path = require("utils.os.path")
-
-local is_nonefiletypes = require("utils.filetype").is_nonefiletype
-
 local separator = require("plugins.heirline.components.separator")
+local shared = require("plugins.heirline.components.shared")
 
 local git_branch = {
     provider = function(self)
@@ -102,7 +100,7 @@ return {
     git_branch,
     git_diff,
     condition = function()
-        return not is_nonefiletypes()
+        return not shared.is_nonefiletype()
     end,
     update = { "User", pattern = "GitSignsUpdate" },
 }
