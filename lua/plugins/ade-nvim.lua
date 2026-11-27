@@ -1,5 +1,7 @@
 return {
     "btstream/ade.nvim",
+    -- dir = "~/Development/projects_for_opensource/acp.nvim",
+    -- dev = true,
     dependencies = { "folke/edgy.nvim" }, -- 可选，但推荐
     build = function()
         require("ade.service.install").run()
@@ -21,6 +23,9 @@ return {
     },
     opts = {
         backend = "service",
+        -- service = {
+        --     path = "~/Development/projects_for_opensource/acp.nvim/service/target/release/nvim_ade_server"
+        -- },
         transport = {
             prompt_timeout = 0
         },
