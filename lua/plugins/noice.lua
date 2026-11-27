@@ -66,7 +66,7 @@ return {
             },
             -- disable signature, use cmp for signature help
             signature = {
-                enabled = false,
+                enabled = true,
             },
             documentation = {
                 opts = {
