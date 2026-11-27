@@ -51,8 +51,10 @@ return {
         provider = " ",
     },
     separator.make({
-        condition = function(self)
-            return vim.g.in_git_repo ~= nil
+        -- gitsigns sets this only for buffers inside a git repository, so it
+        -- replaces the old vim.g.in_git_repo global at zero cost
+        condition = function()
+            return vim.b[0].gitsigns_head ~= nil
         end,
     }),
     diagnostics_error,
