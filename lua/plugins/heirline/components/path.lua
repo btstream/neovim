@@ -1,22 +1,25 @@
-local icons = require("themes.icons").common_ui_icons
-local is_nonefiletype = require("utils.filetype").is_nonefiletype
+local get_mode_color = require("themes.heirline").get_mode_color
+local path_utils = require("utils.os.path")
 local ft_namemapper = require("plugins.heirline.ft-namemapper")
+local separator = require("plugins.heirline.components.separator")
+local shared = require("plugins.heirline.components.shared")
+local file_status = require("plugins.heirline.components.file_status")
 
 local path_icon = {
     provider = function()
         return " "
     end,
     hl = function(self)
-        return { fg = require("themes.heirline").get_mode_color(self).bg }
+        return { fg = get_mode_color(self).bg }
     end,
     condition = function()
-        return not is_nonefiletype()
+        return not shared.is_nonefiletype()
     end,
 }
 
 local path_name = {
     provider = function(self)
-        local flag, ft = is_nonefiletype()
+        local flag, ft = shared.is_nonefiletype()
         if flag then
             -- do not show filetypename for terminal
             if ft == "snacks_terminal" or ft == "terminal" then
@@ -30,71 +33,27 @@ local path_name = {
             local path = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:~:h")
             local ps = vim.split(path, "/")
             local ps_new = {}
-            for i = 1, #ps, 1 do
+            for i = 1, #ps do
                 if (i == 1 and ps[i] ~= "") or ps[i] == "" or i == #ps then
                     ps_new[i] = ps[i]:gsub("suda:", "")
-                    goto continue
+                else
+                    ps_new[i] = ps[i]:match("[^%u%l%d]?[%u%l%d]")
                 end
-                local s = ps[i]:match("[^%u%l%d]?[%u%l%d]")
-                ps_new[i] = s
-                i = i + 1
-                ::continue::
             end
 
-            local p = require("utils.os.path").join(unpack(ps_new))
-            -- p = #p > 16 and ps[#ps] or p
+            local p = path_utils.join(unpack(ps_new))
             return " " .. p
         end
     end,
 }
 
-local file_status = {
-    provider = function(self)
-        if vim.bo.modified then
-            return " " .. icons.file_modified .. " "
-        end
-
-        if vim.bo.modifiable == false or vim.bo.readonly == true then
-            return " " .. icons.file_readonly .. " "
-        end
-
-        if self.filename:match("^suda://") then
-            return " " .. icons.file_readonly .. " "
-        end
-        return " "
-    end,
-    condition = function()
-        return not is_nonefiletype()
-    end,
-    hl = function(self)
-        if vim.bo.modified then
-            return { fg = "green" }
-        end
-
-        if vim.bo.modifiable == false or vim.bo.readonly == true then
-            return { fg = "orange" }
-        end
-
-        if self.filename:match("^suda://") then
-            return { fg = "red" }
-        end
-    end,
-}
-
-local sep = require("plugins.heirline.components.separator")
-local separator = sep({
-    char = sep.right_block,
+local separator_component = separator({
+    char = separator.right_block,
     block = true,
 })
-separator.condition = function()
-    local _, ft = is_nonefiletype()
+separator_component.condition = function()
+    local _, ft = shared.is_nonefiletype()
     return ft ~= "snacks_terminal"
-end
-
-
-local option_set_event = "BufModifiedSet"
-if vim.fn.has("nvim-0.13") == 1 then
-    option_set_event = "OptionSet"
 end
 
 return {
@@ -104,13 +63,13 @@ return {
         self.ft = vim.bo.filetype
     end,
     hl = function(self)
-        if require("settings").theme.statusline.show_separators then
+        if shared.show_separators() then
             return { bg = "grey" }
         end
     end,
     path_icon,
     path_name,
     file_status,
-    separator,
-    update = { "ModeChanged", "WinEnter", "BufEnter", "BufAdd", "BufWinLeave", "WinClosed", option_set_event, "DirChanged" },
+    separator_component,
+    update = shared.update.path,
 }

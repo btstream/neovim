@@ -1,38 +1,15 @@
-local devicons = require("nvim-web-devicons")
-local icons = require("themes.icons").common_ui_icons
-local is_nonefiletype = require("utils.filetype").is_nonefiletype
-local current_buf_type = require("utils.filetype").current_buf_type
 local separator = require("plugins.heirline.components.separator")
+local shared = require("plugins.heirline.components.shared")
 local ft_namemapper = require("plugins.heirline.ft-namemapper")
+local file_icon = require("plugins.heirline.components.file_icon")
 
 local ft_indicator = {
     provider = function()
-        local _, ft = is_nonefiletype()
+        local _, ft = shared.is_nonefiletype()
         return " " .. ft_namemapper[ft] .. " "
     end,
     condition = function()
-        return is_nonefiletype() and current_buf_type() ~= "snacks_terminal"
-    end,
-}
-
-local file_icons = {
-    init = function(self)
-        local filename = vim.api.nvim_buf_get_name(0)
-        local ext = vim.fn.fnamemodify(filename, ":e")
-        self.icon, self.icon_colors = devicons.get_icon_color(filename, ext)
-        self.icon = self.icon or icons.file_common
-        if filename == "" then
-            self.icon = icons.file_new
-        end
-    end,
-    provider = function(self)
-        return " " .. self.icon .. ""
-    end,
-    hl = function(self)
-        return { fg = self.icon_colors }
-    end,
-    condition = function()
-        return not is_nonefiletype()
+        return shared.is_nonefiletype() and shared.current_buf_type() ~= "snacks_terminal"
     end,
 }
 
@@ -41,11 +18,9 @@ local lsp_indicator = {
         self.clients = {}
         local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = 0 }) or vim.lsp.get_active_clients()
         for _, client in pairs(clients) do
-            if client.name == "null-ls" then
-                goto continue
+            if client.name ~= "null-ls" then
+                table.insert(self.clients, client.name)
             end
-            table.insert(self.clients, client.name)
-            ::continue::
         end
     end,
     provider = function(self)
@@ -57,19 +32,19 @@ local lsp_indicator = {
         return " " .. vim.bo.filetype .. " [" .. servers .. "] "
     end,
     condition = function()
-        return not is_nonefiletype()
+        return not shared.is_nonefiletype()
     end,
 }
 
 return {
     hl = function()
-        if require("settings").theme.statusline.show_separators then
+        if shared.show_separators() then
             return { bg = "grey" }
         end
     end,
-    separator({ block = "true", char = separator.left_block }),
+    separator({ block = true, char = separator.left_block }),
     ft_indicator,
-    file_icons,
+    file_icon,
     lsp_indicator,
-    update = { "LspAttach", "LspDetach", "WinEnter", "BufEnter", "BufLeave", "WinLeave", "BufWinEnter", "BufWinLeave" },
+    update = shared.update.lsp,
 }
