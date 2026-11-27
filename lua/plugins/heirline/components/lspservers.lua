@@ -42,7 +42,7 @@ return {
             return { bg = "grey" }
         end
     end,
-    separator({ block = true, char = separator.left_block }),
+    separator.make({ block = true, char = separator.left_block }),
     ft_indicator,
     file_icon,
     lsp_indicator,

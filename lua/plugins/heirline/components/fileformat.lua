@@ -37,7 +37,7 @@ local file_encoding = {
 
 return {
     file_encoding,
-    separator({ char = separator.left }),
+    separator.make({ char = separator.left }),
     file_format,
     condition = function()
         return not shared.is_nonefiletype()

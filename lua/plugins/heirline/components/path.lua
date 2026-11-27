@@ -47,7 +47,7 @@ local path_name = {
     end,
 }
 
-local separator_component = separator({
+local separator_component = separator.make({
     char = separator.right_block,
     block = true,
 })

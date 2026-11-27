@@ -1,40 +1,43 @@
 local termapp = require("utils.os.terminal")
 local shared = require("plugins.heirline.components.shared")
 
-local chars = {
-    right = function()
-        return "╲"
-    end,
-    right_block = function()
-        if termapp.is_fully_supported() then
-            return ""
-        end
+local M = {}
 
-        if termapp.is_iterm() then
-            return ""
-        end
+-- Glyph constants, resolved once for the current terminal at require time.
+M.right = "╲"
 
-        return "🭀"
-    end,
-    left = function()
-        return "╱"
-    end,
-    left_block = function()
-        if termapp.is_fully_supported() then
-            return ""
-        end
+M.right_block = (function()
+    if termapp.is_fully_supported() then
+        return "\u{e0b8}"
+    end
 
-        if termapp.is_iterm() then
-            return ""
-        end
+    if termapp.is_iterm() then
+        return "\u{e0c8}"
+    end
 
-        return "🭋"
-    end,
-}
+    return "🭀"
+end)()
 
-local function make(opts)
+M.left = "╱"
+
+M.left_block = (function()
+    if termapp.is_fully_supported() then
+        return "\u{e0ba}"
+    end
+
+    if termapp.is_iterm() then
+        return "\u{e0ca}"
+    end
+
+    return "🭋"
+end)()
+
+--- Build a separator component.
+---@param opts? { char?: string, block?: boolean, hl?: table, condition?: function }
+---@return table
+function M.make(opts)
     local separator = {
-        provider = chars.right(),
+        provider = M.right,
         hl = { fg = "LightGray" },
     }
 
@@ -45,7 +48,7 @@ local function make(opts)
 
         if opts.block then
             if not opts.char then
-                separator.provider = chars.right_block()
+                separator.provider = M.right_block
             end
             separator.hl = opts.hl or {
                 fg = "grey",
@@ -66,13 +69,4 @@ local function make(opts)
     return separator
 end
 
-return setmetatable({}, {
-    __call = function(_, opts)
-        return make(opts)
-    end,
-    __index = function(_, k)
-        if chars[k] then
-            return chars[k]()
-        end
-    end,
-})
+return M

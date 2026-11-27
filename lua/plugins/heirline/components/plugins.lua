@@ -19,7 +19,7 @@ local updates = {
     },
 }
 
-local sp = separator({ char = separator.left })
+local sp = separator.make({ char = separator.left })
 sp.hl = { bg = "grey", fg = "LightGray" }
 return {
     sp,

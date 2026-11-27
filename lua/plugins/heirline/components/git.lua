@@ -76,7 +76,7 @@ local git_diff = {
     {
         provider = " ",
     },
-    separator(),
+    separator.make(),
     git_changed,
     git_added,
     git_removed,

@@ -50,7 +50,7 @@ return {
     {
         provider = " ",
     },
-    separator({
+    separator.make({
         condition = function(self)
             return vim.g.in_git_repo ~= nil
         end,
