@@ -1,4 +1,5 @@
 local set_hl = require("themes.colors.manager").set_hl
+local title = require("plugins.edgy.title")
 
 vim.api.nvim_create_autocmd("ColorScheme", {
     callback = function()
@@ -9,13 +10,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 -- change colors when focus or lose focus on sidebar
 -- vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "WinEnter", "BufEnter", "ModeChanged" }, {
-local sidebar_title_groups = {
-    filesystem = "EdgyTitleNeoTreeFilesystem",
-    buffers = "EdgyTitleNeoTreeBuffers",
-    git_status = "EdgyTitleNeoTreeGit",
-    outline = "EdgyTitleOutline",
-}
-
+-- the groups below are read from the pane metadata (plugins.edgy.views), so
+-- this stays in sync with the winbar without a second hardcoded list; the
+-- table is empty until edgy has been loaded and set up
 vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
     callback = vim.schedule_wrap(function(event)
         local ok, filetype = pcall(vim.api.nvim_get_option_value, "filetype", { buf = event.buf })
@@ -40,6 +37,7 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
             NeoTreeTabActive = { bg = colors.base00, fg = left_fg },
         }
 
+        local sidebar_title_groups = title.groups()
         local active_group = sidebar_focused and sidebar_title_groups[vim.g.sidebar_source]
         if not sidebar_focused or active_group then
             local inactive_fg = sidebar_focused and colors.base04 or colors.base03
